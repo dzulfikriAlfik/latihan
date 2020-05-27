@@ -29,9 +29,22 @@ class Barang
         $db = $this->mysqli->conn;
         $db->query("INSERT INTO tb_barang VALUES ('', '$nama_barang', '$harga_barang', '$stok_barang', '$gbr_barang')") or die($db->error);
     }
-    
-    public function edit($sql) {
+
+    public function edit($sql)
+    {
         $db = $this->mysqli->conn;
         $db->query($sql) or die($db->error);
+    }
+
+    public function hapus($id)
+    {
+        $db = $this->mysqli->conn;
+        $db->query("DELETE FROM tb_barang WHERE id_barang = '$id' ") or die($db->error);
+    }
+
+    public function __destruct()
+    {
+        $db = $this->mysqli->conn;
+        $db->close();
     }
 }
