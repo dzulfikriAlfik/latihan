@@ -60,10 +60,18 @@ if (@$_GET['act'] == '') {
         </table>
       </div>
 
-      <!-- Button trigger modal -->
+      <!-- Button trigger modal tambah -->
       <button type="button" id="tambah_barang" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
-        Tambah Data Barang
+        <i class="fa fa-plus"></i> Tambah Data Barang
       </button>
+      <!-- End Button trigger modal tambah -->
+      <!-- Button print excel -->
+      <a href="report/export_excel_barang.php" target="_blank">
+        <button class="btn btn-default">
+          <i class="fa fa-print"></i> Export Excel
+        </button>
+      </a>
+      <!-- End Button print excel -->
 
       <!-- Modal Tambah -->
       <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">
