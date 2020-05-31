@@ -1,4 +1,4 @@
-<?php 
+<?php
 ob_start();
 require_once('config/+koneksi.php');
 require_once('models/database.php');
@@ -17,6 +17,9 @@ $connection = new Database($host, $user, $pass, $database);
 
   <!-- Bootstrap core CSS -->
   <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+  <!-- dataTables -->
+  <link href="assets/dataTables/datatables.min.css" rel="stylesheet">
 
   <!-- Add custom CSS here -->
   <link href="assets/css/sb-admin.css" rel="stylesheet">
@@ -79,7 +82,7 @@ $connection = new Database($host, $user, $pass, $database);
         include "views/barang.php";
       }
 
-      ?> 
+      ?>
 
     </div><!-- /#page-wrapper -->
 
@@ -88,6 +91,13 @@ $connection = new Database($host, $user, $pass, $database);
   <!-- JavaScript -->
   <script src="assets/js/jquery-1.10.2.js"></script>
   <script src="assets/js/bootstrap.js"></script>
+  <!-- dataTables -->
+  <script src="assets/dataTables/datatables.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#datatables').DataTable();
+    });
+  </script>
 
 </body>
 
