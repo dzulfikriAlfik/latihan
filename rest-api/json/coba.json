@@ -1,0 +1,30 @@
+[
+   {
+      "nama": "Dzulfikri",
+      "umur": 24,
+      "npm": "14.14.1.0110",
+      "lulus": true,
+      "hobi": [
+         "coding",
+         "gaming"
+      ],
+      "pembimbing": {
+         "pembimbing1": "H.Agus",
+         "pembimbing2": "Ade Bastian"
+      }
+   },
+   {
+      "nama": "Ica Cahyani",
+      "umur": 23,
+      "npm": "14.14.1.0111",
+      "lulus": true,
+      "hobi": [
+         "baca buku",
+         "maen"
+      ],
+      "pembimbing": {
+         "pembimbing1": "Budiman",
+         "pembimbing2": "Doni Susandi"
+      }
+   }
+]
