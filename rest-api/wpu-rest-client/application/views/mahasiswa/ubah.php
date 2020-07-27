@@ -18,9 +18,9 @@
                             <small class="form-text text-danger"><?= form_error('nama'); ?></small>
                         </div>
                         <div class="form-group">
-                            <label for="npm">NPM</label>
-                            <input type="text" name="npm" class="form-control" id="npm" placeholder="NPM" value="<?= $mahasiswa['npm']; ?>">
-                            <small class="form-text text-danger"><?= form_error('npm'); ?></small>
+                            <label for="nrp">NPM</label>
+                            <input type="text" name="nrp" class="form-control" id="nrp" placeholder="NPM" value="<?= $mahasiswa['nrp']; ?>">
+                            <small class="form-text text-danger"><?= form_error('nrp'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
