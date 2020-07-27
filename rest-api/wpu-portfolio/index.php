@@ -1,3 +1,31 @@
+<?php
+
+function get_CURL($url)
+{
+   $curl = curl_init();
+   curl_setopt($curl, CURLOPT_URL, $url);
+   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+   curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+   $result = curl_exec($curl);
+   curl_close($curl);
+
+   return json_decode($result, true);
+}
+
+$result = get_CURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCkXmLjEr95LVtGuIm3l2dPg&key=AIzaSyD0NXRnx1_N38QTXY5jlcIXm5ge4TXbOqo');
+
+$youtubeProfilePic = $result['items'][0]['snippet']['thumbnails']['medium']['url'];
+$channelName = $result['items'][0]['snippet']['title'];
+$subscribers = $result['items'][0]['statistics']['subscriberCount'];
+
+// latest video
+$urlLatestVideo = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyD0NXRnx1_N38QTXY5jlcIXm5ge4TXbOqo&channelId=UCkXmLjEr95LVtGuIm3l2dPg&maxResults=1&order=date&part=snippet';
+
+$result = get_CURL($urlLatestVideo);
+$latestVideoId = $result['items'][0]['id']['videoId'];
+
+?>
+
 <!doctype html>
 <html lang="en" id="home">
 
@@ -12,6 +40,17 @@
    <style>
       section {
          min-height: 450px;
+      }
+
+      .ig-thumbnail {
+         width: 100px;
+         height: 100px;
+         float: left;
+         overflow: hidden;
+      }
+
+      .ig-thumbnail img {
+         width: 100px;
       }
    </style>
 
@@ -110,17 +149,18 @@
             <div class="col-md-5">
                <div class="row">
                   <div class="col-md-4">
-                     <img src="img/profile1.png" width="200" class="rounded-circle img-thumbnail">
+                     <img src="<?= $youtubeProfilePic; ?>" width="200" class="rounded-circle img-thumbnail">
                   </div>
                   <div class="col-md-8">
-                     <h5>Web Programming Unpas</h5>
-                     <p>70.000 Subcribers</p>
+                     <h5><?= $channelName; ?></h5>
+                     <p><?= $subscribers; ?> Subsribers.</p>
+                     <div class="g-ytsubscribe" data-channelid="UCkXmLjEr95LVtGuIm3l2dPg" data-layout="default" data-count="default"></div>
                   </div>
                </div>
                <div class="row mt-3 pb-3">
                   <div class="col">
                      <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $latestVideoId; ?>?rel=0" allowfullscreen></iframe>
                      </div>
                   </div>
                </div>
@@ -136,9 +176,17 @@
                      <p>300 Followers</p>
                   </div>
                </div>
-               <div class="row">
+               <div class="row mt-3 pb-3">
                   <div class="col">
-                     <img src="" alt="">
+                     <div class="ig-thumbnail">
+                        <img src="img/thumbs/1.png">
+                     </div>
+                     <div class="ig-thumbnail">
+                        <img src="img/thumbs/2.png">
+                     </div>
+                     <div class="ig-thumbnail">
+                        <img src="img/thumbs/3.png">
+                     </div>
                   </div>
                </div>
             </div>
@@ -297,6 +345,7 @@
    <!-- Include all compiled plugins (below), or include individual files as needed -->
    <script src="js/bootstrap.min.js"></script>
    <script src="js/script.js"></script>
+   <script src="https://apis.google.com/js/platform.js"></script>
 </body>
 
 </html>
