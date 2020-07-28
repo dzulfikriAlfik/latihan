@@ -13,7 +13,7 @@ class Mahasiswa extends REST_Controller
       $this->load->model('Mahasiswa_model', 'mahasiswa');
 
       // Set Limit API Key
-      $this->methods['index_get']['limit'] = 10;
+      $this->methods['index_get']['limit'] = 1000;
    }
 
    // GET METHOD
