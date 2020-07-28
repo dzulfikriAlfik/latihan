@@ -57,4 +57,40 @@ class Prodi extends CI_Controller
          'required' => 'Nama jurusan harus diisi'
       ]);
    }
+
+   public function update($id)
+   {
+      $where = ['id_prodi' => $id];
+
+      $data['prodi'] = $this->db->query("SELECT * FROM prodi prd, jurusan jrs WHERE prd.nama_jurusan = jrs.nama_jurusan AND prd.id_prodi = '$id' ")->result();
+      $data['jurusan'] = $this->prodi_model->tampil_data('jurusan')->result();
+
+      $this->load->view('templates_administrator/header');
+      $this->load->view('templates_administrator/sidebar');
+      $this->load->view('administrator/prodi_update', $data);
+      $this->load->view('templates_administrator/footer');
+   }
+
+   public function update_aksi()
+   {
+      $this->_rules();
+
+      $id = $this->input->post('id_prodi');
+
+      if ($this->form_validation->run() == FALSE) {
+         $this->update($id);
+      } else {
+         $data = [
+            'kode_prodi' => $this->input->post('kode_prodi'),
+            'nama_prodi' => $this->input->post('nama_prodi'),
+            'nama_jurusan' => $this->input->post('nama_jurusan')
+         ];
+
+         $where = ['id_prodi' => $id];
+
+         $this->prodi_model->update_data($where, $data, 'prodi');
+         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data prodi berhasil diubah<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+         redirect('administrator/prodi');
+      }
+   }
 }

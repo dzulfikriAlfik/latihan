@@ -14,7 +14,7 @@
             <?= form_error('kode_jurusan', '<div class="text-danger small ml-3">', '</div>'); ?>
          </div>
          <div class="form-group">
-            <label for="nama_jurusan">Kode Jurusan</label>
+            <label for="nama_jurusan">Nama Jurusan</label>
             <input class="form-control" type="text" name="nama_jurusan" id="nama_jurusan" placeholder="Masukan kode jurusan" value="<?= $jrs->nama_jurusan; ?>">
             <?= form_error('nama_jurusan', '<div class="text-danger small ml-3">', '</div>'); ?>
          </div>
