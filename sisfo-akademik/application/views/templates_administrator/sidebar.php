@@ -33,7 +33,7 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Sub-Menu Akademik:</h6>
-                  <a class="collapse-item" href="buttons.html">Jurusan</a>
+                  <a class="collapse-item" href="<?= base_url('administrator/jurusan'); ?>">Jurusan</a>
                   <a class="collapse-item" href="cards.html">Program Studi</a>
                   <a class="collapse-item" href="cards.html">Mata Kuliah</a>
                   <a class="collapse-item" href="cards.html">Mahasiswa</a>
