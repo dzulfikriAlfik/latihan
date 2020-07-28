@@ -28,7 +28,7 @@
                <?= anchor('administrator/jurusan/update/' . $jrs->id_jurusan, '<div class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></div>'); ?>
             </td>
             <td width="20px" class="text-center">
-               <?= anchor('administrator/jurusan/delete/' . $jrs->id_jurusan, '<div class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></div>'); ?>
+               <?= anchor('administrator/jurusan/delete/' . $jrs->id_jurusan, '<div class="btn btn-sm btn-danger" onclick="return confirm(\'Yakin?\');"><i class="fas fa-trash"></i></div>'); ?>
             </td>
          </tr>
       <?php endforeach; ?>

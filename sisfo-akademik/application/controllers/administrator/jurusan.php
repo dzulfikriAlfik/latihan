@@ -90,4 +90,12 @@ class Jurusan extends CI_Controller
          redirect('administrator/jurusan');
       }
    }
+
+   public function delete($id)
+   {
+      $where = ['id_jurusan' => $id];
+      $this->jurusan_model->hapus_data($where, 'jurusan');
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data jurusan berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('administrator/jurusan');
+   }
 }
