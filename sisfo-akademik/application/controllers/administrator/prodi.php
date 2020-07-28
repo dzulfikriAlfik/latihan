@@ -93,4 +93,12 @@ class Prodi extends CI_Controller
          redirect('administrator/prodi');
       }
    }
+
+   public function delete($id)
+   {
+      $where = ['id_prodi' => $id];
+      $this->prodi_model->hapus_data($where, 'prodi');
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data prodi berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('administrator/prodi');
+   }
 }
