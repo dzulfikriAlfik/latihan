@@ -19,7 +19,7 @@
 
          <!-- Nav Item - Dashboard -->
          <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="<?= base_url('administrator/dashboard'); ?>">
                <i class="fas fa-fw fa-tachometer-alt"></i>
                <span>Dashboard</span></a>
          </li>
@@ -35,14 +35,14 @@
                   <h6 class="collapse-header">Sub-Menu Akademik:</h6>
                   <a class="collapse-item" href="<?= base_url('administrator/jurusan'); ?>">Jurusan</a>
                   <a class="collapse-item" href="<?= base_url('administrator/prodi'); ?>">Program Studi</a>
-                  <a class="collapse-item" href="cards.html">Mata Kuliah</a>
-                  <a class="collapse-item" href="cards.html">Mahasiswa</a>
-                  <a class="collapse-item" href="cards.html">Tahun Akademik</a>
-                  <a class="collapse-item" href="cards.html">KRS</a>
-                  <a class="collapse-item" href="cards.html">Input Nilai</a>
-                  <a class="collapse-item" href="cards.html">KHS</a>
-                  <a class="collapse-item" href="cards.html">Cetak Transkrip</a>
-                  <a class="collapse-item" href="cards.html">Dosen</a>
+                  <a class="collapse-item" href="<?= base_url('administrator/matakuliah'); ?>">Mata Kuliah</a>
+                  <a class="collapse-item" href="#">Mahasiswa</a>
+                  <a class="collapse-item" href="#">Tahun Akademik</a>
+                  <a class="collapse-item" href="#">KRS</a>
+                  <a class="collapse-item" href="#">Input Nilai</a>
+                  <a class="collapse-item" href="#">KHS</a>
+                  <a class="collapse-item" href="#">Cetak Transkrip</a>
+                  <a class="collapse-item" href="#">Dosen</a>
                </div>
             </div>
          </li>
