@@ -1,5 +1,9 @@
 <div class="container-fluid">
 
+   <div class="alert alert-success" role="alert">
+      <i class="fas fa-university"></i> Form tambah jurusan
+   </div>
+
    <form action="<?= base_url('administrator/jurusan/input_aksi'); ?>" method="post">
       <div class="form-group">
          <label for="kode_jurusan">Kode Jurusan</label>
