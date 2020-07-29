@@ -68,4 +68,14 @@ class matakuliah extends CI_Controller
          'required' => 'Nama Prodi harus diisi'
       ]);
    }
+
+   public function detail($kode)
+   {
+      $data['detail'] = $this->matakuliah_model->ambil_kode_matakuliah($kode);
+
+      $this->load->view('templates_administrator/header');
+      $this->load->view('templates_administrator/sidebar');
+      $this->load->view('administrator/matakuliah_detail', $data);
+      $this->load->view('templates_administrator/footer');
+   }
 }

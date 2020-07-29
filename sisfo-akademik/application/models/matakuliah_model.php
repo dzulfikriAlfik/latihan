@@ -12,4 +12,15 @@ class Matakuliah_model extends CI_Model
    {
       $this->db->insert($table, $data);
    }
+
+   public function ambil_kode_matakuliah($kode)
+   {
+      $result = $this->db->where('kode_matakuliah', $kode)->get('matakuliah');
+
+      if ($result->num_rows() > 0) {
+         return $result->result();
+      } else {
+         return false;
+      }
+   }
 }
