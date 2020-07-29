@@ -115,4 +115,12 @@ class matakuliah extends CI_Controller
          redirect('administrator/matakuliah');
       }
    }
+
+   public function delete($id)
+   {
+      $where = ['kode_matakuliah' => $id];
+      $this->matakuliah_model->hapus_data($where, 'matakuliah');
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data matakuliah berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('administrator/matakuliah');
+   }
 }
