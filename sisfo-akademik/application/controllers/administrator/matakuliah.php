@@ -78,4 +78,41 @@ class matakuliah extends CI_Controller
       $this->load->view('administrator/matakuliah_detail', $data);
       $this->load->view('templates_administrator/footer');
    }
+
+   public function update($id)
+   {
+      $where = ['kode_matakuliah' => $id];
+
+      $data['matakuliah'] = $this->db->query("SELECT * FROM matakuliah mk, prodi prd WHERE mk.nama_prodi = prd.nama_prodi AND mk.kode_matakuliah = '$id' ")->result();
+      $data['prodi'] = $this->matakuliah_model->tampil_data('prodi')->result();
+
+      $this->load->view('templates_administrator/header');
+      $this->load->view('templates_administrator/sidebar');
+      $this->load->view('administrator/matakuliah_update', $data);
+      $this->load->view('templates_administrator/footer');
+   }
+
+   public function update_aksi()
+   {
+      $this->_rules();
+
+      $id = $this->input->post('kode_matakuliah');
+
+      if ($this->form_validation->run() == FALSE) {
+         $this->update($id);
+      } else {
+         $data = [
+            'nama_matakuliah' => $this->input->post('nama_matakuliah'),
+            'sks' => $this->input->post('sks'),
+            'semester' => $this->input->post('semester'),
+            'nama_prodi' => $this->input->post('nama_prodi')
+         ];
+
+         $where = ['kode_matakuliah' => $id];
+
+         $this->matakuliah_model->update_data($where, $data, 'matakuliah');
+         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data mata kuliah berhasil diubah<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+         redirect('administrator/matakuliah');
+      }
+   }
 }
