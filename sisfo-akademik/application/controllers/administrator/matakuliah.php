@@ -96,19 +96,20 @@ class matakuliah extends CI_Controller
    {
       $this->_rules();
 
-      $id = $this->input->post('kode_matakuliah');
+      $id = $this->input->post('id_matakuliah');
 
       if ($this->form_validation->run() == FALSE) {
          $this->update($id);
       } else {
          $data = [
+            'kode_matakuliah' => $this->input->post('kode_matakuliah'),
             'nama_matakuliah' => $this->input->post('nama_matakuliah'),
             'sks'             => $this->input->post('sks'),
             'semester'        => $this->input->post('semester'),
             'nama_prodi'      => $this->input->post('nama_prodi')
          ];
 
-         $where = ['kode_matakuliah' => $id];
+         $where = ['id_matakuliah' => $id];
 
          $this->matakuliah_model->update_data($where, $data, 'matakuliah');
          $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data mata kuliah berhasil diubah<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -118,7 +119,7 @@ class matakuliah extends CI_Controller
 
    public function delete($id)
    {
-      $where = ['kode_matakuliah' => $id];
+      $where = ['id_matakuliah' => $id];
       $this->matakuliah_model->hapus_data($where, 'matakuliah');
       $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data matakuliah berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
       redirect('administrator/matakuliah');

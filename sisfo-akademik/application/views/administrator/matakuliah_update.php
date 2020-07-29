@@ -7,7 +7,12 @@
    <?php foreach ($matakuliah as $mk) : ?>
 
       <form action="<?= base_url('administrator/matakuliah/update_aksi'); ?>" method="post">
-         <input type="hidden" name="kode_matakuliah" id="kode_matakuliah" class="form-control" value="<?= $mk->kode_matakuliah; ?>">
+         <input type="hidden" name="id_matakuliah" id="id_matakuliah" class="form-control" value="<?= $mk->id_matakuliah; ?>">
+         <div class="form-group">
+            <label for="kode_matakuliah">Kode Mata kuliah</label>
+            <input type="text" name="kode_matakuliah" id="kode_matakuliah" class="form-control" value="<?= $mk->kode_matakuliah; ?>">
+            <?= form_error('nama_matakuliah', '<div class="text-danger small ml-3">', '</div>'); ?>
+         </div>
          <div class="form-group">
             <label for="nama_matakuliah">Nama Mata kuliah</label>
             <input type="text" name="nama_matakuliah" id="nama_matakuliah" class="form-control" value="<?= $mk->nama_matakuliah; ?>">
