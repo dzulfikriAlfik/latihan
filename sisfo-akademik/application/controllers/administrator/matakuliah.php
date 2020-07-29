@@ -83,8 +83,8 @@ class matakuliah extends CI_Controller
    {
       $where = ['kode_matakuliah' => $id];
 
-      $data['matakuliah'] = $this->db->query("SELECT * FROM matakuliah mk, prodi prd WHERE mk.nama_prodi = prd.nama_prodi AND mk.kode_matakuliah = '$id' ")->result();
-      $data['prodi'] = $this->matakuliah_model->tampil_data('prodi')->result();
+      $data['matakuliah']  = $this->db->query("SELECT * FROM matakuliah mk, prodi prd WHERE mk.nama_prodi = prd.nama_prodi AND mk.kode_matakuliah = '$id' ")->result();
+      $data['prodi']       = $this->matakuliah_model->tampil_data('prodi')->result();
 
       $this->load->view('templates_administrator/header');
       $this->load->view('templates_administrator/sidebar');
@@ -103,9 +103,9 @@ class matakuliah extends CI_Controller
       } else {
          $data = [
             'nama_matakuliah' => $this->input->post('nama_matakuliah'),
-            'sks' => $this->input->post('sks'),
-            'semester' => $this->input->post('semester'),
-            'nama_prodi' => $this->input->post('nama_prodi')
+            'sks'             => $this->input->post('sks'),
+            'semester'        => $this->input->post('semester'),
+            'nama_prodi'      => $this->input->post('nama_prodi')
          ];
 
          $where = ['kode_matakuliah' => $id];
