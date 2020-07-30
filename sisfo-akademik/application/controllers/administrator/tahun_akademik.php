@@ -52,4 +52,47 @@ class Tahun_akademik extends CI_Controller
          redirect('administrator/tahun_akademik');
       }
    }
+
+   public function update($id)
+   {
+      $where = ['id' => $id];
+      $data['tahun_akademik'] = $this->tahunakademik_model->edit_data($where, 'tahun_akademik')->result();
+
+      $this->load->view('templates_administrator/header');
+      $this->load->view('templates_administrator/sidebar');
+      $this->load->view('administrator/tahun_akademik_update', $data);
+      $this->load->view('templates_administrator/footer');
+   }
+
+   public function update_aksi()
+   {
+      $this->_rules();
+
+      $id = $this->input->post('id');
+
+      if ($this->form_validation->run() == FALSE) {
+         $this->update($id);
+      } else {
+         $data = [
+            'tahun_akademik'  => $this->input->post('tahun_akademik'),
+            'semester'        => $this->input->post('semester'),
+            'status'          => $this->input->post('status')
+         ];
+
+         $where = ['id' => $id];
+
+         $this->tahunakademik_model->update_data($where, $data, 'tahun_akademik');
+         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data tahun akademik berhasil diubah<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+         redirect('administrator/tahun_akademik');
+      }
+   }
+
+   public function delete($id)
+   {
+      $where = ['id' => $id];
+
+      $this->tahunakademik_model->hapus_data($where, 'tahun_akademik');
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data tahun akademik berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('administrator/tahun_akademik');
+   }
 }
