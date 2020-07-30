@@ -9,7 +9,7 @@
    <table class="table table-hover table-striped table-bordered">
 
       <?php foreach ($detail as $mhs) : ?>
-         <img src="<?= base_url('assets/uploads/img/') . $mhs->photo; ?>" alt="Photo Mahasiswa" width="20%" class="img-thumbnail img-fluid mt-2 mb-3">
+         <img src="<?= base_url('assets/uploads/img/') . $mhs->photo; ?>" alt="Photo Mahasiswa" width="200px" class="img-fluid img-thumbnail img-profile mt-2 mb-3">
          <tr>
             <td>NIM</td>
             <td><?= $mhs->nim; ?></td>

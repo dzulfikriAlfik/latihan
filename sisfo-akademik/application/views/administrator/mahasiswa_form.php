@@ -42,7 +42,7 @@
       <?= form_error('tanggal_lahir', '<div class="text-danger small ml-3">', '</div>'); ?>
    </div>
    <div class="form-group">
-      <label for="jenis_kelamin">Tanggal Lahir</label>
+      <label for="jenis_kelamin">Jenis Kelamin</label>
       <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
          <option value="">-- Pilih Jenis Kelamin --</option>
          <option value="Laki-laki">Laki-laki</option>
