@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Tahunakademik_model extends CI_Model
 {
@@ -8,4 +8,8 @@ class Tahunakademik_model extends CI_Model
       return $this->db->get($table);
    }
 
+   public function input_data($data, $table)
+   {
+      $this->db->insert($table, $data);
+   }
 }
