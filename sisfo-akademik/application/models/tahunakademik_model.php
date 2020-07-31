@@ -29,4 +29,13 @@ class Tahunakademik_model extends CI_Model
       $this->db->where($where);
       $this->db->delete($table);
    }
+
+   public $table = 'tahun_akademik';
+   public $id = 'id_thn_aka';
+
+   public function get_by_id($id)
+   {
+      $this->db->where($this->id, $id);
+      return $this->db->get($this->table)->row();
+   }
 }
