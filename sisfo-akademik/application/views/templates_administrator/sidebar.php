@@ -38,7 +38,7 @@
                   <a class="collapse-item" href="<?= base_url('administrator/matakuliah'); ?>">Mata Kuliah</a>
                   <a class="collapse-item" href="<?= base_url('administrator/mahasiswa'); ?>">Mahasiswa</a>
                   <a class="collapse-item" href="<?= base_url('administrator/tahun_akademik'); ?>">Tahun Akademik</a>
-                  <a class="collapse-item" href="#">KRS</a>
+                  <a class="collapse-item" href="<?= base_url('administrator/krs'); ?>">KRS</a>
                   <a class="collapse-item" href="#">Input Nilai</a>
                   <a class="collapse-item" href="#">KHS</a>
                   <a class="collapse-item" href="#">Cetak Transkrip</a>
