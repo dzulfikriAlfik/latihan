@@ -55,7 +55,7 @@ class Tahun_akademik extends CI_Controller
 
    public function update($id)
    {
-      $where = ['id' => $id];
+      $where = ['id_thn_aka' => $id];
       $data['tahun_akademik'] = $this->tahunakademik_model->edit_data($where, 'tahun_akademik')->result();
 
       $this->load->view('templates_administrator/header');
@@ -79,7 +79,7 @@ class Tahun_akademik extends CI_Controller
             'status'          => $this->input->post('status')
          ];
 
-         $where = ['id' => $id];
+         $where = ['id_thn_aka' => $id];
 
          $this->tahunakademik_model->update_data($where, $data, 'tahun_akademik');
          $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data tahun akademik berhasil diubah<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -89,7 +89,7 @@ class Tahun_akademik extends CI_Controller
 
    public function delete($id)
    {
-      $where = ['id' => $id];
+      $where = ['id_thn_aka' => $id];
 
       $this->tahunakademik_model->hapus_data($where, 'tahun_akademik');
       $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data tahun akademik berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

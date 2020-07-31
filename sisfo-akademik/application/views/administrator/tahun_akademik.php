@@ -27,10 +27,10 @@
             <td><?= $ak->semester; ?></td>
             <td><?= $ak->status; ?></td>
             <td width="20px" class="text-center">
-               <?= anchor('administrator/tahun_akademik/update/' . $ak->id, '<div class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></div>'); ?>
+               <?= anchor('administrator/tahun_akademik/update/' . $ak->id_thn_aka, '<div class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></div>'); ?>
             </td>
             <td width="20px" class="text-center">
-               <?= anchor('administrator/tahun_akademik/delete/' . $ak->id, '<div class="btn btn-sm btn-danger" onclick="return confirm(\'Yakin?\');"><i class="fas fa-trash"></i></div>'); ?>
+               <?= anchor('administrator/tahun_akademik/delete/' . $ak->id_thn_aka, '<div class="btn btn-sm btn-danger" onclick="return confirm(\'Yakin?\');"><i class="fas fa-trash"></i></div>'); ?>
             </td>
          </tr>
       <?php endforeach; ?>

@@ -7,7 +7,7 @@
    <?php foreach ($tahun_akademik as $ak) : ?>
 
       <form action="<?= base_url('administrator/tahun_akademik/update_aksi'); ?>" method="post">
-         <input type="hidden" name="id" value="<?= $ak->id; ?>">
+         <input type="hidden" name="id" value="<?= $ak->id_thn_aka; ?>">
 
          <div class="form-group">
             <label for="tahun_akademik">Tahun Akademik</label>
