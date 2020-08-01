@@ -35,7 +35,7 @@
       </table>
    </center>
 
-   <?= anchor('administrator/krs/tambah', '<button class="btn btn-sm btn-primary mt-5"><i class="fas fa-plus fa-sm"></i> Tambah Data Krs</button>'); ?>
+   <?= anchor('administrator/krs/tambah_krs/' . $nim . '/' . $id_thn_aka, '<button class="btn btn-sm btn-primary mt-5"><i class="fas fa-plus fa-sm"></i> Tambah Data Krs</button>'); ?>
    <?= anchor('administrator/krs/print', '<button class="btn btn-sm btn-info mt-5"><i class="fas fa-print fa-sm"></i> Print</button>'); ?>
 
    <table class="table table-bordered table-hover table-striped mt-3">
@@ -47,6 +47,7 @@
          <th colspan="2">Aksi</th>
       </tr>
       <?php $no = 1;
+      $jumlahSks = 0;
       foreach ($krs_data as $krs) : ?>
          <tr>
             <td width="20px"><?= $no++; ?></td>
@@ -64,13 +65,13 @@
                <?= anchor('administrator/krs/delete/' . $krs->id_krs, '<div class="btn btn-sm btn-danger" onclick="return confirm(\'Yakin?\');"><i class="fas fa-trash"></i></div>'); ?>
             </td>
          </tr>
-         <tr>
-            <td colspan="3" align="right">
-               <strong>Jumlah SKS</strong>
-            </td>
-            <td><strong><?= $jumlahSks; ?></strong></td>
-         </tr>
       <?php endforeach; ?>
+      <tr>
+         <td colspan="3" align="right">
+            <strong>Jumlah SKS</strong>
+         </td>
+         <td><strong><?= $jumlahSks; ?></strong></td>
+      </tr>
    </table>
 
 </div>

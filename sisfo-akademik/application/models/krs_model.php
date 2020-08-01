@@ -8,9 +8,12 @@ class Krs_model extends CI_Model
       return $this->db->get($table);
    }
 
-   public function insert_data($data, $table)
+   public $table  = 'krs';
+   public $id     = 'id_krs';
+
+   public function insert($data)
    {
-      $this->db->insert($table, $data);
+      $this->db->insert($this->table, $data);
    }
 
    public function update_data($where, $data, $table)
