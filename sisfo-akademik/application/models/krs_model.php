@@ -30,7 +30,11 @@ class Krs_model extends CI_Model
 
    public function get_by_id($id)
    {
-      $this->db->where($this->id, $id);
-      return $this->db->get($this->table)->row();
+      return $this->db->get_where('krs', ['id_krs' => $id])->row();
+   }
+
+   public function getById($id)
+   {
+      return $this->db->get_where('krs', ['id_krs' => $id])->row();
    }
 }
