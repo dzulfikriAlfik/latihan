@@ -70,7 +70,7 @@
          <td colspan="3" align="right">
             <strong>Jumlah SKS</strong>
          </td>
-         <td><strong><?= $jumlahSks; ?></strong></td>
+         <td colspan="3"><strong><?= $jumlahSks; ?></strong></td>
       </tr>
    </table>
 
