@@ -5,8 +5,8 @@ class Krs extends CI_Controller
    public function index()
    {
       $data = [
-         'nim' => set_value('nim'),
-         'id_thn_aka' => set_value('id_thn_aka')
+         'nim'          => set_value('nim'),
+         'id_thn_aka'   => set_value('id_thn_aka')
       ];
 
       $this->load->view('templates_administrator/header');
@@ -113,8 +113,61 @@ class Krs extends CI_Controller
          ];
 
          $this->krs_model->insert($data);
-         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data KHS berhasil ditambahkan<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-         redirect('administrator/krs/krs_aksi');
+         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data KRS berhasil ditambahkan<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+         redirect('administrator/krs');
       }
+   }
+
+   public function update($id)
+   {
+      $row  = $this->krs_model->get_by_id($id);
+      $th   = $row->id_thn_aka;
+
+      if ($row) {
+         $data = [
+            'id_krs'             => set_value('id_krs', $row->id_krs),
+            'id_thn_aka'         => set_value('id_thn_aka', $row->id_thn_aka),
+            'nim'                => set_value('nim', $row->nim),
+            'kode_matakuliah'    => set_value('kode_matakuliah', $row->kode_matakuliah),
+            'thn_aka_smt'        => $this->tahunakademik_model->get_by_id($th)->tahun_akademik,
+            'semester'           => $this->tahunakademik_model->get_by_id($th)->semester == 'Ganjil' ? 'Ganjil' : 'Genap',
+
+         ];
+
+         $this->load->view('templates_administrator/header');
+         $this->load->view('templates_administrator/sidebar');
+         $this->load->view('administrator/krs_update', $data);
+         $this->load->view('templates_administrator/footer');
+      } else {
+         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data tidak ditemukan<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+         redirect('administrator/krs/update' . $id);
+      }
+   }
+
+   public function update_aksi()
+   {
+      $id_krs           = $this->input->post('id_krs', TRUE);
+      $nim              = $this->input->post('nim', TRUE);
+      $id_thn_aka       = $this->input->post('id_thn_aka', TRUE);
+      $kode_matakuliah  = $this->input->post('kode_matakuliah', TRUE);
+
+      $data = [
+         'id_krs'          => $id_krs,
+         'id_thn_aka'      => $id_thn_aka,
+         'nim'             => $nim,
+         'kode_matakuliah' => $kode_matakuliah,
+      ];
+
+      $this->krs_model->update($id_krs, $data);
+      $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data KRS berhasil di update<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('administrator/krs');
+   }
+
+   public function delete($id)
+   {
+      $where = ['id_krs' => $id];
+      $this->krs_model->delete($where, 'krs');
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data krs berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('administrator/krs');
    }
 }
