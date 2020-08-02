@@ -85,4 +85,17 @@ class Nilai extends CI_Controller
          $this->load->view('templates_administrator/footer');
       }
    }
+
+   public function input_nilai() 
+   {
+      $data = [
+         'kode_matakuliah'    => set_value('kode_matakuliah'),
+         'id_thn_aka'         => set_value('id_thn_aka')
+      ];
+
+      $this->load->view('templates_administrator/header');
+      $this->load->view('templates_administrator/sidebar');
+      $this->load->view('administrator/input_nilai_form', $data);
+      $this->load->view('templates_administrator/footer');
+   }
 }
