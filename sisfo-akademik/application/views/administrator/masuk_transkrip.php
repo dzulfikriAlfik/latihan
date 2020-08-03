@@ -9,6 +9,7 @@
       <div class="form-group">
          <label for="nim">NIM</label>
          <input type="text" name="nim" id="nim" class="form-control" placeholder="Masukan NIM">
+         <?= form_error('nim', '<div class="text-danger small ml-3">', '</div>'); ?>
       </div>
 
       <button type="submit" class="btn btn-primary">Proses</button>
