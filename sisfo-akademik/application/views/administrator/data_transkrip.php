@@ -40,7 +40,7 @@
             <td><?= $tr->kode_matakuliah; ?></td>
             <td><?= $tr->nama_matakuliah; ?></td>
             <td class="text-center"><?= $tr->sks; ?></td>
-            <td class="text-center"><?= strtoupper($tr->nilai); ?></td>
+            <td class="text-center"><?= $tr->nilai; ?></td>
             <td class="text-center"><?= skorNilai($tr->nilai, $tr->sks); ?></td>
 
             <?php
