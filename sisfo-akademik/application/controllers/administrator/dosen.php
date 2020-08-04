@@ -118,7 +118,6 @@ class Dosen extends CI_Controller
 
    public function update_dosen_aksi()
    {
-      $data['dosen'] = $this->db->get_where('dosen', ['id_dosen' => $this->input->get('id')])->row_array();
       $this->_rules();
 
       if ($this->form_validation->run() == FALSE) {
@@ -145,8 +144,6 @@ class Dosen extends CI_Controller
                redirect('administrator/dosen');
                die();
             } else {
-               $old_photo = $data['dosen']['photo'];
-               unlink(FCPATH . 'assets/uploads/img/' . $old_photo);
                $photo = $this->upload->data('file_name');
                $this->db->set('photo', $photo);
             }
