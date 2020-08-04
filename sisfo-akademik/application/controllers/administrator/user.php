@@ -58,4 +58,42 @@ class User extends CI_Controller
          redirect('administrator/user');
       }
    }
+
+   public function update($id)
+   {
+      $where = ['id' => $id];
+
+      $data['user'] = $this->user_model->edit_data($where, 'user')->result();
+
+      $this->load->view('templates_administrator/header');
+      $this->load->view('templates_administrator/sidebar');
+      $this->load->view('administrator/user_update', $data);
+      $this->load->view('templates_administrator/footer');
+   }
+
+   public function update_aksi()
+   {
+      $id = $this->input->post('id');
+      $data = [
+         'username'     => $this->input->post('username', TRUE),
+         'password'     => MD5($this->input->post('password', TRUE)),
+         'email'        => $this->input->post('email', TRUE),
+         'level'        => $this->input->post('level', TRUE),
+         'blokir'       => $this->input->post('blokir', TRUE)
+      ];
+
+      $where = ['id' => $id];
+
+      $this->user_model->update_data($where, $data, 'user');
+      $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data user berhasil diubah<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('administrator/user');
+   }
+
+   public function delete($id)
+   {
+      $where = ['id' => $id];
+      $this->user_model->hapus_data($where, 'user');
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data user berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('administrator/user');
+   }
 }
