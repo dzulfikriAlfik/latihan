@@ -5,7 +5,7 @@
       <form class="form-inline">
          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
          <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
-         <button class="btn btn-success my-2 my-sm-0 ml-2" type="submit">Login</button>
+         <a href="<?= base_url('administrator/auth'); ?>" class="btn btn-success my-2 my-sm-0 ml-2">Login</a>
       </form>
    </div>
 </nav>
