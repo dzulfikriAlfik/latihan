@@ -71,7 +71,7 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Sub-Menu Info Kampus:</h6>
-                  <a class="collapse-item" href="login.html">Identitas</a>
+                  <a class="collapse-item" href="<?= base_url('administrator/identitas'); ?>">Identitas</a>
                   <a class="collapse-item" href="register.html">Kategori</a>
                   <a class="collapse-item" href="forgot-password.html">Informasi Kampus</a>
                   <a class="collapse-item" href="404.html">Tentang kampus</a>
