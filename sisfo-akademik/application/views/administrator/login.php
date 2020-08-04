@@ -49,6 +49,7 @@
                                  <?= form_error('password', '<div class="text-danger small ml-3">', '</div>'); ?>
                               </div>
                               <button class="btn btn-primary btn-user btn-block">Login</button>
+                              <a href="<?= base_url('landing_page'); ?>" class="btn text-dark btn-warning btn-user btn-block">Beranda</a>
                            </form>
                         </div>
                      </div>
