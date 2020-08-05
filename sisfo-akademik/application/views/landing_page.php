@@ -49,13 +49,13 @@
    </ol>
    <div class="carousel-inner">
       <div class="carousel-item active">
-         <img src="<?= base_url('assets/img/slider1.jpg'); ?>" class="d-block w-100">
+         <img src="<?= base_url('assets/img/slider1.jpg'); ?>" class="d-block w-100 myCarousel">
       </div>
       <div class="carousel-item">
-         <img src="<?= base_url('assets/img/slider2.jpg'); ?>" class="d-block w-100">
+         <img src="<?= base_url('assets/img/slider2.jpg'); ?>" class="d-block w-100 myCarousel">
       </div>
       <div class="carousel-item">
-         <img src="<?= base_url('assets/img/slider3.jpg'); ?>" class="d-block w-100">
+         <img src="<?= base_url('assets/img/slider3.jpg'); ?>" class="d-block w-100 myCarousel">
       </div>
    </div>
    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -68,3 +68,19 @@
    </a>
 </div>
 <!-- END CAROUSEL -->
+
+<!-- Tentang Kampus -->
+<div class="card text-center">
+   <div class="card-header">
+      Featured
+   </div>
+   <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+   </div>
+   <div class="card-footer text-muted">
+      2 days ago
+   </div>
+</div>
+<!-- END Tentang Kampus -->
