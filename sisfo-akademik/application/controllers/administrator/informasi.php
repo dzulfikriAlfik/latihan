@@ -71,64 +71,38 @@ class Informasi extends CI_Controller
 
    public function update($id)
    {
-      $where = ['nidn' => $id];
-
-      $data['dosen'] = $this->dosen_model->ambil_id_dosen($id);
+      $data['informasi'] = $this->informasi_model->ambil_id_informasi($id);
 
       $this->load->view('templates_administrator/header');
       $this->load->view('templates_administrator/sidebar');
-      $this->load->view('administrator/dosen_update', $data);
+      $this->load->view('administrator/informasi_update', $data);
       $this->load->view('templates_administrator/footer');
    }
 
-   public function update_dosen_aksi()
+   public function update_informasi_aksi()
    {
       $this->_rules();
 
       if ($this->form_validation->run() == FALSE) {
-         $this->update($this->input->post('id_dosen'));
+         $this->update($this->input->post('id_informasi'));
       } else {
-         $id            = $this->input->post('id_dosen');
-         $nidn          = $this->input->post('nidn');
-         $nama_dosen    = $this->input->post('nama_dosen');
-         $alamat        = $this->input->post('alamat');
-         $jenis_kelamin = $this->input->post('jenis_kelamin');
-         $email         = $this->input->post('email');
-         $telp          = $this->input->post('telp');
-         $photo         = $_FILES['photo']['name'];
-
-         if ($photo = '') {
-            // 
-         } else {
-            $config['upload_path'] = './assets/uploads/img/';
-            $config['allowed_types'] = 'jpg|png|gif|tiff';
-
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('photo')) {
-               $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data dosen gagal diupdate<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-               redirect('administrator/dosen');
-               die();
-            } else {
-               $photo = $this->upload->data('file_name');
-               $this->db->set('photo', $photo);
-            }
-         }
+         $id_informasi     = $this->input->post('id_informasi');
+         $icon             = $this->input->post('icon');
+         $judul_informasi  = $this->input->post('judul_informasi');
+         $isi_informasi    = $this->input->post('isi_informasi');
 
          $data = [
-            'nidn'            => $nidn,
-            'nama_dosen'      => $nama_dosen,
-            'alamat'          => $alamat,
-            'jenis_kelamin'   => $jenis_kelamin,
-            'email'           => $email,
-            'telp'            => $telp,
-            'photo'           => $photo
+            'id_informasi'       => $id_informasi,
+            'icon'               => $icon,
+            'judul_informasi'    => $judul_informasi,
+            'isi_informasi'      => $isi_informasi
          ];
 
-         $where = ['id_dosen' => $id];
+         $where = ['id_informasi' => $id_informasi];
 
-         $this->dosen_model->update_data($where, $data, 'dosen');
-         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data dosen berhasil diupdate<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-         redirect('administrator/dosen');
+         $this->informasi_model->update_data($where, $data, 'informasi');
+         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data informasi berhasil diupdate<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+         redirect('administrator/informasi');
       }
    }
 

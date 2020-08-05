@@ -8,9 +8,9 @@ class Informasi_model extends CI_Model
       return $this->db->get($table);
    }
 
-   public function ambil_id_dosen($id)
+   public function ambil_id_informasi($id)
    {
-      $result = $this->db->where('nidn', $id)->get('dosen');
+      $result = $this->db->where('id_informasi', $id)->get('informasi');
 
       if ($result->num_rows() > 0) {
          return $result->result();
