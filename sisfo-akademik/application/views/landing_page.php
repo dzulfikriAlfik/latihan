@@ -41,46 +41,79 @@
 </nav>
 
 <!-- CAROUSEL -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-   <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-   </ol>
-   <div class="carousel-inner">
-      <div class="carousel-item active">
-         <img src="<?= base_url('assets/img/slider1.jpg'); ?>" class="d-block w-100 myCarousel">
+<section>
+   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+         <div class="carousel-item active">
+            <img src="<?= base_url('assets/img/slider1.jpg'); ?>" class="d-block w-100 myCarousel">
+         </div>
+         <div class="carousel-item">
+            <img src="<?= base_url('assets/img/slider2.jpg'); ?>" class="d-block w-100 myCarousel">
+         </div>
+         <div class="carousel-item">
+            <img src="<?= base_url('assets/img/slider3.jpg'); ?>" class="d-block w-100 myCarousel">
+         </div>
       </div>
-      <div class="carousel-item">
-         <img src="<?= base_url('assets/img/slider2.jpg'); ?>" class="d-block w-100 myCarousel">
-      </div>
-      <div class="carousel-item">
-         <img src="<?= base_url('assets/img/slider3.jpg'); ?>" class="d-block w-100 myCarousel">
-      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="sr-only">Next</span>
+      </a>
    </div>
-   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-   </a>
-   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-   </a>
-</div>
+</section>
 <!-- END CAROUSEL -->
 
 <!-- Tentang Kampus -->
-<div class="card text-center">
-   <div class="card-header">
-      Featured
+<section class="m-5">
+   <div class="card text-center">
+      <div class="card-header">
+         <strong style="font-size: 20px;">Tentang Kampus</strong>
+      </div>
+      <div class="card-body">
+         <p class="card-text text-justify"><?= word_limiter($tentang->sejarah, 100); ?></p>
+         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalSejarah">Selengkapnya...</a>
+      </div>
    </div>
-   <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-   </div>
-   <div class="card-footer text-muted">
-      2 days ago
+</section>
+<!-- END Tentang Kampus -->
+
+<!-- Scrollable modal Tentang Kampus -->
+<!-- Modal -->
+<div class="modal fade" id="modalSejarah" tabindex="-1" aria-labelledby="modalSejarahLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="modalSejarahLabel">Sejarah, Visi dan Misi <?= $identitas->judul_website; ?></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body text-justify">
+            <strong>
+               <p class="text-center" style="font-size: 20px;">Sejarah</p>
+            </strong>
+            <p><?= $tentang->sejarah; ?></p>
+            <strong>
+               <p class="text-center" style="font-size: 20px;">Visi</p>
+            </strong>
+            <p><?= $tentang->visi; ?></p>
+            <strong>
+               <p class="text-center" style="font-size: 20px;">Misi</p>
+            </strong>
+            <p><?= $tentang->misi; ?></p>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+         </div>
+      </div>
    </div>
 </div>
-<!-- END Tentang Kampus -->
+<!-- End Scrollable modal Tentang Kampus -->
