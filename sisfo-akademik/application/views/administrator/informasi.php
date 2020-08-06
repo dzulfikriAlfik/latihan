@@ -27,10 +27,10 @@
             <td width="250px"><?= $info->judul_informasi; ?></td>
             <td><?= $info->isi_informasi; ?></td>
             <td width="20px" class="text-center">
-               <?= anchor('administrator/informasi/detail/' . $info->id_informasi, '<div class="btn btn-sm btn-info"><i class="fas fa-eye"></i></div>'); ?>
-            </td>
-            <td width="20px" class="text-center">
                <?= anchor('administrator/informasi/update/' . $info->id_informasi, '<div class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></div>'); ?>
+            <td width="20px" class="text-center">
+               <?= anchor('administrator/informasi/delete/' . $info->id_informasi, '<div class="btn btn-sm btn-danger" onclick="return confirm(\'Yakin?\');"><i class="fas fa-trash"></i></div>'); ?>
+            </td>
             </td>
          </tr>
       <?php endforeach; ?>

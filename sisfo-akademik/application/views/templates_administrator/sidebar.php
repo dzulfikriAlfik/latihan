@@ -72,7 +72,7 @@
                <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Sub-Menu Info Kampus:</h6>
                   <a class="collapse-item" href="<?= base_url('administrator/identitas'); ?>">Identitas</a>
-                  <a class="collapse-item" href="register.html">Kategori</a>
+                  <a class="collapse-item" href="<?= base_url('administrator/hubungi_kami'); ?>">Hubungi Kami</a>
                   <a class="collapse-item" href="<?= base_url('administrator/informasi'); ?>">Informasi Kampus</a>
                   <a class="collapse-item" href="<?= base_url('administrator/tentang_kampus'); ?>">Tentang kampus</a>
                   <a class="collapse-item" href="blank.html">Fasilitas</a>

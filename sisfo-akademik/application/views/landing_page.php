@@ -134,3 +134,34 @@
    </div>
 </section>
 <!-- End Informasi -->
+
+<!-- Hubungi Kami -->
+<section style="margin-bottom: 100px;">
+   <form method="post" action="<?= base_url('landing_page/kirim_pesan'); ?>">
+      <div class="row d-flex justify-content-center">
+         <div class="col-md-8">
+            <div class="alert alert-primary">
+               <i class="fas fa-envelope-open-text"></i> &nbsp;Hubungi Kami
+            </div>
+            <?= $this->session->flashdata('pesan'); ?>
+            <div class="form-group">
+               <label for="nama">Nama</label>
+               <input type="text" name="nama" id="nama" placeholder="Nama" class="form-control">
+               <?= form_error('nama', '<div class="text-danger small ml-2">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+               <label for="email">Email</label>
+               <input type="text" name="email" id="email" placeholder="Email" class="form-control">
+               <?= form_error('email', '<div class="text-danger small ml-2">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+               <label for="pesan">Pesan</label>
+               <textarea name="pesan" id="pesan" cols="30" rows="5" class="form-control"></textarea>
+               <?= form_error('pesan', '<div class="text-danger small ml-2">', '</div>'); ?>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+         </div>
+      </div>
+   </form>
+</section>
+<!-- End Hubungi Kami -->

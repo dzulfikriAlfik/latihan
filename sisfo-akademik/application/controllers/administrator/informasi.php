@@ -13,16 +13,6 @@ class Informasi extends CI_Controller
       $this->load->view('templates_administrator/footer');
    }
 
-   public function detail($id)
-   {
-      $data['detail'] = $this->dosen_model->ambil_id_dosen($id);
-
-      $this->load->view('templates_administrator/header');
-      $this->load->view('templates_administrator/sidebar');
-      $this->load->view('administrator/dosen_detail', $data);
-      $this->load->view('templates_administrator/footer');
-   }
-
    public function tambah_informasi()
    {
       $this->load->view('templates_administrator/header');
@@ -108,9 +98,9 @@ class Informasi extends CI_Controller
 
    public function delete($id)
    {
-      $where = ['nidn' => $id];
-      $this->dosen_model->hapus_data($where, 'dosen');
-      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data dosen berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-      redirect('administrator/dosen');
+      $where = ['id_informasi' => $id];
+      $this->informasi_model->hapus_data($where, 'informasi');
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data informasi berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('administrator/informasi');
    }
 }

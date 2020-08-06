@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'form_validation');
+$autoload['libraries'] = array('database', 'session', 'form_validation', 'email');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('login_model', 'user_model', 'jurusan_model', 'prodi_model', 'matakuliah_model', 'mahasiswa_model', 'tahunakademik_model', 'krs_model', 'transkrip_model', 'dosen_model', 'identitas_model', 'tentang_model', 'informasi_model');
+$autoload['model'] = array('login_model', 'user_model', 'jurusan_model', 'prodi_model', 'matakuliah_model', 'mahasiswa_model', 'tahunakademik_model', 'krs_model', 'transkrip_model', 'dosen_model', 'identitas_model', 'tentang_model', 'informasi_model', 'hubungi_model');
