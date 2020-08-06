@@ -117,3 +117,20 @@
    </div>
 </div>
 <!-- End Scrollable modal Tentang Kampus -->
+
+<!-- Informasi -->
+<section class="m-5">
+   <div class="row d-flex justify-content-between">
+      <?php foreach ($informasi as $info) : ?>
+         <div class="card" style="width: 18rem;">
+            <span class="display-2 text-info text-center"><i class="<?= $info->icon; ?>"></i></span>
+            <div class="card-body">
+               <h5 class="card-title"><?= $info->judul_informasi; ?></h5>
+               <p class="card-text"><?= $info->isi_informasi; ?></p>
+               <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+         </div>
+      <?php endforeach; ?>
+   </div>
+</section>
+<!-- End Informasi -->
