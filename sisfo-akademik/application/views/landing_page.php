@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-primary text-white">
+<nav class="navbar navbar-dark bg-primary text-white fixed-top">
    <div class="container-fluid">
       <a class="navbar-brand"><strong><?= $identitas->judul_website; ?></strong></a>
       <span class="small"><?= $identitas->alamat . ' - ' . $identitas->email . ' - ' . $identitas->telp; ?></span>
@@ -10,7 +10,7 @@
    </div>
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-5 fixed-top">
    <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
@@ -21,10 +21,10 @@
                <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-               <a class="nav-link ml-3" href="#">Tentang Kampus</a>
+               <a class="nav-link ml-3" href="#tentang_kampus">Tentang Kampus</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link ml-3" href="#">Informasi</a>
+               <a class="nav-link ml-3" href="#informasi">Informasi</a>
             </li>
             <li class="nav-item">
                <a class="nav-link ml-3" href="#">Fasilitas</a>
@@ -33,7 +33,7 @@
                <a class="nav-link ml-3" href="#">Gallery</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link ml-3" href="#">Kontak</a>
+               <a class="nav-link ml-3" href="#hubungi_kami">Kontak</a>
             </li>
          </ul>
       </div>
@@ -41,7 +41,7 @@
 </nav>
 
 <!-- CAROUSEL -->
-<section>
+<section id="slider">
    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -72,7 +72,7 @@
 <!-- END CAROUSEL -->
 
 <!-- Tentang Kampus -->
-<section class="m-5">
+<section id="tentang_kampus" class="m-5">
    <div class="card text-center">
       <div class="card-header">
          <strong style="font-size: 20px;">Tentang Kampus</strong>
@@ -119,7 +119,7 @@
 <!-- End Scrollable modal Tentang Kampus -->
 
 <!-- Informasi -->
-<section class="m-5">
+<section id="informasi" class="m-5">
    <div class="row d-flex justify-content-between">
       <?php foreach ($informasi as $info) : ?>
          <div class="card" style="width: 18rem;">
@@ -136,7 +136,7 @@
 <!-- End Informasi -->
 
 <!-- Hubungi Kami -->
-<section style="margin-bottom: 100px;">
+<section id="hubungi_kami" style="margin-bottom: 100px;">
    <form method="post" action="<?= base_url('landing_page/kirim_pesan'); ?>">
       <div class="row d-flex justify-content-center">
          <div class="col-md-8">
