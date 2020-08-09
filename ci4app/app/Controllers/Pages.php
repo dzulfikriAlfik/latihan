@@ -9,9 +9,7 @@ class Pages extends BaseController
 		$data = [
 			'title'	=> 'Home | Web Programming Unpas'
 		];
-		echo view('layout/header', $data);
-		echo view('pages/home');
-		echo view('layout/footer');
+		return view('pages/home', $data);
 	}
 
 	//--------------------------------------------------------------------
@@ -21,8 +19,28 @@ class Pages extends BaseController
 		$data = [
 			'title'	=> 'About | Web Programming Unpas'
 		];
-		echo view('layout/header', $data);
-		echo view('pages/about');
-		echo view('layout/footer');
+		return view('pages/about', $data);
+	}
+
+	//--------------------------------------------------------------------
+
+	public function contact()
+	{
+		$data = [
+			'title'	=> 'Contact Us | Web Programming Unpas',
+			'alamats'	=> [
+				[
+					'tipe'	=> 'Rumah',
+					'alamat'	=> 'Jl. ABC No.1 Deca Kecamatan Kabupaten Provinsi Indonesia (123456)',
+					'kota'	=> 'Bandung'
+				],
+				[
+					'tipe'	=> 'Kantor',
+					'alamat'	=> 'Jl. CBA No.31 Deca Kecamatan Kabupaten Provinsi Indonesia (654321)',
+					'kota'	=> 'Jakarta'
+				]
+			]
+		];
+		return view('pages/contact', $data);
 	}
 }
