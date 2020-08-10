@@ -35,6 +35,7 @@ $routes->get('/', 'Pages::index');
 // $routes->get('/coba', 'Coba::index');
 // $routes->get('/coba/about', 'Coba::about');
 // $routes->get('/coba/(:alpha)/(:num)', 'Coba::about/$1/$2');
+$routes->get('/komik/(:segment)', 'Komik:detail/$1');
 /*placeholder nya ada 
  - alpha : alphabet
  - num : number
