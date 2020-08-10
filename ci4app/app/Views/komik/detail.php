@@ -7,7 +7,7 @@
          <h2 class="mt-2">Detail Komik</h2>
          <div class="card mb-3 mt-3" style="max-width: 540px;">
             <div class="row no-gutters">
-               <div class="col-md-4">
+               <div class="col-md-4 d-flex align-items-center">
                   <img src="/img/<?= $komik['sampul']; ?>" class="card-img" alt="...">
                </div>
                <div class="col-md-8">
