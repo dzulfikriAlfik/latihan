@@ -172,13 +172,15 @@
                         </li>
                      </ul>
                   </li>
-                  <li class="nav-header">SETTING</li>
-                  <li class="nav-item">
-                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user text-info"></i>
-                        <p>Users</p>
-                     </a>
-                  </li>
+                  <?php if ($this->session->userdata('level') == 1) : ?>
+                     <li class="nav-header">SETTING</li>
+                     <li class="nav-item">
+                        <a href="#" class="nav-link">
+                           <i class="nav-icon fas fa-user text-info"></i>
+                           <p>Users</p>
+                        </a>
+                     </li>
+                  <?php endif; ?>
                </ul>
             </nav>
             <!-- /.sidebar-menu -->
