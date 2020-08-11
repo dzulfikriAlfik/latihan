@@ -28,7 +28,7 @@
          <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                <a class="nav-link" data-toggle="dropdown" href="#">
-                  <i class="fas fa-users-cog"></i>
+                  <i class="fas fa-users-cog"></i> <strong><?= ucwords($this->fungsi->user_login()->username); ?></strong>
                </a>
                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                   <span class="dropdown-item dropdown-header">Settings</span>
@@ -58,7 +58,7 @@
                   <img src="<?= base_url('assets/'); ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                </div>
                <div class="info">
-                  <a href="#" class="d-block">Dzulfikri</a>
+                  <a href="#" class="d-block"><?= ucwords($this->fungsi->user_login()->name); ?></a>
                </div>
             </div>
 
