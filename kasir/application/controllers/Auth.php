@@ -13,6 +13,7 @@ class Auth extends CI_Controller
    // BEGIN Login
    public function login()
    {
+      cek_already_login();
       $this->load->view('login');
    }
    // END
