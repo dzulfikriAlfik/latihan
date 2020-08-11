@@ -38,12 +38,22 @@ class Auth extends CI_Controller
                      window.location='" . site_url('dashboard') . "';
                   </script>";
          } else {
-            echo "<script>
-                     alert('Login Gagal! Username/Password Salah!');
-                     window.location='" . site_url('auth/login') . "';
-                  </script>";
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Login Gagal! Username/Password Salah!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('auth/login');
          }
       }
+   }
+   // END
+
+   // -------------------------------------------------------------------------
+
+   // BEGIN Logout
+   public function logout()
+   {
+      $params = ['userid', 'level'];
+      $this->session->unset_userdata($params);
+      $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Berhasil Logout<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('auth/login');
    }
    // END
 }
