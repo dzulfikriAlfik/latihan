@@ -14,13 +14,12 @@ class User_model extends CI_Model
       return $query;
    }
 
-   public function getSession($id = null)
+   public function get($id = null)
    {
       $this->db->from('user');
       if ($id != null) {
          $this->db->where('user_id', $id);
       }
-      $query = $this->db->get();
-      return $query;
+      return $this->db->get();
    }
 }
