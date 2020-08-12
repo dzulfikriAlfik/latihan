@@ -29,7 +29,7 @@ class User extends CI_Controller
       $this->form_validation->set_rules('level', 'Level', 'required');
       $this->form_validation->set_message('required', '%s Harus diisi!');
       $this->form_validation->set_message('min_length', '{field} harus diisi minimal {param} karakter.');
-      $this->form_validation->set_message('is_unique', '%s sudah ada di database.');
+      $this->form_validation->set_message('is_unique', '%s sudah ada di database, silahkan pilih username lain.');
       // error delimiters
       $this->form_validation->set_error_delimiters('<span class="text-red small">', '</span>');
    }
@@ -49,5 +49,13 @@ class User extends CI_Controller
             redirect('user');
          }
       }
+   }
+
+   public function delete($id)
+   {
+      $where = ['user_id' => $id];
+      $this->user_model->delete($where, 'user');
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data User Berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('user');
    }
 }
