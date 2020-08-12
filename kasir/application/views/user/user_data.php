@@ -52,8 +52,8 @@
                            <td><?= $user['address']; ?></td>
                            <td><?= $user['level'] == 1 ? "Admin" : "Kasir"; ?></td>
                            <td width="160px">
-                              <a href="<?= base_url('user/edit/') . $user['user_id']; ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
-                              <a href="<?= base_url('user/hapus/') . $user['user_id']; ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                              <a href="<?= base_url('user/edit/' . $user['user_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
+                              <a href="<?= base_url('user/delete/' . $user['user_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
                            </td>
                         </tr>
                      <?php endforeach; ?>
