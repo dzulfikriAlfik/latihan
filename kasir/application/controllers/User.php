@@ -76,6 +76,7 @@ class User extends CI_Controller
          if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data User Berhasil ditambahkan<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('user');
+            pesan_alert('success', 'Data User Berhasil ditambahkan', 'user');
          }
       }
    }
@@ -90,15 +91,13 @@ class User extends CI_Controller
             $data['row'] = $query->row();
             $this->template->load('template', 'user/user_form_edit', $data);
          } else {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data User tidak ditemukan<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            redirect('user');
+            pesan_alert('danger', 'Data user tidak ditemukan', 'user');
          }
       } else {
          $post = $this->input->post(null, TRUE);
          $this->user_model->edit($post);
          if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data User Berhasil diupdate<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            redirect('user');
+            pesan_alert('success', 'Data User Berhasil diupdate', 'user');
          }
       }
    }
@@ -107,7 +106,6 @@ class User extends CI_Controller
    {
       $where = ['user_id' => $id];
       $this->user_model->delete($where, 'user');
-      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data User Berhasil dihapus<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-      redirect('user');
+      pesan_alert('danger', 'Data User Berhasil dihapus', 'user');
    }
 }

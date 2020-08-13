@@ -10,17 +10,14 @@ class Auth extends CI_Controller
       $this->load->model('User_model');
    }
 
-   // BEGIN Login
+   // -------------------------------------------------------------------------
    public function login()
    {
       cek_already_login();
       $this->load->view('login');
    }
-   // END
 
    // -------------------------------------------------------------------------
-
-   // BEGIN Process
    public function process()
    {
       $post = $this->input->post(null, TRUE);
@@ -39,22 +36,16 @@ class Auth extends CI_Controller
                      window.location='" . site_url('dashboard') . "';
                   </script>";
          } else {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Login Gagal! Username/Password Salah!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            redirect('auth/login');
+            pesan_alert('danger', 'Username/Password Salah!', 'auth/login');
          }
       }
    }
-   // END
 
    // -------------------------------------------------------------------------
-
-   // BEGIN Logout
    public function logout()
    {
       $params = ['userid', 'level'];
       $this->session->unset_userdata($params);
-      $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Berhasil Logout<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-      redirect('auth/login');
+      pesan_alert('success', 'Berhasil Logout', 'auth/login');
    }
-   // END
 }
