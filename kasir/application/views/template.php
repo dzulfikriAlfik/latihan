@@ -55,7 +55,7 @@
             <nav class="mt-2">
                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                   <li class="nav-item">
-                     <a href="<?= base_url('dashboard'); ?>" class="nav-link">
+                     <a href="<?= base_url('dashboard'); ?>" class="nav-link <?= class_active('dashboard', $aktif); ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                            Dashboard
@@ -63,7 +63,7 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="<?= base_url(''); ?>" class="nav-link">
+                     <a href="<?= base_url('supplier'); ?>" class="nav-link <?= class_active('supplier', $aktif); ?>">
                         <i class="nav-icon fas fa-truck"></i>
                         <p>
                            Suppliers
@@ -79,7 +79,7 @@
                      </a>
                   </li>
                   <li class="nav-item has-treeview">
-                     <a href="#" class="nav-link">
+                     <a href="<?= base_url(''); ?>" class="nav-link">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                            Product
@@ -88,19 +88,19 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="../charts/chartjs.html" class="nav-link">
+                           <a href="<?= base_url(''); ?>" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Categories</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="../charts/flot.html" class="nav-link">
+                           <a href="<?= base_url(''); ?>" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Units</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="../charts/inline.html" class="nav-link">
+                           <a href="<?= base_url(''); ?>" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Items</p>
                            </a>
@@ -108,7 +108,7 @@
                      </ul>
                   </li>
                   <li class="nav-item has-treeview">
-                     <a href="#" class="nav-link">
+                     <a href="<?= base_url(''); ?>" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                            Transactions
@@ -117,19 +117,19 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="../UI/general.html" class="nav-link">
+                           <a href="<?= base_url(''); ?>" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Sales</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="../UI/icons.html" class="nav-link">
+                           <a href="<?= base_url(''); ?>" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Stock In</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="../UI/buttons.html" class="nav-link">
+                           <a href="<?= base_url(''); ?>" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Stock Out</p>
                            </a>
@@ -137,7 +137,7 @@
                      </ul>
                   </li>
                   <li class="nav-item has-treeview">
-                     <a href="#" class="nav-link">
+                     <a href="<?= base_url(''); ?>" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                            Report
@@ -146,13 +146,13 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="../forms/general.html" class="nav-link">
+                           <a href="<?= base_url(''); ?>" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Sales</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="../forms/advanced.html" class="nav-link">
+                           <a href="<?= base_url(''); ?>" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Stock</p>
                            </a>
@@ -162,7 +162,7 @@
                   <?php if ($this->fungsi->user_login()->level == 1) : ?>
                      <li class="nav-header">SETTING</li>
                      <li class="nav-item">
-                        <a href="<?= base_url('user'); ?>" class="nav-link">
+                        <a href="<?= base_url('user'); ?>" class="nav-link <?= class_active('user', $aktif); ?>">
                            <i class="nav-icon fas fa-user text-info"></i>
                            <p>Users</p>
                         </a>
