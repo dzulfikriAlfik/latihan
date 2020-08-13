@@ -36,3 +36,12 @@ function check_role()
       redirect('dashboard');
    }
 }
+
+function class_active($aktif, $menu)
+{
+   if ($aktif == $menu) {
+      return "active";
+   } else {
+      return "";
+   }
+}
