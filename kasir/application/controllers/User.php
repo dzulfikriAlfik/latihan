@@ -9,6 +9,7 @@ class User extends CI_Controller
       parent::__construct();
       $this->load->model('user_model');
       cek_not_login();
+      check_role();
    }
 
    public function index()
