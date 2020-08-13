@@ -26,7 +26,7 @@
          <div class="col-12">
             <div class="card">
                <div class="card-header">
-                  <a href="<?= base_url('supplier/add'); ?>" class="btn btn-info btn-sm"><i class="fas fa-user-plus"></i> Add Supplier</a>
+                  <a href="<?= base_url('supplier/add'); ?>" class="btn btn-info btn-sm"><i class="fas fa-plus"></i> Add Supplier</a>
                </div>
                <!-- /.card-header -->
                <div class="card-body">
@@ -51,7 +51,7 @@
                               <td><?= $supp['phone']; ?></td>
                               <td><?= $supp['address']; ?></td>
                               <td><?= $supp['description'] ?></td>
-                              <td width="160px">
+                              <td width="160px" class="text-center">
                                  <a href="<?= base_url('supplier/edit/' . $supp['supplier_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
                                  <a href="<?= base_url('supplier/delete/' . $supp['supplier_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
