@@ -34,6 +34,35 @@ class User extends CI_Controller
       $this->form_validation->set_error_delimiters('<span class="text-red small">', '</span>');
    }
 
+   public function _rulesEdit()
+   {
+      $this->form_validation->set_rules('fullname', 'Nama', 'required');
+      $this->form_validation->set_rules('username', 'Username', 'required|min_length[7]|callback_username_check');
+      if ($this->input->post('password') || $this->input->post('passconf')) {
+         $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');
+         $this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|min_length[8]|matches[password]', [
+            'matches' => 'Konfirmasi Password Harus sesuai dengan Password'
+         ]);
+      }
+      $this->form_validation->set_rules('level', 'Level', 'required');
+      $this->form_validation->set_message('required', '%s Harus diisi!');
+      $this->form_validation->set_message('min_length', '{field} harus diisi minimal {param} karakter.');
+      // error delimiters
+      $this->form_validation->set_error_delimiters('<span class="text-red small">', '</span>');
+   }
+
+   function username_check()
+   {
+      $post    = $this->input->post(null, TRUE);
+      $query   = $this->db->query("SELECT * FROM user WHERE username = '$post[username]' AND user_id != '$post[user_id]'");
+      if ($query->num_rows() > 0) {
+         $this->form_validation->set_message('username_check', '%s sudah ada di database, silahkan pilih username lain.');
+         return FALSE;
+      } else {
+         return TRUE;
+      }
+   }
+
    public function add()
    {
       $this->_rules();
@@ -46,6 +75,29 @@ class User extends CI_Controller
 
          if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data User Berhasil ditambahkan<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('user');
+         }
+      }
+   }
+
+   public function edit($id)
+   {
+      $this->_rulesEdit();
+
+      if ($this->form_validation->run() == FALSE) {
+         $query = $this->user_model->get($id);
+         if ($query->num_rows() > 0) {
+            $data['row'] = $query->row();
+            $this->template->load('template', 'user/user_form_edit', $data);
+         } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Data User tidak ditemukan<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('user');
+         }
+      } else {
+         $post = $this->input->post(null, TRUE);
+         $this->user_model->edit($post);
+         if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data User Berhasil diupdate<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('user');
          }
       }
