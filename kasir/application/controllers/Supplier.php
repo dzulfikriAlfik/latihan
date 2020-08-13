@@ -20,6 +20,51 @@ class Supplier extends CI_Controller
       $this->template->load('template', 'supplier/supplier_data', $data);
    }
 
+   public function add()
+   {
+      $supplier = new stdClass();
+      $supplier->supplier_id = null;
+      $supplier->name = null;
+      $supplier->phone = null;
+      $supplier->address = null;
+      $supplier->description = null;
+      $data = [
+         'aktif'  => 'supplier',
+         'page'   => 'add',
+         'row'    => $supplier
+      ];
+      $this->template->load('template', 'supplier/supplier_form', $data);
+   }
+
+   public function edit($id)
+   {
+      $query = $this->supplier_model->get($id);
+      if ($query->num_rows() > 0) {
+         $supplier = $query->row();
+         $data = [
+            'aktif'  => 'supplier',
+            'page'   => 'edit',
+            'row'    => $supplier
+         ];
+         $this->template->load('template', 'supplier/supplier_form', $data);
+      } else {
+         pesan_alert('danger', 'Data user tidak ditemukan', 'supplier');
+      }
+   }
+
+   public function process()
+   {
+      $post = $this->input->post(null, TRUE);
+      
+      if (isset($_POST['add'])) {
+         $this->supplier_model->add($post);
+         pesan_alert('success', 'Data User Berhasil ditambahkan', 'supplier');
+      } else if (isset($_POST['edit'])) {
+         $this->supplier_model->edit($post);
+         pesan_alert('success', 'Data User Berhasil diupdate', 'supplier');
+      }
+   }
+
    public function delete($id)
    {
       $where = ['supplier_id' => $id];
