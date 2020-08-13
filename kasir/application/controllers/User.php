@@ -14,7 +14,10 @@ class User extends CI_Controller
 
    public function index()
    {
-      $data['row'] = $this->user_model->get()->result_array();
+      $data = [
+         'row'    => $this->user_model->get()->result_array(),
+         'aktif'  => 'user'
+      ];
 
       $this->template->load('template', 'user/user_data', $data);
    }
