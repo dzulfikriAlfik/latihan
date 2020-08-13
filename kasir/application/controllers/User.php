@@ -72,14 +72,13 @@ class User extends CI_Controller
       $this->_rules();
 
       if ($this->form_validation->run() == FALSE) {
-         $this->template->load('template', 'user/user_form_add');
+         $data['aktif'] = 'user';
+         $this->template->load('template', 'user/user_form_add', $data);
       } else {
          $post = $this->input->post(null, TRUE);
          $this->user_model->add($post);
 
          if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">Data User Berhasil ditambahkan<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            redirect('user');
             pesan_alert('success', 'Data User Berhasil ditambahkan', 'user');
          }
       }
@@ -92,7 +91,10 @@ class User extends CI_Controller
       if ($this->form_validation->run() == FALSE) {
          $query = $this->user_model->get($id);
          if ($query->num_rows() > 0) {
-            $data['row'] = $query->row();
+            $data = [
+               'row'    => $query->row(),
+               'aktif'  => 'user'
+            ];
             $this->template->load('template', 'user/user_form_edit', $data);
          } else {
             pesan_alert('danger', 'Data user tidak ditemukan', 'user');
