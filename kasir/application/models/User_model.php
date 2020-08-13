@@ -35,6 +35,21 @@ class User_model extends CI_Model
       $this->db->insert('user', $params);
    }
 
+   public function edit($post)
+   {
+      $params = [
+         'name'      => $post['fullname'],
+         'username'  => $post['username'],
+         'address'   => $post['address'] != null ? $post['address'] : null,
+         'level'     => $post['level']
+      ];
+      if (!empty($post['password'])) {
+         $params['password'] = sha1($post['password']);
+      }
+      $this->db->where('user_id', $post['user_id']);
+      $this->db->update('user', $params);
+   }
+
    public function delete($where, $table)
    {
       $this->db->where($where);
