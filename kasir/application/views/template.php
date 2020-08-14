@@ -12,6 +12,9 @@
    <!-- DataTables -->
    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+   <!-- SweetAlert2 -->
+   <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+   <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/toastr/toastr.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -199,6 +202,9 @@
    <script src="<?= base_url('assets'); ?>/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
    <script src="<?= base_url('assets'); ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
    <script src="<?= base_url('assets'); ?>/plugins/inputmask/jquery.inputmask.min.js"></script>
+   <!-- SweetAlert2 -->
+   <script src="<?= base_url('assets'); ?>/plugins/sweetalert2/sweetalert2.min.js"></script>
+   <script src="<?= base_url('assets'); ?>/plugins/toastr/toastr.min.js"></script>
    <script>
       $(function() {
          $("#example1").DataTable({
@@ -214,7 +220,19 @@
             "autoWidth": false,
             "responsive": true,
          });
-         $('[data-mask]').inputmask()
+         $('[data-mask]').inputmask();
+         var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+         });
+         $('.swalDefaultSuccess').click(function() {
+            Toast.fire({
+               icon: 'success',
+               title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+         });
       });
    </script>
 </body>
