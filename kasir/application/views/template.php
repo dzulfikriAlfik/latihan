@@ -74,15 +74,15 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="<?= base_url('customer'); ?>" class="nav-link <?= add_class('customer', $aktif, 'active'); ?>">
+                     <a href="<?= base_url('customer'); ?>" class="nav-link <?= $aktif == 'customer' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                            Customers
                         </p>
                      </a>
                   </li>
-                  <li class="nav-item has-treeview <?= add_class($menu, $aktif, 'menu-open'); ?>">
-                     <a href="" class="nav-link <?= add_class($menu, $aktif, 'active'); ?>">
+                  <li class="nav-item has-treeview <?= $aktif == 'category' || $aktif == 'unit' || $aktif == 'item' ? 'menu-open' : ''; ?>">
+                     <a href="" class="nav-link <?= $aktif == 'category' || $aktif == 'unit' || $aktif == 'item' ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                            Product
