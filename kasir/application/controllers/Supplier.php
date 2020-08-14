@@ -48,20 +48,20 @@ class Supplier extends CI_Controller
          ];
          $this->template->load('template', 'supplier/supplier_form', $data);
       } else {
-         pesan_alert('danger', 'Data user tidak ditemukan', 'supplier');
+         pesan_alert('danger', 'Data Supplier tidak ditemukan', 'supplier');
       }
    }
 
    public function process()
    {
       $post = $this->input->post(null, TRUE);
-      
+
       if (isset($_POST['add'])) {
          $this->supplier_model->add($post);
-         pesan_alert('success', 'Data User Berhasil ditambahkan', 'supplier');
+         pesan_alert('success', 'Data Supplier Berhasil ditambahkan', 'supplier');
       } else if (isset($_POST['edit'])) {
          $this->supplier_model->edit($post);
-         pesan_alert('success', 'Data User Berhasil diupdate', 'supplier');
+         pesan_alert('success', 'Data Supplier Berhasil diupdate', 'supplier');
       }
    }
 
