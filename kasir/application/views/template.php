@@ -106,7 +106,7 @@
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="<?= base_url(''); ?>" class="nav-link">
+                           <a href="<?= base_url('item'); ?>" class="nav-link <?= add_class('item', $aktif, 'active'); ?>">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Items</p>
                            </a>
