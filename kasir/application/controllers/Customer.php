@@ -15,7 +15,8 @@ class Customer extends CI_Controller
    {
       $data = [
          'row'    => $this->customer_model->get()->result_array(),
-         'aktif'  => 'customer'
+         'aktif'  => 'customer',
+         'menu'   => ''
       ];
       $this->template->load('template', 'customer/customer_data', $data);
    }
@@ -30,6 +31,7 @@ class Customer extends CI_Controller
       $customer->address = null;
       $data = [
          'aktif'  => 'customer',
+         'menu'   => '',
          'page'   => 'add',
          'row'    => $customer
       ];
@@ -43,6 +45,7 @@ class Customer extends CI_Controller
          $customer = $query->row();
          $data = [
             'aktif'  => 'customer',
+            'menu'   => '',
             'page'   => 'edit',
             'row'    => $customer
          ];
