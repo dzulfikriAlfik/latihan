@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller
 		cek_not_login();
 		$data = [
 			'aktif'	=> 'dashboard',
-			'menu'   => '',
+			'menu'   => 'dashboard',
 		];
 		$this->template->load('template', 'dashboard', $data);
 	}

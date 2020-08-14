@@ -16,7 +16,7 @@ class Supplier extends CI_Controller
       $data = [
          'row'    => $this->supplier_model->get()->result_array(),
          'aktif'  => 'supplier',
-         'menu'   => '',
+         'menu'   => 'supplier',
       ];
       $this->template->load('template', 'supplier/supplier_data', $data);
    }
@@ -31,7 +31,7 @@ class Supplier extends CI_Controller
       $supplier->description = null;
       $data = [
          'aktif'  => 'supplier',
-         'menu'   => '',
+         'menu'   => 'supplier',
          'page'   => 'add',
          'row'    => $supplier
       ];
@@ -45,7 +45,7 @@ class Supplier extends CI_Controller
          $supplier = $query->row();
          $data = [
             'aktif'  => 'supplier',
-            'menu'   => '',
+            'menu'   => 'supplier',
             'page'   => 'edit',
             'row'    => $supplier
          ];

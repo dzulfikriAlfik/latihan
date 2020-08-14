@@ -17,7 +17,7 @@ class User extends CI_Controller
       $data = [
          'row'    => $this->user_model->get()->result_array(),
          'aktif'  => 'user',
-         'menu'   => '',
+         'menu'   => 'user',
       ];
 
       $this->template->load('template', 'user/user_data', $data);
@@ -75,7 +75,7 @@ class User extends CI_Controller
       if ($this->form_validation->run() == FALSE) {
          $data = [
             'aktif'  => 'user',
-            'menu'   => '',
+            'menu'   => 'user',
          ];
          $this->template->load('template', 'user/user_form_add', $data);
       } else {
@@ -98,7 +98,7 @@ class User extends CI_Controller
             $data = [
                'row'    => $query->row(),
                'aktif'  => 'user',
-               'menu'   => '',
+               'menu'   => 'user',
             ];
             $this->template->load('template', 'user/user_form_edit', $data);
          } else {

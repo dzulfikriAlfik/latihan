@@ -58,7 +58,7 @@
             <nav class="mt-2">
                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                   <li class="nav-item">
-                     <a href="<?= base_url('dashboard'); ?>" class="nav-link <?= class_active('dashboard', $aktif); ?>">
+                     <a href="<?= base_url('dashboard'); ?>" class="nav-link <?= add_class('dashboard', $aktif, 'active'); ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                            Dashboard
@@ -66,7 +66,7 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="<?= base_url('supplier'); ?>" class="nav-link <?= class_active('supplier', $aktif); ?>">
+                     <a href="<?= base_url('supplier'); ?>" class="nav-link <?= add_class('supplier', $aktif, 'active'); ?>">
                         <i class="nav-icon fas fa-truck"></i>
                         <p>
                            Suppliers
@@ -74,15 +74,15 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="<?= base_url('customer'); ?>" class="nav-link <?= class_active('customer', $aktif); ?>">
+                     <a href="<?= base_url('customer'); ?>" class="nav-link <?= add_class('customer', $aktif, 'active'); ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                            Customers
                         </p>
                      </a>
                   </li>
-                  <li class="nav-item has-treeview">
-                     <a href="<?= base_url(''); ?>" class="nav-link">
+                  <li class="nav-item has-treeview <?= add_class($menu, $aktif, 'menu-open'); ?>">
+                     <a href="" class="nav-link <?= add_class($menu, $aktif, 'active'); ?>">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                            Product
@@ -91,13 +91,13 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="<?= base_url(''); ?>" class="nav-link">
+                           <a href="<?= base_url('category'); ?>" class="nav-link <?= add_class('category', $aktif, 'active'); ?>">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Categories</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="<?= base_url(''); ?>" class="nav-link">
+                           <a href="<?= base_url('unit'); ?>" class="nav-link <?= add_class('unit', $aktif, 'active'); ?>">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Units</p>
                            </a>
@@ -165,7 +165,7 @@
                   <?php if ($this->fungsi->user_login()->level == 1) : ?>
                      <li class="nav-header">SETTING</li>
                      <li class="nav-item">
-                        <a href="<?= base_url('user'); ?>" class="nav-link <?= class_active('user', $aktif); ?>">
+                        <a href="<?= base_url('user'); ?>" class="nav-link <?= add_class('user', $aktif, 'active'); ?>">
                            <i class="nav-icon fas fa-user text-info"></i>
                            <p>Users</p>
                         </a>

@@ -37,12 +37,7 @@ function check_role()
    }
 }
 
-function class_active($aktif, $menu)
+function add_class($aktif, $menu, $class)
 {
-   echo $aktif == $menu ? "active" : null;
-}
-
-function menu_open($aktif, $menu)
-{
-   echo $aktif == $menu ? "menu-open" : null;
+   echo $aktif == $menu ? $class : null;
 }
