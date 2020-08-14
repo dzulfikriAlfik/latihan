@@ -74,7 +74,7 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="<?= base_url(''); ?>" class="nav-link">
+                     <a href="<?= base_url('customer'); ?>" class="nav-link <?= class_active('customer', $aktif); ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                            Customers
