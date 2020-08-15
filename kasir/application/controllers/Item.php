@@ -82,11 +82,19 @@ class Item extends CI_Controller
       $post = $this->input->post(null, TRUE);
 
       if (isset($_POST['add'])) {
-         $this->item_model->add($post);
-         pesan_alert('success', 'Data Item Berhasil ditambahkan', 'item');
+         if ($this->item_model->check_barcode($post['barcode'])->num_rows() > 0) {
+            pesan_alert('danger', "Barcode $post[barcode] sudah dipakai barang lain", 'item/add');
+         } else {
+            $this->item_model->add($post);
+            pesan_alert('success', 'Data Item Berhasil ditambahkan', 'item');
+         }
       } else if (isset($_POST['edit'])) {
-         $this->item_model->edit($post);
-         pesan_alert('success', 'Data Item Berhasil diupdate', 'item');
+         if ($this->item_model->check_barcode($post['barcode'], $post['item_id'])->num_rows() > 0) {
+            pesan_alert('danger', "Barcode $post[barcode] sudah dipakai barang lain", "item/edit/$post[item_id]");
+         } else {
+            $this->item_model->edit($post);
+            pesan_alert('success', 'Data Item Berhasil diupdate', 'item');
+         }
       }
    }
 

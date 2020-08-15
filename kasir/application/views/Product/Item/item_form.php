@@ -11,6 +11,11 @@
             </ol>
          </div>
       </div>
+      <div class="row">
+         <div class="col">
+            <?= $this->session->flashdata('pesan'); ?>
+         </div>
+      </div>
    </div>
 </section>
 
