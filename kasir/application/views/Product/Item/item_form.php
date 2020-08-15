@@ -41,7 +41,7 @@
                            <select name="category" id="category" class="form-control" required>
                               <option value="">-- Pilih Kategori --</option>
                               <?php foreach ($category->result() as $key => $data) : ?>
-                                 <option value="<?= $data->category_id; ?>"><?= $data->name; ?></option>
+                                 <option value="<?= $data->category_id; ?>" <?= $data->category_id == $row->category_id ? 'selected' : null; ?>><?= $data->name; ?></option>
                               <?php endforeach; ?>
                            </select>
                         </div>

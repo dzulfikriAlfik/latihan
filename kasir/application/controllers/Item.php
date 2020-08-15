@@ -25,6 +25,7 @@ class Item extends CI_Controller
    {
       $item = new stdClass();
       $item->item_id = null;
+      $item->category_id = null;
       $item->barcode = null;
       $item->name = null;
       $item->price = null;
@@ -52,12 +53,23 @@ class Item extends CI_Controller
    {
       $query = $this->item_model->get($id);
       if ($query->num_rows() > 0) {
-         $item = $query->row();
+         $item             = $query->row();
+
+         $query_category   = $this->category_model->get();
+         $query_unit       = $this->unit_model->get();
+         $unit[null]       = '-- Pilih Unit --';
+         foreach ($query_unit->result() as $unt) {
+            $unit[$unt->unit_id] = $unt->name;
+         }
          $data = [
-            'aktif'  => 'item',
-            'menu'   => 'item',
-            'page'   => 'edit',
-            'row'    => $item
+            'aktif'              => 'item',
+            'menu'               => 'item',
+            'page'               => 'edit',
+            'row'                => $item,
+            'category'           => $query_category,
+            'unit'               => $unit,
+            'selected_category'  => $item->category_id,
+            'selected_unit'      => $item->unit_id
          ];
          $this->template->load('template', 'product/item/item_form', $data);
       } else {

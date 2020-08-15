@@ -37,7 +37,7 @@
                            <th>Barcode</th>
                            <th>Product Name</th>
                            <th>Kategori</th>
-                           <th>Unit</th>
+                           <!-- <th>Unit</th> -->
                            <th>Price</th>
                            <th>Actions</th>
                         </tr>
@@ -50,9 +50,9 @@
                               <td width="5%"><?= $no++; ?>.</td>
                               <td><?= $categ['barcode']; ?></td>
                               <td><?= $categ['name']; ?></td>
-                              <td><?= $categ['category_id']; ?></td>
-                              <td><?= $categ['unit_id']; ?></td>
-                              <td><?= $categ['price']; ?></td>
+                              <td><?= getnama($categ['category_id'], 'p_category', 'category_id', 'name'); ?></td>
+                              <!-- <td><?= getnama($categ['unit_id'], 'p_unit', 'unit_id', 'name'); ?></td> -->
+                              <td class="text-right"><?= rupiah($categ['price']); ?></td>
                               <td width="160px" class="text-center">
                                  <a href="<?= base_url('item/edit/' . $categ['item_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
                                  <a href="<?= base_url('item/delete/' . $categ['item_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
