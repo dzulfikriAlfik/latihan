@@ -48,3 +48,9 @@ function getnama($id, $table, $table_id, $table_name)
    $query      = $instance->db->query("SELECT * FROM $table WHERE $table_id='$id'")->row_array();
    return $query[$table_name];
 }
+
+function rupiah($angka)
+{
+   $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
+   return $hasil_rupiah;
+}
