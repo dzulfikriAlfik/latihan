@@ -51,6 +51,6 @@ function getnama($id, $table, $table_id, $table_name)
 
 function rupiah($angka)
 {
-   $hasil_rupiah = "Rp. " . number_format($angka, 0, ',', '.');
+   $hasil_rupiah = "Rp. " . number_format($angka, 0, ',', '.') . ',-';
    return $hasil_rupiah;
 }
