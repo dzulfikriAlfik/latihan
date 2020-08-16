@@ -148,4 +148,15 @@ class Item extends CI_Controller
       $this->item_model->delete($where, 'p_item');
       pesan_alert('danger', 'Data Item Berhasil dihapus', 'item');
    }
+
+   function barcode_qrcode($id)
+   {
+      $data = [
+         'row'    => $this->item_model->get($id)->row(),
+         'aktif'  => 'item',
+         'menu'   => 'item',
+         'page'   => 'Barcode Generator',
+      ];
+      $this->template->load('template', 'product/item/barcode_qrcode', $data);
+   }
 }

@@ -50,7 +50,12 @@
                         foreach ($row as $categ) : ?>
                            <tr>
                               <td class="text-center" width="3%"><?= $no++; ?>.</td>
-                              <td><?= $categ['barcode']; ?></td>
+                              <td class="text-center">
+                                 <?= $categ['barcode']; ?>
+                                 <div>
+                                    <a href="<?= base_url('item/barcode_qrcode/' . $categ['item_id']); ?>" class="btn btn-dark btn-xs">Generate &nbsp;<i class="fas fa-barcode"></i></a>
+                                 </div>
+                              </td>
                               <td><?= $categ['name']; ?></td>
                               <td><?= getnama($categ['category_id'], 'p_category', 'category_id', 'name'); ?></td>
                               <td><?= getnama($categ['unit_id'], 'p_unit', 'unit_id', 'name'); ?></td>
