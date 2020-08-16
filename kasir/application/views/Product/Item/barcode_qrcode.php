@@ -2,7 +2,7 @@
    <div class="container-fluid">
       <div class="row mb-2">
          <div class="col-sm-6">
-            <h1><?= ucfirst($page); ?></h1>
+            <h1>Barcode / QR-Code Generator</h1>
          </div>
          <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -28,16 +28,33 @@
             <div class="card-header">
                <a href="<?= base_url('item'); ?>" class="btn btn-warning btn-sm"><i class="fas fa-undo"></i> Back</a>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body text-center" >
-               <?php
-               $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-               echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($row->barcode, $generator::TYPE_CODE_128)) . '"style="border: 1px solid black; padding:25px">';
-               echo "<br>";
-               echo $row->barcode;
-               ?>
+            <div class="row d-flex justify-content-center align-items-center">
+               <div class="col-md-5 offset">
+                  <div class="card-body text-center">
+                     <p>Barcode</p>
+                     <?php
+                     $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+                     echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($row->barcode, $generator::TYPE_CODE_128)) . '" class="pb-3">';
+                     echo "<br>";
+                     echo $row->barcode;
+                     ?>
+                  </div>
+               </div>
+               <div class="col-md-5 offset">
+                  <div class="card-body text-center">
+                     <p>QR-Code</p>
+                     <?php
+                     $qrCode = new Endroid\QrCode\QrCode($row->barcode);
+                     $qrCode->writeFile("uploads/qr-code/$row->barcode-Item-". getnama($row->item_id, 'p_item', 'item_id', 'name').".png");
+                     ?>
+                     <img src="<?= base_url("uploads/qr-code/$row->barcode-Item-" . getnama($row->item_id, 'p_item', 'item_id', 'name') . ".png"); ?>" alt="QR-Code" style="width: 200px;">
+                     <?php
+                     echo "<br>";
+                     echo $row->barcode;
+                     ?>
+                  </div>
+               </div>
             </div>
-            <!-- /.card-body -->
          </div>
          <!-- /.card -->
       </div>
