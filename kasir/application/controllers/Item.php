@@ -80,13 +80,13 @@ class Item extends CI_Controller
 
    public function process()
    {
+      $post = $this->input->post(null, TRUE);
+
       $config['upload_path']    = './uploads/product/';
       $config['allowed_types']  = 'gif|jpg|png|jpeg';
       $config['max_size']       = 2048;
-      $config['file_name']      = 'item-' . date('ymd') . '-' . substr(md5(rand()), 0, 10);
+      $config['file_name']      = "item-$post[product_name]-" . date('dmY') . '-' . substr(md5(rand()), 0, 10);
       $this->load->library('upload', $config);
-
-      $post = $this->input->post(null, TRUE);
 
       // ADD
       if (isset($_POST['add'])) {
@@ -139,6 +139,11 @@ class Item extends CI_Controller
 
    public function delete($id)
    {
+      $item = $this->item_model->get($id)->row();
+      if ($item->image != null) {
+         $target_file   = "./uploads/product/$item->image";
+         unlink($target_file);
+      }
       $where = ['item_id' => $id];
       $this->item_model->delete($where, 'p_item');
       pesan_alert('danger', 'Data Item Berhasil dihapus', 'item');
