@@ -42,11 +42,11 @@ function add_class($aktif, $menu, $class)
    echo $aktif == $menu ? $class : null;
 }
 
-function getnama($id, $table, $table_id, $table_name)
+function getnama($id, $table, $table_id, $field_name)
 {
    $instance   = &get_instance();
    $query      = $instance->db->query("SELECT * FROM $table WHERE $table_id='$id'")->row_array();
-   return $query[$table_name];
+   return $query[$field_name];
 }
 
 function rupiah($angka)
