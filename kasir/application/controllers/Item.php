@@ -144,6 +144,9 @@ class Item extends CI_Controller
          $target_file   = "./uploads/product/$item->image";
          unlink($target_file);
       }
+      $item_barcode  = "./uploads/qr-code/$item->barcode-Item-" . getnama($item->item_id, 'p_item', 'item_id', 'name') . ".png";
+      unlink($item_barcode);
+      
       $where = ['item_id' => $id];
       $this->item_model->delete($where, 'p_item');
       pesan_alert('danger', 'Data Item Berhasil dihapus', 'item');
