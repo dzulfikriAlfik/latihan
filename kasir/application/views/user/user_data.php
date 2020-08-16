@@ -29,8 +29,8 @@
                <a href="<?= base_url('user/add'); ?>" class="btn btn-info btn-sm"><i class="fas fa-user-plus"></i> Add User</a>
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="height: 300px;">
-               <table class="table table-head-fixed table-bordered text-nowrap table-hover">
+            <div class="card-body">
+               <table id="example1" class="table table-bordered table-striped">
                   <thead class="text-center">
                      <tr>
                         <th width="50px">No.</th>
