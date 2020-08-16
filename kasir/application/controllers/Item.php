@@ -24,11 +24,12 @@ class Item extends CI_Controller
    public function add()
    {
       $item = new stdClass();
-      $item->item_id = null;
-      $item->category_id = null;
-      $item->barcode = null;
-      $item->name = null;
-      $item->price = null;
+      $item->item_id       = set_value('item_id');
+      $item->category_id   = set_value('category_id');
+      $item->barcode       = set_value('barcode');
+      $item->name          = set_value('name');
+      $item->price         = set_value('price');
+      $item->image         = set_value('image');
 
       $query_category   = $this->category_model->get();
       $query_unit       = $this->unit_model->get();
@@ -79,21 +80,59 @@ class Item extends CI_Controller
 
    public function process()
    {
+      $config['upload_path']    = './uploads/product/';
+      $config['allowed_types']  = 'gif|jpg|png|jpeg';
+      $config['max_size']       = 2048;
+      $config['file_name']      = 'item-' . date('ymd') . '-' . substr(md5(rand()), 0, 10);
+      $this->load->library('upload', $config);
+
       $post = $this->input->post(null, TRUE);
 
+      // ADD
       if (isset($_POST['add'])) {
          if ($this->item_model->check_barcode($post['barcode'])->num_rows() > 0) {
             pesan_alert('danger', "Barcode $post[barcode] sudah dipakai barang lain", 'item/add');
          } else {
-            $this->item_model->add($post);
-            pesan_alert('success', 'Data Item Berhasil ditambahkan', 'item');
+            if (@$_FILES['image']['name'] != null) {
+               if ($this->upload->do_upload('image')) {
+                  $post['image'] = $this->upload->data('file_name');
+                  $this->item_model->add($post);
+                  pesan_alert('success', 'Data Item Berhasil ditambahkan', 'item');
+               } else {
+                  $error = $this->upload->display_errors();
+                  pesan_alert('danger', $error, 'item/add');
+               }
+            } else {
+               $post['image'] = null;
+               $this->item_model->add($post);
+               pesan_alert('success', 'Data Item Berhasil ditambahkan', 'item');
+            }
          }
+         // EDIT
       } else if (isset($_POST['edit'])) {
          if ($this->item_model->check_barcode($post['barcode'], $post['item_id'])->num_rows() > 0) {
             pesan_alert('danger', "Barcode $post[barcode] sudah dipakai barang lain", "item/edit/$post[item_id]");
          } else {
-            $this->item_model->edit($post);
-            pesan_alert('success', 'Data Item Berhasil diupdate', 'item');
+            if (@$_FILES['image']['name'] != null) {
+               if ($this->upload->do_upload('image')) {
+                  $item = $this->item_model->get($post['item_id'])->row();
+                  if ($item->image != null) {
+                     $target_file   = "./uploads/product/$item->image";
+                     unlink($target_file);
+                  }
+
+                  $post['image'] = $this->upload->data('file_name');
+                  $this->item_model->edit($post);
+                  pesan_alert('success', 'Data Item Berhasil diupdate', 'item');
+               } else {
+                  $error = $this->upload->display_errors();
+                  pesan_alert('danger', $error, 'item/add');
+               }
+            } else {
+               $post['image'] = null;
+               $this->item_model->edit($post);
+               pesan_alert('success', 'Data Item Berhasil diupdate', 'item');
+            }
          }
       }
    }

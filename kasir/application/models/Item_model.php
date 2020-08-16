@@ -21,6 +21,7 @@ class item_model extends CI_Model
          'category_id'  => $post['category'],
          'unit_id'      => $post['unit'],
          'price'        => $post['price'],
+         'image'        => $post['image'],
       ];
       $this->db->insert('p_item', $params);
    }
@@ -35,6 +36,10 @@ class item_model extends CI_Model
          'price'        => $post['price'],
          'updated'      => date('Y-m-d H:i:s')
       ];
+      if ($post['image'] != null) {
+         $params['image'] = $post['image'];
+      }
+
       $this->db->where('item_id', $post['item_id']);
       $this->db->update('p_item', $params);
    }
@@ -43,7 +48,7 @@ class item_model extends CI_Model
    {
       $this->db->from('p_item');
       $this->db->where('barcode', $code);
-      if($id != null) {
+      if ($id != null) {
          $this->db->where('item_id !=', $id);
       }
       $query = $this->db->get();

@@ -39,6 +39,7 @@
                            <th>Kategori</th>
                            <th>Unit</th>
                            <th>Price</th>
+                           <th>Image</th>
                            <th>Stock</th>
                            <th>Actions</th>
                         </tr>
@@ -48,12 +49,17 @@
                         $no = 1;
                         foreach ($row as $categ) : ?>
                            <tr>
-                              <td width="5%"><?= $no++; ?>.</td>
+                              <td class="text-center" width="3%"><?= $no++; ?>.</td>
                               <td><?= $categ['barcode']; ?></td>
                               <td><?= $categ['name']; ?></td>
                               <td><?= getnama($categ['category_id'], 'p_category', 'category_id', 'name'); ?></td>
                               <td><?= getnama($categ['unit_id'], 'p_unit', 'unit_id', 'name'); ?></td>
                               <td class="text-right"><?= rupiah($categ['price']); ?></td>
+                              <?php if ($categ['image'] != null) : ?>
+                                 <td class="text-center"><img style="width: 100px;" src="<?= base_url('uploads/product/' . $categ['image']); ?>" alt=""></td>
+                              <?php else : ?>
+                                 <td class="text-center"><img style="width: 100px;" src="<?= base_url('uploads/product/product_default.jpg'); ?>" alt=""></td>
+                              <?php endif; ?>
                               <td><?= $categ['stock']; ?></td>
                               <td width="160px" class="text-center">
                                  <a href="<?= base_url('item/edit/' . $categ['item_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;

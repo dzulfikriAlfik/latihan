@@ -29,43 +29,55 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-               <form action="<?= base_url('item/process'); ?>" method="post">
-                  <div class="row d-flex justify-content-center">
-                     <div class="col-md-5 mx-auto">
-                        <input type="hidden" name="item_id" value="<?= $row->item_id; ?>">
-                        <div class="form-group">
-                           <label for="barcode">Barcode <span class="text-red">*</span></label>
-                           <input type="text" name="barcode" id="barcode" class="form-control" placeholder="Barcode" value="<?= $row->barcode; ?>" required>
-                        </div>
-                        <div class="form-group">
-                           <label for="product_name">Product Name <span class="text-red">*</span></label>
-                           <input type="text" name="product_name" id="product_name" class="form-control" placeholder="Product Name" value="<?= $row->name; ?>" required>
-                        </div>
-                        <div class="form-group">
-                           <label for="category">Category <span class="text-red">*</span></label>
-                           <select name="category" id="category" class="form-control" required>
-                              <option value="">-- Pilih Kategori --</option>
-                              <?php foreach ($category->result() as $key => $data) : ?>
-                                 <option value="<?= $data->category_id; ?>" <?= $data->category_id == $row->category_id ? 'selected' : null; ?>><?= $data->name; ?></option>
-                              <?php endforeach; ?>
-                           </select>
-                        </div>
-                        <div class="form-group">
-                           <label for="unit">Unit <span class="text-red">*</span></label>
-                           <?= form_dropdown('unit', $unit, $selected_unit, ['class' => 'form-control', 'required' => 'required']); ?>
-                        </div>
-                        <div class="form-group">
-                           <label for="price">Price <span class="text-red">*</span></label>
-                           <input type="number" name="price" id="price" class="form-control" placeholder="Price" value="<?= $row->price; ?>" required>
-                        </div>
-                        <!-- Button -->
-                        <div class="form-group text-center">
-                           <button type="submit" name="<?= $page; ?>" class="btn btn-success btn-flat"><i class="fas fa-paper-plane"></i> Save</button>
-                           <button type="reset" class="btn btn-dark btn-flat"><i class="fas fa-backward"></i> Reset</button>
-                        </div>
+               <?= form_open_multipart('item/process'); ?>
+               <div class="row d-flex justify-content-center">
+                  <div class="col-md-5 mx-auto">
+                     <input type="hidden" name="item_id" value="<?= $row->item_id; ?>">
+                     <div class="form-group">
+                        <label for="barcode">Barcode <span class="text-red">*</span></label>
+                        <input type="text" name="barcode" id="barcode" class="form-control" placeholder="Barcode" value="<?= $row->barcode; ?>" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="product_name">Product Name <span class="text-red">*</span></label>
+                        <input type="text" name="product_name" id="product_name" class="form-control" placeholder="Product Name" value="<?= $row->name; ?>" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="category">Category <span class="text-red">*</span></label>
+                        <select name="category" id="category" class="form-control" required>
+                           <option value="">-- Pilih Kategori --</option>
+                           <?php foreach ($category->result() as $key => $data) : ?>
+                              <option value="<?= $data->category_id; ?>" <?= $data->category_id == $row->category_id ? 'selected' : null; ?>><?= $data->name; ?></option>
+                           <?php endforeach; ?>
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        <label for="unit">Unit <span class="text-red">*</span></label>
+                        <?= form_dropdown('unit', $unit, $selected_unit, ['class' => 'form-control', 'required' => 'required']); ?>
+                     </div>
+                     <div class="form-group">
+                        <label for="price">Price <span class="text-red">*</span></label>
+                        <input type="number" name="price" id="price" class="form-control" placeholder="Price" value="<?= $row->price; ?>" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="image">Image</label>
+                        <?php if ($page == 'edit') :
+                           if ($row->image != null) : ?>
+                              <div class="mb-3 text-center">
+                                 <img style="width: 80%;" src="<?= base_url('uploads/product/' . $row->image); ?>" alt="Product Image">
+                              </div>
+                        <?php endif;
+                        endif; ?>
+
+                        <input type="file" name="image" id="image" class="form-control" placeholder="Image" value="<?= $row->image; ?>">
+                     </div>
+                     <!-- Button -->
+                     <div class="form-group text-center">
+                        <button type="submit" name="<?= $page; ?>" class="btn btn-success btn-flat"><i class="fas fa-paper-plane"></i> Save</button>
+                        <button type="reset" class="btn btn-dark btn-flat"><i class="fas fa-backward"></i> Reset</button>
                      </div>
                   </div>
-               </form>
+               </div>
+               <?= form_close(); ?>
             </div>
             <!-- /.card-body -->
          </div>
