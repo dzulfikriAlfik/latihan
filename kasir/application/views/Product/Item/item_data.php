@@ -30,7 +30,8 @@
                </div>
                <!-- /.card-header -->
                <div class="card-body">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <!-- <table id="example1" class="table table-bordered table-striped"> -->
+                  <table id="serverSideTable" class="table table-bordered table-striped">
                      <thead>
                         <tr>
                            <th>No.</th>
@@ -45,9 +46,9 @@
                         </tr>
                      </thead>
                      <tbody>
-                        <?php
-                        $no = 1;
-                        foreach ($row as $categ) : ?>
+                        <!-- <?php
+                              $no = 1;
+                              foreach ($row as $categ) : ?>
                            <tr>
                               <td class="text-center" width="3%"><?= $no++; ?>.</td>
                               <td class="text-center">
@@ -71,7 +72,8 @@
                                  <a href="<?= base_url('item/delete/' . $categ['item_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach; ?> -->
+
                      </tbody>
                   </table>
                </div>
@@ -80,3 +82,14 @@
       </div>
    </div>
 </section>
+
+
+<script>
+   $(document).ready(function() {
+      $('#serverSideTable').DataTable({
+         "processing": true,
+         "serverSide": true,
+         "ajax": "<?= base_url('item/get_ajax') ?>"
+      });
+   });
+</script>
