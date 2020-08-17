@@ -146,7 +146,7 @@ class Item extends CI_Controller
       }
       $item_barcode  = "./uploads/qr-code/$item->barcode-Item-" . getnama($item->item_id, 'p_item', 'item_id', 'name') . ".png";
       unlink($item_barcode);
-      
+
       $where = ['item_id' => $id];
       $this->item_model->delete($where, 'p_item');
       pesan_alert('danger', 'Data Item Berhasil dihapus', 'item');
@@ -161,5 +161,13 @@ class Item extends CI_Controller
          'page'   => 'Barcode Generator',
       ];
       $this->template->load('template', 'product/item/barcode_qrcode', $data);
+   }
+
+   public function barcode_print($id)
+   {
+      $data['row'] = $this->item_model->get($id)->row();
+      $html = $this->load->view('product/item/barcode_print', $data, true);
+
+      $this->fungsi->PdfGenerator($html, 'barcode-' . $data['row']->barcode, 'A4', 'Portrait');
    }
 }
