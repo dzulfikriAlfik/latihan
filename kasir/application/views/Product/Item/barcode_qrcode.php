@@ -52,7 +52,8 @@
                      <?php
                      echo "<br>";
                      echo $row->barcode;
-                     ?>
+                     ?><br><br>
+                     <a href="<?= base_url('item/qrcode_print/' . $row->item_id); ?>" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-print"></i> Print QRCode</a>
                   </div>
                </div>
             </div>
