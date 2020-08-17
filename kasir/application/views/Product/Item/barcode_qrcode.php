@@ -29,8 +29,8 @@
                <a href="<?= base_url('item'); ?>" class="btn btn-warning btn-sm"><i class="fas fa-undo"></i> Back</a>
             </div>
             <div class="row d-flex justify-content-center align-items-center">
-               <div class="col-md-5 offset">
-                  <div class="card-body text-center">
+               <div class="col-md-5 offset text-center">
+                  <div class="card-body">
                      <p>Barcode</p>
                      <?php
                      $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
@@ -39,13 +39,14 @@
                      echo $row->barcode;
                      ?>
                   </div>
+                  <a href="<?= base_url('item/barcode_print/' . $row->item_id); ?>" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-print"></i> Print Barcode</a>
                </div>
                <div class="col-md-5 offset">
                   <div class="card-body text-center">
                      <p>QR-Code</p>
                      <?php
                      $qrCode = new Endroid\QrCode\QrCode($row->barcode);
-                     $qrCode->writeFile("uploads/qr-code/$row->barcode-Item-". getnama($row->item_id, 'p_item', 'item_id', 'name').".png");
+                     $qrCode->writeFile("uploads/qr-code/$row->barcode-Item-" . getnama($row->item_id, 'p_item', 'item_id', 'name') . ".png");
                      ?>
                      <img src="<?= base_url("uploads/qr-code/$row->barcode-Item-" . getnama($row->item_id, 'p_item', 'item_id', 'name') . ".png"); ?>" alt="QR-Code" style="width: 200px;">
                      <?php
