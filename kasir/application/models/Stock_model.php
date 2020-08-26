@@ -1,0 +1,15 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Stock_model extends CI_Model
+{
+
+   public function get($id = null)
+   {
+      $this->db->from('t_stock');
+      if ($id != null) {
+         $this->db->where('stock_id', $id);
+      }
+      return $this->db->get();
+   }
+}

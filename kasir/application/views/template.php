@@ -15,6 +15,8 @@
    <!-- SweetAlert2 -->
    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/toastr/toastr.min.css">
+   <!-- daterange picker -->
+   <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/daterangepicker/daterangepicker.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -113,8 +115,8 @@
                         </li>
                      </ul>
                   </li>
-                  <li class="nav-item has-treeview">
-                     <a href="<?= base_url(''); ?>" class="nav-link">
+                  <li class="nav-item has-treeview <?= $aktif == 'sales' || $aktif == 'stock_in' || $aktif == 'stock_out' ? 'menu-open' : ''; ?>">
+                     <a href="<?= base_url(''); ?>" class="nav-link <?= $aktif == 'sales' || $aktif == 'stock_in' || $aktif == 'stock_out' ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                            Transactions
@@ -123,19 +125,19 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="<?= base_url(''); ?>" class="nav-link">
+                           <a href="<?= base_url(''); ?>" class="nav-link <?= add_class('sales', $aktif, 'active'); ?>">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Sales</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="<?= base_url('stock/in'); ?>" class="nav-link">
+                           <a href="<?= base_url('stock/in'); ?>" class="nav-link <?= add_class('stock_in', $aktif, 'active'); ?>">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Stock In</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="<?= base_url('stock/out'); ?>" class="nav-link">
+                           <a href="<?= base_url('stock/out'); ?>" class="nav-link <?= add_class('stock_out', $aktif, 'active'); ?>">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Stock Out</p>
                            </a>
@@ -206,11 +208,22 @@
    <!-- SweetAlert2 -->
    <script src="<?= base_url('assets'); ?>/plugins/sweetalert2/sweetalert2.min.js"></script>
    <script src="<?= base_url('assets'); ?>/plugins/toastr/toastr.min.js"></script>
+   <!-- InputMask -->
+   <script src="<?= base_url('assets'); ?>/plugins/moment/moment.min.js"></script>
+   <script src="<?= base_url('assets'); ?>/plugins/inputmask/jquery.inputmask.min.js"></script>
+   <!-- date-range-picker -->
+   <script src="<?= base_url('assets'); ?>/plugins/daterangepicker/daterangepicker.js"></script>
    <script>
       $(function() {
          $("#example1").DataTable({
             "responsive": true,
             "autoWidth": false,
+         });
+         $('#datemask').inputmask('dd/mm/yyyy', {
+            'placeholder': 'dd/mm/yyyy'
+         });
+         $('#reservationdate').datetimepicker({
+            format: 'L'
          });
       });
    </script>
