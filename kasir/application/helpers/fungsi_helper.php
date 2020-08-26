@@ -10,6 +10,7 @@ function cek_already_login()
    }
 }
 
+// -------------------------------------------------------------------------
 function cek_not_login()
 {
    $instance = &get_instance();
@@ -20,6 +21,7 @@ function cek_not_login()
    }
 }
 
+// -------------------------------------------------------------------------
 function pesan_alert($alert, $pesan, $redirect)
 {
    $instance = &get_instance();
@@ -27,6 +29,7 @@ function pesan_alert($alert, $pesan, $redirect)
    redirect($redirect);
 }
 
+// -------------------------------------------------------------------------
 function check_role()
 {
    $instance = &get_instance();
@@ -37,11 +40,13 @@ function check_role()
    }
 }
 
+// -------------------------------------------------------------------------
 function add_class($aktif, $menu, $class)
 {
    echo $aktif == $menu ? $class : null;
 }
 
+// -------------------------------------------------------------------------
 function getnama($id, $table, $table_id, $field_name)
 {
    $instance   = &get_instance();
@@ -49,8 +54,19 @@ function getnama($id, $table, $table_id, $field_name)
    return $query[$field_name];
 }
 
+// -------------------------------------------------------------------------
 function rupiah($angka)
 {
    $hasil_rupiah = "Rp. " . number_format($angka, 0, ',', '.') . ',-';
    return $hasil_rupiah;
+}
+
+// -------------------------------------------------------------------------
+function indo_date($date)
+{
+   $day     = substr($date, 8, 2);
+   $month   = substr($date, 5, 2);
+   $year    = substr($date, 0, 4);
+
+   return $day . '/' . $month . '/' . $year;
 }
