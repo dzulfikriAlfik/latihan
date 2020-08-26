@@ -14,7 +14,7 @@ class Stock extends CI_Controller
    public function stock_in_data()
    {
       $data = [
-         'row'    => $this->stock_model->get()->result_array(),
+         'row'    => $this->stock_model->get_stock_in()->result_array(),
          'aktif'  => 'stock_in',
          'menu'   => 'Stok In',
       ];
