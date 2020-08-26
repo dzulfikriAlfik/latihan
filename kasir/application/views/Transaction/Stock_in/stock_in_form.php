@@ -35,7 +35,7 @@
                         </div>
                         <label for="barcode">Barcode <span class="text-red">*</span></label>
                         <div class="input-group mb-3">
-                           <input type="text" name="barcode" id="barcode" class="form-control" required autofocus>
+                           <input type="text" name="barcode" id="barcode" class="form-control" required autofocus readonly>
                            <div class="input-group-append">
                               <span class="input-group-sm">
                                  <button type="submit" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-item">

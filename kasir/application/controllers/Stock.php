@@ -38,11 +38,9 @@ class Stock extends CI_Controller
       $post = $this->input->post(null, TRUE);
 
       if (isset($_POST['in_add'])) {
-         $this->stock_model->in_add($post);
-         pesan_alert('success', 'Data Supplier Berhasil ditambahkan', 'supplier');
-      } else if (isset($_POST['edit'])) {
-         $this->stock_model->in_edit($post);
-         pesan_alert('success', 'Data Supplier Berhasil diupdate', 'supplier');
+         $this->stock_model->add_stock_in($post);
+         $this->item_model->update_stock_in($post);
+         pesan_alert('success', 'Data Stock-In Berhasil ditambahkan', 'stock/in');
       }
    }
 }

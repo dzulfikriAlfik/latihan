@@ -34,20 +34,29 @@
                      <thead>
                         <tr>
                            <th>No.</th>
-                           <th>Category Name</th>
+                           <th>Item Name</th>
+                           <th>Type</th>
+                           <th>Detail</th>
+                           <th>Supplier Name</th>
+                           <th>Qty</th>
+                           <th>Date</th>
                            <th>Actions</th>
                         </tr>
                      </thead>
                      <tbody>
                         <?php
                         $no = 1;
-                        foreach ($row as $categ) : ?>
+                        foreach ($row as $data => $stock) : ?>
                            <tr>
                               <td width="5%"><?= $no++; ?>.</td>
-                              <td><?= $categ['name']; ?></td>
+                              <td><?= getnama($stock['item_id'], 'p_item', 'item_id', 'name'); ?></td>
+                              <td><?= $stock['type']; ?></td>
+                              <td><?= $stock['detail']; ?></td>
+                              <td><?= getnama($stock['supplier_id'], 'supplier', 'supplier_id', 'name'); ?></td>
+                              <td><?= $stock['qty']; ?></td>
+                              <td><?= $stock['date']; ?></td>
                               <td width="160px" class="text-center">
-                                 <a href="<?= base_url('category/edit/' . $categ['category_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
-                                 <a href="<?= base_url('category/delete/' . $categ['category_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                 <a href="<?= base_url('stock/in_edit/' . $stock['stock_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
                               </td>
                            </tr>
                         <?php endforeach; ?>
