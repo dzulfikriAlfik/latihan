@@ -113,5 +113,5 @@ class item_model extends CI_Model
       $this->db->from('p_item');
       return $this->db->count_all_results();
    }
-    // end datatables
+   // end datatables
 }

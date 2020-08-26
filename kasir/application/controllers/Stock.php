@@ -7,7 +7,7 @@ class Stock extends CI_Controller
    public function __construct()
    {
       parent::__construct();
-      $this->load->model('stock_model');
+      $this->load->model(['stock_model', 'supplier_model', 'item_model']);
       cek_not_login();
    }
 
@@ -23,15 +23,12 @@ class Stock extends CI_Controller
 
    public function stock_in_add()
    {
-      $stock = new stdClass();
-      $stock->stock_id  = null;
-      $stock->item_id  = null;
-      $stock->date      = date('Y-m-d');
       $data = [
-         'row'    => $stock,
-         'aktif'  => 'stock_in',
-         'menu'   => 'Stok In',
-         'page'   => 'in_add',
+         'item'      => $this->item_model->get()->result_array(),
+         'supplier'  => $this->supplier_model->get()->result_array(),
+         'aktif'     => 'stock_in',
+         'menu'      => 'Stok In',
+         'page'      => 'in_add',
       ];
       $this->template->load('template', 'transaction/stock_in/stock_in_form', $data);
    }

@@ -219,12 +219,6 @@
             "responsive": true,
             "autoWidth": false,
          });
-         $('#datemask').inputmask('dd/mm/yyyy', {
-            'placeholder': 'dd/mm/yyyy'
-         });
-         $('#reservationdate').datetimepicker({
-            format: 'L'
-         });
       });
    </script>
 </body>
