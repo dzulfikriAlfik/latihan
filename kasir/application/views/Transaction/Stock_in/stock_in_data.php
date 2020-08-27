@@ -51,7 +51,7 @@
                               <td class="text-center"><?= indo_date($stock['date']); ?></td>
                               <td width="160px" class="text-center">
                                  <a href="<?= base_url('stock/in/detail/' . $stock['stock_id']); ?>" class="btn btn-info btn-xs"><i class="fas fa-eye"></i> Detail</a>&nbsp;
-                                 <a href="<?= base_url('stock/in/delete/' . $stock['stock_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                 <a href="<?= base_url('stock/in/delete/' . $stock['stock_id'] . '/' . $stock['item_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
                         <?php endforeach; ?>

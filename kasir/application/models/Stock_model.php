@@ -4,6 +4,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Stock_model extends CI_Model
 {
 
+   public function get($id = null)
+   {
+      $this->db->from('t_stock');
+      if ($id != null) {
+         $this->db->where('stock_id', $id);
+      }
+      return $this->db->get();
+   }
+
    public function get_stock_in()
    {
       $this->db->select('t_stock.stock_id, p_item.barcode, p_item.name as item_name, qty, date, detail, supplier.name as supplier_name, p_item.item_id');
@@ -27,5 +36,11 @@ class Stock_model extends CI_Model
          'user_id'      => $this->session->userdata('userid')
       ];
       $this->db->insert('t_stock', $params);
+   }
+
+   public function delete($id)
+   {
+      $this->db->where('stock_id', $id);
+      $this->db->delete('t_stock');
    }
 }
