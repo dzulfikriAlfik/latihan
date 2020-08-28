@@ -72,6 +72,11 @@ class Supplier extends CI_Controller
    {
       $where = ['supplier_id' => $id];
       $this->supplier_model->delete($where, 'supplier');
-      pesan_alert('danger', 'Data Supplier Berhasil dihapus', 'supplier');
+      $error = $this->db->error();
+      if ($error['code'] != 0) {
+         pesan_alert('danger', 'Data Supplier tidak dapat dihapus karena sudah berelasi', 'supplier');
+      } else {
+         pesan_alert('danger', 'Data Supplier Berhasil dihapus', 'supplier');
+      }
    }
 }
