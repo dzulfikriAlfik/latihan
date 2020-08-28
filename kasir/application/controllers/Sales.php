@@ -1,0 +1,23 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Sales extends CI_Controller
+{
+
+   public function __construct()
+   {
+      parent::__construct();
+      // $this->load->model('');
+      cek_not_login();
+   }
+
+   public function index()
+   {
+      $data = [
+         // 'row'    => $this->customer_model->get()->result_array(),
+         'aktif'  => 'sales',
+         'menu'   => 'sales'
+      ];
+      $this->template->load('template', 'transaction/sales/sales_form', $data);
+   }
+}
