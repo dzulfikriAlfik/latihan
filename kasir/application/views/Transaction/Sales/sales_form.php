@@ -43,7 +43,7 @@
                            <label for="kasir">Kasir</label>
                         </div>
                         <div class="col-9">
-                           <input type="text" name="kasir" id="kasir" class="form-control" value="<?= getnama($this->session->userdata('userid'), 'user', 'user_id', 'name'); ?>" readonly>
+                           <input type="text" name="kasir" id="kasir" class="form-control" value="<?= $this->fungsi->user_login()->name ?>" readonly>
                         </div>
                      </div>
                   </div>
@@ -54,7 +54,10 @@
                         </div>
                         <div class="col-9">
                            <select name="customer" id="customer" class="form-control">
-                              <option value="">Umum</option>
+                              <option value="Umum">Umum</option>
+                              <?php foreach ($row as $customer) : ?>
+                                 <option value="<?= $customer['customer_id']; ?>"><?= $customer['name']; ?></option>
+                              <?php endforeach; ?>
                            </select>
                         </div>
                      </div>
@@ -107,11 +110,11 @@
                <div class="card-body d-flex flex-column justify-content-between align-items-end">
                   <div class="row">
                      <div class="col text-right">
-                        <h5 style="font-size: 1.2rem;">Invoice-<b>123ASDAHSADFADAS</b></h5>
+                        <h5 style="font-size: 1.2rem;">Invoice-<b><?= $invoice; ?></b></h5>
                      </div>
                   </div>
                   <div class="row" style="height: 0;">
-                     <h1 style="font-size: 3.3rem;"><b>100.000</b></h1>
+                     <h1 style="font-size: 2.7rem;"><b><?= rupiah(10000000); ?></b></h1>
                   </div>
                   <div class="row"></div>
                </div>
@@ -203,10 +206,10 @@
                   <div class="form-group">
                      <div class="row">
                         <div class="col-3">
-                           <label for="charge">Charge</label>
+                           <label for="change">Change</label>
                         </div>
                         <div class="col-9">
-                           <input type="text" name="charge" id="charge" class="form-control">
+                           <input type="text" name="change" id="change" class="form-control">
                         </div>
                      </div>
                   </div>
