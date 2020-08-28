@@ -45,6 +45,37 @@ class Stock extends CI_Controller
       pesan_alert('danger', 'Data Stock-In Berhasil dihapus', 'stock/in');
    }
 
+   public function stock_out_data()
+   {
+      $data = [
+         'row'    => $this->stock_model->get_stock_out()->result_array(),
+         'aktif'  => 'stock_out',
+         'menu'   => 'Stok Out',
+      ];
+      $this->template->load('template', 'transaction/stock_out/stock_out_data', $data);
+   }
+
+   public function stock_out_add()
+   {
+      $data = [
+         'item'      => $this->item_model->get()->result_array(),
+         'aktif'     => 'stock_out',
+         'menu'      => 'Stok Out',
+         'page'      => 'out_add',
+      ];
+      $this->template->load('template', 'transaction/stock_out/stock_out_form', $data);
+   }
+
+   public function stock_out_delete($stock_id, $item_id)
+   {
+      $qty        = $this->stock_model->get($stock_id)->row()->qty;
+      $stock_out  = ['qty' => $qty, 'item_id' => $item_id];
+
+      $this->item_model->update_stock_in($stock_out);
+      $this->stock_model->delete($stock_id);
+      pesan_alert('danger', 'Data Stock-Outt Berhasil dihapus', 'stock/out');
+   }
+
    public function process()
    {
       $post = $this->input->post(null, TRUE);
@@ -53,6 +84,10 @@ class Stock extends CI_Controller
          $this->stock_model->add_stock_in($post);
          $this->item_model->update_stock_in($post);
          pesan_alert('success', 'Data Stock-In Berhasil ditambahkan', 'stock/in');
+      } else if (isset($_POST['out_add'])) {
+         $this->stock_model->add_stock_out($post);
+         $this->item_model->update_stock_out($post);
+         pesan_alert('success', 'Data Stock-Out Berhasil ditambahkan', 'stock/out');
       }
    }
 }
