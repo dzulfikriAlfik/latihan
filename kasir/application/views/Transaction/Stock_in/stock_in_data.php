@@ -50,7 +50,10 @@
                               <td class="text-center" style="width: 8%;"><?= $stock['qty']; ?></td>
                               <td class="text-center"><?= indo_date($stock['date']); ?></td>
                               <td width="160px" class="text-center">
-                                 <a href="<?= base_url('stock/in/detail/' . $stock['stock_id']); ?>" class="btn btn-info btn-xs"><i class="fas fa-eye"></i> Detail</a>&nbsp;
+                                 <a id="detailStockIn" href="<?= base_url('stock/in/detail/' . $stock['stock_id']); ?>" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-detail" data-barcode="<?= $stock['barcode']; ?>" data-itemname="<?= $stock['item_name']; ?>" data-detail="<?= $stock['detail']; ?>" data-suppliername="<?= $stock['supplier_name']; ?>" data-qty="<?= $stock['qty']; ?>" data-date="<?= indo_date($stock['date']); ?>">
+                                    <i class="fas fa-eye"></i>
+                                    Detail
+                                 </a>&nbsp;
                                  <a href="<?= base_url('stock/in/delete/' . $stock['stock_id'] . '/' . $stock['item_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
@@ -63,3 +66,67 @@
       </div>
    </div>
 </section>
+
+<div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="modal-detailLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="modal-detailLabel">Stock In Detail</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="card-body table-responsive">
+            <table class="table table-hover table-striped table-bordered">
+               <tr>
+                  <td>Barcode</td>
+                  <td><span id="barcode"></span></td>
+               </tr>
+               <tr>
+                  <td>Item Name</td>
+                  <td><span id="item_name"></span></td>
+               </tr>
+               <tr>
+                  <td>Detail</td>
+                  <td><span id="detail"></span></td>
+               </tr>
+               <tr>
+                  <td>Supplier Name</td>
+                  <td><span id="supplier_name"></span></td>
+               </tr>
+               <tr>
+                  <td>Qty</td>
+                  <td><span id="qty"></span></td>
+               </tr>
+               <tr>
+                  <td>Date</td>
+                  <td><span id="date"></span></td>
+               </tr>
+            </table>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Simpan</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>
+   $(document).ready(function() {
+      $(document).on('click', '#detailStockIn', function() {
+         const barcode = $(this).data('barcode');
+         const itemname = $(this).data('itemname');
+         const detail = $(this).data('detail');
+         const suppliername = $(this).data('suppliername');
+         const qty = $(this).data('qty');
+         const date = $(this).data('date');
+         $('#barcode').text(barcode);
+         $('#item_name').text(itemname);
+         $('#detail').text(detail);
+         $('#supplier_name').text(suppliername);
+         $('#qty').text(qty);
+         $('#date').text(date);
+      });
+   });
+</script>
