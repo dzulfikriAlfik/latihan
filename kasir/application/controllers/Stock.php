@@ -66,14 +66,16 @@ class Stock extends CI_Controller
       $this->template->load('template', 'transaction/stock_out/stock_out_form', $data);
    }
 
-   public function stock_out_delete($stock_id, $item_id)
+   public function stock_out_delete()
    {
+      $stock_id   = $this->uri->segment(4);
+      $item_id    = $this->uri->segment(5);
       $qty        = $this->stock_model->get($stock_id)->row()->qty;
       $stock_out  = ['qty' => $qty, 'item_id' => $item_id];
 
       $this->item_model->update_stock_in($stock_out);
       $this->stock_model->delete($stock_id);
-      pesan_alert('danger', 'Data Stock-Outt Berhasil dihapus', 'stock/out');
+      pesan_alert('danger', 'Data Stock-Out Berhasil dihapus', 'stock/out');
    }
 
    public function process()
