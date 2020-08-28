@@ -19,49 +19,52 @@
 
    <div class="container-fluid">
       <div class="row">
-         <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box">
-               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-box"></i></span>
-
-               <div class="info-box-content">
-                  <span class="info-box-text">Items</span>
-                  <span class="info-box-number">
-                     <?= count_rows('p_item') ?>
-                  </span>
+         <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+               <div class="inner">
+                  <h3><?= count_rows('p_item'); ?></h3>
+                  <p>Items</p>
                </div>
+               <div class="icon">
+                  <i class="ion ion-android-archive"></i>
+               </div>
+               <a href="<?= base_url('item'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
          </div>
-         <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-truck"></i></span>
-
-               <div class="info-box-content">
-                  <span class="info-box-text">Suppliers</span>
-                  <span class="info-box-number"><?= count_rows('supplier'); ?></span>
+         <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+               <div class="inner">
+                  <h3><?= count_rows('supplier'); ?></h3>
+                  <p>Suppliers</p>
                </div>
+               <div class="icon">
+                  <i class="ion ion-android-bus"></i>
+               </div>
+               <a href="<?= base_url('supplier'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
          </div>
-
-         <div class="clearfix hidden-md-up"></div>
-
-         <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
-
-               <div class="info-box-content">
-                  <span class="info-box-text">Customers</span>
-                  <span class="info-box-number"><?= count_rows('customer'); ?></span>
+         <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger">
+               <div class="inner">
+                  <h3><?= count_rows('customer'); ?></h3>
+                  <p>Customers</p>
                </div>
+               <div class="icon">
+                  <i class="ion ion-android-contacts"></i>
+               </div>
+               <a href="<?= base_url('customer'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
          </div>
-         <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-plus"></i></span>
-
-               <div class="info-box-content">
-                  <span class="info-box-text">Users</span>
-                  <span class="info-box-number"><?= count_rows('user'); ?></span>
+         <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+               <div class="inner">
+                  <h3><?= count_rows('user'); ?></h3>
+                  <p>User Registrations</p>
                </div>
+               <div class="icon">
+                  <i class="ion ion-person-add"></i>
+               </div>
+               <a href="<?= base_url('user'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
          </div>
       </div>
