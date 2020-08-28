@@ -70,3 +70,12 @@ function indo_date($date)
 
    return $day . '/' . $month . '/' . $year;
 }
+
+// -------------------------------------------------------------------------
+function count_rows($table)
+{
+   $instance   = &get_instance();
+
+   $instance->db->from($table);
+   return $instance->db->get()->num_rows();
+}
