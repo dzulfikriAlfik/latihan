@@ -20,7 +20,7 @@
       <div class="col-12">
          <div class="card">
             <div class="card-header">
-               <a href="<?= base_url('stock/in'); ?>" class="btn btn-warning btn-sm"><i class="fas fa-undo"></i> Back</a>
+               <a href="<?= base_url('stock/out'); ?>" class="btn btn-warning btn-sm"><i class="fas fa-undo"></i> Back</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
