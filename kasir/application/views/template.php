@@ -126,7 +126,7 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="<?= base_url(''); ?>" class="nav-link <?= add_class('sales', $aktif, 'active'); ?>">
+                           <a href="<?= base_url('sales'); ?>" class="nav-link <?= add_class('sales', $aktif, 'active'); ?>">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Sales</p>
                            </a>
