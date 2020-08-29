@@ -42,7 +42,7 @@ class Stock extends CI_Controller
 
       $this->item_model->update_stock_out($stock_out);
       $this->stock_model->delete($stock_id);
-      pesan_alert('danger', 'Data Stock-In Berhasil dihapus', 'stock/in');
+      pesan_alert('Dihapus', 'stock/in');
    }
 
    public function stock_out_data()
@@ -75,7 +75,7 @@ class Stock extends CI_Controller
 
       $this->item_model->update_stock_in($stock_out);
       $this->stock_model->delete($stock_id);
-      pesan_alert('danger', 'Data Stock-Out Berhasil dihapus', 'stock/out');
+      pesan_alert('Dihapus', 'stock/out');
    }
 
    public function process()
@@ -85,11 +85,11 @@ class Stock extends CI_Controller
       if (isset($_POST['in_add'])) {
          $this->stock_model->add_stock_in($post);
          $this->item_model->update_stock_in($post);
-         pesan_alert('success', 'Data Stock-In Berhasil ditambahkan', 'stock/in');
+         pesan_alert('Ditambahkan', 'stock/in');
       } else if (isset($_POST['out_add'])) {
          $this->stock_model->add_stock_out($post);
          $this->item_model->update_stock_out($post);
-         pesan_alert('success', 'Data Stock-Out Berhasil ditambahkan', 'stock/out');
+         pesan_alert('Ditambahkan', 'stock/out');
       }
    }
 }

@@ -13,7 +13,8 @@
       </div>
       <div class="row">
          <div class="col">
-            <?= $this->session->flashdata('pesan'); ?>
+            <div class="flash-data" data-pesan="<?= ucfirst($menu); ?>" data-flashdata="<?= $this->session->flashdata('pesan'); ?>"></div>
+            <div class="flash-error" data-pesan="<?= ucfirst($menu); ?>" data-flasherror="<?= $this->session->flashdata('error'); ?>"></div>
          </div>
       </div>
    </div>
@@ -54,7 +55,7 @@
                                     <i class="fas fa-eye"></i>
                                     Detail
                                  </a>&nbsp;
-                                 <a href="<?= base_url('stock/in/delete/' . $stock['stock_id'] . '/' . $stock['item_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                 <a href="<?= base_url('stock/in/delete/' . $stock['stock_id'] . '/' . $stock['item_id']); ?>"  class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
                         <?php endforeach; ?>
