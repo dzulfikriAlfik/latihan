@@ -22,12 +22,13 @@
       <div class="login-logo">
          <a href="<?= base_url('assets') ?>/index2.html"><b>Kasir</b> Penjualan</a>
       </div>
-      <!-- /.login-logo -->
       <div class="card">
          <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
-            <!-- Flash Data -->
             <?= $this->session->flashdata('pesan'); ?>
+
+            <div class="logout-success" data-flashdata="<?= $this->session->flashdata('pesan_logout'); ?>"></div>
+            <div class="login-error" data-flashdata="<?= $this->session->flashdata('error_login'); ?>"></div>
 
             <form action="<?= site_url('auth/process') ?>" method="post">
                <div class="input-group mb-3">
@@ -47,18 +48,14 @@
                   </div>
                </div>
                <div class="row">
-                  <!-- /.col -->
                   <div class="col-4 offset-8">
                      <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
                   </div>
-                  <!-- /.col -->
                </div>
             </form>
          </div>
-         <!-- /.login-card-body -->
       </div>
    </div>
-   <!-- /.login-box -->
 
    <!-- jQuery -->
    <script src="<?= base_url('assets') ?>/plugins/jquery/jquery.min.js"></script>
@@ -66,6 +63,9 @@
    <script src="<?= base_url('assets') ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
    <!-- AdminLTE App -->
    <script src="<?= base_url('assets') ?>/dist/js/adminlte.min.js"></script>
+   <!-- SweetAlert2 -->
+   <script src="<?= base_url('assets'); ?>/dist/js/swal/sweetalert2.all.min.js"></script>
+   <script src="<?= base_url('assets'); ?>/dist/js/myscript.js"></script>
 
 </body>
 

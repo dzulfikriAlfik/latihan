@@ -1,5 +1,9 @@
 const flashData = $('.flash-data').data('flashdata');
 const flashError = $('.flash-error').data('flasherror');
+const loginSuccess = $('.login-success').data('flashdata');
+const userData = $('.login-success').data('user');
+const loginError = $('.login-error').data('flashdata');
+const logoutSuccess = $('.logout-success').data('flashdata');
 const pesan = $('.flash-data').data('pesan');
 
 if (flashData) {
@@ -15,6 +19,26 @@ if (flashData) {
     text: flashError,
     type: 'error',
     icon: 'error',
+  });
+} else if (loginSuccess) {
+  Swal.fire({
+    title: loginSuccess,
+    text: 'Selamat Datang ' + userData,
+    type: 'success',
+    icon: 'success',
+  });
+} else if (loginError) {
+  Swal.fire({
+    title: 'Gagal Login',
+    text: loginError,
+    type: 'error',
+    icon: 'error',
+  });
+} else if (logoutSuccess) {
+  Swal.fire({
+    title: logoutSuccess,
+    type: 'success',
+    icon: 'success',
   });
 }
 

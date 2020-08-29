@@ -42,6 +42,7 @@
          </ul>
       </nav>
 
+      <div class="login-success" data-flashdata="<?= $this->session->flashdata('pesan_login'); ?>" data-user="<?= ucwords($this->fungsi->user_login()->name); ?>"></div>
 
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
          <a href="<?= base_url('dashboard'); ?>" class="brand-link">

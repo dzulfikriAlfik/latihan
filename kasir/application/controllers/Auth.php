@@ -31,12 +31,11 @@ class Auth extends CI_Controller
                'level'  => $row->level
             ];
             $this->session->set_userdata($params);
-            echo "<script>
-                     alert('Login Berhasil!');
-                     window.location='" . site_url('dashboard') . "';
-                  </script>";
+            $this->session->set_flashdata('pesan_login', 'Berhasil Login');
+            redirect('dashboard');
          } else {
-            pesan_alert('danger', 'Username/Password Salah!', 'auth/login');
+            $this->session->set_flashdata('error_login', 'Username/Password Salah!');
+            redirect('auth/login');
          }
       }
    }
@@ -46,6 +45,7 @@ class Auth extends CI_Controller
    {
       $params = ['userid', 'level'];
       $this->session->unset_userdata($params);
-      pesan_alert('success', 'Berhasil Logout', 'auth/login');
+      $this->session->set_flashdata('pesan_logout', 'Berhasil Logout');
+      redirect('auth/login');
    }
 }
