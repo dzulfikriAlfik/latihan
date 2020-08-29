@@ -48,7 +48,7 @@ class Unit extends CI_Controller
          ];
          $this->template->load('template', 'product/unit/unit_form', $data);
       } else {
-         pesan_alert('danger', 'Data unit tidak ditemukan', 'unit');
+         pesan_error('Data unit tidak ditemukan', 'unit');
       }
    }
 
@@ -58,10 +58,10 @@ class Unit extends CI_Controller
 
       if (isset($_POST['add'])) {
          $this->unit_model->add($post);
-         pesan_alert('success', 'Data unit Berhasil ditambahkan', 'unit');
+         pesan_alert('Ditambahkan', 'unit');
       } else if (isset($_POST['edit'])) {
          $this->unit_model->edit($post);
-         pesan_alert('success', 'Data unit Berhasil diupdate', 'unit');
+         pesan_alert('Diupdate', 'unit');
       }
    }
 
@@ -69,6 +69,6 @@ class Unit extends CI_Controller
    {
       $where = ['unit_id' => $id];
       $this->unit_model->delete($where, 'p_unit');
-      pesan_alert('danger', 'Data unit Berhasil dihapus', 'unit');
+      pesan_alert('Dihapus', 'unit');
    }
 }
