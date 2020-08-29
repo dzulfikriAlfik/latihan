@@ -83,7 +83,7 @@ class User extends CI_Controller
          $this->user_model->add($post);
 
          if ($this->db->affected_rows() > 0) {
-            pesan_alert('success', 'Data User Berhasil ditambahkan', 'user');
+            pesan_alert('Ditambahkan', 'user');
          }
       }
    }
@@ -108,7 +108,7 @@ class User extends CI_Controller
          $post = $this->input->post(null, TRUE);
          $this->user_model->edit($post);
          if ($this->db->affected_rows() > 0) {
-            pesan_alert('success', 'Data User Berhasil diupdate', 'user');
+            pesan_alert('Diupdate', 'user');
          }
       }
    }
@@ -117,7 +117,6 @@ class User extends CI_Controller
    {
       $where = ['user_id' => $id];
       $this->user_model->delete($where, 'user');
-      $this->session->set_flashdata('pesan', 'Dihapus');
-      redirect('user');
+      pesan_alert('Dihapus', 'user');
    }
 }

@@ -13,8 +13,7 @@
       </div>
       <div class="row">
          <div class="col">
-            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan'); ?>"></div>
-            <!-- <?= $this->session->flashdata('pesan'); ?> -->
+            <div class="flash-data" data-pesan="<?= ucfirst($menu); ?>" data-flashdata="<?= $this->session->flashdata('pesan'); ?>"></div>
          </div>
       </div>
    </div><!-- /.container-fluid -->
