@@ -26,6 +26,9 @@ if (flashData) {
     text: 'Selamat Datang ' + userData,
     type: 'success',
     icon: 'success',
+    showConfirmButton: false,
+    timer: 1500,
+    footer: '<b>Aplikasi Kasir Penjualan</b>'
   });
 } else if (loginError) {
   Swal.fire({
@@ -37,8 +40,12 @@ if (flashData) {
 } else if (logoutSuccess) {
   Swal.fire({
     title: logoutSuccess,
+    text: 'Terima Kasih sudah berkunjung',
     type: 'success',
     icon: 'success',
+    showConfirmButton: false,
+    timer: 1500,
+    footer: '<b>Aplikasi Kasir Penjualan</b>'
   });
 }
 
