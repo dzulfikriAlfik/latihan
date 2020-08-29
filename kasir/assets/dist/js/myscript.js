@@ -12,13 +12,16 @@ if (flashData) {
     text: 'Berhasil ' + flashData,
     type: 'success',
     icon: 'success',
+    showConfirmButton: false,
+    timer: 2000,
+    footer: '<b>Aplikasi Kasir Penjualan</b>'
   });
 } else if (flashError) {
   Swal.fire({
     title: 'Data ' + pesan,
     text: flashError,
     type: 'error',
-    icon: 'error',
+    icon: 'error'
   });
 } else if (loginSuccess) {
   Swal.fire({
@@ -44,7 +47,7 @@ if (flashData) {
     type: 'success',
     icon: 'success',
     showConfirmButton: false,
-    timer: 1500,
+    timer: 2000,
     footer: '<b>Aplikasi Kasir Penjualan</b>'
   });
 }
