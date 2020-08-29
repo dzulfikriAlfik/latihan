@@ -13,7 +13,8 @@
       </div>
       <div class="row">
          <div class="col">
-            <?= $this->session->flashdata('pesan'); ?>
+            <div class="flash-data" data-pesan="<?= ucfirst($menu); ?>" data-flashdata="<?= $this->session->flashdata('pesan'); ?>"></div>
+            <div class="flash-error" data-pesan="<?= ucfirst($menu); ?>" data-flasherror="<?= $this->session->flashdata('error'); ?>"></div>
          </div>
       </div>
    </div>
@@ -47,7 +48,7 @@
                               <td><?= $categ['name']; ?></td>
                               <td width="160px" class="text-center">
                                  <a href="<?= base_url('category/edit/' . $categ['category_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
-                                 <a href="<?= base_url('category/delete/' . $categ['category_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                 <a href="<?= base_url('category/delete/' . $categ['category_id']); ?>"  class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
                         <?php endforeach; ?>

@@ -48,7 +48,7 @@ class Category extends CI_Controller
          ];
          $this->template->load('template', 'product/category/category_form', $data);
       } else {
-         pesan_alert('danger', 'Data category tidak ditemukan', 'category');
+         pesan_error('Data category tidak ditemukan', 'category');
       }
    }
 
@@ -58,10 +58,10 @@ class Category extends CI_Controller
 
       if (isset($_POST['add'])) {
          $this->category_model->add($post);
-         pesan_alert('success', 'Data category Berhasil ditambahkan', 'category');
+         pesan_alert('Ditambahkan', 'category');
       } else if (isset($_POST['edit'])) {
          $this->category_model->edit($post);
-         pesan_alert('success', 'Data category Berhasil diupdate', 'category');
+         pesan_alert('Diupdate', 'category');
       }
    }
 
@@ -69,6 +69,6 @@ class Category extends CI_Controller
    {
       $where = ['category_id' => $id];
       $this->category_model->delete($where, 'p_category');
-      pesan_alert('danger', 'Data category Berhasil dihapus', 'category');
+      pesan_alert('Dihapus', 'category');
    }
 }
