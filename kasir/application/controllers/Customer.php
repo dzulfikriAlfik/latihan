@@ -51,7 +51,7 @@ class Customer extends CI_Controller
          ];
          $this->template->load('template', 'customer/customer_form', $data);
       } else {
-         pesan_alert('danger', 'Data Customer tidak ditemukan', 'customer');
+         pesan_error('Tidak Ditemukan', 'customer');
       }
    }
 
@@ -61,10 +61,10 @@ class Customer extends CI_Controller
 
       if (isset($_POST['add'])) {
          $this->customer_model->add($post);
-         pesan_alert('success', 'Data Customer Berhasil ditambahkan', 'customer');
+         pesan_alert('Ditambahkan', 'customer');
       } else if (isset($_POST['edit'])) {
          $this->customer_model->edit($post);
-         pesan_alert('success', 'Data Customer Berhasil diupdate', 'customer');
+         pesan_alert('Diupdate', 'customer');
       }
    }
 
@@ -72,6 +72,6 @@ class Customer extends CI_Controller
    {
       $where = ['customer_id' => $id];
       $this->customer_model->delete($where, 'customer');
-      pesan_alert('danger', 'Data customer Berhasil dihapus', 'customer');
+      pesan_alert('Dihapus', 'customer');
    }
 }

@@ -1,4 +1,5 @@
 const flashData = $('.flash-data').data('flashdata');
+const flashError = $('.flash-error').data('flasherror');
 const pesan = $('.flash-data').data('pesan');
 
 if (flashData) {
@@ -7,6 +8,13 @@ if (flashData) {
     text: 'Berhasil ' + flashData,
     type: 'success',
     icon: 'success',
+  });
+} else if (flashError) {
+  Swal.fire({
+    title: 'Data ' + pesan,
+    text: flashError,
+    type: 'error',
+    icon: 'error',
   });
 }
 
