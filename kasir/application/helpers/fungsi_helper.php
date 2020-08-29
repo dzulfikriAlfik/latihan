@@ -30,6 +30,14 @@ function pesan_alert($pesan, $redirect)
 }
 
 // -------------------------------------------------------------------------
+function pesan_error($pesan, $redirect)
+{
+   $instance = &get_instance();
+   $instance->session->set_flashdata('error', $pesan);
+   redirect($redirect);
+}
+
+// -------------------------------------------------------------------------
 function check_role()
 {
    $instance = &get_instance();
