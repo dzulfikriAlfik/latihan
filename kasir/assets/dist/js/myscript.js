@@ -21,7 +21,8 @@ if (flashData) {
     title: 'Data ' + pesan,
     text: flashError,
     type: 'error',
-    icon: 'error'
+    icon: 'error',
+    footer: '<b>Aplikasi Kasir Penjualan</b>'
   });
 } else if (loginSuccess) {
   Swal.fire({
@@ -39,6 +40,7 @@ if (flashData) {
     text: loginError,
     type: 'error',
     icon: 'error',
+    footer: '<b>Aplikasi Kasir Penjualan</b>'
   });
 } else if (logoutSuccess) {
   Swal.fire({
@@ -65,7 +67,8 @@ $('.tombol-hapus').on('click', function (e) {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Hapus Data'
+    confirmButtonText: 'Hapus Data',
+    footer: '<b>Aplikasi Kasir Penjualan</b>'
   }).then((result) => {
     if (result.value) {
       document.location.href = href;
