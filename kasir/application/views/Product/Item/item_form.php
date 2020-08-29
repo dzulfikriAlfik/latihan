@@ -13,7 +13,7 @@
       </div>
       <div class="row">
          <div class="col">
-            <?= $this->session->flashdata('pesan'); ?>
+            <div class="flash-error" data-pesan="<?= ucfirst($menu); ?>" data-flasherror="<?= $this->session->flashdata('error'); ?>"></div>
          </div>
       </div>
    </div>

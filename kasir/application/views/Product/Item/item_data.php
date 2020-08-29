@@ -13,7 +13,8 @@
       </div>
       <div class="row">
          <div class="col">
-            <?= $this->session->flashdata('pesan'); ?>
+            <div class="flash-data" data-pesan="<?= ucfirst($menu); ?>" data-flashdata="<?= $this->session->flashdata('pesan'); ?>"></div>
+            <div class="flash-error" data-pesan="<?= ucfirst($menu); ?>" data-flasherror="<?= $this->session->flashdata('error'); ?>"></div>
          </div>
       </div>
    </div>
@@ -31,7 +32,7 @@
                <!-- /.card-header -->
                <div class="card-body">
                   <table id="example1" class="table table-bordered table-striped">
-                  <!-- <table id="serverSideTable" class="table table-bordered table-striped"> -->
+                     <!-- <table id="serverSideTable" class="table table-bordered table-striped"> -->
                      <thead>
                         <tr>
                            <th>No.</th>
@@ -47,8 +48,8 @@
                      </thead>
                      <tbody>
                         <?php
-                              $no = 1;
-                              foreach ($row as $categ) : ?>
+                        $no = 1;
+                        foreach ($row as $categ) : ?>
                            <tr>
                               <td class="text-center" width="3%"><?= $no++; ?>.</td>
                               <td class="text-center">
@@ -69,7 +70,7 @@
                               <td><?= $categ['stock']; ?></td>
                               <td width="160px" class="text-center">
                                  <a href="<?= base_url('item/edit/' . $categ['item_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
-                                 <a href="<?= base_url('item/delete/' . $categ['item_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                 <a href="<?= base_url('item/delete/' . $categ['item_id']); ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
                         <?php endforeach; ?>
