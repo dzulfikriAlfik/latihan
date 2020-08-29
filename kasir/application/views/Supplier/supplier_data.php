@@ -13,7 +13,8 @@
       </div>
       <div class="row">
          <div class="col">
-            <?= $this->session->flashdata('pesan'); ?>
+            <div class="flash-data" data-pesan="<?= ucfirst($menu); ?>" data-flashdata="<?= $this->session->flashdata('pesan'); ?>"></div>
+            <div class="flash-error" data-pesan="<?= ucfirst($menu); ?>" data-flasherror="<?= $this->session->flashdata('error'); ?>"></div>
          </div>
       </div>
    </div>
@@ -53,8 +54,7 @@
                               <td><?= $supp['description'] ?></td>
                               <td width="160px" class="text-center">
                                  <a href="<?= base_url('supplier/edit/' . $supp['supplier_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
-                                 <!-- <a href="<?= base_url('supplier/delete/' . $supp['supplier_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a> -->
-                                 <a href="#modalDelete" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                 <a href="<?= base_url('supplier/delete/' . $supp['supplier_id']); ?>"  class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
                         <?php endforeach; ?>
@@ -66,22 +66,3 @@
       </div>
    </div>
 </section>
-
-<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="true">
-   <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="modalDeleteLabel">Hapus Supplier?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-footer">
-            <form id="formDelete" method="post" action="<?= base_url('supplier/delete/' . $supp['supplier_id']); ?>">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-               <button type="submit" class="btn btn-primary">Ya</button>
-            </form>
-         </div>
-      </div>
-   </div>
-</div>

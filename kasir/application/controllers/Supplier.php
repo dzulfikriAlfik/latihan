@@ -51,7 +51,7 @@ class Supplier extends CI_Controller
          ];
          $this->template->load('template', 'supplier/supplier_form', $data);
       } else {
-         pesan_alert('danger', 'Data Supplier tidak ditemukan', 'supplier');
+         pesan_error('Tidak Ditemukan', 'supplier');
       }
    }
 
@@ -61,10 +61,10 @@ class Supplier extends CI_Controller
 
       if (isset($_POST['add'])) {
          $this->supplier_model->add($post);
-         pesan_alert('success', 'Data Supplier Berhasil ditambahkan', 'supplier');
+         pesan_alert('Ditambahkan', 'supplier');
       } else if (isset($_POST['edit'])) {
          $this->supplier_model->edit($post);
-         pesan_alert('success', 'Data Supplier Berhasil diupdate', 'supplier');
+         pesan_alert('Diupdate', 'supplier');
       }
    }
 
@@ -74,9 +74,9 @@ class Supplier extends CI_Controller
       $this->supplier_model->delete($where, 'supplier');
       $error = $this->db->error();
       if ($error['code'] != 0) {
-         pesan_alert('danger', 'Data Supplier tidak dapat dihapus karena sudah berelasi', 'supplier');
+         pesan_error('Data Supplier tidak dapat dihapus karena sudah berelasi', 'supplier');
       } else {
-         pesan_alert('danger', 'Data Supplier Berhasil dihapus', 'supplier');
+         pesan_alert('Data Supplier Berhasil dihapus', 'supplier');
       }
    }
 }
