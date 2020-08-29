@@ -4,7 +4,8 @@ if (flashData) {
 	Swal.fire({
 		title: 'Data Mahasiswa',
 		text: 'Berhasil ' + flashData,
-		type: 'success'
+		type: 'success',
+		icon: 'success',
 	});
 }
 
@@ -17,7 +18,7 @@ $('.tombol-hapus').on('click', function (e) {
 	Swal.fire({
 		title: 'Apakah Anda Yakin?',
 		text: 'Data mahasiswa akan dihapus!',
-		icon: 'success',
+		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
