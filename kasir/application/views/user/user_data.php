@@ -13,7 +13,8 @@
       </div>
       <div class="row">
          <div class="col">
-            <?= $this->session->flashdata('pesan'); ?>
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('pesan'); ?>"></div>
+            <!-- <?= $this->session->flashdata('pesan'); ?> -->
          </div>
       </div>
    </div><!-- /.container-fluid -->
@@ -53,7 +54,7 @@
                            <td><?= $user['level'] == 1 ? "Admin" : "Kasir"; ?></td>
                            <td width="160px">
                               <a href="<?= base_url('user/edit/' . $user['user_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
-                              <a href="<?= base_url('user/delete/' . $user['user_id']); ?>" onclick="return confirm('Yakin Hapus Data?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                              <a href="<?= base_url('user/delete/' . $user['user_id']); ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
                            </td>
                         </tr>
                      <?php endforeach; ?>

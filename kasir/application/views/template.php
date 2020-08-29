@@ -14,9 +14,6 @@
    <!-- DataTables -->
    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-   <!-- SweetAlert2 -->
-   <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-   <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/toastr/toastr.min.css">
    <!-- daterange picker -->
    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/daterangepicker/daterangepicker.css">
 </head>
@@ -208,13 +205,14 @@
    <script src="<?= base_url('assets'); ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
    <script src="<?= base_url('assets'); ?>/plugins/inputmask/jquery.inputmask.min.js"></script>
    <!-- SweetAlert2 -->
-   <script src="<?= base_url('assets'); ?>/plugins/sweetalert2/sweetalert2.min.js"></script>
-   <script src="<?= base_url('assets'); ?>/plugins/toastr/toastr.min.js"></script>
+   <script src="<?= base_url('assets'); ?>/dist/js/swal/sweetalert2.all.min.js"></script>
    <!-- InputMask -->
    <script src="<?= base_url('assets'); ?>/plugins/moment/moment.min.js"></script>
    <script src="<?= base_url('assets'); ?>/plugins/inputmask/jquery.inputmask.min.js"></script>
    <!-- date-range-picker -->
    <script src="<?= base_url('assets'); ?>/plugins/daterangepicker/daterangepicker.js"></script>
+   <!-- Custom Script -->
+   <script src="<?= base_url('assets'); ?>/dist/js/myscript.js"></script>
    <script>
       $(function() {
          $("#example1").DataTable({

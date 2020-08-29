@@ -117,6 +117,7 @@ class User extends CI_Controller
    {
       $where = ['user_id' => $id];
       $this->user_model->delete($where, 'user');
-      pesan_alert('danger', 'Data User Berhasil dihapus', 'user');
+      $this->session->set_flashdata('pesan', 'Dihapus');
+      redirect('user');
    }
 }
