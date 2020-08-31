@@ -53,4 +53,13 @@ class Sales_model extends CI_Model
       ];
       $this->db->insert('t_cart', $params);
    }
+
+   public function update_cart_qty($post)
+   {
+      $query = "UPDATE t_cart SET price = '$post[price]', 
+               qty = qty + '$post[qty]',
+               total = '$post[price]' * qty
+               WHERE item_id = '$post[item_id]' ";
+      $this->db->query($query);
+   }
 }

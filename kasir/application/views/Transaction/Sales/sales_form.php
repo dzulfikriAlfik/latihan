@@ -94,7 +94,7 @@
                         <label for="qty">Qty</label>
                      </div>
                      <div class="col-9">
-                        <input type="text" name="qty" id="qty" class="form-control">
+                        <input type="number" name="qty" id="qty" class="form-control">
                      </div>
                   </div>
                </div>
@@ -371,6 +371,7 @@
                   $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
                      $('#item_id').val('');
                      $('#barcode').val('');
+                     $('#stock').val('');
                      $('#qty').val('');
                   })
                } else {
