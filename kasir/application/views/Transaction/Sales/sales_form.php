@@ -341,9 +341,10 @@
             timer: 2000,
             footer: '<b>Aplikasi Kasir Penjualan</b>'
          });
-         $('#item_id').val();
-         $('#barcode').val();
-         $('#barcode').focus();
+         $('#item_id').val('');
+         $('#barcode').val('');
+         $('#qty').val('');
+         $('#barcode').focus('');
       } else if (qty > stock) {
          Swal.fire({
             title: 'Stock Tidak Mencukupi',
@@ -354,9 +355,6 @@
             timer: 2000,
             footer: '<b>Aplikasi Kasir Penjualan</b>'
          });
-         $('#item_id').val();
-         $('#barcode').val();
-         $('#barcode').focus();
       } else {
          $.ajax({
             type: 'POST',
@@ -371,7 +369,9 @@
             success: function(result) {
                if (result.success == true) {
                   $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
-
+                     $('#item_id').val('');
+                     $('#barcode').val('');
+                     $('#qty').val('');
                   })
                } else {
                   Swal.fire({
@@ -383,6 +383,9 @@
                      timer: 2000,
                      footer: '<b>Aplikasi Kasir Penjualan</b>'
                   });
+                  $('#item_id').val('');
+                  $('#barcode').val('');
+                  $('#qty').val('');
                }
             }
          })
