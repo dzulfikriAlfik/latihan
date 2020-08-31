@@ -25,19 +25,16 @@ class Sales extends CI_Controller
 
    public function process()
    {
-      $data = $this->input->post(null, TRUE);
+      $post = $this->input->post(null, TRUE);
 
-      if(isset($_POST['add_cart'])) {
-         $this->sales_model->add_cart($data);
+      if (isset($_POST['add_cart'])) {
+         $this->sales_model->add_cart($post);
+         if ($this->db->affected_rows() > 0) {
+            $params  = ['success' => true];
+         } else {
+            $params  = ['success' => false];
+         }
+         echo json_encode($params);
       }
-
-      if ($this->db->affected_rows() > 0) {
-         $params  = ['success' => true];
-      } else {
-         $params  = ['success' => false];
-      }
-
-      echo json_encode($params);
-      
    }
 }

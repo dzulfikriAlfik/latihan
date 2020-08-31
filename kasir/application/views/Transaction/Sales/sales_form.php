@@ -316,9 +316,19 @@
       const qty = $('#qty').val();
       if (item_id == '') {
          Swal.fire({
-            // alert('Product belum dipilih');
-            title: 'Product belum dipilih',
-            text: 'Pilih product terlebih dahulu',
+            title: 'Product Belum Dipilih',
+            text: 'Pilih Product Terlebih Dahulu',
+            type: 'error',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2000,
+            footer: '<b>Aplikasi Kasir Penjualan</b>'
+         });
+         $('#barcode').focus();
+      } else if (qty == '') {
+         Swal.fire({
+            title: 'Quantity Masih kosong',
+            text: 'Masukan Jumlah Quantity Product',
             type: 'error',
             icon: 'error',
             showConfirmButton: false,
@@ -327,10 +337,22 @@
          });
          $('#barcode').focus();
       } else if (stock < 1) {
-         // alert('Stock tidak mencukupi');
          Swal.fire({
-            title: 'Stock tidak mencukupi',
-            text: 'Input stock di menu stock-in',
+            title: 'Stock Masih Kosong',
+            text: 'Input Stock di Menu Stock-In',
+            type: 'error',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2000,
+            footer: '<b>Aplikasi Kasir Penjualan</b>'
+         });
+         $('#item_id').val();
+         $('#barcode').val();
+         $('#barcode').focus();
+      } else if (qty > stock) {
+         Swal.fire({
+            title: 'Stock Tidak Mencukupi',
+            text: 'Quantity Tidak Boleh Melebihi Stock Tersedia',
             type: 'error',
             icon: 'error',
             showConfirmButton: false,
@@ -353,10 +375,9 @@
             dataType: 'json',
             success: function(result) {
                if (result.success == true) {
-                  // alert('Berhasil tambah cart ke db');
                   Swal.fire({
-                     title: 'Product Sales',
-                     text: 'Berhasil tambah cart ke db',
+                     title: 'Transaction Sale',
+                     text: 'Berhasil Tambah Cart ke Database',
                      type: 'success',
                      icon: 'success',
                      showConfirmButton: false,
@@ -364,9 +385,8 @@
                      footer: '<b>Aplikasi Kasir Penjualan</b>'
                   });
                } else {
-                  // alert('Gagal tambah item cart');
                   Swal.fire({
-                     title: 'Gagal tambah item cart',
+                     title: 'Gagal Tambah Item Cart',
                      text: 'Terdapat Error yang tidak diketahui',
                      type: 'error',
                      icon: 'error',
