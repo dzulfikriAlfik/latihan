@@ -19,6 +19,8 @@
    </div>
 </section>
 
+<div class="flash-data" data-pesan="<?= ucfirst($menu); ?>" data-flashdata="<?= $this->session->flashdata('pesan'); ?>"></div>
+
 <!-- Main content -->
 <section class="content">
    <!-- <form action="" method="post"> -->
@@ -372,6 +374,7 @@
                      $('#item_id').val('');
                      $('#barcode').val('');
                      $('#stock').val('');
+                     $('#price').val('');
                      $('#qty').val('');
                   })
                } else {
@@ -392,4 +395,55 @@
          })
       }
    });
+   $(document).on('click', '#del_cart', function() {
+
+      const href = $(this).attr('href');
+      const cart_id = $(this).data('cartid');
+
+      Swal.fire({
+         title: 'Apakah Anda Yakin?',
+         text: 'Data akan dihapus!',
+         icon: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Hapus Data',
+         footer: '<b>Aplikasi Kasir Penjualan</b>'
+      }).then((result) => {
+         if (result.value) {
+            $.ajax({
+               type: 'POST',
+               url: '<?= base_url('sales/cart_delete'); ?>',
+               dataType: 'json',
+               data: {
+                  'cart_id': cart_id
+               },
+               success: function(result) {
+                  if (result.success == true) {
+                     $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
+                        Swal.fire({
+                           title: 'Data Item Cart Berhasil Dihapus',
+                           type: 'success',
+                           icon: 'success',
+                           showConfirmButton: false,
+                           timer: 2000,
+                           footer: '<b>Aplikasi Kasir Penjualan</b>'
+                        });
+                     })
+                  } else {
+                     Swal.fire({
+                        title: 'Gagal Hapus Item Cart',
+                        text: 'Terdapat Error yang tidak diketahui',
+                        type: 'error',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        footer: '<b>Aplikasi Kasir Penjualan</b>'
+                     });
+                  }
+               }
+            })
+         }
+      });
+   })
 </script>

@@ -62,4 +62,12 @@ class Sales_model extends CI_Model
                WHERE item_id = '$post[item_id]' ";
       $this->db->query($query);
    }
+
+   public function delete_cart($params = null) 
+   {
+      if ($params != null) {
+         $this->db->where($params);
+      } 
+      $this->db->delete('t_cart');
+   }
 }

@@ -52,4 +52,17 @@ class Sales extends CI_Controller
          echo json_encode($params);
       }
    }
+
+   public function cart_delete()
+   {
+      $cart_id = $this->input->post('cart_id');
+      $this->sales_model->delete_cart(['cart_id' => $cart_id]);
+
+      if ($this->db->affected_rows() > 0) {
+         $params  = ['success' => true];
+      } else {
+         $params  = ['success' => false];
+      }
+      echo json_encode($params);
+   }
 }
