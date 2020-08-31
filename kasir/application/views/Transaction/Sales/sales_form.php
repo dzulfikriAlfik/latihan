@@ -373,15 +373,6 @@
                   $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
 
                   })
-                  Swal.fire({
-                     title: 'Transaction Sale',
-                     text: 'Berhasil Tambah Cart ke Database',
-                     type: 'success',
-                     icon: 'success',
-                     showConfirmButton: false,
-                     timer: 2000,
-                     footer: '<b>Aplikasi Kasir Penjualan</b>'
-                  });
                } else {
                   Swal.fire({
                      title: 'Gagal Tambah Item Cart',
