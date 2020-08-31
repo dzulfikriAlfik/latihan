@@ -130,26 +130,23 @@
          <div class="card">
             <div class="card-body table-responsive p-0">
                <table class="table table-bordered table-striped text-nowrap">
-                  <tr>
-                     <th>#</th>
-                     <th>Barcode</th>
-                     <th>Product Item</th>
-                     <th>Price</th>
-                     <th>Qty</th>
-                     <th>Discount Item</th>
-                     <th>Total</th>
-                     <th>Actions</th>
-                  </tr>
-                  <tr>
-                     <td>1</td>
-                     <td>A0001</td>
-                     <td>Barang</td>
-                     <td>100.000</td>
-                     <td>4</td>
-                     <td>10%</td>
-                     <td>7</td>
-                     <td class="text-center"><a href="#" class="btn btn-dark btn-xs">Tombol</a></td>
-                  </tr>
+                  <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>Barcode</th>
+                        <th>Product Item</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Discount Item</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody id="cart_table">
+                     <tr>
+                        <td colspan="8" class="text-center">Tidak Ada Data Item</td>
+                     </tr>
+                  </tbody>
                </table>
             </div>
          </div>

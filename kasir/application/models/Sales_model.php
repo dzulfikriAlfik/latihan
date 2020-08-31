@@ -21,6 +21,18 @@ class Sales_model extends CI_Model
       return $invoice;
    }
 
+   public function get_cart($params = null)
+   {
+      $this->db->select('*, p_item.name as item_name, t_cart.price as cart_price');
+      $this->db->from('t_cart');
+      $this->db->join('p_item', 't_cart.item_id = p_item.item_id');
+      if ($params != null) {
+         $this->db->where($params);
+      }
+      $this->db->where('user_id', $this->session->userdata('userid'));
+      return $this->db->get();
+   }
+
    public function add_cart($post)
    {
       $query = $this->db->query("SELECT MAX(cart_id) AS cart_no FROM t_cart");
