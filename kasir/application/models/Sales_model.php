@@ -20,4 +20,9 @@ class Sales_model extends CI_Model
       $invoice = "MYKSR" . date('ymd') . $no;
       return $invoice;
    }
+
+   public function add_cart($data) 
+   {
+      
+   }
 }
