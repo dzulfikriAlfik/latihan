@@ -325,7 +325,7 @@
             footer: '<b>Aplikasi Kasir Penjualan</b>'
          });
          $('#barcode').focus();
-      } else if (qty == '') {
+      } else if (qty == '' && stock > 0) {
          Swal.fire({
             title: 'Quantity Masih kosong',
             text: 'Masukan Jumlah Quantity Product',
