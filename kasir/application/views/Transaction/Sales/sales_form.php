@@ -143,9 +143,7 @@
                      </tr>
                   </thead>
                   <tbody id="cart_table">
-                     <tr>
-                        <td colspan="8" class="text-center">Tidak Ada Data Item</td>
-                     </tr>
+                     <?php $this->view('transaction/sales/cart_data') ?>
                   </tbody>
                </table>
             </div>
@@ -372,6 +370,9 @@
             dataType: 'json',
             success: function(result) {
                if (result.success == true) {
+                  $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
+
+                  })
                   Swal.fire({
                      title: 'Transaction Sale',
                      text: 'Berhasil Tambah Cart ke Database',

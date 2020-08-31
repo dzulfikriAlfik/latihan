@@ -16,11 +16,18 @@ class Sales extends CI_Controller
       $data = [
          'row'       => $this->customer_model->get()->result(),
          'item'      => $this->item_model->get()->result_array(),
+         'cart'      => $this->sales_model->get_cart(),
          'aktif'     => 'sales',
          'menu'      => 'sales',
          'invoice'   => $this->sales_model->invoice_no()
       ];
       $this->template->load('template', 'transaction/sales/sales_form', $data);
+   }
+
+   public function load_cart_data()
+   {
+      $data['cart'] = $this->sales_model->get_cart();
+      $this->load->view('transaction/sales/cart_data', $data);
    }
 
    public function process()
