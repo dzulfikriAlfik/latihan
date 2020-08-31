@@ -296,6 +296,18 @@
 </div>
 
 <script>
+   function mySwal($title, $text, $icon, $type) {
+      Swal.fire({
+         title: $title,
+         text: $text,
+         type: $type,
+         icon: $icon,
+         showConfirmButton: false,
+         timer: 2000,
+         footer: '<b>Aplikasi Kasir Penjualan</b>'
+      });
+   }
+
    $(document).ready(function() {
       $(document).on('click', '#select', function() {
          $('#item_id').val($(this).data('id'));
@@ -312,51 +324,19 @@
       const stock = $('#stock').val();
       const qty = $('#qty').val();
       if (item_id == '') {
-         Swal.fire({
-            title: 'Product Belum Dipilih',
-            text: 'Pilih Product Terlebih Dahulu',
-            type: 'error',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000,
-            footer: '<b>Aplikasi Kasir Penjualan</b>'
-         });
+         mySwal('Product Belum Dipilih', 'Pilih Product Terlebih Dahulu', 'error', 'error');
          $('#barcode').focus();
       } else if (qty == '' && stock > 0) {
-         Swal.fire({
-            title: 'Quantity Masih kosong',
-            text: 'Masukan Jumlah Quantity Product',
-            type: 'error',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000,
-            footer: '<b>Aplikasi Kasir Penjualan</b>'
-         });
+         mySwal('Quantity Masih kosong', 'Masukan Jumlah Quantity Product', 'error', 'error');
          $('#barcode').focus();
       } else if (stock < 1) {
-         Swal.fire({
-            title: 'Stock Masih Kosong',
-            text: 'Input Stock di Menu Stock-In',
-            type: 'error',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000,
-            footer: '<b>Aplikasi Kasir Penjualan</b>'
-         });
+         mySwal('Stock Masih Kosong', 'Input Stock di Menu Stock-In', 'error', 'error');
          $('#item_id').val('');
          $('#barcode').val('');
          $('#qty').val('');
          $('#barcode').focus('');
       } else if (qty > stock) {
-         Swal.fire({
-            title: 'Stock Tidak Mencukupi',
-            text: 'Quantity Tidak Boleh Melebihi Stock Tersedia',
-            type: 'error',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2000,
-            footer: '<b>Aplikasi Kasir Penjualan</b>'
-         });
+         mySwal('Stock Tidak Mencukupi', 'Quantity Tidak Boleh Melebihi Stock Tersedia', 'error', 'error');
       } else {
          $.ajax({
             type: 'POST',
@@ -378,15 +358,7 @@
                      $('#qty').val('');
                   })
                } else {
-                  Swal.fire({
-                     title: 'Gagal Tambah Item Cart',
-                     text: 'Terdapat Error yang tidak diketahui',
-                     type: 'error',
-                     icon: 'error',
-                     showConfirmButton: false,
-                     timer: 2000,
-                     footer: '<b>Aplikasi Kasir Penjualan</b>'
-                  });
+                  mySwal('Gagal Tambah Item Cart', 'Terdapat Error yang tidak diketahui', 'error', 'error');
                   $('#item_id').val('');
                   $('#barcode').val('');
                   $('#qty').val('');
@@ -421,25 +393,10 @@
                success: function(result) {
                   if (result.success == true) {
                      $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
-                        Swal.fire({
-                           title: 'Data Item Cart Berhasil Dihapus',
-                           type: 'success',
-                           icon: 'success',
-                           showConfirmButton: false,
-                           timer: 2000,
-                           footer: '<b>Aplikasi Kasir Penjualan</b>'
-                        });
+                        mySwal('Data Item Cart Berhasil Dihapus', '', 'success', 'success');
                      })
                   } else {
-                     Swal.fire({
-                        title: 'Gagal Hapus Item Cart',
-                        text: 'Terdapat Error yang tidak diketahui',
-                        type: 'error',
-                        icon: 'error',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        footer: '<b>Aplikasi Kasir Penjualan</b>'
-                     });
+                     mySwal('Gagal Tambah Item Cart', 'Terdapat Error yang tidak diketahui', 'error', 'error');
                   }
                }
             })
