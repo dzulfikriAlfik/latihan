@@ -56,7 +56,7 @@
                            <select name="customer" id="customer" class="form-control">
                               <option value="Umum">Umum</option>
                               <?php foreach ($row as $customer) : ?>
-                                 <option value="<?= $customer['customer_id']; ?>"><?= $customer['name']; ?></option>
+                                 <option value="<?= $customer->customer_id; ?>"><?= $customer->name; ?></option>
                               <?php endforeach; ?>
                            </select>
                         </div>

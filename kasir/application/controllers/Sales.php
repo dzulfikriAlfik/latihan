@@ -14,7 +14,7 @@ class Sales extends CI_Controller
    public function index()
    {
       $data = [
-         'row'       => $this->customer_model->get()->result_array(),
+         'row'       => $this->customer_model->get()->result(),
          'aktif'     => 'sales',
          'menu'      => 'sales',
          'invoice'   => $this->sales_model->invoice_no()
