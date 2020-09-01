@@ -249,6 +249,7 @@
    <!-- </form> -->
 </section>
 
+<!-- Modal Add Product Item -->
 <div class="modal fade" id="modal-item" tabindex="-1" aria-labelledby="modal-itemLabel" aria-hidden="true">
    <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -290,6 +291,57 @@
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="modal-item-edit" tabindex="-1" aria-labelledby="modal-item-editLabel" aria-hidden="true">
+   <div class="modal-dialog modal-sm modal-dialog-scrollable">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="modal-item-editLabel">Edit Product Item Sales</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <input type="hidden" id="cartid_item">
+            <div class="form-group">
+               <label for="product_item">Product Item</label>
+               <div class="row">
+                  <div class="col-md-5">
+                     <input type="text" id="barcode_item" class="form-control" readonly>
+                  </div>
+                  <div class="col-md-7">
+                     <input type="text" id="product_item" class="form-control" readonly>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="price_item">Price Item</label>
+               <input type="number" id="price_item" min="0" class="form-control">
+            </div>
+            <div class="form-group">
+               <label for="qty_item">Qty</label>
+               <input type="number" id="qty_item" min="1" class="form-control">
+            </div>
+            <div class="form-group">
+               <label for="total_before">Total Before Discount</label>
+               <input type="number" id="total_before" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+               <label for="discount_item">Discount Per-Item</label>
+               <input type="number" id="discount_item" min="0" class="form-control">
+            </div>
+            <div class="form-group">
+               <label for="total_item">Total After Discount</label>
+               <input type="number" id="total_item" min="0" class="form-control" readonly>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="edit_cart">Save</button>
          </div>
       </div>
    </div>
@@ -402,5 +454,33 @@
             })
          }
       });
+   });
+
+   $(document).ready(function() {
+      $(document).on('click', '#update_cart', function() {
+         $('#cartid_item').val($(this).data('cartid'));
+         $('#barcode_item').val($(this).data('barcode'));
+         $('#product_item').val($(this).data('product'));
+         $('#price_item').val($(this).data('price'));
+         $('#qty_item').val($(this).data('qty'));
+         $('#total_before').val($(this).data('price') * $(this).data('qty'));
+         $('#discount_item').val($(this).data('discount'));
+      });
+   });
+
+   function count_edit_modal() {
+      const price = $('#price_item').val();
+      const qty = $('#qty_item').val();
+      const discount = $('#discount_item').val();
+
+      total_before = price * qty;
+      $('#total_before').val(total_before);
+
+      total = (price - discount) * qty;
+      $('#total_item').val(total);
+   }
+
+   $(document).on('keyup mouseup', '#price_item, #qty_item, #discount_item', function() {
+      count_edit_modal();
    })
 </script>
