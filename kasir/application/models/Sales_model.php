@@ -63,11 +63,23 @@ class Sales_model extends CI_Model
       $this->db->query($query);
    }
 
-   public function delete_cart($params = null) 
+   public function delete_cart($params = null)
    {
       if ($params != null) {
          $this->db->where($params);
-      } 
+      }
       $this->db->delete('t_cart');
+   }
+
+   public function edit_cart($post)
+   {
+      $params = [
+         'price'           => $post['price'],
+         'qty'             => $post['qty'],
+         'discount_item'   => $post['discount'],
+         'total'           => $post['total']
+      ];
+      $this->db->where('cart_id', $post['cart_id']);
+      $this->db->update('t_cart', $params);
    }
 }

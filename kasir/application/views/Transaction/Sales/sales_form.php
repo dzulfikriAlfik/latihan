@@ -348,16 +348,29 @@
 </div>
 
 <script>
-   function mySwal($title, $text, $icon, $type) {
+   function mySwal(title, text, icon, type) {
       Swal.fire({
-         title: $title,
-         text: $text,
-         type: $type,
-         icon: $icon,
+         title: title,
+         text: text,
+         type: type,
+         icon: icon,
          showConfirmButton: false,
          timer: 2000,
          footer: '<b>Aplikasi Kasir Penjualan</b>'
       });
+   }
+
+   function resetVal(itemId = false, barcode = false, price = false, stock = false, qty = false) {
+      $(itemId).val('');
+      $(barcode).val('');
+      $(price).val('');
+      $(stock).val('');
+      $(qty).val('');
+   }
+
+   function resetValue(...args) {
+      const argumen = $(args).val('');
+      console.log(argumen);
    }
 
    $(document).ready(function() {
@@ -383,10 +396,7 @@
          $('#barcode').focus();
       } else if (stock < 1) {
          mySwal('Stock Masih Kosong', 'Input Stock di Menu Stock-In', 'error', 'error');
-         $('#item_id').val('');
-         $('#barcode').val('');
-         $('#qty').val('');
-         $('#barcode').focus('');
+         resetVal('#item_id', '#barcode', '#price', '#stock', '#qty');
       } else if (qty > stock) {
          mySwal('Stock Tidak Mencukupi', 'Quantity Tidak Boleh Melebihi Stock Tersedia', 'error', 'error');
       } else {
@@ -403,17 +413,11 @@
             success: function(result) {
                if (result.success == true) {
                   $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
-                     $('#item_id').val('');
-                     $('#barcode').val('');
-                     $('#stock').val('');
-                     $('#price').val('');
-                     $('#qty').val('');
+                     resetVal('#item_id', '#barcode', '#price', '#stock', '#qty');
                   })
                } else {
                   mySwal('Gagal Tambah Item Cart', 'Terdapat Error yang tidak diketahui', 'error', 'error');
-                  $('#item_id').val('');
-                  $('#barcode').val('');
-                  $('#qty').val('');
+                  resetVal('#item_id', '#barcode', '#price', '#stock', '#qty');
                }
             }
          })
@@ -456,6 +460,8 @@
       });
    });
 
+   // Edit Item Cart
+
    $(document).ready(function() {
       $(document).on('click', '#update_cart', function() {
          $('#cartid_item').val($(this).data('cartid'));
@@ -465,6 +471,7 @@
          $('#qty_item').val($(this).data('qty'));
          $('#total_before').val($(this).data('price') * $(this).data('qty'));
          $('#discount_item').val($(this).data('discount'));
+         $('#total_item').val($(this).data('total'));
       });
    });
 
@@ -482,5 +489,47 @@
 
    $(document).on('keyup mouseup', '#price_item, #qty_item, #discount_item', function() {
       count_edit_modal();
-   })
+   });
+
+   $(document).on('click', '#edit_cart', function() {
+      const cart_id = $('#cartid_item').val();
+      const price = $('#price_item').val();
+      const qty = $('#qty_item').val();
+      const discount = $('#discount_item').val();
+      const total = $('#total_item').val();
+      if (price == '' || price < 1) {
+         mySwal('Kolom Harga Tidak Boleh Kosong', 'Masukan Harga', 'error', 'error');
+      } else if (qty == '' || qty < 1) {
+         mySwal('Quantity Tidak Boleh kosong', 'Masukan Jumlah Quantity Product', 'error', 'error');
+         $('#qty_item').focus();
+      } else if (discount == '' || discount == 0) {
+         $('#discount_item').val(0);
+      } else {
+         $.ajax({
+            type: 'POST',
+            url: '<?= base_url('sales/process'); ?>',
+            data: {
+               'edit_cart': true,
+               'cart_id': cart_id,
+               'price': price,
+               'qty': qty,
+               'discount': discount,
+               'total': total
+            },
+            dataType: 'json',
+            success: function(result) {
+               if (result.success == true) {
+                  $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
+                     resetVal('#cartid_item', '#price_item', '#qty_item', '#discount_item', '#total_item');
+                     mySwal('Item Cart Berhasil di Update', false, 'success', 'success');
+                     $('#modal-item-edit').modal('hide');
+                  })
+               } else {
+                  mySwal('Tidak Ada Item Cart yang Diupdate', false, 'warning', 'warning');
+                  $('#modal-item-edit').modal('hide');
+               }
+            }
+         })
+      }
+   });
 </script>

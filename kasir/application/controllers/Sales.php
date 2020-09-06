@@ -50,6 +50,16 @@ class Sales extends CI_Controller
             $params  = ['success' => false];
          }
          echo json_encode($params);
+         // 
+      } else if (isset($_POST['edit_cart'])) {
+         $this->sales_model->edit_cart($post);
+
+         if ($this->db->affected_rows() > 0) {
+            $params  = ['success' => true];
+         } else {
+            $params  = ['success' => false];
+         }
+         echo json_encode($params);
       }
    }
 
