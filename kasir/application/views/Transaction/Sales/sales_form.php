@@ -119,7 +119,7 @@
                   </div>
                </div>
                <div class="row" style="height: 0;">
-                  <h1 style="font-size: 2.7rem;"><b><?= rupiah(10000000); ?></b></h1>
+                  <h1 style="font-size: 2.7rem;"><b><span id="grand_total2"></span></b></h1>
                </div>
                <div class="row"></div>
             </div>
@@ -160,10 +160,10 @@
                <div class="form-group">
                   <div class="row">
                      <div class="col-5">
-                        <label for="total">SubTotal</label>
+                        <label for="subtotal">SubTotal</label>
                      </div>
                      <div class="col-7">
-                        <input type="text" name="total" id="total" class="form-control" readonly>
+                        <input type="text" name="subtotal" id="subtotal" class="form-control" readonly>
                      </div>
                   </div>
                </div>
@@ -173,17 +173,17 @@
                         <label for="discount">Discount</label>
                      </div>
                      <div class="col-7">
-                        <input type="text" name="discount" id="discount" class="form-control">
+                        <input type="number" name="discount" id="discount" class="form-control">
                      </div>
                   </div>
                </div>
                <div class="form-group">
                   <div class="row">
                      <div class="col-5">
-                        <label for="gtotal">GrandTotal</label>
+                        <label for="grand_total">GrandTotal</label>
                      </div>
                      <div class="col-7">
-                        <input type="text" name="gtotal" id="gtotal" class="form-control" readonly>
+                        <input type="text" name="grand_total" id="grand_total" class="form-control" readonly>
                      </div>
                   </div>
                </div>
@@ -199,7 +199,7 @@
                         <label for="cash">Cash</label>
                      </div>
                      <div class="col-9">
-                        <input type="text" name="cash" id="cash" class="form-control">
+                        <input type="number" name="cash" id="cash" class="form-control">
                      </div>
                   </div>
                </div>
@@ -209,7 +209,7 @@
                         <label for="change">Change</label>
                      </div>
                      <div class="col-9">
-                        <input type="text" name="change" id="change" class="form-control">
+                        <input type="text" name="change" id="change" readonly class="form-control">
                      </div>
                   </div>
                </div>
@@ -239,8 +239,8 @@
          <div class="card">
             <div class="card-body d-flex flex-column justify-content-center align-items-center">
                <div class="form-group text-center">
-                  <a href="#" class="btn btn-warning btn-flat"><i class="fas fa-undo"></i> Cancel</a>
-                  <button type="submit" class="btn btn-success btn-flat"><i class="fas fa-paper-plane"></i> Proccess Payment</button>
+                  <button id="cancel_payment" class="btn btn-warning btn-flat"><i class="fas fa-undo"></i> Cancel</button>
+                  <button type="submit" id="process_payment" class="btn btn-success btn-flat"><i class="fas fa-paper-plane"></i> Proccess Payment</button>
                </div>
             </div>
          </div>
@@ -414,6 +414,7 @@
                if (result.success == true) {
                   $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
                      resetVal('#item_id', '#barcode', '#price', '#stock', '#qty');
+                     calculate();
                   })
                } else {
                   mySwal('Gagal Tambah Item Cart', 'Terdapat Error yang tidak diketahui', 'error', 'error');
@@ -450,6 +451,7 @@
                   if (result.success == true) {
                      $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
                         mySwal('Data Item Cart Berhasil Dihapus', '', 'success', 'success');
+                        calculate();
                      })
                   } else {
                      mySwal('Gagal Tambah Item Cart', 'Terdapat Error yang tidak diketahui', 'error', 'error');
@@ -472,6 +474,7 @@
          $('#total_before').val($(this).data('price') * $(this).data('qty'));
          $('#discount_item').val($(this).data('discount'));
          $('#total_item').val($(this).data('total'));
+         $('#stock').val($(this).data('stock'));
       });
    });
 
@@ -497,6 +500,7 @@
       const qty = $('#qty_item').val();
       const discount = $('#discount_item').val();
       const total = $('#total_item').val();
+      const stock = $('#stock').val();
       if (price == '' || price < 1) {
          mySwal('Kolom Harga Tidak Boleh Kosong', 'Masukan Harga', 'error', 'error');
       } else if (qty == '' || qty < 1) {
@@ -504,6 +508,8 @@
          $('#qty_item').focus();
       } else if (discount == '' || discount == 0) {
          $('#discount_item').val(0);
+      } else if (qty > stock) {
+         mySwal('Stock Tidak Mencukupi', 'Quantity Tidak Boleh Melebihi Stock Tersedia', 'error', 'error');
       } else {
          $.ajax({
             type: 'POST',
@@ -520,8 +526,8 @@
             success: function(result) {
                if (result.success == true) {
                   $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
-                     resetVal('#cartid_item', '#price_item', '#qty_item', '#discount_item', '#total_item');
                      mySwal('Item Cart Berhasil di Update', false, 'success', 'success');
+                     calculate();
                      $('#modal-item-edit').modal('hide');
                   })
                } else {
@@ -531,5 +537,35 @@
             }
          })
       }
+   });
+
+   // Kalkuasi Total Sales
+   function calculate() {
+      let subTotal = 0;
+      $('#cart_table tr').each(function() {
+         subTotal += parseInt($(this).find('#total').text())
+      });
+      isNaN(subTotal) ? $('#subtotal').val(0) : $('#subtotal').val(subTotal);
+
+      let discount = $('#discount').val();
+      let grandTotal = subTotal - discount;
+      if (isNaN(grandTotal)) {
+         $('#grand_total').val(0)
+         $('#grand_total2').text(0)
+      } else {
+         $('#grand_total').val(grandTotal)
+         $('#grand_total2').text(grandTotal)
+      }
+
+      let cash = $('#cash').val();
+      cash != 0 ? $('#change').val(cash - grandTotal) : $('#change').val(0);
+   }
+
+   $(document).on('keyup mouseup', '#discount, #cash', function() {
+      calculate();
+   });
+
+   $(document).ready(function() {
+      calculate();
    });
 </script>

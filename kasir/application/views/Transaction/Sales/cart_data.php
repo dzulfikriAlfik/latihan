@@ -8,7 +8,7 @@ if ($cart->num_rows() > 0) :
          <td class="text-right"><?= rupiah($data->cart_price); ?></td>
          <td class="text-center"><?= $data->qty; ?></td>
          <td class="text-right"><?= $data->discount_item; ?></td>
-         <td class="text-right" id="total"><?= rupiah($data->total); ?></td>
+         <td class="text-right" id="total"><?= $data->total; ?></td>
          <td class="text-center" width="160px">
             <button id="update_cart" data-toggle="modal" data-target="#modal-item-edit" data-cartid="<?= $data->cart_id; ?>" data-barcode="<?= $data->barcode; ?>" data-product="<?= $data->item_name; ?>" data-price="<?= $data->cart_price; ?>" data-qty="<?= $data->qty; ?>" data-discount="<?= $data->discount_item; ?>" data-total="<?= $data->total; ?>" class="btn btn-warning btn-xs">
                <i class="fas fa-edit"></i> Edit
