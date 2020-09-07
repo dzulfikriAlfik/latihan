@@ -474,7 +474,6 @@
          $('#total_before').val($(this).data('price') * $(this).data('qty'));
          $('#discount_item').val($(this).data('discount'));
          $('#total_item').val($(this).data('total'));
-         $('#stock').val($(this).data('stock'));
       });
    });
 
@@ -500,7 +499,6 @@
       const qty = $('#qty_item').val();
       const discount = $('#discount_item').val();
       const total = $('#total_item').val();
-      const stock = $('#stock').val();
       if (price == '' || price < 1) {
          mySwal('Kolom Harga Tidak Boleh Kosong', 'Masukan Harga', 'error', 'error');
       } else if (qty == '' || qty < 1) {
@@ -508,8 +506,6 @@
          $('#qty_item').focus();
       } else if (discount == '' || discount == 0) {
          $('#discount_item').val(0);
-      } else if (qty > stock) {
-         mySwal('Stock Tidak Mencukupi', 'Quantity Tidak Boleh Melebihi Stock Tersedia', 'error', 'error');
       } else {
          $.ajax({
             type: 'POST',
