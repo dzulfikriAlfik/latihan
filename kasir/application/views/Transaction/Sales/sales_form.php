@@ -487,6 +487,10 @@
 
       total = (price - discount) * qty;
       $('#total_item').val(total);
+
+      if (discount == '' || discount == 0) {
+         $('#discount_item').val(0);
+      }
    }
 
    $(document).on('keyup mouseup', '#price_item, #qty_item, #discount_item', function() {
@@ -504,8 +508,6 @@
       } else if (qty == '' || qty < 1) {
          mySwal('Quantity Tidak Boleh kosong', 'Masukan Jumlah Quantity Product', 'error', 'error');
          $('#qty_item').focus();
-      } else if (discount == '' || discount == 0) {
-         $('#discount_item').val(0);
       } else {
          $.ajax({
             type: 'POST',
