@@ -60,6 +60,32 @@ class Sales extends CI_Controller
             $params  = ['success' => false];
          }
          echo json_encode($params);
+         // 
+      } else if (isset($_POST['process_payment'])) {
+         $sale_id = $this->sales_model->add_sale($post);
+         $cart = $this->sales_model->get_cart()->result();
+         $row = [];
+
+         foreach ($cart as $c => $value) :
+            array_push($row, [
+               'sales_id'        => $sale_id,
+               'item_id'         => $value->item_id,
+               'price'           => $value->price,
+               'qty'             => $value->qty,
+               'discount_item'   => $value->discount_item,
+               'total'           => $value->total,
+            ]);
+         endforeach;
+         $this->sales_model->add_sale_detail($row);
+         $this->sales_model->delete_cart(['user_id' => $this->session->userdata('userid')]);
+
+         if ($this->db->affected_rows() > 0) {
+            $params  = ['success' => true];
+         } else {
+            $params  = ['success' => false];
+         }
+         echo json_encode($params);
+         // 
       }
    }
 

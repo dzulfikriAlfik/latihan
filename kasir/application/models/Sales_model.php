@@ -82,4 +82,27 @@ class Sales_model extends CI_Model
       $this->db->where('cart_id', $post['cart_id']);
       $this->db->update('t_cart', $params);
    }
+
+   public function add_sale($post)
+   {
+      $params = [
+         'invoice'      => $this->invoice_no(),
+         'customer_id'  => $post['customer_id'] == '' ? null : $post['customer_id'],
+         'total_price'  => $post['subtotal'],
+         'discount'     => $post['discount'],
+         'final_price'  => $post['grandtotal'],
+         'cash'         => $post['cash'],
+         'remaining'    => $post['change'],
+         'note'         => $post['note'],
+         'date'         => $post['date'],
+         'user_id'      => $this->session->userdata('userid')
+      ];
+      $this->db->insert('t_sales', $params);
+      return $this->db->insert_id();
+   }
+
+   function add_sale_detail($params)
+   {
+      $this->db->insert_batch('t_sales_detail', $params);
+   }
 }

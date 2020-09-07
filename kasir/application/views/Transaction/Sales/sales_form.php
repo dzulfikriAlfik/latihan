@@ -56,7 +56,7 @@
                      </div>
                      <div class="col-9">
                         <select name="customer" id="customer" class="form-control">
-                           <option value="Umum">Umum</option>
+                           <option value="">Umum</option>
                            <?php foreach ($row as $customer) : ?>
                               <option value="<?= $customer->customer_id; ?>"><?= $customer->name; ?></option>
                            <?php endforeach; ?>
@@ -557,6 +557,10 @@
 
       let cash = $('#cash').val();
       cash != 0 ? $('#change').val(cash - grandTotal) : $('#change').val(0);
+
+      if (discount == '' || discount == 0) {
+         $('#discount').val(0);
+      }
    }
 
    $(document).on('keyup mouseup', '#discount, #cash', function() {
@@ -566,4 +570,60 @@
    $(document).ready(function() {
       calculate();
    });
+
+   // Process payment
+   $(document).on('click', '#process_payment', function() {
+      let customer_id = $('#customer').val();
+      let subtotal = $('#subtotal').val();
+      let discount = $('#discount').val();
+      let grandtotal = $('#grand_total').val();
+      let cash = $('#cash').val();
+      let change = $('#change').val();
+      let note = $('#note').val();
+      let date = $('#date').val();
+
+      if (subtotal < 1) {
+         mySwal('Belum ada product item yang dipilih', false, 'error', 'error');
+      } else if (cash < 1 || cash == null) {
+         mySwal('Jumlah uang cash belum diinput', false, 'error', 'error');
+      } else {
+         Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: 'Transaksi ini akan diproses',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Proses',
+            footer: '<b>Aplikasi Kasir Penjualan</b>'
+         }).then((result) => {
+            if (result.value) {
+               $.ajax({
+                  type: 'POST',
+                  url: '<?= base_url('sales/process'); ?>',
+                  data: {
+                     'process_payment': true,
+                     'customer_id': customer_id,
+                     'subtotal': subtotal,
+                     'discount': discount,
+                     'grandtotal': grandtotal,
+                     'cash': cash,
+                     'change': change,
+                     'note': note,
+                     'date': date
+                  },
+                  dataType: 'json',
+                  success: function(result) {
+                     if (result.success) {
+                        mySwal('Transaksi Berhasil', false, 'success', 'success');
+                     } else {
+                        mySwal('Transaksi Gagal', false, 'error', 'error');
+                     }
+                     location.href = '<?= base_url('sales'); ?>';
+                  }
+               })
+            }
+         });
+      }
+   })
 </script>
