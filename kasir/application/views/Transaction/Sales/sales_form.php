@@ -616,7 +616,7 @@
                   success: function(result) {
                      if (result.success) {
                         mySwal('Transaksi Berhasil', false, 'success', 'success');
-                        window.open('<?= base_url('sales/cetak/'); ?>' + result.sale_id, '_blank');
+                        window.open('<?= base_url('sales/cetak/'); ?>' + result.sales_id, '_blank');
                      } else {
                         mySwal('Transaksi Gagal', false, 'error', 'error');
                      }

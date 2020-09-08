@@ -8,7 +8,7 @@
       }
 
       .content {
-         width: 100mm;
+         width: 90mm;
          font-size: 12px;
          padding: 5px;
       }
@@ -59,8 +59,8 @@
       <div class="head">
          <table cellspacing="0" cellpadding="0">
             <tr>
-               <td style="width: 200px;">
-                  <?= Date("d/m/y", strtotime($sales->date)) . " " . Date("H:i", strtotime($sales->sales_created)); ?>
+               <td style="width: 170px;">
+                  <?= date("d/m/y", strtotime($sales->date)) . " " . date("H:i", strtotime($sales->sales_created)); ?>
                </td>
                <td>Cashier</td>
                <td style="text-align: center; width:10px">:</td>
@@ -84,14 +84,14 @@
                <tr>
                   <td style="width: 165px;"><?= $value->name; ?></td>
                   <td><?= $value->qty; ?></td>
-                  <td style="text-align: right; width: 120px;"><?= rupiah($value->price); ?></td>
+                  <td style="text-align: right; width: 120px;"><?= rupiah_print($value->price); ?></td>
                   <td style="text-align: right; width: 120px;">
-                     <?= rupiah(($value->price - $value->discount_item) * $value->qty); ?>
+                     <?= rupiah_print(($value->price - $value->discount_item) * $value->qty); ?>
                   </td>
                </tr>
                <?php
                if ($value->discount_item > 0) :
-                  $arr_discount[] = rupiah($value->discount_item);
+                  $arr_discount[] = rupiah_print($value->discount_item);
                endif;
             endforeach;
 
@@ -108,29 +108,29 @@
             <tr>
                <td colspan="2"></td>
                <td style="text-align: right; padding-top: 5px;">Sub Total</td>
-               <td style="text-align: right; padding-top: 5px;"><?= rupiah($sales->total_price); ?></td>
+               <td style="text-align: right; padding-top: 5px;"><?= rupiah_print($sales->total_price); ?></td>
             </tr>
             <?php if ($sales->discount > 0) : ?>
                <tr>
                   <td colspan="2"></td>
                   <td style="text-align: right; padding-bottom: 5px;">Disc. Sale</td>
-                  <td style="text-align: right; padding-bottom: 5px;"><?= rupiah($sales->discount); ?></td>
+                  <td style="text-align: right; padding-bottom: 5px;"><?= rupiah_print($sales->discount); ?></td>
                </tr>
             <?php endif; ?>
             <tr>
                <td colspan="2"></td>
                <td style="border-top: 1px dashed; text-align: right; padding: 5px 0;">Grand Total</td>
-               <td style="border-top: 1px dashed; text-align: right; padding: 5px 0;"><?= rupiah($sales->final_price); ?></td>
+               <td style="border-top: 1px dashed; text-align: right; padding: 5px 0;"><?= rupiah_print($sales->final_price); ?></td>
             </tr>
             <tr>
                <td colspan="2"></td>
                <td style="border-top: 1px dashed; text-align: right; padding-top: 5px;">Cash</td>
-               <td style="border-top: 1px dashed; text-align: right; padding-top: 5px;"><?= rupiah($sales->cash); ?></td>
+               <td style="border-top: 1px dashed; text-align: right; padding-top: 5px;"><?= rupiah_print($sales->cash); ?></td>
             </tr>
             <tr>
                <td colspan="2"></td>
                <td style="text-align: right">Change</td>
-               <td style="text-align: right"><?= rupiah($sales->remaining); ?></td>
+               <td style="text-align: right"><?= rupiah_print($sales->remaining); ?></td>
             </tr>
          </table>
       </div>

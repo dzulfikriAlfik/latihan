@@ -108,7 +108,7 @@ class Sales_model extends CI_Model
 
    public function get_sales($id = null)
    {
-      $this->db->select('*, customer.name as customer_name, user.username as user_name, t_sales.created as sales_created');
+      $this->db->select('*, customer.name as customer_name, user.name as user_name, t_sales.created as sales_created');
       $this->db->from('t_sales');
       $this->db->join('customer', 't_sales.customer_id = customer.customer_id', 'left');
       $this->db->join('user', 't_sales.user_id = user.user_id');
