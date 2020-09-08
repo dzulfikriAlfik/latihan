@@ -70,6 +70,13 @@ function rupiah($angka)
 }
 
 // -------------------------------------------------------------------------
+function rupiah_print($angka)
+{
+   $hasil_rupiah = number_format($angka, 0, ',', '.') . ',-';
+   return $hasil_rupiah;
+}
+
+// -------------------------------------------------------------------------
 function indo_date($date)
 {
    $day     = substr($date, 8, 2);
