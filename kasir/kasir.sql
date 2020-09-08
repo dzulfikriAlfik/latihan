@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2020 at 09:34 AM
+-- Generation Time: Sep 08, 2020 at 04:12 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -85,7 +85,7 @@ INSERT INTO `p_category` (`category_id`, `name`, `created`, `updated`) VALUES
 (15, 'Komputer', '2020-08-15 09:48:23', NULL),
 (16, 'Handphone/Tablet/Gadget', '2020-08-15 09:48:26', '2020-08-15 04:49:14'),
 (17, 'Alat Mandi', '2020-08-15 09:48:36', NULL),
-(18, 'Aksesoris Handphone', '2020-08-15 09:49:42', NULL),
+(18, 'Aksesoris Handphone', '2020-08-15 09:49:42', '2020-08-29 18:30:32'),
 (19, 'Aksesoris Komputer', '2020-08-15 09:49:48', NULL),
 (20, 'Sembako', '2020-08-15 09:50:55', NULL),
 (21, 'Mainan', '2020-08-15 09:58:34', NULL),
@@ -115,17 +115,16 @@ CREATE TABLE `p_item` (
 --
 
 INSERT INTO `p_item` (`item_id`, `barcode`, `name`, `category_id`, `unit_id`, `price`, `stock`, `image`, `created`, `updated`) VALUES
-(5, 'A0001', 'Laptop', 8, 3, 10000000, 12, NULL, '2020-08-15 09:20:16', '2020-08-29 08:24:27'),
-(9, 'A0002', 'Teh Botol Sosro', 7, 3, 5000, 8, NULL, '2020-08-15 09:43:32', NULL),
+(5, 'A0001', 'Laptop', 8, 3, 10000000, 14, NULL, '2020-08-15 09:20:16', '2020-08-29 08:24:27'),
+(9, 'A0002', 'Teh Botol Sosro', 7, 3, 5000, 39, NULL, '2020-08-15 09:43:32', NULL),
 (10, 'A0003', 'Mouse', 8, 3, 200000, 5, NULL, '2020-08-15 09:48:01', NULL),
-(11, 'A0004', 'Shampo', 17, 3, 20000, 1, NULL, '2020-08-15 09:50:44', NULL),
-(12, 'A0005', 'Beras', 20, 4, 25000, 0, NULL, '2020-08-15 09:51:20', NULL),
-(13, 'A0006', 'Kain Katun', 9, 5, 150000, 0, NULL, '2020-08-15 10:13:42', NULL),
-(15, 'A0007', 'Laptop', 15, 3, 15000000, 0, NULL, '2020-08-15 17:27:10', NULL),
-(17, 'A0009', 'Keyboard', 19, 3, 250000, 0, NULL, '2020-08-15 17:29:29', NULL),
+(11, 'A0004', 'Shampo', 17, 3, 20000, 112, NULL, '2020-08-15 09:50:44', NULL),
+(12, 'A0005', 'Beras', 20, 4, 25000, 69, NULL, '2020-08-15 09:51:20', NULL),
+(13, 'A0006', 'Kain Katun', 9, 5, 150000, 5, NULL, '2020-08-15 10:13:42', NULL),
+(15, 'A0007', 'Laptop', 15, 3, 15000000, 3, NULL, '2020-08-15 17:27:10', NULL),
+(17, 'A0009', 'Keyboard', 19, 3, 250000, 9, NULL, '2020-08-15 17:29:29', NULL),
 (18, 'A0010', 'Mousepad', 19, 3, 45000, 0, 'item-Mousepad-26082020-054f88081b.png', '2020-08-15 17:32:21', '2020-08-26 14:29:38'),
-(26, 'A0011', 'Gantungan Kuncay', 18, 9, 15000, 0, NULL, '2020-08-26 18:24:33', '2020-08-29 04:50:16'),
-(27, 'A0012', 'Kopi ABCD', 7, 9, 10000, 0, NULL, '2020-08-26 18:25:10', '2020-08-29 04:39:55');
+(27, 'A0012', 'Kopi ABC', 7, 9, 10000, 0, NULL, '2020-08-26 18:25:10', '2020-08-29 18:32:10');
 
 -- --------------------------------------------------------
 
@@ -152,7 +151,9 @@ INSERT INTO `p_unit` (`unit_id`, `name`, `created`, `updated`) VALUES
 (7, 'Centimeter', '2020-08-14 21:42:12', NULL),
 (8, 'Liter', '2020-08-15 09:53:18', NULL),
 (9, 'Pack', '2020-08-15 17:33:11', NULL),
-(10, 'Pcs', '2020-08-15 17:33:16', NULL);
+(10, 'Pcs', '2020-08-15 17:33:16', NULL),
+(12, 'Ton', '2020-09-08 09:08:09', NULL),
+(13, 'Kwintal', '2020-09-08 09:08:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -175,16 +176,33 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`supplier_id`, `name`, `phone`, `address`, `description`, `created`, `updated`) VALUES
-(1, 'Toko A', '089111222333', 'Bandung', 'Toko Makanan Ringan', '2020-08-13 18:20:44', '2020-08-13 16:55:28'),
-(2, 'Toko B', '081222333444', 'Jakarta', 'Toko Kelontongan', '2020-08-13 18:20:44', '2020-08-13 16:49:03'),
-(9, 'Toko C', '089888990123', 'Jombang, Jawa Timur', 'Toko Bangunan', '2020-08-14 21:39:29', NULL),
-(10, 'Toko D', '081222333412', 'Bekasi Timur', 'Toko Alat Tulis', '2020-08-14 21:39:48', NULL),
-(11, 'Toko E', '089321333215', 'Jakarta', 'Toko Mainan', '2020-08-14 21:40:07', NULL),
-(12, 'Toko F', '085998123451', 'Ngawi', 'Toko Alat Kecantikan', '2020-08-14 21:40:42', NULL),
-(13, 'Toko G', '085666732112', 'Madura', 'Toko Elektronik', '2020-08-15 09:56:55', NULL),
-(14, 'Toko H', '089888777843', 'Cikijing, Majalengka', 'Toko Sembako dan Kelontongan', '2020-08-15 09:57:17', NULL),
-(15, 'Toko I', '088777123590', 'Mangga Dua, Jakarta', 'Toko Aksesoris Handphone', '2020-08-15 09:58:04', NULL),
-(17, 'Toko J', '081231231231', 'kadipaten, Majalengka', 'Toko Baru', '2020-08-28 13:09:07', '2020-08-28 08:53:06');
+(1, 'Mang Ade', '089111222333', 'Bandung', 'Toko Makanan Ringan', '2020-08-13 18:20:44', '2020-09-08 04:04:53'),
+(2, 'Mang Oma', '081222333444', 'Jakarta', 'Toko Kelontongan', '2020-08-13 18:20:44', '2020-09-08 04:05:03'),
+(9, 'Toko Fajar Mas', '089888990123', 'Jombang, Jawa Timur', 'Toko Bangunan', '2020-08-14 21:39:29', '2020-09-08 04:05:13'),
+(10, 'Toko Purnama', '081222333412', 'Bekasi Timur', 'Toko Alat Tulis', '2020-08-14 21:39:48', '2020-09-08 04:05:23'),
+(11, 'Toko H. Emod', '089321333215', 'Jakarta', 'Toko Mainan', '2020-08-14 21:40:07', '2020-09-08 04:05:35'),
+(12, 'Citra Salon', '085998123451', 'Ngawi', 'Toko Alat Kecantikan', '2020-08-14 21:40:42', '2020-09-08 04:05:45'),
+(13, 'Toko Himalaya', '085666732112', 'Madura', 'Toko Elektronik', '2020-08-15 09:56:55', '2020-09-08 04:05:55'),
+(14, 'Toko Hj. Ela', '089888777843', 'Cikijing, Majalengka', 'Toko Sembako dan Kelontongan', '2020-08-15 09:57:17', '2020-09-08 04:06:12'),
+(15, 'Toko Central Comm', '088777123590', 'Mangga Dua, Jakarta', 'Toko Aksesoris Handphone', '2020-08-15 09:58:04', '2020-09-08 04:06:41'),
+(17, 'Toko Spadan Buah', '081231231231', 'kadipaten, Majalengka', 'Pedagang Buah-buahan dan Sayur', '2020-08-28 13:09:07', '2020-09-08 04:07:15'),
+(25, 'Violer', '081231231231', 'Jl. K.H. Abdul Fatah', 'Toko Pakaian', '2020-09-08 09:07:46', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_cart`
+--
+
+CREATE TABLE `t_cart` (
+  `cart_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `discount_item` int(11) NOT NULL DEFAULT 0,
+  `total` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -194,14 +212,14 @@ INSERT INTO `supplier` (`supplier_id`, `name`, `phone`, `address`, `description`
 
 CREATE TABLE `t_sales` (
   `sales_id` int(11) NOT NULL,
-  `invoice` varchar(50) NOT NULL,
+  `invoice` varchar(50) CHARACTER SET utf8 NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
   `total_price` int(11) NOT NULL,
   `discount` int(11) NOT NULL,
   `final_price` int(11) NOT NULL,
   `cash` int(11) NOT NULL,
-  `change` int(11) NOT NULL,
-  `note` text NOT NULL,
+  `remaining` int(11) NOT NULL,
+  `note` text CHARACTER SET utf8 NOT NULL,
   `date` date NOT NULL,
   `user_id` int(11) NOT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp()
@@ -211,8 +229,50 @@ CREATE TABLE `t_sales` (
 -- Dumping data for table `t_sales`
 --
 
-INSERT INTO `t_sales` (`sales_id`, `invoice`, `customer_id`, `total_price`, `discount`, `final_price`, `cash`, `change`, `note`, `date`, `user_id`, `created`) VALUES
-(2, 'MYKSR2008280001', 2, 10000, 0, 10000, 10000, 0, '', '2020-08-28', 2, '2020-08-28 19:48:36');
+INSERT INTO `t_sales` (`sales_id`, `invoice`, `customer_id`, `total_price`, `discount`, `final_price`, `cash`, `remaining`, `note`, `date`, `user_id`, `created`) VALUES
+(1, 'MYKSR2009080001', NULL, 25395000, 0, 25395000, 25395001, 0, '', '2020-09-08', 1, '2020-09-08 09:01:55'),
+(2, 'MYKSR2009080002', 5, 405000, 0, 405000, 700000, 295000, '', '2020-09-08', 1, '2020-09-08 09:09:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_sales_detail`
+--
+
+CREATE TABLE `t_sales_detail` (
+  `detail_id` int(11) NOT NULL,
+  `sales_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `discount_item` int(11) NOT NULL,
+  `total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_sales_detail`
+--
+
+INSERT INTO `t_sales_detail` (`detail_id`, `sales_id`, `item_id`, `price`, `qty`, `discount_item`, `total`) VALUES
+(1, 1, 11, 20000, 1, 0, 20000),
+(2, 1, 5, 10000000, 1, 0, 10000000),
+(3, 1, 10, 200000, 1, 0, 200000),
+(4, 1, 12, 25000, 1, 0, 25000),
+(5, 1, 13, 150000, 1, 0, 150000),
+(6, 1, 15, 15000000, 1, 0, 15000000),
+(7, 2, 9, 5000, 1, 0, 5000),
+(8, 2, 13, 150000, 4, 50000, 400000);
+
+--
+-- Triggers `t_sales_detail`
+--
+DELIMITER $$
+CREATE TRIGGER `stock_min` AFTER INSERT ON `t_sales_detail` FOR EACH ROW BEGIN
+	UPDATE p_item SET stock = stock - NEW.qty
+	WHERE item_id = NEW.item_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -241,7 +301,16 @@ INSERT INTO `t_stock` (`stock_id`, `item_id`, `type`, `detail`, `supplier_id`, `
 (4, 9, 'in', 'Asongan', NULL, 8, '2020-08-26', '2020-08-26 20:13:56', 1),
 (7, 5, 'in', '-', NULL, 2, '2020-08-28', '2020-08-28 12:38:17', 1),
 (10, 10, 'in', 'Kulakan', 17, 5, '2020-08-28', '2020-08-28 13:09:29', 1),
-(14, 5, 'out', 'Rusak', NULL, 5, '2020-08-29', '2020-08-29 13:35:52', 1);
+(14, 5, 'out', 'Rusak', NULL, 5, '2020-08-29', '2020-08-29 13:35:52', 1),
+(15, 5, 'out', 'Rusak', NULL, 5, '2020-09-01', '2020-09-01 06:38:53', 1),
+(16, 5, 'in', 'Toko', 17, 15, '2020-09-08', '2020-09-08 08:29:47', 1),
+(17, 11, 'in', 'Kulakan', 1, 120, '2020-09-08', '2020-09-08 08:30:15', 1),
+(18, 10, 'in', 'Kulakan', NULL, 6, '2020-09-08', '2020-09-08 08:30:31', 1),
+(19, 12, 'in', 'Kulakan', 11, 70, '2020-09-08', '2020-09-08 08:30:59', 1),
+(20, 13, 'in', 'Kulakan', 11, 10, '2020-09-08', '2020-09-08 08:31:17', 1),
+(21, 15, 'in', 'Kulakan', 17, 4, '2020-09-08', '2020-09-08 08:31:40', 1),
+(22, 17, 'in', 'Kulakan', 9, 10, '2020-09-08', '2020-09-08 08:31:55', 1),
+(23, 9, 'in', 'Kulakan', 17, 40, '2020-09-08', '2020-09-08 08:32:17', 1);
 
 -- --------------------------------------------------------
 
@@ -306,10 +375,28 @@ ALTER TABLE `supplier`
   ADD PRIMARY KEY (`supplier_id`);
 
 --
+-- Indexes for table `t_cart`
+--
+ALTER TABLE `t_cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `t_sales`
 --
 ALTER TABLE `t_sales`
-  ADD PRIMARY KEY (`sales_id`);
+  ADD PRIMARY KEY (`sales_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `t_sales_detail`
+--
+ALTER TABLE `t_sales_detail`
+  ADD PRIMARY KEY (`detail_id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `sales_id` (`sales_id`);
 
 --
 -- Indexes for table `t_stock`
@@ -340,7 +427,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `p_category`
 --
 ALTER TABLE `p_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `p_item`
@@ -352,13 +439,13 @@ ALTER TABLE `p_item`
 -- AUTO_INCREMENT for table `p_unit`
 --
 ALTER TABLE `p_unit`
-  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `t_sales`
@@ -367,10 +454,16 @@ ALTER TABLE `t_sales`
   MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `t_sales_detail`
+--
+ALTER TABLE `t_sales_detail`
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `t_stock`
 --
 ALTER TABLE `t_stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -388,6 +481,27 @@ ALTER TABLE `user`
 ALTER TABLE `p_item`
   ADD CONSTRAINT `p_item_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `p_category` (`category_id`),
   ADD CONSTRAINT `p_item_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `p_unit` (`unit_id`);
+
+--
+-- Constraints for table `t_cart`
+--
+ALTER TABLE `t_cart`
+  ADD CONSTRAINT `t_cart_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `p_item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_cart_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `t_sales`
+--
+ALTER TABLE `t_sales`
+  ADD CONSTRAINT `t_sales_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_sales_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `t_sales_detail`
+--
+ALTER TABLE `t_sales_detail`
+  ADD CONSTRAINT `t_sales_detail_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `p_item` (`item_id`),
+  ADD CONSTRAINT `t_sales_detail_ibfk_2` FOREIGN KEY (`sales_id`) REFERENCES `t_sales` (`sales_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `t_stock`
