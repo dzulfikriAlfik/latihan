@@ -91,8 +91,13 @@ class Sales extends CI_Controller
 
    public function cart_delete()
    {
-      $cart_id = $this->input->post('cart_id');
-      $this->sales_model->delete_cart(['cart_id' => $cart_id]);
+
+      if (isset($_POST['cancel_payment'])) {
+         $this->sales_model->delete_cart(['user_id' => $this->session->userdata('userid')]);
+      } else {
+         $cart_id = $this->input->post('cart_id');
+         $this->sales_model->delete_cart(['cart_id' => $cart_id]);
+      }
 
       if ($this->db->affected_rows() > 0) {
          $params  = ['success' => true];

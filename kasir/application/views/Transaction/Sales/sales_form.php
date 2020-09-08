@@ -368,11 +368,6 @@
       $(qty).val('');
    }
 
-   function resetValue(...args) {
-      const argumen = $(args).val('');
-      console.log(argumen);
-   }
-
    $(document).ready(function() {
       $(document).on('click', '#select', function() {
          $('#item_id').val($(this).data('id'));
@@ -383,6 +378,7 @@
       });
    });
 
+   // Add Cart
    $(document).on('click', '#add_cart', function() {
       const item_id = $('#item_id').val();
       const price = $('#price').val();
@@ -424,6 +420,8 @@
          })
       }
    });
+
+   // Delete Cart
    $(document).on('click', '#del_cart', function() {
 
       const href = $(this).attr('href');
@@ -463,7 +461,6 @@
    });
 
    // Edit Item Cart
-
    $(document).ready(function() {
       $(document).on('click', '#update_cart', function() {
          $('#cartid_item').val($(this).data('cartid'));
@@ -497,6 +494,7 @@
       count_edit_modal();
    });
 
+   // Edit Cart
    $(document).on('click', '#edit_cart', function() {
       const cart_id = $('#cartid_item').val();
       const price = $('#price_item').val();
@@ -626,5 +624,42 @@
             }
          });
       }
-   })
+   });
+
+   // Cancel Payment
+   $(document).on('click', '#cancel_payment', function() {
+      Swal.fire({
+         title: 'Apakah Anda Yakin?',
+         text: 'Transaksi akan dibatalkan dan cart akan terhapus',
+         icon: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Proses',
+         footer: '<b>Aplikasi Kasir Penjualan</b>'
+      }).then((result) => {
+         if (result.value) {
+            $.ajax({
+               type: 'POST',
+               url: '<?= base_url('sales/cart_delete'); ?>',
+               dataType: 'json',
+               data: {
+                  'cancel_payment': true
+               },
+               success: function(result) {
+                  if (result.success == true) {
+                     $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
+                        mySwal('Payment Canceled', 'Data Item Cart Berhasil Dihapus', 'success', 'success');
+                        calculate();
+                     })
+                  }
+               }
+            })
+         }
+         $('#discount').val(0);
+         $('#cash').val(0);
+         $('#customer').val(0).change();
+         $('#barcode').val('');
+      });
+   });
 </script>
