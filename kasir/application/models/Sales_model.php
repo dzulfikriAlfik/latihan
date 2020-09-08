@@ -105,4 +105,28 @@ class Sales_model extends CI_Model
    {
       $this->db->insert_batch('t_sales_detail', $params);
    }
+
+   public function get_sales($id = null)
+   {
+      $this->db->select('*, customer.name as customer_name, user.username as user_name, t_sales.created as sales_created');
+      $this->db->from('t_sales');
+      $this->db->join('customer', 't_sales.customer_id = customer.customer_id', 'left');
+      $this->db->join('user', 't_sales.user_id = user.user_id');
+      if ($id != null) {
+         $this->db->where('sales_id', $id);
+      }
+      $query = $this->db->get();
+      return $query;
+   }
+
+   public function get_sales_detail($sales_id = null)
+   {
+      $this->db->from('t_sales_detail');
+      $this->db->join('p_item', 't_sales_detail.item_id = p_item.item_id');
+      if ($sales_id != null) {
+         $this->db->where('t_sales_detail.sales_id', $sales_id);
+      }
+      $query = $this->db->get();
+      return $query;
+   }
 }

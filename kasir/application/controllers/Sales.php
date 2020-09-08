@@ -80,7 +80,7 @@ class Sales extends CI_Controller
          $this->sales_model->delete_cart(['user_id' => $this->session->userdata('userid')]);
 
          if ($this->db->affected_rows() > 0) {
-            $params  = ['success' => true];
+            $params  = ['success' => true, "sales_id" => $sale_id];
          } else {
             $params  = ['success' => false];
          }
@@ -100,5 +100,14 @@ class Sales extends CI_Controller
          $params  = ['success' => false];
       }
       echo json_encode($params);
+   }
+
+   public function cetak($id)
+   {
+      $data = [
+         'sales'        => $this->sales_model->get_sales($id)->row(),
+         'sales_detail' => $this->sales_model->get_sales_detail($id)->result(),
+      ];
+      $this->load->view('transaction/sales/receipt_print', $data);
    }
 }
