@@ -584,6 +584,9 @@
          mySwal('Belum ada product item yang dipilih', false, 'error', 'error');
       } else if (cash < 1 || cash == null) {
          mySwal('Jumlah uang cash belum diinput', false, 'error', 'error');
+      } else if (parseInt(cash) < parseInt(grandtotal)) {
+         mySwal('Jumlah uang cash belum cukup', false, 'error', 'error');
+         $('#cash').focus()
       } else {
          Swal.fire({
             title: 'Apakah Anda Yakin?',
@@ -658,7 +661,7 @@
          }
          $('#discount').val(0);
          $('#cash').val(0);
-         $('#customer').val(0).change();
+         $('#customer').val('').change();
          $('#barcode').val('');
       });
    });
