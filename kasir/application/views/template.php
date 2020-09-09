@@ -144,8 +144,8 @@
                         </li>
                      </ul>
                   </li>
-                  <li class="nav-item has-treeview">
-                     <a href="<?= base_url(''); ?>" class="nav-link">
+                  <li class="nav-item has-treeview <?= $aktif == 'report sales' || $aktif == 'report stock' ? 'menu-open' : ''; ?>">
+                     <a href="<?= base_url(''); ?>" class="nav-link <?= $aktif == 'report sales' || $aktif == 'report stock' ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                            Report
@@ -154,13 +154,13 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="<?= base_url(''); ?>" class="nav-link">
+                           <a href="<?= base_url('report/sales'); ?>" class="nav-link <?= add_class('report sales', $aktif, 'active'); ?>">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Sales</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="<?= base_url(''); ?>" class="nav-link">
+                           <a href="<?= base_url('report/stock'); ?>" class="nav-link <?= add_class('report stock', $aktif, 'active'); ?>">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Stock</p>
                            </a>
