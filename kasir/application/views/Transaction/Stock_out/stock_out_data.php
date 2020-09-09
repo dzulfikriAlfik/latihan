@@ -31,7 +31,7 @@
                </div>
                <!-- /.card-header -->
                <div class="card-body">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <table id="myTable1" class="table table-bordered table-striped">
                      <thead>
                         <tr>
                            <th>Barcode</th>
@@ -55,7 +55,7 @@
                                     <i class="fas fa-eye"></i>
                                     Detail
                                  </a>&nbsp;
-                                 <a href="<?= base_url('stock/out/delete/' . $stock['stock_id'] . '/' . $stock['item_id']); ?>"  class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
+                                 <a href="<?= base_url('stock/out/delete/' . $stock['stock_id'] . '/' . $stock['item_id']); ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
                         <?php endforeach; ?>

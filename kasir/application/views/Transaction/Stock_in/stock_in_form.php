@@ -104,7 +104,7 @@
             </button>
          </div>
          <div class="card-body table-responsive">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="myTable1" class="table table-bordered table-striped">
                <thead>
                   <tr>
                      <th>Barcode</th>

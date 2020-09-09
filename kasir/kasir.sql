@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2020 at 04:12 AM
+-- Generation Time: Sep 09, 2020 at 02:23 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -116,9 +116,9 @@ CREATE TABLE `p_item` (
 
 INSERT INTO `p_item` (`item_id`, `barcode`, `name`, `category_id`, `unit_id`, `price`, `stock`, `image`, `created`, `updated`) VALUES
 (5, 'A0001', 'Laptop', 8, 3, 10000000, 14, NULL, '2020-08-15 09:20:16', '2020-08-29 08:24:27'),
-(9, 'A0002', 'Teh Botol Sosro', 7, 3, 5000, 39, NULL, '2020-08-15 09:43:32', NULL),
+(9, 'A0002', 'Teh Botol Sosro', 7, 3, 5000, 53, NULL, '2020-08-15 09:43:32', NULL),
 (10, 'A0003', 'Mouse', 8, 3, 200000, 5, NULL, '2020-08-15 09:48:01', NULL),
-(11, 'A0004', 'Shampo', 17, 3, 20000, 112, NULL, '2020-08-15 09:50:44', NULL),
+(11, 'A0004', 'Shampo', 17, 3, 20000, 111, NULL, '2020-08-15 09:50:44', NULL),
 (12, 'A0005', 'Beras', 20, 4, 25000, 69, NULL, '2020-08-15 09:51:20', NULL),
 (13, 'A0006', 'Kain Katun', 9, 5, 150000, 5, NULL, '2020-08-15 10:13:42', NULL),
 (15, 'A0007', 'Laptop', 15, 3, 15000000, 3, NULL, '2020-08-15 17:27:10', NULL),
@@ -226,12 +226,15 @@ CREATE TABLE `t_sales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `t_sales`
+-- Triggers `t_sales`
 --
-
-INSERT INTO `t_sales` (`sales_id`, `invoice`, `customer_id`, `total_price`, `discount`, `final_price`, `cash`, `remaining`, `note`, `date`, `user_id`, `created`) VALUES
-(1, 'MYKSR2009080001', NULL, 25395000, 0, 25395000, 25395001, 0, '', '2020-09-08', 1, '2020-09-08 09:01:55'),
-(2, 'MYKSR2009080002', 5, 405000, 0, 405000, 700000, 295000, '', '2020-09-08', 1, '2020-09-08 09:09:22');
+DELIMITER $$
+CREATE TRIGGER `delete_detail` AFTER DELETE ON `t_sales` FOR EACH ROW BEGIN
+	DELETE FROM t_sales_detail
+    WHERE sales_id = OLD.sales_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -250,26 +253,19 @@ CREATE TABLE `t_sales_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `t_sales_detail`
---
-
-INSERT INTO `t_sales_detail` (`detail_id`, `sales_id`, `item_id`, `price`, `qty`, `discount_item`, `total`) VALUES
-(1, 1, 11, 20000, 1, 0, 20000),
-(2, 1, 5, 10000000, 1, 0, 10000000),
-(3, 1, 10, 200000, 1, 0, 200000),
-(4, 1, 12, 25000, 1, 0, 25000),
-(5, 1, 13, 150000, 1, 0, 150000),
-(6, 1, 15, 15000000, 1, 0, 15000000),
-(7, 2, 9, 5000, 1, 0, 5000),
-(8, 2, 13, 150000, 4, 50000, 400000);
-
---
 -- Triggers `t_sales_detail`
 --
 DELIMITER $$
 CREATE TRIGGER `stock_min` AFTER INSERT ON `t_sales_detail` FOR EACH ROW BEGIN
 	UPDATE p_item SET stock = stock - NEW.qty
 	WHERE item_id = NEW.item_id;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `stock_return` AFTER DELETE ON `t_sales_detail` FOR EACH ROW BEGIN
+	UPDATE p_item SET stock = stock + OLD.qty
+	WHERE item_id = OLD.item_id;
 END
 $$
 DELIMITER ;
@@ -303,14 +299,15 @@ INSERT INTO `t_stock` (`stock_id`, `item_id`, `type`, `detail`, `supplier_id`, `
 (10, 10, 'in', 'Kulakan', 17, 5, '2020-08-28', '2020-08-28 13:09:29', 1),
 (14, 5, 'out', 'Rusak', NULL, 5, '2020-08-29', '2020-08-29 13:35:52', 1),
 (15, 5, 'out', 'Rusak', NULL, 5, '2020-09-01', '2020-09-01 06:38:53', 1),
-(16, 5, 'in', 'Toko', 17, 15, '2020-09-08', '2020-09-08 08:29:47', 1),
 (17, 11, 'in', 'Kulakan', 1, 120, '2020-09-08', '2020-09-08 08:30:15', 1),
 (18, 10, 'in', 'Kulakan', NULL, 6, '2020-09-08', '2020-09-08 08:30:31', 1),
 (19, 12, 'in', 'Kulakan', 11, 70, '2020-09-08', '2020-09-08 08:30:59', 1),
 (20, 13, 'in', 'Kulakan', 11, 10, '2020-09-08', '2020-09-08 08:31:17', 1),
 (21, 15, 'in', 'Kulakan', 17, 4, '2020-09-08', '2020-09-08 08:31:40', 1),
 (22, 17, 'in', 'Kulakan', 9, 10, '2020-09-08', '2020-09-08 08:31:55', 1),
-(23, 9, 'in', 'Kulakan', 17, 40, '2020-09-08', '2020-09-08 08:32:17', 1);
+(23, 9, 'in', 'Kulakan', 17, 40, '2020-09-08', '2020-09-08 08:32:17', 1),
+(24, 5, 'in', 'Kulakan', NULL, 30, '2020-09-09', '2020-09-09 11:43:07', 1),
+(25, 9, 'in', 'Kulakan', NULL, 53, '2020-09-09', '2020-09-09 11:43:27', 1);
 
 -- --------------------------------------------------------
 
@@ -451,19 +448,19 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `t_sales`
 --
 ALTER TABLE `t_sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `t_sales_detail`
 --
 ALTER TABLE `t_sales_detail`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `t_stock`
 --
 ALTER TABLE `t_stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `user`

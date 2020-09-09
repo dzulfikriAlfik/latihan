@@ -31,7 +31,7 @@
                </div>
                <!-- /.card-header -->
                <div class="card-body">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <table id="myTable1" class="table table-bordered table-striped">
                      <thead>
                         <tr>
                            <th>No.</th>
@@ -54,7 +54,7 @@
                               <td><?= $supp['description'] ?></td>
                               <td width="160px" class="text-center">
                                  <a href="<?= base_url('supplier/edit/' . $supp['supplier_id']); ?>" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i> Edit</a>&nbsp;
-                                 <a href="<?= base_url('supplier/delete/' . $supp['supplier_id']); ?>"  class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
+                                 <a href="<?= base_url('supplier/delete/' . $supp['supplier_id']); ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
                         <?php endforeach; ?>

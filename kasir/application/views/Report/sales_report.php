@@ -31,7 +31,7 @@
                </div> -->
                <!-- /.card-header -->
                <div class="card-body">
-                  <table class="table table-bordered table-striped">
+                  <table id="myTable1" class="table table-bordered table-striped">
                      <thead>
                         <tr>
                            <th>No.</th>
@@ -57,9 +57,9 @@
                               <td><?= rupiah($data->discount); ?></td>
                               <td><?= rupiah($data->final_price); ?></td>
                               <td width="200px" class="text-center">
-                                 <button type="button" id="detail" data-target="#modal-detail" data-toggle="modal" data-invoice="<?= $data->invoice; ?>" data-date="<?= $data->date; ?>" data-time="<?= substr($data->sales_created, 11, 5); ?>" data-customer="<?= $data->customer_id == null ? 'Umum' : $data->customer_name; ?>" data-total="<?= rupiah($data->total_price); ?>" data-discount="<?= rupiah($data->discount); ?>" data-grandtotal="<?= rupiah($data->final_price); ?>" data-cash="<?= rupiah($data->cash); ?>" data-change="<?= rupiah($data->remaining); ?>" data-note="<?= $data->note; ?>" data-cashier="<?= $data->user_name; ?>" data-salesid="<?= $data->sales_id; ?>" class="btn btn-xs btn-info"><i class="fas fa-eye"></i> Detail</button>
+                                 <button type="button" id="detail" data-target="#modal-detail" data-toggle="modal" data-invoice="<?= $data->invoice; ?>" data-date="<?= $data->date; ?>" data-time="<?= substr($data->sales_created, 11, 5); ?>" data-customer="<?= $data->customer_id == null ? 'Umum' : $data->customer_name; ?>" data-total="<?= rupiah($data->total_price); ?>" data-discount="<?= rupiah($data->discount); ?>" data-grandtotal="<?= rupiah($data->final_price); ?>" data-cash="<?= rupiah($data->cash); ?>" data-change="<?= rupiah($data->remaining); ?>" data-note="<?= $data->note; ?>" data-cashier="<?= $data->user_name; ?>" data-salesid="<?= $data->sales_id; ?>" class="btn btn-xs btn-info"><i class="fas fa-eye"></i> Detail</button>&nbsp;
                                  <a href="<?= base_url('sales/cetak/' . $data->sales_id); ?>" target="_blank" class="btn btn-dark btn-xs"><i class="fas fa-print"></i> Cetak</a>&nbsp;
-                                 <a href="<?= base_url('sales/delete/' . $data->sales_id); ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
+                                 <a href="<?= base_url('sales/delete_sales/' . $data->sales_id); ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
                               </td>
                            </tr>
                         <?php endforeach; ?>
@@ -73,7 +73,7 @@
 </section>
 
 <div id="modal-detail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-detail-title" aria-hidden="true">
-   <div class="modal-dialog" role="document">
+   <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="modal-detail-title">Sales Report Detail</h5>
@@ -81,7 +81,7 @@
                <span aria-hidden="true">&times;</span>
             </button>
          </div>
-         <div class="modal-body">
+         <div class="modal-body table-responsive">
             <table class="table table-striped table-hover table-borderless">
                <tbody>
                   <tr>
@@ -127,27 +127,18 @@
 
 <script>
    $(document).on('click', '#detail', function() {
-      $('#invoice').text($(this).data('invoice'));
-      $('#cust').text($(this).data('customer'));
-      $('#datetime').text($(this).data('date') + " " + $(this).data('time'));
-      $('#cashier').text($(this).data('cashier'));
-      $('#total').text($(this).data('total'));
-      $('#cash').text($(this).data('cash'));
-      $('#discount').text($(this).data('discount'));
-      $('#change').text($(this).data('change'));
-      $('#grandtotal').text($(this).data('grandtotal'));
-      $('#note').text($(this).data('note'));
+      $('#invoice').text(': ' + $(this).data('invoice'));
+      $('#cust').text(': ' + $(this).data('customer'));
+      $('#datetime').text(': ' + $(this).data('date') + " " + $(this).data('time'));
+      $('#cashier').text(': ' + $(this).data('cashier'));
+      $('#total').text(': ' + $(this).data('total'));
+      $('#cash').text(': ' + $(this).data('cash'));
+      $('#discount').text(': ' + $(this).data('discount'));
+      $('#change').text(': ' + $(this).data('change'));
+      $('#grandtotal').text(': ' + $(this).data('grandtotal'));
+      $('#note').text(': ' + $(this).data('note'));
 
-      // let product = '<table class="table table-borderless">'
-      // product += '<tr><th>Item</th><th>Price</th><th>Qty</th><th>Disc</th><th>Total</th></tr>'
-      // $.getJSON('<?= base_url('report/sales_product') ?>' + $(this).data('salesid'), function(data) {
-      //    $.each(data, function(key, val) {
-      //       product += '<tr><td>' + val.name + '</td><td>' + val.price + '</td><td>' + val.qty + '</td><td>' + val.discount_item + '</td><td>' + val.total + '</td></tr>'
-      //    })
-      //    product += '</table>'
-      //    $('#product').html(product)
-      // })
-      let product = '<table class="table no-margin">'
+      let product = '<table class="table">'
       product += '<tr><th>Item</th><th>Price</th><th>Qty</th><th>Disc</th><th>Total</th></tr>'
       $.getJSON('<?= site_url('report/sales_product/') ?>' + $(this).data('salesid'), function(data) {
          $.each(data, function(key, val) {

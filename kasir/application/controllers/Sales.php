@@ -115,4 +115,10 @@ class Sales extends CI_Controller
       ];
       $this->load->view('transaction/sales/receipt_print', $data);
    }
+
+   public function delete_sales($id) 
+   {
+      $this->sales_model->delete_sales($id);
+      pesan_alert('Dihapus', 'report/sales');
+   }
 }

@@ -216,7 +216,7 @@
    <script src="<?= base_url('assets'); ?>/dist/js/myscript.js"></script>
    <script>
       $(function() {
-         $("#example1").DataTable({
+         $("#myTable1").DataTable({
             "responsive": true,
             "autoWidth": false,
          });

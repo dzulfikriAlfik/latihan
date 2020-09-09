@@ -131,4 +131,10 @@ class Sales_model extends CI_Model
       $query = $this->db->get();
       return $query;
    }
+
+   public function delete_sales($id)
+   {
+      $this->db->where('sales_id', $id);
+      $this->db->delete('t_sales');
+   }
 }
