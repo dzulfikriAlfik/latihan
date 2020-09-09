@@ -79,6 +79,7 @@
                         <input type="hidden" id="item_id">
                         <input type="hidden" id="price">
                         <input type="hidden" id="stock">
+                        <input type="hidden" id="qty_cart">
                         <input type="text" id="barcode" class="form-control" required readonly>
                         <div class="input-group-append">
                            <span class="input-group-sm">
@@ -324,8 +325,16 @@
                <input type="number" id="price_item" min="0" class="form-control">
             </div>
             <div class="form-group">
-               <label for="qty_item">Qty</label>
-               <input type="number" id="qty_item" min="1" class="form-control">
+               <div class="row">
+                  <div class="col-md-6">
+                     <label for="qty_item">Qty</label>
+                     <input type="number" id="qty_item" min="1" class="form-control">
+                  </div>
+                  <div class="col-md-6">
+                     <label for="qty_item">Stock Item</label>
+                     <input type="text" id="stock_item" class="form-control" readonly>
+                  </div>
+               </div>
             </div>
             <div class="form-group">
                <label for="total_before">Total Before Discount</label>
@@ -370,20 +379,40 @@
 
    $(document).ready(function() {
       $(document).on('click', '#select', function() {
+         const barcode = $(this).data('barcode');
          $('#item_id').val($(this).data('id'));
-         $('#barcode').val($(this).data('barcode'));
+         $('#barcode').val(barcode);
          $('#price').val($(this).data('price'));
          $('#stock').val($(this).data('stock'));
+         $('#qty').attr({
+            "max": $(this).data('stock'),
+            "min": 1
+         });
          $('#modal-item').modal('hide');
+
+         get_cart_qty(barcode)
       });
    });
+
+   // cek stock di table cart
+   function get_cart_qty(barcode) {
+      $('#cart_table tr').each(function() {
+         let qty_cart = $("#cart_table td.barcode:contains('" + barcode + "')").parent().find("td").eq(4).html();
+         if (qty_cart != null) {
+            $('#qty_cart').val(qty_cart);
+         } else {
+            $('#qty_cart').val(0);
+         }
+      });
+   }
 
    // Add Cart
    $(document).on('click', '#add_cart', function() {
       const item_id = $('#item_id').val();
       const price = $('#price').val();
-      const stock = $('#stock').val();
-      const qty = $('#qty').val();
+      const stock = parseInt($('#stock').val());
+      const qty = parseInt($('#qty').val());
+      const qty_cart = parseInt($('#qty_cart').val());
       if (item_id == '') {
          mySwal('Product Belum Dipilih', 'Pilih Product Terlebih Dahulu', 'error', 'error');
          $('#barcode').focus();
@@ -393,8 +422,8 @@
       } else if (stock < 1) {
          mySwal('Stock Masih Kosong', 'Input Stock di Menu Stock-In', 'error', 'error');
          resetVal('#item_id', '#barcode', '#price', '#stock', '#qty');
-      } else if (qty > stock) {
-         mySwal('Stock Tidak Mencukupi', 'Quantity Tidak Boleh Melebihi Stock Tersedia', 'error', 'error');
+      } else if (qty > stock || (stock - qty_cart) < qty) {
+         mySwal('Stock Tidak Mencukupi', 'Quantity / Cart Tidak Boleh Melebihi Stock Tersedia', 'error', 'error');
       } else {
          $.ajax({
             type: 'POST',
@@ -423,7 +452,6 @@
 
    // Delete Cart
    $(document).on('click', '#del_cart', function() {
-
       const href = $(this).attr('href');
       const cart_id = $(this).data('cartid');
 
@@ -448,7 +476,7 @@
                success: function(result) {
                   if (result.success == true) {
                      $('#cart_table').load('<?= base_url('sales/load_cart_data'); ?>', function() {
-                        mySwal('Data Item Cart Berhasil Dihapus', '', 'success', 'success');
+                        // mySwal('Data Item Cart Berhasil Dihapus', '', 'success', 'success');
                         calculate();
                      })
                   } else {
@@ -471,6 +499,11 @@
          $('#total_before').val($(this).data('price') * $(this).data('qty'));
          $('#discount_item').val($(this).data('discount'));
          $('#total_item').val($(this).data('total'));
+         $('#stock_item').val($(this).data('stock'));
+         $('#qty_item').attr({
+            "max": $(this).data('stock'),
+            "min": 1
+         });
       });
    });
 
@@ -498,13 +531,17 @@
    $(document).on('click', '#edit_cart', function() {
       const cart_id = $('#cartid_item').val();
       const price = $('#price_item').val();
-      const qty = $('#qty_item').val();
+      const qty = parseInt($('#qty_item').val());
       const discount = $('#discount_item').val();
       const total = $('#total_item').val();
+      const stock = $('#stock_item').val();
       if (price == '' || price < 1) {
          mySwal('Kolom Harga Tidak Boleh Kosong', 'Masukan Harga', 'error', 'error');
       } else if (qty == '' || qty < 1) {
          mySwal('Quantity Tidak Boleh kosong', 'Masukan Jumlah Quantity Product', 'error', 'error');
+         $('#qty_item').focus();
+      } else if (qty > stock) {
+         mySwal('Quantity Tidak Boleh Melebihi Stock', false, 'error', 'error');
          $('#qty_item').focus();
       } else {
          $.ajax({
