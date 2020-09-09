@@ -115,6 +115,8 @@ class Sales_model extends CI_Model
       if ($id != null) {
          $this->db->where('sales_id', $id);
       }
+
+      $this->db->order_by('date', 'desc');
       $query = $this->db->get();
       return $query;
    }
