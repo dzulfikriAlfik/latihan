@@ -18,7 +18,7 @@ class Item extends CI_Controller
          'aktif'  => 'item',
          'menu'   => 'item',
       ];
-      $this->template->load('template', 'product/item/item_data', $data);
+      $this->template->load('template', 'Product/Item/item_data', $data);
    }
 
    public function add()
@@ -47,7 +47,7 @@ class Item extends CI_Controller
          'unit'            => $unit,
          'selected_unit'   => null
       ];
-      $this->template->load('template', 'product/item/item_form', $data);
+      $this->template->load('template', 'Product/Item/item_form', $data);
    }
 
    public function edit($id)
@@ -72,7 +72,7 @@ class Item extends CI_Controller
             'selected_category'  => $item->category_id,
             'selected_unit'      => $item->unit_id
          ];
-         $this->template->load('template', 'product/item/item_form', $data);
+         $this->template->load('template', 'Product/Item/item_form', $data);
       } else {
          pesan_error('Tidak Ditemukan', 'item');
       }
@@ -161,13 +161,13 @@ class Item extends CI_Controller
          'menu'   => 'item',
          'page'   => 'Barcode Generator',
       ];
-      $this->template->load('template', 'product/item/barcode_qrcode', $data);
+      $this->template->load('template', 'Product/Item/barcode_qrcode', $data);
    }
 
    public function barcode_print($id)
    {
       $data['row'] = $this->item_model->get($id)->row();
-      $html = $this->load->view('product/item/barcode_print', $data, true);
+      $html = $this->load->view('Product/Item/barcode_print', $data, true);
 
       $this->fungsi->PdfGenerator($html, 'Barcode-' . $data['row']->barcode, 'A4', 'Portrait');
    }
@@ -175,7 +175,7 @@ class Item extends CI_Controller
    public function qrcode_print($id)
    {
       $data['row'] = $this->item_model->get($id)->row();
-      $html = $this->load->view('product/item/qrcode_print', $data, true);
+      $html = $this->load->view('Product/Item/qrcode_print', $data, true);
 
       $this->fungsi->PdfGenerator($html, 'QRCode-' . $data['row']->barcode, 'A4', 'Landscape');
    }

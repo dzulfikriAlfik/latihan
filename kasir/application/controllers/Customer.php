@@ -18,7 +18,7 @@ class Customer extends CI_Controller
          'aktif'  => 'customer',
          'menu'   => 'customer'
       ];
-      $this->template->load('template', 'customer/customer_data', $data);
+      $this->template->load('template', 'Customer/customer_data', $data);
    }
 
    public function add()
@@ -35,7 +35,7 @@ class Customer extends CI_Controller
          'page'   => 'add',
          'row'    => $customer
       ];
-      $this->template->load('template', 'customer/customer_form', $data);
+      $this->template->load('template', 'Customer/customer_form', $data);
    }
 
    public function edit($id)
@@ -49,7 +49,7 @@ class Customer extends CI_Controller
             'page'   => 'edit',
             'row'    => $customer
          ];
-         $this->template->load('template', 'customer/customer_form', $data);
+         $this->template->load('template', 'Customer/customer_form', $data);
       } else {
          pesan_error('Tidak Ditemukan', 'customer');
       }

@@ -146,7 +146,7 @@
                      </tr>
                   </thead>
                   <tbody id="cart_table">
-                     <?php $this->view('transaction/sales/cart_data') ?>
+                     <?php $this->view('Transaction/Sales/cart_data') ?>
                   </tbody>
                </table>
             </div>

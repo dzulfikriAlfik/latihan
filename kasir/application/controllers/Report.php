@@ -18,7 +18,7 @@ class Report extends CI_Controller
          'menu'      => 'report sales',
          'row'       => $this->sales->get_sales()->result()
       ];
-      $this->template->load('template', 'report/sales_report', $data);
+      $this->template->load('template', 'Report/sales_report', $data);
    }
 
    public function sales_product($sales_id = null)
@@ -33,6 +33,6 @@ class Report extends CI_Controller
          'aktif'     => 'report stock',
          'menu'      => 'report stock',
       ];
-      $this->template->load('template', 'report/stock_report', $data);
+      $this->template->load('template', 'Report/stock_report', $data);
    }
 }

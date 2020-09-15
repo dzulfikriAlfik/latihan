@@ -21,13 +21,13 @@ class Sales extends CI_Controller
          'menu'      => 'sales',
          'invoice'   => $this->sales_model->invoice_no()
       ];
-      $this->template->load('template', 'transaction/sales/sales_form', $data);
+      $this->template->load('template', 'Transaction/Sales/sales_form', $data);
    }
 
    public function load_cart_data()
    {
       $data['cart'] = $this->sales_model->get_cart();
-      $this->load->view('transaction/sales/cart_data', $data);
+      $this->load->view('Transaction/Sales/cart_data', $data);
    }
 
    public function process()
@@ -113,7 +113,7 @@ class Sales extends CI_Controller
          'sales'        => $this->sales_model->get_sales($id)->row(),
          'sales_detail' => $this->sales_model->get_sales_detail($id)->result(),
       ];
-      $this->load->view('transaction/sales/receipt_print', $data);
+      $this->load->view('Transaction/Sales/receipt_print', $data);
    }
 
    public function delete_sales($id) 

@@ -18,7 +18,7 @@ class Unit extends CI_Controller
          'aktif'  => 'unit',
          'menu'   => 'unit',
       ];
-      $this->template->load('template', 'product/unit/unit_data', $data);
+      $this->template->load('template', 'Product/Unit/unit_data', $data);
    }
 
    public function add()
@@ -32,7 +32,7 @@ class Unit extends CI_Controller
          'page'   => 'add',
          'row'    => $unit
       ];
-      $this->template->load('template', 'product/unit/unit_form', $data);
+      $this->template->load('template', 'Product/Unit/unit_form', $data);
    }
 
    public function edit($id)
@@ -46,7 +46,7 @@ class Unit extends CI_Controller
             'page'   => 'edit',
             'row'    => $unit
          ];
-         $this->template->load('template', 'product/unit/unit_form', $data);
+         $this->template->load('template', 'Product/Unit/unit_form', $data);
       } else {
          pesan_error('Data unit tidak ditemukan', 'unit');
       }

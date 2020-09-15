@@ -18,7 +18,7 @@ class Stock extends CI_Controller
          'aktif'  => 'stock_in',
          'menu'   => 'Stok In',
       ];
-      $this->template->load('template', 'transaction/stock_in/stock_in_data', $data);
+      $this->template->load('template', 'Transaction/Stock_in/stock_in_data', $data);
    }
 
    public function stock_in_add()
@@ -30,7 +30,7 @@ class Stock extends CI_Controller
          'menu'      => 'Stok In',
          'page'      => 'in_add',
       ];
-      $this->template->load('template', 'transaction/stock_in/stock_in_form', $data);
+      $this->template->load('template', 'Transaction/Stock_in/stock_in_form', $data);
    }
 
    public function stock_in_delete()
@@ -52,7 +52,7 @@ class Stock extends CI_Controller
          'aktif'  => 'stock_out',
          'menu'   => 'Stok Out',
       ];
-      $this->template->load('template', 'transaction/stock_out/stock_out_data', $data);
+      $this->template->load('template', 'Transaction/Stock_out/stock_out_data', $data);
    }
 
    public function stock_out_add()
@@ -63,7 +63,7 @@ class Stock extends CI_Controller
          'menu'      => 'Stok Out',
          'page'      => 'out_add',
       ];
-      $this->template->load('template', 'transaction/stock_out/stock_out_form', $data);
+      $this->template->load('template', 'Transaction/Stock_out/stock_out_form', $data);
    }
 
    public function stock_out_delete()

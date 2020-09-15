@@ -18,7 +18,7 @@ class Supplier extends CI_Controller
          'aktif'  => 'supplier',
          'menu'   => 'supplier',
       ];
-      $this->template->load('template', 'supplier/supplier_data', $data);
+      $this->template->load('template', 'Supplier/supplier_data', $data);
    }
 
    public function add()
@@ -35,7 +35,7 @@ class Supplier extends CI_Controller
          'page'   => 'add',
          'row'    => $supplier
       ];
-      $this->template->load('template', 'supplier/supplier_form', $data);
+      $this->template->load('template', 'Supplier/supplier_form', $data);
    }
 
    public function edit($id)
@@ -49,7 +49,7 @@ class Supplier extends CI_Controller
             'page'   => 'edit',
             'row'    => $supplier
          ];
-         $this->template->load('template', 'supplier/supplier_form', $data);
+         $this->template->load('template', 'Supplier/supplier_form', $data);
       } else {
          pesan_error('Tidak Ditemukan', 'supplier');
       }

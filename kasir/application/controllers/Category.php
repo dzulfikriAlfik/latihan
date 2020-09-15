@@ -18,7 +18,7 @@ class Category extends CI_Controller
          'aktif'  => 'category',
          'menu'   => 'category',
       ];
-      $this->template->load('template', 'product/category/category_data', $data);
+      $this->template->load('template', 'Product/Category/category_data', $data);
    }
 
    public function add()
@@ -32,7 +32,7 @@ class Category extends CI_Controller
          'page'   => 'add',
          'row'    => $category
       ];
-      $this->template->load('template', 'product/category/category_form', $data);
+      $this->template->load('template', 'Product/Category/category_form', $data);
    }
 
    public function edit($id)
@@ -46,7 +46,7 @@ class Category extends CI_Controller
             'page'   => 'edit',
             'row'    => $category
          ];
-         $this->template->load('template', 'product/category/category_form', $data);
+         $this->template->load('template', 'Product/Category/category_form', $data);
       } else {
          pesan_error('Data category tidak ditemukan', 'category');
       }
