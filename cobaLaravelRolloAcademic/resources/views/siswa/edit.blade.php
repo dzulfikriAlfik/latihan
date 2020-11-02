@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="panel-body">
-        <form method="POST" action="/siswa/{{$siswa->id}}/update">
+        <form method="POST" action="/siswa/{{$siswa->id}}/update" enctype="multipart/form-data">
           {{csrf_field()}}
           <div class="form-group">
             <label for="nama_depan">Nama Depan</label>
@@ -44,6 +44,10 @@
           <div class="form-group">
             <label for="alamat">Alamat</label>
             <textarea name="alamat" id="alamat" rows="3" class="form-control">{{$siswa->alamat}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="avatar">Avatar</label>
+            <input type="file" name="avatar" id="avatar" class="form-control">
           </div>
           <button type="submit" class="btn btn-primary">Update Data</button>
         </form>
