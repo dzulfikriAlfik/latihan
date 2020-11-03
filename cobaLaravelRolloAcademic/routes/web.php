@@ -13,12 +13,14 @@
 
 // HomePage
 Route::get('/', 'SiteController@home');
+Route::get('/about', 'SiteController@about');
+// Registration
+Route::get('/register', 'SiteController@register');
 // Login
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin');
 // logout
 Route::get('/logout', 'AuthController@logout');
-
 // Group Role Admin
 Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     // siswa
