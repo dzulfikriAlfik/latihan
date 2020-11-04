@@ -87,6 +87,10 @@
               placeholder="Masukan Nama Belakang">
           </div>
           <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Masukan Email">
+          </div>
+          <div class="form-group">
             <label for="jenis_kelamin">Jenis Kelamin</label>
             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
               <option value="L">Laki-laki</option>

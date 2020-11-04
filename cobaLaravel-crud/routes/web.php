@@ -19,10 +19,13 @@ Route::get('/', function () {
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin');
 Route::get('/logout', 'AuthController@logout');
-// Group Hak Akses Admin
-Route::group(['middleware' => 'auth'], function () {
+// Group Hak Akses Superadmin dan siswa
+Route::group(['middleware' => ['auth', 'checkRole:superadmin,siswa']], function () {
     // Dashboard
     Route::get('/dashboard', 'DashboardController@index');
+});
+// Group Hak Akses Superadmin
+Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
     // Siswa
     Route::get('/siswa', 'SiswaController@index');
     Route::post('/siswa/create', 'SiswaController@create');
