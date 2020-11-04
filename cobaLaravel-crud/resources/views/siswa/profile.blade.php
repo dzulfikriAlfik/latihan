@@ -27,7 +27,7 @@
         <div class="profile-stat">
           <div class="row">
             <div class="col-md-4 stat-item">
-              45 <span>Projects</span>
+              {{$siswa->mapel->count()}} <span>Pelajaran</span>
             </div>
             <div class="col-md-4 stat-item">
               15 <span>Awards</span>
@@ -60,15 +60,51 @@
     <!-- END LEFT COLUMN -->
     <!-- RIGHT COLUMN -->
     <div class="profile-right">
-      <h4 class="heading">Samuel's Awards</h4>
+      <h4 class="heading">Daftar Mata Pelajaran</h4>
       <!-- TABBED CONTENT -->
-      <div class="custom-tabs-line tabs-line-bottom left-aligned">
-        <ul class="nav" role="tablist">
-          <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Recent Activity</a></li>
-        </ul>
-      </div>
       <div class="tab-content">
-
+        <div class="panel">
+          <div class="panel-heading">
+            <a href="#" class="btn btn-primary btn-xs">Tambah Pelajaran</a>
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>KODE</th>
+                  <th>MATA PELAJARAN</th>
+                  <th>SEMESTER</th>
+                  <th>NILAI</th>
+                  <th>AKSI</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if ($siswa->mapel->count() > 0)
+                @foreach ($siswa->mapel as $mapel)
+                <tr>
+                  <td>{{$mapel->kode}}</td>
+                  <td>{{$mapel->nama}}</td>
+                  <td>{{$mapel->semester}}</td>
+                  <td>
+                    <a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}"
+                      data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukan Nilai">{{$mapel->pivot->nilai}}
+                    </a>
+                  </td>
+                  <td>
+                    <a href="/siswa/{{$siswa->id}}/{{$mapel->id}}/deletenilai" onclick="return confirm('Yakin?')"
+                      class="btn btn-danger btn-xs">delete</a>
+                  </td>
+                </tr>
+                @endforeach
+                @else
+                <tr>
+                  <td colspan="4" class="text-center">~ Tidak ada data ~</td>
+                </tr>
+                @endif
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <!-- END TABBED CONTENT -->
     </div>

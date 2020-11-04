@@ -20,7 +20,7 @@ class CreateSiswaTabel extends Migration
             $table->string('nama_belakang');
             $table->string('jenis_kelamin');
             $table->string('agama');
-            $table->text('alamat');
+            $table->text('alamat')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

@@ -45,7 +45,7 @@
             <label for="avatar">Avatar</label>
             <input type="file" name="avatar" id="avatar" class="form-control">
           </div>
-          <a href="{{url()->previous()}}" class="btn btn-warning">Back</a>
+          <a href="/siswa" class="btn btn-warning">Back</a>
           <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
       </div>
