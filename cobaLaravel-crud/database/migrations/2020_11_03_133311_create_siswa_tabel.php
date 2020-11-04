@@ -17,7 +17,7 @@ class CreateSiswaTabel extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('nama_depan');
-            $table->string('nama_belakang');
+            $table->string('nama_belakang')->nullable();
             $table->string('jenis_kelamin');
             $table->string('agama');
             $table->text('alamat')->nullable();

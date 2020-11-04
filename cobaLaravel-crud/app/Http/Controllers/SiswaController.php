@@ -20,6 +20,14 @@ class SiswaController extends Controller
 
     public function create(Request $request)
     {
+        // validasi
+        $this->validate($request, [
+            'nama_depan'    => 'required',
+            'email'         => 'required|email|unique:users',
+            'jenis_kelamin' => 'required',
+            'agama'         => 'required',
+            'avatar'        => 'mimes:jpeg,jpg,png,gif'
+        ]);
         // Insert ke Table User
         $user                 = new User;
         $user->role           = 'siswa';
@@ -31,6 +39,11 @@ class SiswaController extends Controller
         // Insert ke Table Siswa
         $request->request->add(['user_id' => $user->id]);
         $siswa = Siswa::create($request->all());
+        if ($request->hasFile('avatar')) {
+            $request->file('avatar')->move('images/', $request->file('avatar')->getClientOriginalName());
+            $siswa->avatar = $request->file('avatar')->getClientOriginalName();
+            $siswa->save();
+        }
         return redirect('/siswa')->with('success', 'Berhasil Tambah Data Siswa');
     }
 
