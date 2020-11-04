@@ -7,9 +7,13 @@ use App\Siswa;
 
 class SiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data_siswa = Siswa::all();
+        if ($request->has('cari')) {
+            $data_siswa = Siswa::where('nama_depan', 'LIKE', '%' . $request->cari . '%')->get();
+        } else {
+            $data_siswa = Siswa::all();
+        }
         return view('siswa.index', compact('data_siswa'));
     }
 
@@ -30,5 +34,12 @@ class SiswaController extends Controller
         $siswa = Siswa::find($id);
         $siswa->update($request->all());
         return redirect('/siswa')->with('success', 'Berhasil Update Data Siswa');
+    }
+
+    public function delete($id)
+    {
+        $siswa = Siswa::find($id);
+        $siswa->delete();
+        return redirect('/siswa')->with('success', 'Berhasil Delete Data Siswa');
     }
 }
