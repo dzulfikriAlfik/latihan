@@ -52,7 +52,7 @@
         </div>
         <div class="text-center">
           <a href="/siswa/{{$siswa->id}}/edit" class="btn btn-primary">Edit Profile</a>
-          <a href="{{url()->previous()}}" class="btn btn-warning">Back</a>
+          <a href="/siswa" class="btn btn-warning">Back</a>
         </div>
       </div>
       <!-- END PROFILE DETAIL -->
@@ -61,11 +61,30 @@
     <!-- RIGHT COLUMN -->
     <div class="profile-right">
       <h4 class="heading">Daftar Mata Pelajaran</h4>
+
+      @if (session('success'))
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">×</span></button>
+        <i class="fa fa-check-circle"></i> {{ session('success') }}
+      </div>
+      @endif
+
+      @if (session('error'))
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">×</span></button>
+        <i class="fa fa-close"></i> {{ session('error') }}
+      </div>
+      @endif
+
       <!-- TABBED CONTENT -->
       <div class="tab-content">
         <div class="panel">
           <div class="panel-heading">
-            <a href="#" class="btn btn-primary btn-xs">Tambah Pelajaran</a>
+            <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addNilai">Tambah
+              Pelajaran
+            </a>
           </div>
           <div class="panel-body">
             <table class="table table-striped">
@@ -98,7 +117,7 @@
                 @endforeach
                 @else
                 <tr>
-                  <td colspan="4" class="text-center">~ Tidak ada data ~</td>
+                  <td colspan="5" class="text-center">~ Tidak ada data ~</td>
                 </tr>
                 @endif
               </tbody>
@@ -112,4 +131,54 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="addNilai" tabindex="-1" role="dialog" aria-labelledby="addNilaiLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addNilaiLabel">Tambah Nilai Mata Pelajaran</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{-- Tambah Nilai Mata Pelajaran --}}
+        <form action="/siswa/{{$siswa->id}}/addnilai" method="POST">
+          {{csrf_field()}}
+          <div class="form-group {{$errors->has('mapel') ? 'has-error' : ''}}">
+            <label for="mapel">Mata Pelajaran</label>
+            <select class="form-control" name="mapel" id="mapel">
+              @foreach($mpel as $matapel)
+              <option value="{{$matapel->id}}">{{$matapel->nama}}</option>
+              @endforeach
+            </select>
+            @if ($errors->has('mapel'))
+            <span class="help-block">{{$errors->first('mapel')}}</span>
+            @endif
+          </div>
+          <div class="form-group {{$errors->has('nilai') ? 'has-error' : ''}}">
+            <label for="nilai">Nilai</label>
+            <input type="text" name="nilai" class="form-control" id="nilai" placeholder="Nilai"
+              value="{{old('nilai')}}">
+            @if ($errors->has('nilai'))
+            <span class="help-block">{{$errors->first('nilai')}}</span>
+            @endif
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('footer')
+<script>
+  @if (count($errors) > 0)
+  $('#addNilai').modal('show');
+  @endif
+</script>
 @endsection
