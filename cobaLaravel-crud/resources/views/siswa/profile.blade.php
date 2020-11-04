@@ -8,12 +8,16 @@
     width: 100px;
     height: 100px
   }
+
+  .tinggi {
+    height: 850px
+  }
 </style>
 @endsection
 
 @section('content')
 
-<div class="panel panel-profile" style="height: 600px">
+<div class="panel panel-profile tinggi">
   <div class="clearfix">
     <!-- LEFT COLUMN -->
     <div class="profile-left">
@@ -126,6 +130,16 @@
         </div>
       </div>
       <!-- END TABBED CONTENT -->
+      {{-- Highchart --}}
+
+      <div class="tab-content">
+        <div class="panel">
+          <div class="panel-heading">
+            <div id="chartSiswa"></div>
+          </div>
+        </div>
+      </div>
+      {{-- End Highchart --}}
     </div>
     <!-- END RIGHT COLUMN -->
   </div>
@@ -176,9 +190,46 @@
 @endsection
 
 @section('footer')
+<script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
   @if (count($errors) > 0)
   $('#addNilai').modal('show');
   @endif
+
+  // Highchart
+  Highcharts.chart('chartSiswa', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Laporan Nilai Siswa'
+    },
+    xAxis: {
+        categories: {!!json_encode($categories)!!},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Nilai'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Nilai',
+        data: {!!json_encode($data)!!}
+    }]
+  });
 </script>
 @endsection
