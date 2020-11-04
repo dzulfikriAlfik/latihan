@@ -43,7 +43,7 @@
             @foreach ($data_siswa as $siswa)
             <tr>
               <td class="text-center">{{$loop->iteration}}</td>
-              <td>{{$siswa->nama_depan . ' ' . $siswa->nama_belakang}}</td>
+              <td><a href="/siswa/{{$siswa->id}}/profile">{{$siswa->nama_depan . ' ' . $siswa->nama_belakang}}</a></td>
               <td class="text-center">{{$siswa->jenis_kelamin}}</td>
               <td>{{$siswa->agama}}</td>
               <td>{{$siswa->alamat}}</td>

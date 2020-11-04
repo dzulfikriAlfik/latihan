@@ -13,7 +13,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <form action="/siswa/{{$siswa->id}}/update" method="POST">
+        <form action="/siswa/{{$siswa->id}}/update" method="POST" enctype="multipart/form-data">
           {{csrf_field()}}
           <div class="form-group">
             <label for="nama_depan">Nama Depan</label>
@@ -40,6 +40,10 @@
           <div class="form-group">
             <label for="alamat">Alamat</label>
             <textarea name="alamat" id="aalamat" rows="3" class="form-control">{{$siswa->alamat}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="avatar">Avatar</label>
+            <input type="file" name="avatar" id="avatar" class="form-control">
           </div>
           <a href="{{url()->previous()}}" class="btn btn-warning">Back</a>
           <button type="submit" class="btn btn-primary">Save changes</button>
