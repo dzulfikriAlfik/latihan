@@ -3,7 +3,6 @@
 @section('title', 'Daftar Siswa')
 
 @section('content')
-
 @if (session('success'))
 <div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -36,6 +35,7 @@
               <th class="text-center">JENIS KELAMIN</th>
               <th class="text-center">AGAMA</th>
               <th class="text-center">ALAMAT</th>
+              <th class="text-center">RATA NILAI</th>
               <th class="text-center">AKSI</th>
             </tr>
           </thead>
@@ -43,10 +43,11 @@
             @foreach ($data_siswa as $siswa)
             <tr>
               <td class="text-center">{{$loop->iteration}}</td>
-              <td><a href="/siswa/{{$siswa->id}}/profile">{{$siswa->nama_depan . ' ' . $siswa->nama_belakang}}</a></td>
+              <td><a href="/siswa/{{$siswa->id}}/profile">{{$siswa->nama_lengkap()}}</a></td>
               <td class="text-center">{{$siswa->jenis_kelamin}}</td>
               <td>{{$siswa->agama}}</td>
               <td>{{$siswa->alamat}}</td>
+              <td class="text-center">{{$siswa->rataNilai()}}</td>
               <td class="text-center">
                 <a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning btn-xs">Edit</a>
                 <a href="/siswa/{{$siswa->user_id}}/delete" onclick="return confirm('Yakin?')"

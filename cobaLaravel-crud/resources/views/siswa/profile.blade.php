@@ -18,7 +18,6 @@
 @endsection
 
 @section('content')
-
 <div class="panel panel-profile tinggi">
   <div class="clearfix">
     <!-- LEFT COLUMN -->
@@ -28,18 +27,15 @@
         <div class="overlay"></div>
         <div class="profile-main">
           <img src="{{$siswa->getAvatar()}}" class="img-circle profile" alt="Avatar">
-          <h3 class="name">{{$siswa->nama_depan . ' ' . $siswa->nama_belakang}}</h3>
+          <h3 class="name">{{$siswa->nama_lengkap()}}</h3>
         </div>
         <div class="profile-stat">
           <div class="row">
-            <div class="col-md-4 stat-item">
+            <div class="col-md-6 stat-item">
               {{$siswa->mapel->count()}} <span>Pelajaran</span>
             </div>
-            <div class="col-md-4 stat-item">
-              15 <span>Awards</span>
-            </div>
-            <div class="col-md-4 stat-item">
-              2174 <span>Points</span>
+            <div class="col-md-6 stat-item">
+              {{$siswa->rataNilai()}} <span>Rata-rata Nilai</span>
             </div>
           </div>
         </div>
@@ -50,7 +46,7 @@
         <div class="profile-info">
           <h4 class="heading">Profile Singkat</h4>
           <ul class="list-unstyled list-justify">
-            <li>Nama Lengkap <span>{{$siswa->nama_depan . ' ' . $siswa->nama_belakang}}</span></li>
+            <li>Nama Lengkap <span>{{$siswa->nama_lengkap()}}</span></li>
             <li>Jenis Kelamin <span>{{$siswa->jenis_kelamin == 'P' ? 'Perempuan' : 'Laki-laki'}}</span></li>
             <li>Agama <span>{{$siswa->agama}}</span></li>
             <li>Alamat <span>{{$siswa->alamat}}</span></li>
@@ -135,7 +131,6 @@
       </div>
       <!-- END TABBED CONTENT -->
       {{-- Highchart --}}
-
       <div class="tab-content">
         <div class="panel">
           <div class="panel-heading">

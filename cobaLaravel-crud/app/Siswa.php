@@ -21,4 +21,24 @@ class Siswa extends Model
     {
         return $this->belongsToMany(Mapel::class)->withPivot(['nilai'])->withTimestamps();
     }
+
+    public function rataNilai()
+    {
+        // ambil nilai
+        $total  = 0;
+        $hitung = 0;
+        foreach ($this->mapel as $mapel) {
+            $total += $mapel->pivot->nilai;
+            $hitung++;
+        }
+        if ($hitung != 0) {
+            return round($total / $hitung);
+        }
+        return 0;
+    }
+
+    public function nama_lengkap()
+    {
+        return $this->nama_depan . ' ' . $this->nama_belakang;
+    }
 }
