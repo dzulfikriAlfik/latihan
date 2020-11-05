@@ -31,36 +31,33 @@ class MapelController extends Controller
         return redirect('/mapel')->with('success', 'Berhasil Tambah Data Mapel');
     }
 
-    public function edit($id)
+    public function edit(Mapel $mapel)
     {
-        $mapel     = Mapel::find($id);
         $data_guru = Guru::all();
         return view('mapel.edit', compact(['mapel', 'data_guru']));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Mapel $mapel)
     {
         // validasi
         $this->validate($request, [
             'kode' => [
                 'required',
-                Rule::unique('mapel')->ignore($id, 'id')
+                Rule::unique('mapel')->ignore($mapel->id, 'id')
             ],
             'nama' => [
                 'required',
-                Rule::unique('mapel')->ignore($id, 'id')
+                Rule::unique('mapel')->ignore($mapel->id, 'id')
             ],
             'guru_id' => 'required',
         ]);
 
-        $mapel = Mapel::find($id);
         $mapel->update($request->all());
         return redirect('/mapel')->with('success', 'Berhasil Update Data Mapel');
     }
 
-    public function delete($id)
+    public function delete(Mapel $mapel)
     {
-        $mapel = Mapel::find($id);
         $mapel->delete();
         return redirect('/mapel')->with('success', 'Berhasil Delete Data Mapel');
     }

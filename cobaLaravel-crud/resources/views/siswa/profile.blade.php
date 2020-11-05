@@ -63,23 +63,6 @@
     <!-- RIGHT COLUMN -->
     <div class="profile-right">
       <h4 class="heading">Daftar Mata Pelajaran</h4>
-
-      @if (session('success'))
-      <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-            aria-hidden="true">×</span></button>
-        <i class="fa fa-check-circle"></i> {{ session('success') }}
-      </div>
-      @endif
-
-      @if (session('error'))
-      <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-            aria-hidden="true">×</span></button>
-        <i class="fa fa-close"></i> {{ session('error') }}
-      </div>
-      @endif
-
       <!-- TABBED CONTENT -->
       <div class="tab-content">
         <div class="panel">
@@ -114,8 +97,9 @@
                   </td>
                   <td><a href="/guru/{{$mapel->guru_id}}/profile">{{$mapel->guru->nama}}</a></td>
                   <td>
-                    <a href="/siswa/{{$siswa->id}}/{{$mapel->id}}/deletenilai" onclick="return confirm('Yakin?')"
-                      class="btn btn-danger btn-xs">delete</a>
+                    <a href="/siswa/{{$siswa->id}}/{{$mapel->id}}/deletenilai"
+                      class="btn btn-danger btn-xs tombolDelete" mapel_id="{{$mapel->id}}"
+                      mapel_nama="{{$mapel->nama}}">delete</a>
                   </td>
                 </tr>
                 @endforeach
@@ -236,6 +220,29 @@
   // X Editable Nilai
   $(document).ready(function() {
     $('.nilai').editable();
+  });
+
+  // swal
+  $('.tombolDelete').click(function(e) {
+    e.preventDefault();
+    const href       = $(this).attr('href');
+    const mapel_nama = $(this).attr('mapel_nama');
+    const mapel_id   = $(this).attr('mapel_id');
+
+    swal({
+    title: "Yakin?",
+    text: "Menghapus data " + mapel_nama + "?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true
+    })
+    .then((result) => {
+      if (result) {
+        window.location = href
+      } else {
+        // 
+      }
+    });
   });
 </script>
 @endsection

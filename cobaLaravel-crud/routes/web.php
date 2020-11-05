@@ -29,29 +29,29 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
     // Siswa
     Route::get('/siswa', 'SiswaController@index');
     Route::post('/siswa/create', 'SiswaController@create');
-    Route::get('/siswa/{id}/edit', 'SiswaController@edit');
-    Route::post('/siswa/{id}/update', 'SiswaController@update');
+    Route::get('/siswa/{siswa}/edit', 'SiswaController@edit');
+    Route::post('/siswa/{siswa}/update', 'SiswaController@update');
     Route::get('/siswa/{id}/delete', 'SiswaController@delete');
-    Route::get('/siswa/{id}/profile', 'SiswaController@profile');
-    Route::post('/siswa/{id}/addnilai', 'SiswaController@addnilai');
-    Route::get('/siswa/{id}/{idmapel}/deletenilai', 'SiswaController@deletenilai');
+    Route::get('/siswa/{siswa}/profile', 'SiswaController@profile');
+    Route::post('/siswa/{siswa}/addnilai', 'SiswaController@addnilai');
+    Route::get('/siswa/{siswa}/{idmapel}/deletenilai', 'SiswaController@deletenilai');
     Route::get('/siswa/exportExcel', 'SiswaController@exportExcel');
     Route::get('/siswa/exportPdf', 'SiswaController@exportPdf');
     // Guru
     Route::get('/guru', 'GuruController@index');
     Route::post('/guru/create', 'GuruController@create');
-    Route::get('/guru/{id}/profile', 'GuruController@profile');
-    Route::get('/guru/{id}/edit', 'GuruController@edit');
-    Route::post('/guru/{id}/update', 'GuruController@update');
-    Route::get('/guru/{id}/delete', 'GuruController@delete');
+    Route::get('/guru/{guru}/profile', 'GuruController@profile');
+    Route::get('/guru/{guru}/edit', 'GuruController@edit');
+    Route::post('/guru/{guru}/update', 'GuruController@update');
+    Route::get('/guru/{guru}/delete', 'GuruController@delete');
     Route::get('/guru/exportExcel', 'GuruController@exportExcel');
     Route::get('/guru/exportPdf', 'GuruController@exportPdf');
     // Mata Pelajaran
     Route::get('/mapel', 'MapelController@index');
     Route::post('/mapel/create', 'MapelController@create');
-    Route::get('/mapel/{id}/edit', 'MapelController@edit');
-    Route::post('/mapel/{id}/update', 'MapelController@update');
-    Route::get('/mapel/{id}/delete', 'MapelController@delete');
+    Route::get('/mapel/{mapel}/edit', 'MapelController@edit');
+    Route::post('/mapel/{mapel}/update', 'MapelController@update');
+    Route::get('/mapel/{mapel}/delete', 'MapelController@delete');
     Route::get('/mapel/exportExcel', 'MapelController@exportExcel');
     Route::get('/mapel/exportPdf', 'MapelController@exportPdf');
 });

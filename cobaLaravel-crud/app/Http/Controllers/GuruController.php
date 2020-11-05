@@ -29,19 +29,17 @@ class GuruController extends Controller
         return redirect('/guru')->with('success', 'Berhasil Tambah Data Guru');
     }
 
-    public function profile($id)
+    public function profile(Guru $guru)
     {
-        $guru = Guru::find($id);
         return view('guru.profile', compact('guru'));
     }
 
-    public function edit($id)
+    public function edit(Guru $guru)
     {
-        $guru = Guru::find($id);
         return view('guru.edit', compact('guru'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Guru $guru)
     {
         // validasi
         $this->validate($request, [
@@ -49,14 +47,12 @@ class GuruController extends Controller
             'telpon' => 'required|numeric',
             'alamat' => 'required',
         ]);
-        $guru = Guru::find($id);
         $guru->update($request->all());
         return redirect('/guru')->with('success', 'Berhasil Update Data Guru');
     }
 
-    public function delete($id)
+    public function delete(Guru $guru)
     {
-        $guru = Guru::find($id);
         $guru->delete();
         return redirect('/guru')->with('success', 'Berhasil Delete Data Guru');
     }
