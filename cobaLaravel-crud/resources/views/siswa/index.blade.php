@@ -49,7 +49,7 @@
               <td>{{$siswa->alamat}}</td>
               <td class="text-center">
                 <a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning btn-xs">Edit</a>
-                <a href="/siswa/{{$siswa->id}}/delete" onclick="return confirm('Yakin?')"
+                <a href="/siswa/{{$siswa->user_id}}/delete" onclick="return confirm('Yakin?')"
                   class="btn btn-danger btn-xs">Delete</a>
               </td>
             </tr>

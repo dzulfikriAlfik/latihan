@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Siswa;
 use App\User;
 use App\Mapel;
@@ -70,8 +71,10 @@ class SiswaController extends Controller
 
     public function delete($id)
     {
-        $siswa = Siswa::find($id);
-        $siswa->delete();
+        // $siswa = Siswa::find($id);
+        // $siswa->delete();
+        DB::table('siswa')->where('user_id', $id)->delete();
+        DB::table('users')->where('id', $id)->delete();
         return redirect('/siswa')->with('success', 'Berhasil Delete Data Siswa');
     }
 
