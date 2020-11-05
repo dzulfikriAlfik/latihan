@@ -21,6 +21,9 @@
         <a class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#siswaModal">
           Tambah Siswa
         </a>
+        <a href="/siswa/export" class="btn btn-success btn-sm float-right">
+          Export Excel
+        </a>
       </div>
     </div>
   </div>

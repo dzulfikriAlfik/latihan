@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\SiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Siswa;
 use App\User;
 use App\Mapel;
@@ -117,5 +119,10 @@ class SiswaController extends Controller
         $siswa = Siswa::find($idsiswa);
         $siswa->mapel()->detach($idmapel);
         return redirect()->back()->with('success', 'Berhasil Delete Data Nilai');
+    }
+
+    public function export()
+    {
+        return Excel::download(new SiswaExport, 'Siswa.xlsx');
     }
 }
