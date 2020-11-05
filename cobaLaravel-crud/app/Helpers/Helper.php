@@ -2,6 +2,7 @@
 
 use App\Siswa;
 use App\Guru;
+use App\Mapel;
 
 function getRanking5Besar()
 {
@@ -21,4 +22,8 @@ function totalSiswa() {
 
 function totalGuru() {
   return Guru::count();
+}
+
+function totalMapel() {
+  return Mapel::count();
 }

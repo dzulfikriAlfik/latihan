@@ -38,5 +38,20 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
     Route::get('/siswa/exportExcel', 'SiswaController@exportExcel');
     Route::get('/siswa/exportPdf', 'SiswaController@exportPdf');
     // Guru
+    Route::get('/guru', 'GuruController@index');
+    Route::post('/guru/create', 'GuruController@create');
     Route::get('/guru/{id}/profile', 'GuruController@profile');
+    Route::get('/guru/{id}/edit', 'GuruController@edit');
+    Route::post('/guru/{id}/update', 'GuruController@update');
+    Route::get('/guru/{id}/delete', 'GuruController@delete');
+    Route::get('/guru/exportExcel', 'GuruController@exportExcel');
+    Route::get('/guru/exportPdf', 'GuruController@exportPdf');
+    // Mata Pelajaran
+    Route::get('/mapel', 'MapelController@index');
+    Route::post('/mapel/create', 'MapelController@create');
+    Route::get('/mapel/{id}/edit', 'MapelController@edit');
+    Route::post('/mapel/{id}/update', 'MapelController@update');
+    Route::get('/mapel/{id}/delete', 'MapelController@delete');
+    Route::get('/mapel/exportExcel', 'MapelController@exportExcel');
+    Route::get('/mapel/exportPdf', 'MapelController@exportPdf');
 });

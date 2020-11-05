@@ -3,18 +3,18 @@
 @section('title', 'Dashboard')
 
 @section('content')
-{{-- Jumlah siswa dan guru --}}
+{{-- Statistik --}}
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-headline">
       <div class="panel-heading">
         <div class="row">
-          <h2 class="panel-title text-center">Total Siswa dan Guru</h2>
+          <h2 class="panel-title text-center">Statistik Sekolah</h2>
         </div>
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="metric">
               <span class="icon"><i class="fa fa-child"></i></span>
               <p>
@@ -23,7 +23,7 @@
               </p>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="metric">
               <span class="icon"><i class="fa fa-users"></i></span>
               <p>
@@ -32,12 +32,21 @@
               </p>
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="metric">
+              <span class="icon"><i class="fa fa-book"></i></span>
+              <p>
+                <span class="number">{{totalMapel()}}</span>
+                <span class="title">Total Mata Pelajaran</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-{{-- Jumlah siswa dan guru --}}
+{{-- Statistik --}}
 
 {{-- Ranking 5 Besar --}}
 <div class="row">

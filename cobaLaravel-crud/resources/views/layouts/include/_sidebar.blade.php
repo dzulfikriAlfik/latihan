@@ -13,6 +13,12 @@
           <a href="/siswa" class="{{ request()->segment(1) == 'siswa' ? 'active' : '' }}"><i class="lnr lnr-users"></i>
             <span>Siswa</span>
           </a>
+          <a href="/guru" class="{{ request()->segment(1) == 'guru' ? 'active' : '' }}"><i class="lnr lnr-user"></i>
+            <span>Guru</span>
+          </a>
+          <a href="/mapel" class="{{ request()->segment(1) == 'mapel' ? 'active' : '' }}"><i class="lnr lnr-book"></i>
+            <span>Mata Pelajaran</span>
+          </a>
         </li>
         @endif
       </ul>

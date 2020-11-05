@@ -24,7 +24,7 @@
         <a href="/siswa/exportExcel" class="btn btn-success btn-sm float-right">
           Export Excel
         </a>
-        <a href="/siswa/exportPdf" class="btn btn-default btn-sm float-right">
+        <a href="/siswa/exportPdf" target="_blank" class="btn btn-default btn-sm float-right">
           Export PDF
         </a>
       </div>
