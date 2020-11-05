@@ -3,9 +3,45 @@
 @section('title', 'Dashboard')
 
 @section('content')
+{{-- Jumlah siswa dan guru --}}
 <div class="row">
-  {{-- Ranking 5 Besar --}}
-  <div class="col-md-6">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <div class="row">
+          <h2 class="panel-title text-center">Total Siswa dan Guru</h2>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="metric">
+              <span class="icon"><i class="fa fa-child"></i></span>
+              <p>
+                <span class="number">{{totalSiswa()}}</span>
+                <span class="title">Total Siswa</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="metric">
+              <span class="icon"><i class="fa fa-users"></i></span>
+              <p>
+                <span class="number">{{totalGuru()}}</span>
+                <span class="title">Total Guru</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- Jumlah siswa dan guru --}}
+
+{{-- Ranking 5 Besar --}}
+<div class="row">
+  <div class="col-md-12">
     <div class="panel panel-headline">
       <div class="panel-heading">
         <div class="row">
@@ -38,40 +74,6 @@
       </div>
     </div>
   </div>
-  {{-- Ranking 5 Besar --}}
-
-  {{-- Jumlah siswa dan guru --}}
-  <div class="col-md-6">
-    <div class="panel panel-headline">
-      <div class="panel-heading">
-        <div class="row">
-          <h2 class="panel-title text-center">Total Siswa dan Guru</h2>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="metric">
-              <span class="icon"><i class="fa fa-child"></i></span>
-              <p>
-                <span class="number">{{totalSiswa()}}</span>
-                <span class="title">Total Siswa</span>
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="metric">
-              <span class="icon"><i class="fa fa-users"></i></span>
-              <p>
-                <span class="number">{{totalGuru()}}</span>
-                <span class="title">Total Guru</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{-- Jumlah siswa dan guru --}}
 </div>
+{{-- Ranking 5 Besar --}}
 @endsection
