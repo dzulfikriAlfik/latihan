@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMapelTabel extends Migration
+class CreateGuruTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateMapelTabel extends Migration
      */
     public function up()
     {
-        Schema::create('mapel', function (Blueprint $table) {
+        Schema::create('guru', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kode', 255);
-            $table->string('nama', 255);
-            $table->string('semester', 45);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ class CreateMapelTabel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mapel');
+        Schema::dropIfExists('guru');
     }
 }
