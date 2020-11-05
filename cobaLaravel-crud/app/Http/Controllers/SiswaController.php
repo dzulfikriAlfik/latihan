@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Exports\SiswaExport;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 use App\Siswa;
 use App\User;
 use App\Mapel;
@@ -121,8 +122,15 @@ class SiswaController extends Controller
         return redirect()->back()->with('success', 'Berhasil Delete Data Nilai');
     }
 
-    public function export()
+    public function exportExcel()
     {
         return Excel::download(new SiswaExport, 'Siswa.xlsx');
+    }
+
+    public function exportPdf()
+    {
+        $siswa = Siswa::all();
+        $pdf   = PDF::loadView('siswa.exportPdf', compact('siswa'));
+        return $pdf->download('Siswa.pdf');
     }
 }

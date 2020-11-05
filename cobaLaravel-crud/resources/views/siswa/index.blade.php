@@ -21,8 +21,11 @@
         <a class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#siswaModal">
           Tambah Siswa
         </a>
-        <a href="/siswa/export" class="btn btn-success btn-sm float-right">
+        <a href="/siswa/exportExcel" class="btn btn-success btn-sm float-right">
           Export Excel
+        </a>
+        <a href="/siswa/exportPdf" class="btn btn-default btn-sm float-right">
+          Export PDF
         </a>
       </div>
     </div>
@@ -47,7 +50,7 @@
             <tr>
               <td class="text-center">{{$loop->iteration}}</td>
               <td><a href="/siswa/{{$siswa->id}}/profile">{{$siswa->nama_lengkap()}}</a></td>
-              <td class="text-center">{{$siswa->jenis_kelamin}}</td>
+              <td class="text-center">{{$siswa->getJenisKelamin()}}</td>
               <td>{{$siswa->agama}}</td>
               <td>{{$siswa->alamat}}</td>
               <td class="text-center">{{$siswa->rataNilai()}}</td>

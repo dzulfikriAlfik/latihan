@@ -41,4 +41,9 @@ class Siswa extends Model
     {
         return $this->nama_depan . ' ' . $this->nama_belakang;
     }
+
+    public function getJenisKelamin()
+    {
+        return $this->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan';
+    }
 }
