@@ -60,7 +60,29 @@
   <script src="{{asset('admin/assets')}}/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
   <script src="{{asset('admin/assets')}}/vendor/chartist/js/chartist.min.js"></script>
   <script src="{{asset('admin/assets')}}/scripts/klorofil-common.js"></script>
+  {{-- Sweet Alert --}}
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   @yield('footer')
+  <script>
+    @if(Session::has('success'))
+        swal({
+          title  : "{{Session::get('success')}}",
+          text   : "Aplikasi Pengelolaan Data Siswa",
+          buttons: false,
+          icon   : "success",
+          timer  : 2000
+        });
+		@endif
+		@if(Session::has('error'))
+        swal({
+          title  : "Error",
+          text   : "{{Session::get('error')}}",
+          buttons: false,
+          icon   : "error",
+          timer  : 2000
+        });
+		@endif
+  </script>
 </body>
 
 </html>

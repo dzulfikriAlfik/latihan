@@ -3,13 +3,6 @@
 @section('title', 'Daftar Guru')
 
 @section('content')
-@if (session('success'))
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-  <i class="fa fa-check-circle"></i> {{ session('success') }}
-</div>
-@endif
-
 <!-- OVERVIEW -->
 <div class="panel panel-headline">
   <div class="panel-heading">
@@ -52,8 +45,8 @@
               <td>{{$guru->alamat}}</td>
               <td class="text-center">
                 <a href="/guru/{{$guru->id}}/edit" class="btn btn-warning btn-xs">Edit</a>
-                <a href="/guru/{{$guru->id}}/delete" onclick="return confirm('Yakin?')"
-                  class="btn btn-danger btn-xs">Delete</a>
+                <a href="/guru/{{$guru->id}}/delete" class="btn btn-danger btn-xs tombolDelete" guru_id="{{$guru->id}}"
+                  guru_nama="{{$guru->nama}}">Delete</a>
               </td>
             </tr>
             @endforeach
@@ -118,5 +111,27 @@
   @if (count($errors) > 0)
   $('#guruModal').modal('show');
   @endif
+
+  $('.tombolDelete').click(function(e) {
+    e.preventDefault();
+    const href      = $(this).attr('href');
+    const guru_nama = $(this).attr('guru_nama');
+    const guru_id   = $(this).attr('guru_id');
+
+    swal({
+    title: "Yakin?",
+    text: "Menghapus data " + guru_nama + "?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true
+    })
+    .then((result) => {
+      if (result) {
+        window.location = href
+      } else {
+        // 
+      }
+    });
+  });
 </script>
 @endsection

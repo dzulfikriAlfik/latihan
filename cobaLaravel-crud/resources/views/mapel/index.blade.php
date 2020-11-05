@@ -3,13 +3,6 @@
 @section('title', 'Daftar Mata Pelajaran')
 
 @section('content')
-@if (session('success'))
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-  <i class="fa fa-check-circle"></i> {{ session('success') }}
-</div>
-@endif
-
 <!-- OVERVIEW -->
 <div class="panel panel-headline">
   <div class="panel-heading">
@@ -54,8 +47,8 @@
               <td>{{$mapel->guru->nama}}</td>
               <td class="text-center">
                 <a href="/mapel/{{$mapel->id}}/edit" class="btn btn-warning btn-xs">Edit</a>
-                <a href="/mapel/{{$mapel->id}}/delete" onclick="return confirm('Yakin?')"
-                  class="btn btn-danger btn-xs">Delete</a>
+                <a href="/mapel/{{$mapel->id}}/delete" class="btn btn-danger btn-xs tombolDelete"
+                  mapel_id="{{$mapel->id}}" mapel_nama="{{$mapel->nama}}">Delete</a>
               </td>
             </tr>
             @endforeach
@@ -136,5 +129,27 @@
   @if (count($errors) > 0)
   $('#mapelModal').modal('show');
   @endif
+
+  $('.tombolDelete').click(function(e) {
+    e.preventDefault();
+    const href       = $(this).attr('href');
+    const mapel_nama = $(this).attr('mapel_nama');
+    const mapel_id   = $(this).attr('mapel_id');
+
+    swal({
+    title: "Yakin?",
+    text: "Menghapus data " + mapel_nama + "?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true
+    })
+    .then((result) => {
+      if (result) {
+        window.location = href
+      } else {
+        // 
+      }
+    });
+  });
 </script>
 @endsection

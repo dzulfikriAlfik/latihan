@@ -35,22 +35,6 @@
                 <p class="lead">Login Aplikasi Siswa</p>
               </div>
 
-              @if (session('success'))
-              <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">×</span></button>
-                <i class="fa fa-check-circle"></i> {{ session('success') }}
-              </div>
-              @endif
-
-              @if (session('error'))
-              <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">×</span></button>
-                <i class="fa fa-close"></i> {{ session('error') }}
-              </div>
-              @endif
-
               <form class="form-auth-small" action="/postlogin" method="POST">
                 {{csrf_field()}}
                 <div class="form-group">
@@ -84,6 +68,28 @@
   <!-- Javascript -->
   <script src="{{asset('admin/assets')}}/vendor/jquery/jquery.min.js"></script>
   <script src="{{asset('admin/assets')}}/vendor/bootstrap/js/bootstrap.min.js"></script>
+  {{-- Sweet Alert --}}
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    @if(Session::has('success'))
+      swal({
+        title: "Sukses",
+        text: "{{Session::get('success')}}",
+        buttons: false,
+        icon: "success",
+        timer: 2000
+      });
+		@endif
+		@if(Session::has('error'))
+      swal({
+        title: "Error",
+        text: "{{Session::get('error')}}",
+        buttons: false,
+        icon: "error",
+        timer: 2000
+      });
+		@endif
+  </script>
 </body>
 
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
 
 class AuthController extends Controller
 {
@@ -14,8 +15,9 @@ class AuthController extends Controller
 
     public function postlogin(Request $request)
     {
+        $user = User::whereEmail($request->email)->first();
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect('/dashboard');
+            return redirect('/dashboard')->with('success', 'Selamat Datang ' . $user->name);
         }
         return redirect('/login')->with('error', 'Email dan Password tidak cocok!');
     }
