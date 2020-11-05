@@ -3,6 +3,8 @@
 @section('title', 'Profile Siswa')
 
 @section('header')
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+  rel="stylesheet" />
 <style>
   .profile {
     width: 100px;
@@ -191,6 +193,8 @@
 
 @section('footer')
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js">
+</script>
 <script>
   @if (count($errors) > 0)
   $('#addNilai').modal('show');
@@ -230,6 +234,11 @@
         name: 'Nilai',
         data: {!!json_encode($data)!!}
     }]
+  });
+
+  // X Editable Nilai
+  $(document).ready(function() {
+    $('.nilai').editable();
   });
 </script>
 @endsection
