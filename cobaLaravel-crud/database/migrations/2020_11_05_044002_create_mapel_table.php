@@ -18,6 +18,7 @@ class CreateMapelTable extends Migration
             $table->string('kode', 255);
             $table->string('nama', 255);
             $table->string('semester', 45);
+            $table->integer('guru_id');
             $table->timestamps();
         });
     }

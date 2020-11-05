@@ -35,4 +35,6 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
     Route::get('/siswa/{id}/profile', 'SiswaController@profile');
     Route::post('/siswa/{id}/addnilai', 'SiswaController@addnilai');
     Route::get('/siswa/{id}/{idmapel}/deletenilai', 'SiswaController@deletenilai');
+    // Guru
+    Route::get('/guru/{id}/profile', 'GuruController@profile');
 });

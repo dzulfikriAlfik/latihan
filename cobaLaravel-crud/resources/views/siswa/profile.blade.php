@@ -100,6 +100,7 @@
                   <th>MATA PELAJARAN</th>
                   <th>SEMESTER</th>
                   <th>NILAI</th>
+                  <th>GURU</th>
                   <th>AKSI</th>
                 </tr>
               </thead>
@@ -115,6 +116,7 @@
                       data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukan Nilai">{{$mapel->pivot->nilai}}
                     </a>
                   </td>
+                  <td><a href="/guru/{{$mapel->guru_id}}/profile">{{$mapel->guru->nama}}</a></td>
                   <td>
                     <a href="/siswa/{{$siswa->id}}/{{$mapel->id}}/deletenilai" onclick="return confirm('Yakin?')"
                       class="btn btn-danger btn-xs">delete</a>
