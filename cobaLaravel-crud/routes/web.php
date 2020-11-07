@@ -12,9 +12,7 @@
 */
 
 // Homepage
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'SiteController@home');
 // Login
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin');
