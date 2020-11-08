@@ -13,6 +13,7 @@
 
 // Homepage
 Route::get('/', 'SiteController@home');
+Route::get('/about', 'SiteController@about');
 // Login
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin');
