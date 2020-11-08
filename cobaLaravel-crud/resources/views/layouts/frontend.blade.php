@@ -15,7 +15,7 @@
   <!-- meta character set -->
   <meta charset="UTF-8">
   <!-- Site Title -->
-  <title>@yield('title')</title>
+  <title>{{ config('sekolah.title') }}</title>
   @yield('header')
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
@@ -40,17 +40,16 @@
         <div class="row">
           <div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
             <ul>
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+              <li><a href="{{ config('sekolah.url_facebook') }}"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="{{ config('sekolah.url_twitter') }}"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="{{ config('sekolah.url_instagram') }}"><i class="fa fa-instagram"></i></a></li>
             </ul>
           </div>
           <div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-            <a href="tel:+953 012 3654 896"><span class="lnr lnr-phone-handset"></span> <span class="text">+953 012 3654
-                896</span></a>
-            <a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span> <span
-                class="text">support@colorlib.com</span></a>
+            <a href="tel:{{ config('sekolah.telpon') }}"><span class="lnr lnr-phone-handset"></span> <span
+                class="text">{{ config('sekolah.telpon') }}</span></a>
+            <a href="mailto:{{ config('sekolah.email') }}"><span class="lnr lnr-envelope"></span> <span
+                class="text">{{ config('sekolah.email') }}</span></a>
           </div>
         </div>
       </div>
