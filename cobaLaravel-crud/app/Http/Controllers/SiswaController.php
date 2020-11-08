@@ -36,7 +36,7 @@ class SiswaController extends Controller
         // Insert ke Table User
         $user                 = new User;
         $user->role           = 'siswa';
-        $user->name           = $request->nama_depan;
+        $user->name           = $request->nama_depan . ' ' . $request->nama_belakang;
         $user->email          = $request->email;
         $user->password       = bcrypt('rahasia');
         $user->remember_token = str_random(60);

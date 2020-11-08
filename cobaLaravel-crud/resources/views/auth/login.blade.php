@@ -48,6 +48,8 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
               </form>
+              <br>
+              <a href="/" class="btn btn-default btn-lg btn-block">Home Page</a>
             </div>
           </div>
           <div class="right">
