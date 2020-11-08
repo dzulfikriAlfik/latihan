@@ -1,3 +1,8 @@
+@if (Auth::check())
+<script>
+  window.location = "/dashboard";
+</script>
+@else
 @extends('layouts.frontend')
 
 @section('title', 'Register Page')
@@ -54,3 +59,4 @@
   </div>
 </section>
 @endsection
+@endif

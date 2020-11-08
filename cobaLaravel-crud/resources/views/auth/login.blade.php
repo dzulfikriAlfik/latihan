@@ -1,3 +1,8 @@
+@if (Auth::check())
+<script>
+  window.location = "/dashboard";
+</script>
+@else
 <!doctype html>
 <html lang="en" class="fullscreen-bg">
 
@@ -95,3 +100,4 @@
 </body>
 
 </html>
+@endif

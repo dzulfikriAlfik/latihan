@@ -61,6 +61,7 @@
         </div>
         <nav id="nav-menu-container">
           <ul class="nav-menu">
+            @if(!auth()->user())
             <li><a href="/">Home</a></li>
             <li><a href="/register">Register</a></li>
             <li><a href="/login">Login</a></li>
@@ -70,6 +71,10 @@
                 <li><a href="blog-single.html">Blog Single</a></li>
               </ul>
             </li> --}}
+            @else
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Logout</a></li>
+            @endif
           </ul>
         </nav><!-- #nav-menu-container -->
       </div>

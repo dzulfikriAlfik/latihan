@@ -54,4 +54,11 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
     Route::get('/mapel/{mapel}/delete', 'MapelController@delete');
     Route::get('/mapel/exportExcel', 'MapelController@exportExcel');
     Route::get('/mapel/exportPdf', 'MapelController@exportPdf');
+    // Post
+    Route::get('/posts', 'PostController@index');
 });
+// Slug Berita
+Route::get('/{slug}', [
+    'uses' => 'SiteController@singlepost',
+    'as'   => 'site.single.post'
+]);
