@@ -62,6 +62,7 @@
   <script src="{{asset('admin/assets')}}/scripts/klorofil-common.js"></script>
   {{-- Sweet Alert --}}
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="{{ asset('frontend/ckeditor/ckeditor.js') }}"></script>
   @yield('footer')
   <script>
     @if(Session::has('success'))

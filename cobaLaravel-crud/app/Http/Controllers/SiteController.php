@@ -11,7 +11,8 @@ class SiteController extends Controller
 {
     public function home()
     {
-        return view('site.home');
+        $posts = Post::all();
+        return view('site.home', compact(['posts']));
     }
 
     public function register()

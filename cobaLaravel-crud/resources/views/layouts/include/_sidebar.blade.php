@@ -19,7 +19,7 @@
           <a href="/mapel" class="{{ request()->segment(1) == 'mapel' ? 'active' : '' }}"><i class="lnr lnr-book"></i>
             <span>Mata Pelajaran</span>
           </a>
-          <a href="/posts" class="{{ request()->segment(1) == 'post' ? 'active' : '' }}"><i class="lnr lnr-pencil"></i>
+          <a href="/posts" class="{{ request()->segment(1) == 'posts' ? 'active' : '' }}"><i class="lnr lnr-pencil"></i>
             <span>Post</span>
           </a>
         </li>

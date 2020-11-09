@@ -11,9 +11,7 @@
         <h2>Posts</h2>
       </div>
       <div class="right">
-        <a href="#" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#siswaModal">
-          Tambah Berita
-        </a>
+        <a href="{{ route('posts.add') }}" class="btn btn-primary btn-sm float-right">Tambah Berita</a>
       </div>
     </div>
   </div>
@@ -38,8 +36,8 @@
               <td class="text-center">
                 <a href="{{ route('site.single.post', $post->slug) }}" target="_blank"
                   class="btn btn-info btn-xs">View</a>
-                <a href="" class="btn btn-warning btn-xs">Edit</a>
-                <a href="" class="btn btn-danger btn-xs tombolDelete" post_id="{{$post->id}}">Delete</a>
+                <a href="/posts/{{$post->id}}/edit" class="btn btn-warning btn-xs">Edit</a>
+                <a href="/posts/{{$post->id}}/delete" class="btn btn-danger btn-xs tombolDelete">Delete</a>
               </td>
             </tr>
             @endforeach
@@ -54,19 +52,13 @@
 
 @section('footer')
 <script>
-  @if (count($errors) > 0)
-  $('#siswaModal').modal('show');
-  @endif
-
   $('.tombolDelete').click(function(e) {
     e.preventDefault();
-    const href       = $(this).attr('href');
-    const siswa_nama = $(this).attr('siswa_nama');
-    const siswa_id   = $(this).attr('siswa_id');
+    const href    = $(this).attr('href');
 
     swal({
     title: "Yakin?",
-    text: "Menghapus data " + siswa_nama + "?",
+    text: "Menghapus data Post ini?",
     icon: "warning",
     buttons: true,
     dangerMode: true

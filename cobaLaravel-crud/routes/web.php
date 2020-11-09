@@ -55,9 +55,24 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
     Route::get('/mapel/exportExcel', 'MapelController@exportExcel');
     Route::get('/mapel/exportPdf', 'MapelController@exportPdf');
     // Post
-    Route::get('/posts', 'PostController@index');
+    Route::get('/posts', 'PostController@index')->name('posts.index');
+    Route::get('/posts/add', [
+        'uses' => 'PostController@add',
+        'as'   => 'posts.add'
+    ]);
+    Route::post('/posts/create', [
+        'uses' => 'PostController@create',
+        'as'   => 'posts.create'
+    ]);
+    Route::get('/posts/{post}/delete', 'PostController@delete');
+    Route::get('/posts/{post}/edit', 'PostController@edit');
+    Route::get('/posts/{post}/update', 'PostController@update');
+    // Route::get('/posts/{slug}/edit', [
+    //     'uses' => 'PostController@edit',
+    //     'as'   => 'post.single.edit'
+    // ]);
 });
-// Slug Berita
+// Berita
 Route::get('/{slug}', [
     'uses' => 'SiteController@singlepost',
     'as'   => 'site.single.post'
