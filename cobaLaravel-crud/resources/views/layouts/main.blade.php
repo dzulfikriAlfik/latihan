@@ -18,7 +18,9 @@
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
   {{-- DataTables --}}
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  <link rel="stylesheet"
+    href="http://cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.css" />
+  <link rel="stylesheet" href="http://cdn.datatables.net/responsive/1.0.2/css/dataTables.responsive.css" />
   <!-- ICONS -->
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('admin/assets')}}/img/apple-icon.png">
   <link rel="icon" type="image/png" sizes="96x96" href="{{asset('admin/assets')}}/img/favicon.png">
@@ -65,8 +67,12 @@
   {{-- Sweet Alert --}}
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   {{-- DataTables --}}
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
+  <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js">
   </script>
+  <script type="text/javascript" language="javascript"
+    src="//cdn.datatables.net/responsive/1.0.2/js/dataTables.responsive.js"></script>
+  <script type="text/javascript" language="javascript"
+    src="//cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.js"></script>
   <script src="{{ asset('frontend/ckeditor/ckeditor.js') }}"></script>
   @yield('footer')
   <script>

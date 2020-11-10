@@ -2,6 +2,15 @@
 
 @section('title', 'Daftar Siswa')
 
+@section('header')
+<style>
+  table.dataTable th,
+  table.dataTable td {
+    white-space: nowrap;
+  }
+</style>
+@endsection
+
 @section('content')
 <!-- OVERVIEW -->
 <div class="panel panel-headline">
@@ -26,7 +35,8 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md">
-        <table class="table table-bordered table-responsive table-hover table-striped" id="dataSiswaTable">
+        <table class="table table-striped table-hover table-bordered table-responsive" cellspacing="0" width="100%"
+          id="dataSiswaTable">
           <thead class="thead-dark">
             <tr>
               <th class="text-center">No</th>
@@ -156,6 +166,8 @@
     $('#dataSiswaTable').DataTable({
       processing: true,
       serverside: true,
+      responsive: true,
+      bAutowidth: false,
       ajax: "{{ route('ajax.get.data.siswa') }}",
       columns: [
         { data: null,sortable: true, 

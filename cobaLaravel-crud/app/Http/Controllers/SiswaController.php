@@ -140,7 +140,7 @@ class SiswaController extends Controller
                 return $s->rataNilai();
             })
             ->addColumn('aksi', function ($s) {
-                return '<a href="/siswa/' . $s->id . '/edit" class="btn btn-warning btn-xs">Edit</a><a href="/siswa/' . $s->id . '/delete" class="btn btn-danger btn-xs tombolDelete">Delete</a>';
+                return '<a href="/siswa/' . $s->id . '/edit" class="btn btn-warning btn-xs">Edit</a>&nbsp;<a href="/siswa/' . $s->id . '/delete" class="btn btn-danger btn-xs tombolDelete">Delete</a>';
             })
             ->rawColumns(['nama_lengkap', 'jenis_kelamin', 'rataNilai', 'aksi'])
             ->toJson();
