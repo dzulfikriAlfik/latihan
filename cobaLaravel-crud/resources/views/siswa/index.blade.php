@@ -26,10 +26,10 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md">
-        <table class="table table-bordered table-hover table-striped">
+        <table class="table table-bordered table-responsive table-hover table-striped" id="dataSiswaTable">
           <thead class="thead-dark">
             <tr>
-              <th class="text-center">#</th>
+              <th class="text-center">No</th>
               <th class="text-center">NAMA</th>
               <th class="text-center">JENIS KELAMIN</th>
               <th class="text-center">AGAMA</th>
@@ -39,21 +39,6 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($data_siswa as $siswa)
-            <tr>
-              <td class="text-center">{{$loop->iteration}}</td>
-              <td><a href="/siswa/{{$siswa->id}}/profile">{{$siswa->nama_lengkap()}}</a></td>
-              <td class="text-center">{{$siswa->getJenisKelamin()}}</td>
-              <td>{{$siswa->agama}}</td>
-              <td>{{$siswa->alamat}}</td>
-              <td class="text-center">{{$siswa->rataNilai()}}</td>
-              <td class="text-center">
-                <a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning btn-xs">Edit</a>
-                <a href="/siswa/{{$siswa->user_id}}/delete" class="btn btn-danger btn-xs tombolDelete"
-                  siswa_id="{{$siswa->id}}" siswa_nama="{{$siswa->nama_lengkap()}}">Delete</a>
-              </td>
-            </tr>
-            @endforeach
           </tbody>
         </table>
       </div>
@@ -140,29 +125,51 @@
 
 @section('footer')
 <script>
-  @if (count($errors) > 0)
-  $('#siswaModal').modal('show');
-  @endif
+  $(document).ready(function () {
+    // Modal Siswa
+    @if (count($errors) > 0)
+      $('#siswaModal').modal('show');
+    @endif
+    // TombolDelete
+    $('.tombolDelete').click(function(e) {
+      e.preventDefault();
+      const href       = $(this).attr('href');
+      const siswa_nama = $(this).attr('siswa_nama');
+      const siswa_id   = $(this).attr('siswa_id');
 
-  $('.tombolDelete').click(function(e) {
-    e.preventDefault();
-    const href       = $(this).attr('href');
-    const siswa_nama = $(this).attr('siswa_nama');
-    const siswa_id   = $(this).attr('siswa_id');
-
-    swal({
-    title: "Yakin?",
-    text: "Menghapus data " + siswa_nama + "?",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true
-    })
-    .then((result) => {
-      if (result) {
-        window.location = href
-      } else {
-        // 
-      }
+      swal({
+      title: "Yakin?",
+      text: "Menghapus data " + siswa_nama + "?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true
+      })
+      .then((result) => {
+        if (result) {
+          window.location = href
+        } else {
+          // 
+        }
+      });
+    });
+  // DataTable
+    $('#dataSiswaTable').DataTable({
+      processing: true,
+      serverside: true,
+      ajax: "{{ route('ajax.get.data.siswa') }}",
+      columns: [
+        { data: null,sortable: true, 
+        render: function (data, type, row, meta) {
+                  return meta.row + meta.settings._iDisplayStart + 1;
+                }  
+        },
+        {data: 'nama_lengkap', name: 'nama_lengkap'},
+        {data: 'jenis_kelamin', name: 'jenis_kelamin'},
+        {data: 'agama', name: 'agama'},
+        {data: 'alamat', name: 'alamat'},
+        {data: 'rataNilai', name: 'rataNilai'},
+        {data: 'aksi', name: 'aksi', sortable:false},
+      ]
     });
   });
 </script>

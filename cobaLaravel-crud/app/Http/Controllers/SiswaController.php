@@ -10,16 +10,14 @@ use PDF;
 use App\Siswa;
 use App\User;
 use App\Mapel;
+use Yajra\DataTables\Contracts\DataTable;
+use DataTables;
 
 class SiswaController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->has('cari')) {
-            $data_siswa = Siswa::where('nama_depan', 'LIKE', '%' . $request->cari . '%')->get();
-        } else {
-            $data_siswa = Siswa::all();
-        }
+        $data_siswa = Siswa::all();
         return view('siswa.index', compact('data_siswa'));
     }
 
@@ -125,5 +123,26 @@ class SiswaController extends Controller
         $siswa = Siswa::all();
         $pdf   = PDF::loadView('siswa.exportPdf', compact('siswa'));
         return $pdf->download('Siswa.pdf');
+    }
+
+    public function getdatasiswa()
+    {
+        $siswa = Siswa::select('siswa.*');
+        return DataTables::eloquent($siswa)
+            // $siswa merepresentasikan semua data siswa, sedangkan $s merepresentasikan satu data siswa
+            ->addColumn('nama_lengkap', function ($s) {
+                return '<a href="/siswa/' . $s->id . '/profile">' . $s->nama_lengkap() . '</a>';
+            })
+            ->addColumn('jenis_kelamin', function ($s) {
+                return $s->getJenisKelamin();
+            })
+            ->addColumn('rataNilai', function ($s) {
+                return $s->rataNilai();
+            })
+            ->addColumn('aksi', function ($s) {
+                return '<a href="/siswa/' . $s->id . '/edit" class="btn btn-warning btn-xs">Edit</a><a href="/siswa/' . $s->id . '/delete" class="btn btn-danger btn-xs tombolDelete">Delete</a>';
+            })
+            ->rawColumns(['nama_lengkap', 'jenis_kelamin', 'rataNilai', 'aksi'])
+            ->toJson();
     }
 }

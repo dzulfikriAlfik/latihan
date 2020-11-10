@@ -12,6 +12,9 @@
 */
 
 // Homepage
+
+use App\Http\Controllers\SiswaController;
+
 Route::get('/', 'SiteController@home');
 Route::get('/register', 'SiteController@register');
 Route::post('/postregister', 'SiteController@postregister');
@@ -71,6 +74,10 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
     //     'uses' => 'PostController@edit',
     //     'as'   => 'post.single.edit'
     // ]);
+    Route::get('/getdatasiswa', [
+        'uses' => 'SiswaController@getdatasiswa',
+        'as'   => 'ajax.get.data.siswa'
+    ]);
 });
 // Berita
 Route::get('/{slug}', [
