@@ -10,6 +10,8 @@ use PDF;
 use App\Siswa;
 use App\User;
 use App\Mapel;
+use App\Import;
+use App\Imports\SiswaImport;
 use Yajra\DataTables\Contracts\DataTable;
 use DataTables;
 
@@ -150,5 +152,11 @@ class SiswaController extends Controller
     {
         $siswa = auth()->user()->siswa;
         return view('siswa.profilsaya', compact('siswa'));
+    }
+
+    public function importExcel(Request $request)
+    {
+        Excel::import(new SiswaImport, $request->file('data_siswa'));
+        // dd($request->all());
     }
 }

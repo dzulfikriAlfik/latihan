@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
     Route::get('/siswa/{siswa}/{idmapel}/deletenilai', 'SiswaController@deletenilai');
     Route::get('/siswa/exportExcel', 'SiswaController@exportExcel');
     Route::get('/siswa/exportPdf', 'SiswaController@exportPdf');
+    Route::post('/siswa/import', 'SiswaController@importExcel')->name('siswa.import');
     // Guru
     Route::get('/guru', 'GuruController@index');
     Route::post('/guru/create', 'GuruController@create');

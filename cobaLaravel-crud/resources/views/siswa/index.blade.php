@@ -20,6 +20,9 @@
         <h2>Daftar Siswa</h2>
       </div>
       <div class="right">
+        <a class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#importSiswa">
+          Import XLS
+        </a>
         <a class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#siswaModal">
           Tambah Siswa
         </a>
@@ -57,7 +60,7 @@
 </div>
 <!-- END OVERVIEW -->
 
-<!-- Modal -->
+<!-- Siswa Modal -->
 <div class="modal fade" id="siswaModal" tabindex="-1" role="dialog" aria-labelledby="siswaModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -128,6 +131,31 @@
         <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
       </form>
+    </div>
+  </div>
+</div>
+{{-- Import Modal --}}
+<div class="modal fade" id="importSiswa" tabindex="-1" role="dialog" aria-labelledby="importSiswaLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="importSiswaLabel">Import </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['route' => 'siswa.import', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data'])
+        !!}
+
+        {!! Form::file('data_siswa') !!}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" value="Import" class="btn btn-primary">
+        {!! Form::close() !!}
+      </div>
     </div>
   </div>
 </div>
