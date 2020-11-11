@@ -145,4 +145,10 @@ class SiswaController extends Controller
             ->rawColumns(['nama_lengkap', 'jenis_kelamin', 'rataNilai', 'aksi'])
             ->toJson();
     }
+
+    public function profilsaya()
+    {
+        $siswa = auth()->user()->siswa;
+        return view('siswa.profilsaya', compact('siswa'));
+    }
 }

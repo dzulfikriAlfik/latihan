@@ -46,4 +46,9 @@ class Siswa extends Model
     {
         return $this->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan';
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withDefault(['avatar' => 'no-images.png']);
+    }
 }

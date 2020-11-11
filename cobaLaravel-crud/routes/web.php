@@ -79,6 +79,10 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
         'as'   => 'ajax.get.data.siswa'
     ]);
 });
+// Group Hak Akses Siswa
+Route::group(['middleware' => ['auth', 'checkRole:siswa']], function () {
+    Route::get('profilsaya', 'SiswaController@profilsaya');
+});
 // Berita
 Route::get('/{slug}', [
     'uses' => 'SiteController@singlepost',
