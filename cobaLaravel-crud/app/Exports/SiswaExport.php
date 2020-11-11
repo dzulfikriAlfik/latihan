@@ -23,6 +23,7 @@ class SiswaExport implements FromCollection, WithMapping, WithHeadings
             $siswa->nama_lengkap(),
             $siswa->jenis_kelamin,
             $siswa->agama,
+            $siswa->alamat,
             $siswa->rataNilai(),
         ];
     }
@@ -33,6 +34,7 @@ class SiswaExport implements FromCollection, WithMapping, WithHeadings
             'NAMA LENGKAP',
             'JENIS KELAMIN',
             'AGAMA',
+            'ALAMAT',
             'RATA-RATA NILAI'
         ];
     }
