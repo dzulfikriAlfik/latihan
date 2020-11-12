@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,siswa']], function 
     Route::get('/forum', 'ForumController@index');
     Route::post('/forum/create', 'ForumController@create');
     Route::get('/forum/{forum}/view', 'ForumController@view');
+    Route::post('/forum/{forum}/view', 'ForumController@postkomentar');
 });
 // Group Hak Akses Superadmin
 Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {

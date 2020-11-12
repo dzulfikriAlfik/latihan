@@ -14,7 +14,18 @@
   <div class="panel-body">
     {{ $forum->konten }}
     <hr>
-    <p><b>Komentar :</b></p>
+    <div class="btn-group" style="margin-bottom: 20px">
+      <button class="btn btn-default btn-xs"><i class="fa fa-thumbs-up"></i> Suka</button>
+      <button class="btn btn-default btn-xs" id="btnKomentarUtama"><i class="fa fa-comment"></i> Komentar</button>
+    </div>
+    <form action="" method="post" id="komentarUtama" style="display: none">
+      @csrf
+      <input type="hidden" name="forum_id" value="{{ $forum->id }}">
+      <input type="hidden" name="parent" value="0">
+      <textarea name="konten" class="form-control" style="margin-bottom: 20px" rows="5"></textarea>
+      <input type="submit" class="btn btn-primary btn-sm" value="Kirim">
+    </form>
+    <p style="margin-top: 20px; margin-bottom: 0"><b>Komentar :</b></p>
     <ul class="list-unstyled activity-list">
       <li>
         <img src="{{ $forum->user->siswa->getAvatar() }}" alt="Avatar" class="img-circle pull-left avatar">
@@ -26,4 +37,14 @@
     </ul>
   </div>
 </div>
+@endsection
+
+@section('footer')
+<script>
+  $(document).ready(function () {
+    $('#btnKomentarUtama').click(function() {
+      $('#komentarUtama').toggle('slide');
+    });
+  });
+</script>
 @endsection

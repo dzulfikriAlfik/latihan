@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Komentar extends Model
 {
-    protected $table = 'komentar';
+    protected $table   = 'komentar';
+    protected $guarded = ['id'];
 
     public function user()
     {
