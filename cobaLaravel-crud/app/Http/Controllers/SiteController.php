@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Post;
 use App\User;
 use App\Siswa;
-use App\Post;
+use Illuminate\Http\Request;
+use App\Mail\NotificationPendaftaranSiswa;
 
 class SiteController extends Controller
 {
@@ -32,11 +33,13 @@ class SiteController extends Controller
         // Insert ke Table Siswa
         $request->request->add(['user_id' => $user->id]);
         $siswa = Siswa::create($request->all());
-        // Kirim Email
-        \Mail::raw('Selamat Datang ' . $user->name, function ($message) use ($user) {
-            $message->to($user->email, $user->name);
-            $message->subject('Selamat anda sudah terdaftar di sekolah kami');
-        });
+        // Kirim Email versi simple tanpa view
+        // \Mail::raw('Selamat Datang ' . $user->name, function ($message) use ($user) {
+        //     $message->to($user->email, $user->name);
+        //     $message->subject('Selamat anda sudah terdaftar di sekolah kami');
+        // });
+        // Kirim Email versi view lebih responsive
+        \Mail::to($user->email)->send(new NotificationPendaftaranSiswa);
         return redirect('/')->with('success', 'Data Pendaftaran Berhasil Dikirim, Terima Kasih Telah Mendaftar');
     }
 
