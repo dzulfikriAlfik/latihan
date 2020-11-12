@@ -31,7 +31,12 @@ class SiteController extends Controller
         $user->save();
         // Insert ke Table Siswa
         $request->request->add(['user_id' => $user->id]);
-        Siswa::create($request->all());
+        $siswa = Siswa::create($request->all());
+        // Kirim Email
+        \Mail::raw('Selamat Datang ' . $user->name, function ($message) use ($user) {
+            $message->to($user->email, $user->name);
+            $message->subject('Selamat anda sudah terdaftar di sekolah kami');
+        });
         return redirect('/')->with('success', 'Data Pendaftaran Berhasil Dikirim, Terima Kasih Telah Mendaftar');
     }
 

@@ -28,9 +28,11 @@
           </a>
           <ul class="dropdown-menu">
             @if (auth()->user()->role == 'siswa')
+            <li><a href="/" target="_blank"><i class="lnr lnr-exit"></i> <span>Home Page</span></a></li>
             <li><a href="/profilsaya"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
             <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
             @else
+            <li><a href="/" target="_blank"><i class="lnr lnr-exit"></i> <span>Home Page</span></a></li>
             <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
             @endif
           </ul>
