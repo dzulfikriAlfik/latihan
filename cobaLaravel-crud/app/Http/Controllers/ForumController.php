@@ -30,6 +30,6 @@ class ForumController extends Controller
     {
         $request->request->add(['user_id' => auth()->user()->id]);
         $komentar = Komentar::create($request->all());
-        return redirect('/forum')->with('success', 'Komentar berhasil terkirim');
+        return redirect()->back();
     }
 }
