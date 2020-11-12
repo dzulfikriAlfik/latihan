@@ -26,6 +26,10 @@ Route::get('/logout', 'AuthController@logout');
 Route::group(['middleware' => ['auth', 'checkRole:superadmin,siswa']], function () {
     // Dashboard
     Route::get('/dashboard', 'DashboardController@index');
+    // Forum
+    Route::get('/forum', 'ForumController@index');
+    Route::post('/forum/create', 'ForumController@create');
+    Route::get('/forum/{forum}/view', 'ForumController@view');
 });
 // Group Hak Akses Superadmin
 Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {

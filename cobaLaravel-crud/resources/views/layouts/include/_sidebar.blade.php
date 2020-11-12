@@ -7,6 +7,11 @@
               class="lnr lnr-home"></i> <span>Dashboard</span>
           </a>
         </li>
+        <li>
+          <a href="/forum" class="{{ request()->segment(1) == 'forum' ? 'active' : '' }}"><i
+              class="lnr lnr-bubble"></i> <span>Forum</span>
+          </a>
+        </li>
 
         @if(auth()->user()->role == 'superadmin')
         <li>
