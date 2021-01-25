@@ -1,0 +1,32 @@
+// base
+$warna-dasar: salmon;
+h1 {
+   color: $warna-dasar;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 3em;
+   text-align: center;
+}
+
+// built in modules colors
+/* adjust-color($color,
+   $red: null,
+   $green: null,
+   $blue: null,
+   $hue: null,
+   $saturation: null,
+   $lightness: null,
+   $whiteness: null,
+   $blackness: null,
+   $alpha: null))
+*/
+h1 {
+   color: adjust-color($color: $warna-dasar, $green: 30, $blue: 135);
+}
+// adjust hue
+h1 {
+   color: adjust-hue($warna-dasar, 30deg);
+}
+// complement kebalikan 180deg
+h1 {
+   color: complement($color: $warna-dasar);
+}
