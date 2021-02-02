@@ -39,7 +39,7 @@ class OrangSeeder extends Seeder
 
 		$faker = Factory::create('id_ID');
 
-		for ($i = 1; $i < 100; $i++) {
+		for ($i = 0; $i < 100; $i++) {
 			$data = [
 				'nama'       => $faker->name,
 				'alamat'     => $faker->address,
