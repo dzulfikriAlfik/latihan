@@ -4,17 +4,22 @@
 <div class="container">
    <div class="row">
       <div class="col">
-         <a href="/komik/create" class="btn btn-primary mt-3">Tambah Data Komik</a>
-         <h1 class="mt-2">Daftar Komik</h1>
+         <div class="d-flex justify-content-between my-3">
+            <h2 class="mb-2">Daftar Komik</h2>
+            <div>
+               <a href="" class="btn btn-sm btn-warning">Refresh</a>
+               <a href="/komik/create" class="btn btn-sm btn-primary align-self-center">Tambah Data Komik</a>
+            </div>
+         </div>
          <?php if (session()->getFlashdata('pesan')) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-               <?= session()->getFlashdata('pesan'); ?>
+               <strong>Hooray!</strong> <?= session()->getFlashdata('pesan'); ?>
                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button>
             </div>
          <?php endif; ?>
-         <table class="table">
+         <table class="table table-striped">
             <thead>
                <tr>
                   <th scope="col">#</th>
@@ -26,12 +31,16 @@
             <tbody>
                <?php
                $no = 1;
-               foreach ($komik as $k) : ?>
+               foreach ($komik as $value) : ?>
                   <tr>
-                     <th scope="row"><?= $no++; ?></th>
-                     <td><img src="/img/<?= $k['sampul']; ?>" class="sampul"></td>
-                     <td><?= $k['judul']; ?></td>
-                     <td><a href="/komik/<?= $k['slug']; ?>" class="btn btn-success">Detail</a></td>
+                     <th scope="row" class="text-center"><?= $no++; ?></th>
+                     <td>
+                        <img src="img/<?= $value['sampul']; ?>" alt="Cover <?= $value['judul']; ?>" class="sampul">
+                     </td>
+                     <td><?= $value['judul']; ?></td>
+                     <td>
+                        <a href="/komik/detail/<?= $value['slug']; ?>" class="btn btn-sm btn-success">Detail</a>
+                     </td>
                   </tr>
                <?php endforeach; ?>
             </tbody>

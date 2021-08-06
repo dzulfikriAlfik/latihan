@@ -1,0 +1,26 @@
+// $primary-color: #eeddff;
+// $secondary-color: lightblue;
+// $text-color: salmon;
+
+// body {
+//    background-color: $primary-color;
+// }
+
+// h1 {
+//    color: $text-color;
+// }
+
+// map
+// $alert-success: green;
+// $alert-warning: orange;
+// $alert-danger: red;
+
+$alert: (
+   'danger': red,
+   'success': green,
+   'warning': orange
+);
+
+h1 {
+   color: map-get($alert, 'success');
+}
