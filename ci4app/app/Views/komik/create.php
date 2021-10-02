@@ -13,7 +13,7 @@
          </div>
       </div>
    </div>
-   <div class="row my-5">
+   <div class="my-5 row">
       <div class="col-8">
          <form action="/komik/save" method="POST" enctype="multipart/form-data">
             <?= csrf_field(); ?>
@@ -59,7 +59,7 @@
                   </div>
                </div>
             </div>
-            <div class="form-group row mt-4">
+            <div class="mt-4 form-group row">
                <div class="col-sm-10">
                   <button type="submit" class="btn btn-primary">Tambah Data</button>
                </div>
