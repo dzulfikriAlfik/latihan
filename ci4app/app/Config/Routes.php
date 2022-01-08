@@ -8,10 +8,10 @@ $routes = Services::routes();
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
 if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
-	require SYSTEMPATH . 'Config/Routes.php';
+    require SYSTEMPATH . 'Config/Routes.php';
 }
 
-/**
+/*
  * --------------------------------------------------------------------
  * Router Setup
  * --------------------------------------------------------------------
@@ -23,7 +23,7 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
-/**
+/*
  * --------------------------------------------------------------------
  * Route Definitions
  * --------------------------------------------------------------------
@@ -31,22 +31,16 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-// Root
-$routes->get('/', 'Home::index');
-// Pages
-$routes->get('/pages', 'Pages::index');
-$routes->get('/pages/about', 'Pages::about');
-$routes->get('/pages/contact', 'Pages::contact');
-// Komik
-$routes->get('/komik', 'Komik::index');
-$routes->get('/komik/create', 'Komik::create');
-$routes->get('/komik/edit/(:segment)', 'Komik::edit/$1');
-$routes->delete('/komik/(:num)', 'Komik::delete/$1');
-$routes->get('/komik/(:segment)', 'Komik::detail/$1');
-// orang
-$routes->get('/orang', 'Orang::index');
 
-/**
+// Pages
+$routes->get('/', 'Pages::index');
+// Komik
+$routes->get('/komik/create', 'Komik::create');
+$routes->delete('/komik/(:num)', 'Komik::delete/$1');
+$routes->get('/komik/edit/(:any)', 'Komik::edit/$1');
+$routes->get('/komik/(:any)', 'Komik::detail/$1');
+
+/*
  * --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------
@@ -60,5 +54,5 @@ $routes->get('/orang', 'Orang::index');
  * needing to reload it.
  */
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

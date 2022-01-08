@@ -3,38 +3,34 @@
 namespace App\Controllers;
 
 use App\Models\OrangModel;
-use CodeIgniter\Exceptions;
-use Exception;
 
 class Orang extends BaseController
 {
 
-   protected $orangModel;
-   public function __construct()
-   {
-      // model
-      $this->orangModel = new orangModel();
-   }
+    protected $orangModel;
 
-   public function index()
-   {
-      $currentPage = $this->request->getVar('page_orang') ? $this->request->getVar('page_orang') : 1;
+    public function __construct()
+    {
+        $this->orangModel = new OrangModel();
+    }
 
-      $keyword = $this->request->getVar('cari');
-      if ($keyword != null) {
-         $orang = $this->orangModel->search($keyword);
-      } else {
-         $orang = $this->orangModel;
-      }
+    public function index()
+    {
+        // $orang = $this->orangModel->findAll();
+        $page = ($this->request->getVar('page_orang') ? $this->request->getVar('page_orang') : 1);
 
-      $data = [
-         'title' => 'Daftar Orang',
-         // 'orang' => $this->orangModel->findAll()
-         'orang'       => $orang->paginate(10, 'orang'),
-         'pager'       => $orang->pager,
-         'currentPage' => 1 + (10 * ($currentPage - 1))
-      ];
-
-      return view('orang/index', $data);
-   }
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $orang = $this->orangModel->search($keyword);
+        } else {
+            $orang = $this->orangModel;
+        }
+        $data = [
+            'title' => 'Daftar orang',
+            'orang' => $orang->paginate(10, 'orang'),
+            'pager' => $this->orangModel->pager,
+            'page' => 1 + (10 * ($page - 1)),
+        ];
+        return view('orang/index', $data);
+    }
 }
