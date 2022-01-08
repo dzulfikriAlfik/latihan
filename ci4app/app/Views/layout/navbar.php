@@ -12,6 +12,11 @@
                 <a class="nav-link <?=$title == 'Daftar Komik' || $title == 'Detail Komik' || $title == 'Form Tambah Data Komik' || $title == 'Form Ubah Data Komik' ? 'active' : '';?>" href="/komik">Komik</a>
                 <a class="nav-link <?=$title == 'Daftar orang' ? 'active' : '';?>" href="/orang">Orang</a>
             </div>
+            <?php if (logged_in()): ?>
+            <a class="nav-link" href="/logout">Logout</a>
+            <?php else: ?>
+            <a class="nav-link" href="/login">Login</a>
+            <?php endif;?>
         </div>
     </div>
 </nav>
