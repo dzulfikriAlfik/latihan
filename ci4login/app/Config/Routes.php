@@ -8,7 +8,7 @@ $routes = Services::routes();
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
 if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
-    require SYSTEMPATH . 'Config/Routes.php';
+   require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /*
@@ -31,7 +31,12 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+// User & Admin
+$routes->get('/', 'User::index');
+
+// Admin Only
+$routes->get('/admin', 'Admin::index', ['filter' => 'role:admin']);
+$routes->get('/admin/index', 'Admin::index', ['filter' => 'role:admin']);
 
 /*
  * --------------------------------------------------------------------
@@ -47,5 +52,5 @@ $routes->get('/', 'Home::index');
  * needing to reload it.
  */
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+   require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
