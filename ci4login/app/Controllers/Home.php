@@ -12,9 +12,6 @@ class Home extends BaseController {
    }
 
    public function user() {
-      $data = [
-         'title' => 'My Profile',
-      ];
-      return view('user/index', $data);
+      return view('user/index');
    }
 }

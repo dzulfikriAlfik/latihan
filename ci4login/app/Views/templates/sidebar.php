@@ -39,7 +39,7 @@
    </li>
    <!-- Nav Item - Edit Profile -->
    <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="tables.html">
          <i class="fas fa-fw fa-user-edit"></i>
          <span>Edit Profile</span>
       </a>
@@ -49,7 +49,7 @@
    <hr class="sidebar-divider">
    <!-- Nav Item - Logout -->
    <li class="nav-item">
-      <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+      <a class="nav-link" href="/logout" onclick="return confirm('Yakin Keluar?')">
          <i class="fas fa-fw fa-sign-out-alt"></i>
          <span>Logout</span>
       </a>
