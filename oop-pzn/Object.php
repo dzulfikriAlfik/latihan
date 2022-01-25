@@ -1,9 +1,8 @@
 <?php
 
 require_once "data/Person.php";
-require_once "Input.php";
 
-$person = new Person();
+$person = new Persons();
 
 class Car
 {
