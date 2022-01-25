@@ -1,6 +1,0 @@
-Auto Loading
-===========
-memanggil kelas (file) tanpa harus menggunakan require
-1 class dutulis dalam file
-
-include,require, require once();
