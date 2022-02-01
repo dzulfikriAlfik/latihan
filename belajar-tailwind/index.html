@@ -2,36 +2,46 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@200;400;600;700;900&display=swap" rel="stylesheet">
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@200;400;600;700;900&display=swap" rel="stylesheet" />
    <title>Belajar Tailwind CSS</title>
    <script src="https://cdn.tailwindcss.com"></script>
    <script>
       tailwind.config = {
+         darkMode: "class",
          theme: {
             extend: {
                spacing: {
-                  13: '3.25rem'
+                  13: "3.25rem",
                },
                fontFamily: {
-                  inter: ['Inter'],
-                  firacode: ['Fira Code']
+                  inter: ["Inter"],
+                  firacode: ["Fira Code"],
                },
                colors: {
-                  kopi: '#6b4c35'
-               }
+                  kopi: "#6b4c35",
+               },
             },
-         }
-      }
+         },
+      };
    </script>
+   <style type="text/tailwindcss">
+      #toggle:checked~label div.toggle-circle {
+         @apply translate-x-4;
+      }
+   </style>
 </head>
 
-<body>
-   <h1 class="text-8xl font-bold text-center my-10">Belajar <span class="bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent">Tailwid</span> CSS</h1>
+<body class="dark:bg-slate-800 dark:text-slate-200">
+   <h1 class="text-8xl font-bold text-center my-10">
+      Belajar
+      <span class="bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent">Tailwid</span>
+      CSS
+   </h1>
 
    <section class="mb-10 bg-gradient-to-r from-indigo-200 to-yellow-300 via-red-400">
       <h2>Spacing</h2>
@@ -45,37 +55,141 @@
    </section>
 
    <section class="font-inter max-w-3xl mx-auto">
-      <h2 class="mb-2 text-4xl font-bold">Belajar mengenai typography pada tailwindcss</h2>
-      <div class="mb-4 text-lg text-gray-500">By <a href="#" class="text-gray-700 font-semibold">Dzulfikri</a>, 1 Januari 2022</div>
-      <p class="mb-4">Lorem ipsum dolor sit amet <a href="#" class="underline font-semibold text-blue-600">consectetur</a> adipisicing elit. Tempora a esse possimus dolores cum ratione! Earum nemo molestias mollitia nisi aliquid aut. Quisquam nam, eveniet veniam odio eius facere deleniti, maiores
-         culpa ad ullam
-         quis adipisci
-         consequatur
-         similique id,
-         ->
-         architecto placeat
-         quibusdam. Sed dolore ut eum, odio maxime consequuntur molestias!</p>
-      <blockquote class="mb-4 italic font-thin text-xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem voluptates alias expedita error fugit! Minima tempore beatae aperiam aliquam totam.
+      <h2 class="mb-2 text-4xl font-bold">
+         Belajar mengenai typography pada tailwindcss
+      </h2>
+      <div class="mb-4 text-lg text-gray-500">
+         By <a href="#" class="text-gray-700 font-semibold">Dzulfikri</a>, 1
+         Januari 2022
+      </div>
+      <p class="mb-4">
+         Lorem ipsum dolor sit amet
+         <a href="#" class="underline font-semibold text-blue-600">consectetur</a>
+         adipisicing elit. Tempora a esse possimus dolores cum ratione! Earum
+         nemo molestias mollitia nisi aliquid aut. Quisquam nam, eveniet
+         veniam odio eius facere deleniti, maiores culpa ad ullam quis
+         adipisci consequatur similique id, -> architecto placeat quibusdam.
+         Sed dolore ut eum, odio maxime consequuntur molestias!
+      </p>
+      <blockquote class="mb-4 italic font-thin text-xl">
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
+         voluptates alias expedita error fugit! Minima tempore beatae aperiam
+         aliquam totam.
       </blockquote>
-      <p class="mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita amet obcaecati, voluptatibus quam harum quia, ad vel, tempore necessitatibus error ratione magni mollitia molestias in repellendus praesentium suscipit aperiam ipsa?</p>
+      <p class="mb-4">
+         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita
+         amet obcaecati, voluptatibus quam harum quia, ad vel, tempore
+         necessitatibus error ratione magni mollitia molestias in repellendus
+         praesentium suscipit aperiam ipsa?
+      </p>
    </section>
 
    <!-- kita bisa menambahkan nilai sembarang (arbitrary value) pada suatu properties di tailwind dengan menambahkan kurung siku lalu berikan nilai nya contoh mt-[42px]  -->
-   <div class="max-w-xl h-96 mx-auto mt-[42px] bg-[#bada55] rounded-xl overflow-y-scroll bg-fixed" style="background-image: url(https://source.unsplash.com/1000x600?programming);">
-      <p class="p-5 text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente pariatur nobis maiores tempore corporis ut! Soluta similique eum iusto aspernatur alias neque quidem hic mollitia earum cupiditate, molestiae minima numquam delectus rerum maiores deleniti ipsam labore,
-         quos nesciunt? Dolore
-         accusamus temporibus, quasi voluptatibus nulla natus optio velit voluptates excepturi voluptate rem recusandae vitae quod et amet? Consequuntur quia aut necessitatibus quasi nisi vel commodi magnam modi harum et voluptatem, ad dicta perferendis asperiores autem molestias adipisci inventore
-         beatae, nostrum natus provident ratione sed nesciunt blanditiis? Animi ullam, eum vitae placeat a eius nam esse nulla veritatis odio nostrum, repellendus voluptas laudantium excepturi, rem facilis voluptates. Eius nulla, laborum aspernatur sapiente quae, eum eligendi necessitatibus dolorem
-         odio, enim numquam eos? Animi error magnam id rerum, fuga dolor provident, doloremque aspernatur veniam quae a veritatis! Eos quia rerum vero id, unde nobis minima asperiores totam recusandae sequi quas, similique incidunt earum quasi reprehenderit labore esse, in perspiciatis corporis
-         blanditiis commodi optio praesentium quibusdam. Quam maiores molestias nobis ex. Deleniti ipsa eligendi dignissimos, expedita neque laudantium consectetur vitae officiis blanditiis sint sequi quae aut itaque voluptas. Eaque omnis nulla accusantium vel, quae ipsam cumque modi aut, assumenda
-         ullam, non rem totam mollitia dignissimos.</p>
+   <div class="max-w-xl h-96 mx-auto mt-[42px] bg-[#bada55] rounded-xl overflow-y-scroll bg-fixed" style="
+            background-image: url(https://source.unsplash.com/1000x600?programming);
+         ">
+      <p class="p-5 text-2xl">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
+         pariatur nobis maiores tempore corporis ut! Soluta similique eum
+         iusto aspernatur alias neque quidem hic mollitia earum cupiditate,
+         molestiae minima numquam delectus rerum maiores deleniti ipsam
+         labore, quos nesciunt? Dolore accusamus temporibus, quasi
+         voluptatibus nulla natus optio velit voluptates excepturi voluptate
+         rem recusandae vitae quod et amet? Consequuntur quia aut
+         necessitatibus quasi nisi vel commodi magnam modi harum et
+         voluptatem, ad dicta perferendis asperiores autem molestias adipisci
+         inventore beatae, nostrum natus provident ratione sed nesciunt
+         blanditiis? Animi ullam, eum vitae placeat a eius nam esse nulla
+         veritatis odio nostrum, repellendus voluptas laudantium excepturi,
+         rem facilis voluptates. Eius nulla, laborum aspernatur sapiente
+         quae, eum eligendi necessitatibus dolorem odio, enim numquam eos?
+         Animi error magnam id rerum, fuga dolor provident, doloremque
+         aspernatur veniam quae a veritatis! Eos quia rerum vero id, unde
+         nobis minima asperiores totam recusandae sequi quas, similique
+         incidunt earum quasi reprehenderit labore esse, in perspiciatis
+         corporis blanditiis commodi optio praesentium quibusdam. Quam
+         maiores molestias nobis ex. Deleniti ipsa eligendi dignissimos,
+         expedita neque laudantium consectetur vitae officiis blanditiis sint
+         sequi quae aut itaque voluptas. Eaque omnis nulla accusantium vel,
+         quae ipsam cumque modi aut, assumenda ullam, non rem totam mollitia
+         dignissimos.
+      </p>
    </div>
 
-   <div class="mt-32 max-w-xl mx-auto h-96 bg-slate-300 bg-contain bg-no-repeat bg-center border-8 shadow-2xl shadow-slate-500 rounded-2xl overflow-hidden flex" style="background-image: url(img/laptop.jpg);">
+   <!-- ----------------------------------------------------------------------- -->
+   <!--                             Gambar Offline                              -->
+   <!-- ----------------------------------------------------------------------- -->
+   <div class="mt-32 max-w-xl mx-auto h-96 bg-slate-300 bg-contain bg-no-repeat bg-center border-8 shadow-2xl shadow-slate-500 rounded-2xl overflow-hidden flex" style="background-image: url(img/laptop.jpg)">
       <div class="w-[200px] h-[200px] bg-white/30 m-auto backdrop-blur-md rounded-full"></div>
    </div>
 
+   <hr class="my-20" />
+
+   <!-- ----------------------------------------------------------------------- -->
+   <!--                            Tombol Dark Mode                             -->
+   <!-- ----------------------------------------------------------------------- -->
+   <div class="flex justify-center">
+      <span class="text-sm text-slate-500 mr-2">Light</span>
+      <input type="checkbox" id="toggle" class="hidden" />
+      <label for="toggle">
+         <div class="w-9 h-5 bg-slate-500 rounded-full flex items-center p-0.5 cursor-pointer">
+            <div class="w-4 h-4 bg-white rounded-full toggle-circle"></div>
+         </div>
+      </label>
+      <span class="text-sm text-slate-500 ml-2">Dark</span>
+   </div>
+
+   <!-- ----------------------------------------------------------------------- -->
+   <!--                          Tombol Simpan                                  -->
+   <!-- ----------------------------------------------------------------------- -->
+   <button
+      class="my-10 bg-sky-500 px-5 py-2 rounded-full text-white font-semibold font-inter mx-auto block hover:bg-sky-600 active:bg-sky-700 focus:ring focus:ring-sky-300 dark:bg-slate-300 dark:text-slate-800 dark:hover:text-slate-900 dark:hover:bg-slate-100 dark:focus:ring dark:focus:ring-lime-500">
+      Simpan
+   </button>
+
+   <!-- ----------------------------------------------------------------------- -->
+   <!--                                Text Card                                -->
+   <!-- ----------------------------------------------------------------------- -->
+   <div class="max-w-lg my-10 border border-slate-200 rounded-xl mx-auto p-7 shadow-md font-inter hover:bg-sky-500 group dark:hover:bg-slate-300">
+      <h5 class="font-bold text-slate-700 text-lg mb-3 text-center group-hover:text-white dark:text-slate-300 dark:group-hover:text-slate-800">
+         My Card
+      </h5>
+      <p
+         class="text-slate-700 group-hover:text-white selection:bg-lime-300 selection:text-slate-900 first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:float-left first-letter:mr-3 dark:text-slate-300 dark:group-hover:text-slate-800">
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Repudiandae eaque ducimus provident voluptates, optio natus
+         blanditiis, magni facere velit quod, dolorum tempore iste impedit
+         omnis aliquam ipsa ipsam rerum id!
+      </p>
+   </div>
+
+   <!-- ----------------------------------------------------------------------- -->
+   <!--                               Input Card                                -->
+   <!-- ----------------------------------------------------------------------- -->
+   <div class="max-w-lg border border-slate-200 rounded-xl mx-auto shadow-md font-inter p-7">
+      <form action="">
+         <label for="email">
+            <span class="block font-semibold mb-2 text-slate-700 dark:text-slate-200 after:content-['*'] after:text-pink-700 after:ml-0.5">Email</span>
+            <input
+               class="px-3 py-2 border shadow rounded w-full block text-sm placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 invalid:text-pink-700 invalid:focus:ring-pink-700 invalid:focus:border-pink-700 peer dark:valid:text-slate-800"
+               type="email" placeholder="Masukkan Email" id="email" />
+            <p class="text-sm m-1 text-pink-700 invisible peer-invalid:visible">
+               Email tidak valid
+            </p>
+         </label>
+      </form>
+   </div>
+
    <div class="mb-96"></div>
+
+   <script>
+      const checkbox = document.querySelector('#toggle');
+      const html = document.querySelector('html');
+
+      checkbox.addEventListener('click', function () {
+         checkbox.checked ? html.classList.add('dark') : html.classList.remove('dark');
+      });
+   </script>
 </body>
 
 </html>
