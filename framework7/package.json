@@ -1,0 +1,6 @@
+{
+   "dependencies": {
+      "framework7": "^7.0.2",
+      "postinstall": "cpy --flat ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy --flat ./node_modules/material-icons/iconfont/*.* ./src/fonts/"
+   }
+}
