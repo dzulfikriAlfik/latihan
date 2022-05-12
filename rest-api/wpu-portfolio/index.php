@@ -12,6 +12,7 @@ function get_CURL($url)
    return json_decode($result, true);
 }
 
+// $result = get_CURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCkXmLjEr95LVtGuIm3l2dPg&key=AIzaSyD0NXRnx1_N38QTXY5jlcIXm5ge4TXbOqo');
 $result = get_CURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCkXmLjEr95LVtGuIm3l2dPg&key=AIzaSyD0NXRnx1_N38QTXY5jlcIXm5ge4TXbOqo');
 
 $youtubeProfilePic = $result['items'][0]['snippet']['thumbnails']['medium']['url'];
