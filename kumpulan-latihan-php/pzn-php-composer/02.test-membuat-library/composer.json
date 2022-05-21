@@ -1,0 +1,20 @@
+{
+   "name": "dzulfikri/kumpulan-library",
+   "description": "Kumpulan Library Versi Dzulfikri",
+   "type": "library",
+   "license": "MIT",
+   "autoload": {
+      "psr-4": {
+         "Dzulfikri\\KumpulanLibrary\\": "src/"
+      }
+   },
+   "authors": [
+      {
+         "name": "DzulfikriAlkautsari",
+         "email": "fikriallfik@gmail.com"
+      }
+   ],
+   "require": {
+      "php": ">=7.0"
+   }
+}
