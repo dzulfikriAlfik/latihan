@@ -13,8 +13,16 @@
          "email": "fikriallfik@gmail.com"
       }
    ],
+   "repositories": [
+      {
+         "type": "vcs",
+         "url": "https://github.com/dzulfikriAlfik/dzulfikri-library"
+      }
+   ],
    "require": {
       "dompdf/dompdf": "v1.2.2",
-      "monolog/monolog": "2.2.0"
+      "monolog/monolog": "2.2.0",
+      "php": ">=7.0",
+      "dzulfikri/kumpulan-library": "1.0.0"
    }
 }
