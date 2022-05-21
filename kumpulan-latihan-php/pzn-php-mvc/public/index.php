@@ -32,4 +32,14 @@ Router::run();
 
 // Cara menjalanan local domain di windows
 // 1. buka C:\Windows\System32\Drivers\etc\hosts
-// 2. ubah 127.0.0.1 localhost -> menjadi -> 127.0.0.1 dzulfikri.alfik atau apapun
+// 2. ubah 127.0.0.1 localhost -> menjadi -> 127.0.0.1 php-mvc.alfik atau apapun
+// 3. untuk menjalankan servernya panggil dengan php -S 127.0.0.1:8080
+// 4. cari file httpd.conf lalu cari keyword Include conf/extra/httpd-vhosts.conf dan matikan komentarnya
+// 5. cari file httpd-vhosts.conf dan ubah isinya menjadi seperti dibawah ini
+// <VirtualHost *:80>
+//   ServerAdmin admin@php-mvc.alfik
+//   DocumentRoot "C:\Programming\wamp64\www\latihan\kumpulan-latihan-php\pzn-php-mvc\public"
+//   ServerName php-mvc.alfik
+//   ErrorLog "logs/php-mvc.alfik.error_log"
+//   CustomLog "logs/php-mvc.alfik-acces_log" common
+// </VirtualHost>
