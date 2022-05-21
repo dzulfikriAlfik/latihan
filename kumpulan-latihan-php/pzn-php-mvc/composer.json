@@ -1,0 +1,30 @@
+{
+   "name": "programmer-zaman-now/belajar-php-mvc",
+   "description": "Belajar PHP MVC",
+   "type": "project",
+   "autoload": {
+      "psr-4": {
+         "ProgrammerZamanNow\\BelajarPhpMvc\\": "app"
+      }
+   },
+   "autoload-dev": {
+      "psr-4": {
+         "ProgrammerZamanNow\\BelajarPhpMvc\\": "test"
+      }
+   },
+   "authors": [
+      {
+         "name": "dzulfikriAlfik",
+         "email": "fikriallfik@gmail.com"
+      }
+   ],
+   "require": {
+      "php": ">=7.0"
+   },
+   "require-dev": {
+      "phpunit/phpunit": "9.5.8"
+   },
+   "scripts": {
+      "run-server": "php -S localhost:8080"
+   }
+}
