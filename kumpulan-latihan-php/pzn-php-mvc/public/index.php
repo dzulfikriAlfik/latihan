@@ -43,3 +43,4 @@ Router::run();
 //   ErrorLog "logs/php-mvc.alfik.error_log"
 //   CustomLog "logs/php-mvc.alfik-acces_log" common
 // </VirtualHost>
+// 6. jalankan xamp/wampnya (tidak perlu perintah php -S 127.0.0.1:8080 lagi)
