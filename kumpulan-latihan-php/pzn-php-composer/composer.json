@@ -1,0 +1,20 @@
+{
+   "name": "dzulfikri/library",
+   "description": "Kumpulan Library versi Dzulfikri",
+   "type": "project",
+   "autoload": {
+      "psr-4": {
+         "DzulfikriLibrary\\": "src/"
+      }
+   },
+   "authors": [
+      {
+         "name": "dzulfikriAlfik",
+         "email": "fikriallfik@gmail.com"
+      }
+   ],
+   "require": {
+      "dompdf/dompdf": "v1.2.2",
+      "monolog/monolog": "2.2.0"
+   }
+}
