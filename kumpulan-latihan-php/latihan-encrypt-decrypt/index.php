@@ -26,7 +26,12 @@ function encrypt_decrypt($action, $string, $key = "")
    return $output;
 }
 
+$user_id = "624c045485047";
+$user_point = "Q2J6dWc5SE5wWEVoVmxYMWhYVXFEdz09";
+$user_point_dec = encrypt_decrypt("d", $user_point, $user_id);
+echo "user_point_dec : $user_point_dec" . "<br>";
+
 $pointEnc = encrypt_decrypt('e', "Rp.10.000,-", "percobaan");
-echo "pointEnc : $pointEnc" . "<br>";
+echo "point_enc : $pointEnc" . "<br>";
 $pointDec = encrypt_decrypt("d", $pointEnc, "percobaan");
-echo "pointDec : $pointDec" . "<br>";
+echo "point_dec : $pointDec" . "<br>";
