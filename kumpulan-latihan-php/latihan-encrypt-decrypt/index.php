@@ -6,10 +6,7 @@ function encrypt_decrypt($action, $string, $key = "")
    $output = false;
    $encrypt_method = "AES-256-CBC";
 
-   $secret_key = '4N1';
-   if ($key != "") {
-      $secret_key = $key;
-   }
+   $secret_key = $key;
 
    $secret_iv = IV_KEY;
    // hash
@@ -27,11 +24,9 @@ function encrypt_decrypt($action, $string, $key = "")
 }
 
 $user_id = "624c045485047";
-$user_point = "Q2J6dWc5SE5wWEVoVmxYMWhYVXFEdz09";
+$user_point = "cHBIemZnd2dBcVZRZ1RXQVZPZ1Zpdz09";
+$user_saldo = "500000";
+$user_point_dec = encrypt_decrypt("e", $user_saldo, $user_id);
+echo "user_point_enc : $user_point_dec" . "<br>";
 $user_point_dec = encrypt_decrypt("d", $user_point, $user_id);
 echo "user_point_dec : $user_point_dec" . "<br>";
-
-$pointEnc = encrypt_decrypt('e', "Rp.10.000,-", "percobaan");
-echo "point_enc : $pointEnc" . "<br>";
-$pointDec = encrypt_decrypt("d", $pointEnc, "percobaan");
-echo "point_dec : $pointDec" . "<br>";

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Required meta tags-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Color theme for statusbar (Android only) -->
+  <meta name="theme-color" content="#2196f3">
+  <!-- Your app title -->
+  <title>Dzulfikri App</title>
+  <!-- Path to Framework7 Library Bundle CSS -->
+  <link rel="stylesheet" href="assets/node_modules/framework7/framework7-bundle.min.css">
+  <!-- Path to your custom app styles-->
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="assets/css/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/line-awesome/css/line-awesome.min.css">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" href="assets/img/f7-icon-square.png">
+  <link rel="icon" href="assets/img/f7-icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- App root element -->
+  <div id="app">
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+      <!-- Initial Page, "data-name" contains page name -->
+      <div data-name="login" class="page">
+
+        <!-- Scrollable page content -->
+        <div class="page">
+          <div class="page-content account-area">
+            <div class="container">
+              <div class="view-logo text-center">
+                <div class="logo-icon">
+                  <img src="assets/svg/sayur-icon.svg" alt="">
+                </div>
+              </div>
+              <div class="tabs">
+                <div class="tab tab-active form-elements tabs">
+                  <form class="tab tab-active" id="tabA1">
+                    <div class="title-head text-align-center">
+                      <h2 class="title">Login</h2>
+                      <p>Silahkan login terlebih dahulu untuk masuk ke aplikasi</p>
+                    </div>
+                    <div class="list">
+                      <ul class="row">
+                        <li class="item-content item-input col-100">
+                          <div class="item-media">
+                            <img src="assets/svg/user-icon.svg" alt="">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-input-wrap">
+                              <input type="email" placeholder="Email Address" class="form-control" />
+                            </div>
+                          </div>
+                        </li>
+                        <li class="item-content col-100 item-input">
+                          <div class="item-media">
+                            <img src="assets/svg/lock-icon.svg" alt="">
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-input-wrap">
+                              <input type="password" placeholder="Password" class="form-control" />
+                              <div class="show-pass">
+                                <img src="assets/svg/eye-icon.svg" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="clearfix">
+                      <a href="/home/" class="button-large button button-fill">LOGIN</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Path to Framework7 Library Bundle JS-->
+  <script type="text/javascript" src="assets/node_modules/framework7/framework7-bundle.min.js"></script>
+  <!-- Path to your app js-->
+  <script src="assets/js/routes.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+</body>
+
+</html>

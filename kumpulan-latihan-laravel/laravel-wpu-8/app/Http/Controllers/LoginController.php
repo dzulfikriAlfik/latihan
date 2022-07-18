@@ -7,36 +7,36 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index()
-    {
-        $data = [
-            'title' => 'Login'
-        ];
-        return view('login.index', $data);
-    }
+   public function index()
+   {
+      $data = [
+         'title' => 'Login'
+      ];
+      return view('login.index', $data);
+   }
 
-    public function authenticate(Request $request)
-    {
-        $validatedData = $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required'
-        ]);
+   public function authenticate(Request $request)
+   {
+      $validatedData = $request->validate([
+         'email'    => 'required|email',
+         'password' => 'required'
+      ]);
 
-        if (Auth::attempt($validatedData)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
+      if (Auth::attempt($validatedData)) {
+         $request->session()->regenerate();
+         return redirect()->intended('/dashboard');
+      }
 
-        return back()->with('loginError', 'Login Failed');
-    }
+      return back()->with('loginError', 'Login Failed');
+   }
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
+   public function logout(Request $request)
+   {
+      Auth::logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+      $request->session()->invalidate();
+      $request->session()->regenerateToken();
 
-        return redirect('/');
-    }
+      return redirect('/');
+   }
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>PreventDefault</title>
+</head>
+
+<body>
+   <a class="anchor" href="https://www.google.com">
+      <p>click untuk menuju google 1</p>
+      <br>
+      <h2 class="h2">click untuk preventDefault 1</h2>
+   </a>
+   <br>
+   <a class="anchor" href="https://www.google.com">
+      <p>click untuk menuju google 2</p>
+      <br>
+      <h2 class="h2">click untuk preventDefault 2</h2>
+   </a>
+   <br>
+   <a class="anchor" href="https://www.google.com">
+      <p>click untuk menuju google 3</p>
+      <br>
+      <h2 class="h2">click untuk preventDefault 3</h2>
+   </a>
+
+   <script>
+      // let anchor = document.getElementById("anchor");
+      let anchor = document.getElementsByClassName("anchor");
+      for (const anc of anchor) {
+         anc.addEventListener("click", (e) => {
+            if (e.target.className == "h2") {
+               e.preventDefault();
+            }
+         });
+      }
+   </script>
+</body>
+
+</html>

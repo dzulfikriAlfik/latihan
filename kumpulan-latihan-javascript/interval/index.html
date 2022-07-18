@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Test Interval Function</title>
+</head>
+
+<body>
+   <p style="display: inline" id="minute">00</p>:
+   <p style="display: inline" id="second"></p>
+
+   <script>
+      let minute = document.getElementById("minute");
+      let second = document.getElementById("second");
+      let seconds = 1000;
+      let minutes = seconds * 60;
+      let counterMinute = 0;
+      let counterSecond = 0;
+
+      setInterval(function () {
+         if (counterSecond == 59) {
+            counterSecond = 0;
+         }
+         counterSecond--;
+         second.innerHTML = counterSecond;
+      }, seconds);
+
+      setInterval(function () {
+         counterMinute++;
+         minute.innerHTML = counterMinute;
+      }, minutes);
+   </script>
+</body>
+
+</html>

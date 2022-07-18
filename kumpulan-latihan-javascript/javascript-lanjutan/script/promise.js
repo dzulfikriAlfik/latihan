@@ -27,7 +27,7 @@
 
 // -------------------------------------------------------
 // Promise
-// object yang merepresentasikan keberhasilan/kegagalan sebuah event yang asynchronus di masa datang 
+// object yang merepresentasikan keberhasilan/kegagalan sebuah event yang asynchronus di masa datang
 // janji (terpenuhi/ingkar)
 // states (fulfilled/rejected/pending)
 // callback (resolve/reject/finally)
@@ -37,14 +37,14 @@
 let ditepati = true;
 const janji1 = new Promise((resolve, reject) => {
    if (ditepati) {
-      resolve('Janji telah ditepati');
+      resolve("Janji telah ditepati");
    } else {
-      reject('Ingkar Janji')
+      reject("Ingkar Janji");
    }
 });
 
 janji1
-   .then(response => console.log('OK : ' + response))
-   .catch(response => console.log('NOT OK : ' + response))
+   .then((response) => console.log("OK : " + response))
+   .catch((response) => console.log("NOT OK : " + response));
 
 console.log(janji1);

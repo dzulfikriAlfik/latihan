@@ -20,17 +20,17 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', function () {
-    $data = [
-        'title' => 'home'
-    ];
-    return view('home', $data);
+   $data = [
+      'title' => 'home'
+   ];
+   return view('home', $data);
 });
 
 Route::get('/about', function () {
-    $data = [
-        'title' => 'about'
-    ];
-    return view('about', $data);
+   $data = [
+      'title' => 'about'
+   ];
+   return view('about', $data);
 });
 
 
@@ -40,11 +40,11 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 // categories
 Route::get('/categories', function () {
-    $data = [
-        'title'      => 'categories',
-        'categories' => Category::all()
-    ];
-    return view('categories', $data);
+   $data = [
+      'title'      => 'categories',
+      'categories' => Category::all()
+   ];
+   return view('categories', $data);
 });
 
 // Login
@@ -57,7 +57,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 //Dashboard (logged in)
 Route::get('/dashboard', function () {
-    return view('dashboard.index', ['title' => 'Dashboard']);
+   return view('dashboard.index', ['title' => 'Dashboard']);
 })->middleware('auth');
 
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');

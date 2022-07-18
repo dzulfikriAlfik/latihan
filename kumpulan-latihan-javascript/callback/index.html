@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Callback</title>
+</head>
+
+<body>
+
+   <h2>Latihan Callback : (Lihat console)</h2>
+
+   <script>
+      function getParamsData(callback) {
+         let data = [{
+               name: 'Dzulfikri Alkautsari',
+               class: '13',
+               livedIn: 'Bandung'
+            },
+            {
+               name: 'Annisa Novitri',
+               class: '11',
+               livedIn: 'Cimahi'
+            },
+         ]
+
+         // keys = Object.keys(data)
+
+         // return callback(keys, data);
+
+         return callback(data);
+      }
+
+      // console.log(getParamsData());
+
+      getParamsData(function (response) {
+         // console.log(response);
+         response.forEach(function (data, index) {
+            console.log(data);
+         });
+      });
+      // console.log(params());
+   </script>
+</body>
+
+</html>

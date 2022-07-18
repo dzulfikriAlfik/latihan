@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Async Await</title>
+</head>
+
+<body>
+
+   <h2>Async Await (Lihat console log)</h2>
+   <button id="clickMe">Click Me</button>
+   <button id="clear">Clear Me</button>
+   <h4 id="content"></h4>
+
+   <script>
+      // simple example
+      async function doSomething() {
+         return 10;
+      }
+
+      // return promise
+      // console.log(doSomething());
+
+      let doNum = doSomething();
+
+      doNum.then(num => {
+         // console.log(num);
+      });
+      doNum.catch(err => {
+         console.log("something wen't wrong");
+      });
+
+      // another example
+      function getUser(userName) {
+         return fetch(`https://api.github.com/users/${userName}`);
+      }
+
+      // return promise
+      // console.log(getUser("dzulfikriAlfik"));
+
+      // call getUser with funcion expression
+      getUser("dzulfikriAlfik")
+         .then(user => {
+            // console.log(user);
+         })
+         .catch(err => {
+            console.log(err.message);
+         });
+
+      // or call it using IIFE (Immediately Invoke Function Expression)
+      (async () => {
+         const user = await getUser("dzulfikriAlfik")
+            .then(response => {
+               console.log(response);
+            });
+      })();
+   </script>
+
+   <script>
+      const getRepositories = new Promise(function (resolve, reject) {
+         setTimeout(function () {
+            const repositories = [{
+                  nama: 'abc'
+               },
+               {
+                  nama: 'ijkl'
+               },
+               {
+                  nama: 'xyz'
+               },
+            ];
+
+            resolve(repositories)
+            reject("You have no access to this data")
+         }, 2000);
+      });
+
+      let repository = getRepositories.then(response => {
+         // console.log(response);
+      });
+
+      (async () => {
+         const user = await getRepositories
+            .then(response => {
+               // console.log(response);
+            });
+      })();
+
+      let arr = [];
+      document.getElementById("clickMe").addEventListener("click", async () => {
+         const user = await getRepositories
+            .then(response => {
+               response.forEach(function (data) {
+                  arr.push(data.nama);
+               })
+            });
+         console.log(arr);
+         document.getElementById("content").textContent = arr;
+      });
+
+      document.getElementById("clear").addEventListener("click", () => {
+         arr = []
+         console.log(arr);
+         document.getElementById("content").textContent = ""
+      });
+   </script>
+</body>
+
+</html>

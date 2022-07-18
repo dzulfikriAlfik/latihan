@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Fibonacci</title>
+</head>
+
+<body>
+   <p id="fibonacci"></p>
+   <p id="time"></p>
+
+   <script>
+      let input = prompt("Masukan angka untuk menghitung fibonacci");
+
+      let startTime = performance.now()
+
+      function fibonacci(n) {
+         if (n <= 1) {
+            return n;
+         }
+         return fibonacci(n - 2) + fibonacci(n - 1)
+      }
+
+      let getFibonacci = fibonacci(input)
+
+      let endTime = performance.now()
+
+      let time = (endTime - startTime) / 1000;
+
+      function numberWithCommas(x) {
+         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      }
+
+      document.getElementById("fibonacci").textContent = `Fibonacci dari ${input} adalah : ${numberWithCommas(getFibonacci)}`;
+
+      document.getElementById("time").textContent = `Waktu yang dibutuhkan untuk menghitung fibonacci ${input} adalah : ${time}`;
+   </script>
+</body>
+
+</html>
