@@ -12,6 +12,12 @@
       "ProgrammerZamanNow\\Test\\": "tests/"
     }
   },
+  "scripts" : {
+    "test" : "phpunit --configuration phpunit.xml",
+    "test:product" : "phpunit --configuration phpunit.xml --testsuite product",
+    "test:counter" : "phpunit --configuration phpunit.xml --testsuite counter",
+    "test:all" : "phpunit --configuration phpunit.xml --testsuite all"
+  },
   "authors": [
     {
       "name": "dzulfikriAlfik",
