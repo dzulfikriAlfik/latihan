@@ -1,0 +1,20 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Todolist RESTful API",
+    "version": "1.0",
+    "description": "Open API for Todolist RESTful API",
+    "termsOfService": "https://www.programmerzamannow.com",
+    "contact": {
+      "name": "Dzulfikri Alkautsari",
+      "email": "dzulfikrialfik@gmail.com",
+      "url": "ziapp-webdevelopment.com"
+    },
+    "license": {
+      "name": "Apache-2.0",
+      "url": "https://www.apache.org/license/LICENSE-2.0"
+    }
+  },
+  "servers": [],
+  "paths": {}
+}

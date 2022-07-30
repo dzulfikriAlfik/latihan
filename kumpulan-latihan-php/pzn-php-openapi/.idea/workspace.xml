@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="65ba35a9-c93c-4356-98ff-ddbabb676fc1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/pzn-php-openapi.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todolist.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-todolist/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-todolist/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-todolist/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-todolist/.idea/pzn-php-todolist.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-todolist/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/app/App/Router.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/app/App/View.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/app/Controller/HomeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/app/Middleware/Middleware.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/app/View/Home/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/app/View/footer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/app/View/header.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/app/View/template.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/app/config/Database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/architecture.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/composer.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/config/database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/public/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/public/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pzn-php-weblogin/test/DatabaseTest.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="OpenAPI" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2CTlwgtmuG1w3HfJzoSP1Sf4aTp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Programming/wamp64/www/latihan/kumpulan-latihan-php/pzn-php-weblogin&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="SwaggerCodegen">
+      <option name="activeConfigurationType" value="FILE" />
+      <option name="configurationPath" value="" />
+      <option name="customJreEnabled" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="enableDebugLogging" value="false" />
+      <option name="generateToPath" value="C:\Programming\wamp64\www\latihan\kumpulan-latihan-php\pzn-php-openapi\gen" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
+      <option name="jdkPath" value="" />
+      <option name="language" value="java" />
+      <option name="specificationPath" value="C:\Programming\wamp64\www\latihan\kumpulan-latihan-php\pzn-php-openapi\todolist.json" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="65ba35a9-c93c-4356-98ff-ddbabb676fc1" name="Changes" comment="" />
+      <created>1658834699492</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658834699492</updated>
+      <workItem from="1658834701307" duration="26000" />
+      <workItem from="1658834876380" duration="1328000" />
+      <workItem from="1658837691638" duration="131000" />
+      <workItem from="1658965024585" duration="4000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
