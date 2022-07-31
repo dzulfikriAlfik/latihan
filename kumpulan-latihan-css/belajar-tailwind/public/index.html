@@ -5,13 +5,70 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800;900&display=swap" rel="stylesheet">
   <title>Latihan Tailwind css</title>
-  <link rel="stylesheet" href="css/final.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      height: 2000px;
+    }
+
+    hr {
+      border-top: 2px solid rgb(24, 23, 23);
+      margin: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .spacing,
+    .padding,
+    .sizing {
+      border: 1px solid rgb(163, 31, 31);
+    }
+
+  </style>
 </head>
 
 <body>
-  <h1 class="text-4xl m-5 text-center font-bold text-blue-500">Hello Dzulfikri</h1>
+  <h1 class="text-4xl m-5 text-center font-bold">Hello <span class="bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent">Dzulfikri</span></h1>
   <a href="" class="bg-blue-500 p-4 m-5 text-white inline-block rounded shadow-xl hover:bg-blue-700">Tombol</a>
+  <hr>
+  <section>
+    <h2>Spacing</h2>
+    <div class="spacing ml-13">Margin</div>
+  </section>
+  <hr>
+  <section class="bg-gradient-to-r from-orange-200 via-green-300 to-blue-500">
+    <h2>Padding</h2>
+    <div class="padding p-5">Padding</div>
+  </section>
+  <hr>
+  <section>
+    <h2>Sizing</h2>
+    <div class="sizing w-32 h-32">Kotak</div>
+    <div class="sizing max-w-lg">Kotak2</div>
+  </section>
+  <hr>
+  <section class="font-inter mx-auto max-w-3xl">
+    <h2 class="mb-4 text-4xl font-bold">Typograhpy</h2>
+    <div class="mb-4 text-xl">
+      By <a href="https://instagram.com/dzulfikri_alfik" class="text-blue-600 font-semibold underline" target="_blank">Dzulfikri</a>, 31 Juli 2022
+    </div>
+    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus eveniet officiis fugiat repudiandae laudantium, temporibus totam unde quibusdam corporis aspernatur fuga a modi officia accusantium pariatur excepturi assumenda blanditiis esse eum eos voluptate nisi!
+      Quibusdam, corrupti
+      debitis! Sapiente deleniti repellat tempore sequi reiciendis delectus, adipisci suscipit repudiandae voluptate facere aliquam?</p>
+    <blockquote class="mb-4 italic font-thin text-xl">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint corrupti error reiciendis! Blanditiis asperiores aspernatur mollitia iste a architecto sit cumque est, possimus minima eius commodi saepe optio voluptatibus vitae quos illo? Porro,
+      ex aperiam eius
+      obcaecati
+      ipsum
+      sequi pariatur
+      fuga qui numquam quia ut cum! Excepturi nihil rerum vitae?"</blockquote>
+    <p class="mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed illo aperiam pariatur necessitatibus architecto autem! Quis exercitationem officiis qui! Quae repellat sit beatae! Ipsum provident cum voluptatibus id nesciunt! Neque?</p>
+  </section>
 </body>
 
 </html>
