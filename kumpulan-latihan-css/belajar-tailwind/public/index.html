@@ -9,15 +9,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800;900&display=swap" rel="stylesheet">
   <title>Latihan Tailwind css</title>
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    body {
-      height: 2000px;
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      content: ["./public/**/*.{html,js}"],
+      darkMode: "class",
+      theme: {
+        extend: {
+          spacing: {
+            13: "3.25rem",
+          },
+        },
+        fontFamily: {
+          inter: ["Inter"],
+        },
+      },
+      plugins: [],
     }
 
+  </script>
+  <style type="text/tailwindcss">
     hr {
-      border-top: 2px solid rgb(24, 23, 23);
-      margin: 20px;
+      border-top: 1px solid rgb(156, 153, 153);
+      margin: 30px 50px;
     }
 
     h2 {
@@ -30,29 +45,41 @@
       border: 1px solid rgb(163, 31, 31);
     }
 
+    #toggle:checked~label div.toggle-circle {
+      @apply translate-x-3;
+    }
+
   </style>
 </head>
 
-<body>
+<body class="dark:bg-slate-800 dark:text-white">
   <h1 class="text-4xl m-5 text-center font-bold">Hello <span class="bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent">Dzulfikri</span></h1>
   <a href="" class="bg-blue-500 p-4 m-5 text-white inline-block rounded shadow-xl hover:bg-blue-700">Tombol</a>
+
   <hr>
+
   <section>
     <h2>Spacing</h2>
     <div class="spacing ml-13">Margin</div>
   </section>
+
   <hr>
+
   <section class="bg-gradient-to-r from-orange-200 via-green-300 to-blue-500">
     <h2>Padding</h2>
     <div class="padding p-5">Padding</div>
   </section>
+
   <hr>
+
   <section>
     <h2>Sizing</h2>
     <div class="sizing w-32 h-32">Kotak</div>
     <div class="sizing max-w-lg">Kotak2</div>
   </section>
+
   <hr>
+
   <section class="font-inter mx-auto max-w-3xl">
     <h2 class="mb-4 text-4xl font-bold">Typograhpy</h2>
     <div class="mb-4 text-xl">
@@ -69,6 +96,81 @@
       fuga qui numquam quia ut cum! Excepturi nihil rerum vitae?"</blockquote>
     <p class="mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed illo aperiam pariatur necessitatibus architecto autem! Quis exercitationem officiis qui! Quae repellat sit beatae! Ipsum provident cum voluptatibus id nesciunt! Neque?</p>
   </section>
+
+  <hr>
+
+  <section class="card">
+    <div class="max-w-xl h-[400px] bg-slate-300 mx-auto overflow-y-scroll bg-fixed" style="background-image: url('../img/laptop2.jpg');">
+      <p class="p-8 text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ut culpa impedit cupiditate. Odio, suscipit nesciunt quidem harum rem labore iste quibusdam, omnis praesentium laboriosam vel quam. Illum exercitationem dolores atque nihil perspiciatis aliquid.
+        Nisi ullam
+        iusto ipsam
+        aspernatur fuga cupiditate illo. Quia delectus alias quisquam similique! Dolores, illo ex? Nulla nemo dolore eaque quod deserunt dolores earum perspiciatis, quaerat beatae aut vitae pariatur consectetur. Fugit odit, quaerat atque animi iste impedit quo! Ab similique repellat officiis
+        consequatur voluptate, eos, pariatur iusto vero in voluptatem impedit quod labore earum voluptatibus tempora recusandae blanditiis nisi maxime laboriosam! Perferendis, esse saepe. Sed iusto quisquam, velit neque laboriosam reiciendis a at quam, eius provident, sunt repudiandae dolore saepe
+        nulla optio dignissimos. Ab aliquid consequatur architecto dolore voluptate expedita omnis fugit, praesentium ut laudantium possimus neque at atque nisi dolorum maxime doloremque? Sapiente rerum reiciendis atque cupiditate quaerat. Laboriosam, necessitatibus quia! Provident tempore
+        perferendis nemo vitae deleniti ea aliquid tempora maxime, ipsum dolore obcaecati officiis vel reprehenderit aut quisquam veniam saepe omnis adipisci debitis quia laudantium. Ea debitis itaque culpa quod ab. Magnam ratione, nam eius natus libero dolore nulla ullam dolorem rerum tempore.
+        Cupiditate, assumenda excepturi! Voluptates, perspiciatis. Amet saepe ipsa quidem quisquam voluptatibus voluptatem dignissimos laudantium ab adipisci, obcaecati enim animi rerum eius quae provident mollitia beatae molestias culpa. Laborum nisi quae libero quas dolorem autem ea delectus
+        aspernatur harum ipsa, eius cumque corrupti soluta quisquam pariatur fuga ex praesentium quia sequi velit voluptatibus aliquam. Architecto, qui enim eligendi perferendis odit, accusamus accusantium vitae excepturi odio et ex ratione quod dignissimos nisi est. Deleniti, itaque rem fugit
+        facilis odit sunt repudiandae molestias quam veniam maxime ipsum accusamus consectetur obcaecati ad nulla voluptas ducimus. Accusamus accusantium adipisci at? Commodi dolore a esse modi inventore, iusto dolor amet mollitia corporis neque eaque vero laboriosam!</p>
+    </div>
+    <div class="mt-32 h-[400px] max-w-xl bg-slate-300 mx-auto bg-contain bg-no-repeat bg-top rounded-t-2xl shadow-xl flex" style="background-image: url('../img/laptop.jpg');">
+      <div class="w-[200px] h-[200px] bg-white/50 m-auto backdrop-blur-sm flex">
+        <div class="m-auto text-xl">Ini Text</div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <div class="flex justify-center my-8">
+      <span class="text-sm text-slate-800 dark:text-slate-200 mr-3">Light</span>
+      <input type="checkbox" class="hidden" id="toggle">
+      <label for="toggle">
+        <div class="w-9 h-5 bg-slate-500 rounded-full flex items-center p-1 cursor-pointer">
+          <div class="w-4 h-4 bg-white rounded-full toggle-circle"></div>
+        </div>
+      </label>
+      <span class="text-sm text-slate-800 dark:text-slate-200 ml-3">Dark</span>
+    </div>
+
+    <button class="bg-sky-500 px-5 py-2 rounded-xl text-white font-inter block mx-auto hover:bg-sky-600 active:bg-sky-700 focus:ring focus:ring-sky-300 dark:bg-slate-300 dark:text-slate-800 dark:hover:text-slate-900 dark:hover:bg-slate-100">Tombol</button>
+
+    <div class="max-w-lg my-10 border border-slate-200 rounded-xl mx-auto p-5 shadow-md font-serif hover:bg-sky-500 group dark:hover:bg-slate-300">
+      <h5 class="font-bold text-slate-700 text-lg mb-3 group-hover:text-white text-center dark:text-slate-100 dark:group-hover:text-slate-800">My Card</h5>
+      <p class="text-slate-700 group-hover:text-white selection:bg-lime-300 selection:text-slate-800 first-line:uppercase first-line:tracking-wide first-letter:text-7xl first-letter:float-left first-letter:mr-3 dark:text-slate-100 dark:group-hover:text-slate-800">Lorem ipsum dolor sit amet
+        consectetur adipisicing elit.
+        Quia
+        error, amet totam
+        doloribus tempore officiis
+        consequatur voluptate
+        minima recusandae
+        repellendus debitis officia
+        quasi magni suscipit
+        optio perferendis eius
+        minus architecto.</p>
+    </div>
+
+    <div class="max-w-lg border border-slate-200 rounded-xl mx-auto shadow-xl font-inter p-5">
+      <form action="#" class="mb-2">
+        <label for="email">
+          <span class="block font-semibold mb-2 text-slate-700 after:content-['*'] after:text-pink-500 after:ml-1">Email</span>
+          <input type="email" id="email" placeholder="Masukkan email..." class="px-3 py-2 border shadow-md rounded-xl w-full block text-sm placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 invalid:text-pink-700 invalid:focus:ring-pink-700 peer">
+          <p class="text-sm m-1 text-pink-700 invisible peer-invalid:visible">Email tidak valid</p>
+        </label>
+      </form>
+    </div>
+  </section>
+
+  <div class="h-96"></div>
+  <script>
+    const checkBox = document.querySelector("#toggle");
+    const html = document.querySelector("html");
+
+    checkBox.addEventListener("click", function () {
+      checkBox.checked ? html.classList.add("dark") : html.classList.remove("dark");
+    });
+
+  </script>
 </body>
 
 </html>
