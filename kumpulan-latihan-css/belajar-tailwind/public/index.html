@@ -66,7 +66,7 @@
   </style>
 </head>
 
-<body class="dark:bg-slate-800 dark:text-white">
+<body class="dark:bg-slate-800 dark:text-white bg-[#fffdfa]">
   <h1 class="text-4xl m-5 text-center font-bold">Hello <span class="bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent">Dzulfikri</span></h1>
   <a href="" class="bg-blue-500 p-4 m-5 text-white inline-block rounded shadow-xl hover:bg-blue-700">Tombol</a>
 
@@ -149,7 +149,7 @@
 
     <button class="bg-sky-500 px-5 py-2 rounded-xl text-white font-inter block mx-auto hover:bg-sky-600 active:bg-sky-700 focus:ring focus:ring-sky-300 dark:bg-slate-300 dark:text-slate-800 dark:hover:text-slate-900 dark:hover:bg-slate-100">Tombol</button>
 
-    <div class="max-w-lg my-10 border border-slate-200 rounded-xl mx-auto p-5 shadow-md font-serif hover:bg-sky-500 group dark:hover:bg-slate-300">
+    <div class="max-w-lg my-10 border bg-white border-slate-200 rounded-xl mx-auto p-5 shadow-md font-serif hover:bg-sky-500 group dark:hover:bg-slate-300">
       <h5 class="font-bold text-slate-700 text-lg mb-3 group-hover:text-white text-center dark:text-slate-100 dark:group-hover:text-slate-800">My Card</h5>
       <p class="text-slate-700 group-hover:text-white selection:bg-lime-300 selection:text-slate-800 first-line:uppercase first-line:tracking-wide first-letter:text-7xl first-letter:float-left first-letter:mr-3 dark:text-slate-100 dark:group-hover:text-slate-800">Lorem ipsum dolor sit amet
         consectetur adipisicing elit.
@@ -164,7 +164,7 @@
         minus architecto.</p>
     </div>
 
-    <div class="max-w-lg border border-slate-200 rounded-xl mx-auto shadow-xl font-inter p-5">
+    <div class="max-w-lg border border-slate-200 rounded-xl mx-auto shadow-xl font-inter p-5 bg-white">
       <form action="#" class="mb-2">
         <label for="email">
           <span class="block font-semibold mb-2 text-slate-700 after:content-['*'] after:text-pink-500 after:ml-1">Email</span>
@@ -227,14 +227,62 @@
   <hr>
 
   <section>
-    <div class="container px-6 font-inter max-w-md mx-auto sm:max-w-xl md:max-w-4xl">
-      <h3 class="text-4xl font-bold text-slate-800 sm:text-5xl">Dzul<span class="text-sky-500">fikri</span></h3>
-      <img src="../img/laptop2.jpg" alt="Laptop" class="mt-4 rounded-xl shadow-xl sm:mt-6 sm:h-64 sm:w-full sm:object-cover">
-      <h2 class="text-2xl font-semibold mt-6 text-slate-800 sm:mt-8 sm:text-4xl">Mari Belajar Programming</h2>
-      <p class="mt-2 text-slate-600 sm:mt-4 sm:text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora expedita facere, suscipit perspiciatis delectus nihil eius mollitia corrupti. Perferendis alias minus earum beatae labore aliquam fugit dolores excepturi, qui totam recusandae
-        aperiam facilis</p>
-      <div class="mt-4">
-        <a href="#" class="inline-block px-5 py-3 bg-red-600 text-white rounded-lg shadow-lg uppercase font-semibold tracking-wider text-sm sm:mt-6 sm:text-base">Subscribe</a>
+    <div class="container px-6 font-inter max-w-md mx-auto sm:max-w-xl md:max-w-4xl lg:flex lg:max-w-full lg:p-0">
+      <div class="lg:p-12 lg:flex-1">
+        <h3 class="text-4xl font-bold text-slate-800 sm:text-5xl md:text-6xl">Dzul<span class="text-sky-500">fikri</span></h3>
+        <img src="../img/laptop2.jpg" alt="Laptop" class="mt-4 rounded-xl shadow-xl sm:mt-6 sm:h-64 sm:w-full sm:object-cover lg:hidden">
+        <h2 class="text-left text-2xl font-semibold mt-6 text-slate-800 sm:mt-8 sm:text-4xl">Mari Belajar Programming</h2>
+        <p class="mt-2 text-slate-600 sm:mt-4 sm:text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora expedita facere, suscipit perspiciatis delectus nihil eius mollitia corrupti. Perferendis alias minus earum beatae labore aliquam fugit dolores excepturi, qui totam recusandae
+          aperiam facilis</p>
+        <div class="mt-4">
+          <a href="#" class="inline-block px-5 py-3 bg-red-600 text-white rounded-lg shadow-lg uppercase font-semibold tracking-wider text-sm sm:mt-6 sm:text-base">Subscribe</a>
+        </div>
+      </div>
+      <div class="hidden lg:flex lg:w-1/2">
+        <img src="../img/laptop2.jpg" alt="Laptop" class="object-cover rounded-tl-[10rem]">
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2 class="mt-24 mb-10 text-center font-bold text-3xl text-slate-700 font-inter">My Gallery</h2>
+    <div class="container mx-auto px-6 sm:flex sm:flex-wrap sm:gap-6 sm:justify-evenly">
+      <div class="rounded-t-2xl shadow-lg overflow-hidden mb-10 sm:w-64 md:w-80 sm:mb-0 lg:w-72 bg-white">
+        <img src="https://source.unsplash.com/600x400" alt="Img caption" class="w-full">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-slate-700">Image Title</div>
+          <p class="text-sm text-slate-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, consequuntur.</p>
+        </div>
+      </div>
+      <div class="rounded-t-2xl shadow-lg overflow-hidden mb-10 sm:w-64 md:w-80 sm:mb-0 lg:w-72 bg-white">
+        <img src="https://source.unsplash.com/600x400" alt="Img caption" class="w-full">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-slate-700">Image Title</div>
+          <p class="text-sm text-slate-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, consequuntur.</p>
+        </div>
+      </div>
+      <div class="rounded-t-2xl shadow-lg overflow-hidden mb-10 sm:w-64 md:w-80 sm:mb-0 lg:w-72 bg-white">
+        <img src="https://source.unsplash.com/600x400" alt="Img caption" class="w-full">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-slate-700">Image Title</div>
+          <p class="text-sm text-slate-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, consequuntur.</p>
+        </div>
+      </div>
+      <div class="rounded-t-2xl shadow-lg overflow-hidden mb-10 sm:w-64 md:w-80 sm:mb-0 lg:w-72 bg-white">
+        <img src="https://source.unsplash.com/600x400" alt="Img caption" class="w-full">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-slate-700">Image Title</div>
+          <p class="text-sm text-slate-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, consequuntur.</p>
+        </div>
+      </div>
+      <div class="rounded-t-2xl shadow-lg overflow-hidden mb-10 sm:w-64 md:w-80 sm:mb-0 lg:w-72 bg-white">
+        <img src="https://source.unsplash.com/600x400" alt="Img caption" class="w-full">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-slate-700">Image Title</div>
+          <p class="text-sm text-slate-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, consequuntur.</p>
+        </div>
       </div>
     </div>
   </section>
