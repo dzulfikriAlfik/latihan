@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
@@ -202,14 +202,51 @@
     </div>
   </section>
 
+  <hr>
+
+  <section>
+    <div class="container px-8 mx-auto" id="card-close">
+      <div class="border rounded-lg shadow-lg p-10 relative">
+        <div class="w-10 h-10 bg-pink-300 rounded-full flex absolute -top-5 -right-5 cursor-pointer" onclick="closeCard()"><span class="text-md m-auto">❌</span></div>
+        <img src="../img/laptop.jpg" alt="Laptop" width="150" class="float-left mr-4">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum explicabo deserunt enim libero error, modi ad repellendus facilis exercitationem dicta iste delectus ut eaque veritatis assumenda, ducimus dolore, quaerat officiis est quasi dolorum labore? Accusamus, a facere fugiat laborum
+          similique error autem, asperiores fuga ipsam ducimus quis mollitia consequatur repudiandae?</p>
+      </div>
+      <div class="container mx-auto border rounded-lg shadow-lg p-10 mt-10 columns-3">
+        <img src="https://source.unsplash.com/600x400" class="mb-4" alt="">
+        <img src="https://source.unsplash.com/600x400" class="mb-4" alt="">
+        <img src="https://source.unsplash.com/600x400" class="mb-4" alt="">
+        <img src="https://source.unsplash.com/600x400" class="mb-4" alt="">
+        <img src="https://source.unsplash.com/600x400" class="mb-4" alt="">
+        <img src="https://source.unsplash.com/600x400" class="mb-4" alt="">
+      </div>
+    </div>
+    <button class="bg-sky-500 px-5 py-2 rounded-xl text-white font-inter block mx-auto hover:bg-sky-600 active:bg-sky-700 focus:ring focus:ring-sky-300 dark:bg-slate-300 dark:text-slate-800 dark:hover:text-slate-900 dark:hover:bg-slate-100" id="card-show">Show Card</button>
+  </section>
+
+  <a href="#" class="w-12 h-12 bg-sky-300 rounded-full flex fixed bottom-5 right-5 cursor-pointer animate-bounce"><span class="text-2xl m-auto">🔝</span></a>
   <div class="h-96"></div>
   <script>
     const checkBox = document.querySelector("#toggle");
     const html = document.querySelector("html");
+    const cardClose = document.getElementById("card-close");
+    const cardShow = document.getElementById("card-show");
 
     checkBox.addEventListener("click", function () {
       checkBox.checked ? html.classList.add("dark") : html.classList.remove("dark");
     });
+
+    cardShow.classList.add("hidden");
+
+    function closeCard() {
+      cardClose.classList.add("hidden");
+      cardShow.classList.remove("hidden");
+    }
+
+    cardShow.addEventListener("click", () => {
+      cardClose.classList.remove("hidden");
+      cardShow.classList.add("hidden");
+    })
 
   </script>
 </body>
