@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-6xl;
+    color: theme(colors.wpu);
+  }
+
+  hr {
+    border-top: 1px solid rgb(156, 153, 153);
+    margin: 30px 50px;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .spacing,
+  .padding,
+  .sizing {
+    border: 1px solid rgb(163, 31, 31);
+  }
+}
+
+@layer components {
+  .card-grid {
+    @apply bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden relative hover:scale-95 transition-all duration-500;
+  }
+
+  .img-card-grid {
+    @apply w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500;
+  }
+}
+
+@layer utilities {
+  #toggle:checked ~ label div.toggle-circle {
+    @apply translate-x-3;
+  }
+}

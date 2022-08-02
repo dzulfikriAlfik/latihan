@@ -9,61 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800;900&display=swap" rel="stylesheet">
   <title>Latihan Tailwind css</title>
-  <!-- <link rel="stylesheet" href="css/style.css"> -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      content: ["./public/**/*.{html,js}"],
-      darkMode: "class",
-      theme: {
-        extend: {
-          spacing: {
-            13: "3.25rem",
-          },
-          animation: {
-            "spin-slow": "spin 3s linear infinite",
-            "goyang": "goyang 1s ease-in-out infinite"
-          },
-          keyframes: {
-            goyang: {
-              "0%, 100%": {
-                transform: 'rotate(-3 deg)'
-              },
-              "50%": {
-                transform: 'rotate(3deg)'
-              }
-            }
-          }
-        },
-        fontFamily: {
-          inter: ["Inter"],
-        },
-      },
-      plugins: [],
-    }
-
-  </script>
-  <style type="text/tailwindcss">
-    hr {
-      border-top: 1px solid rgb(156, 153, 153);
-      margin: 30px 50px;
-    }
-
-    h2 {
-      text-align: center;
-    }
-
-    .spacing,
-    .padding,
-    .sizing {
-      border: 1px solid rgb(163, 31, 31);
-    }
-
-    #toggle:checked~label div.toggle-circle {
-      @apply translate-x-3;
-    }
-
-  </style>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="dark:bg-slate-800 dark:text-white bg-[#faf4ec]">
@@ -299,37 +246,43 @@
         <span class="self-end">@dzulfikri_alfik</span>
       </div>
 
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/1.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid">
+        <div class="img-card-grid bg-[url('/img/grid/1.jpg')]"></div>
       </div>
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-3 overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/2.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid md:col-start-3">
+        <div class="img-card-grid bg-[url('/img/grid/2.jpg')]"></div>
       </div>
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/3.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid">
+        <div class="img-card-grid bg-[url('/img/grid/3.jpg')]"></div>
       </div>
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/4.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid">
+        <div class="img-card-grid bg-[url('/img/grid/4.jpg')]"></div>
       </div>
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/5.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid">
+        <div class="img-card-grid bg-[url('/img/grid/5.jpg')]"></div>
       </div>
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-2 overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/6.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid md:col-start-2">
+        <div class="img-card-grid bg-[url('/img/grid/6.jpg')]"></div>
       </div>
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-4 overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/7.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid md:col-start-4">
+        <div class="img-card-grid bg-[url('/img/grid/7.jpg')]"></div>
       </div>
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/8.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid">
+        <div class="img-card-grid bg-[url('/img/grid/8.jpg')]"></div>
       </div>
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-3 overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/9.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid md:col-start-3">
+        <div class="img-card-grid bg-[url('/img/grid/9.jpg')]"></div>
       </div>
-      <div class="h-15 bg-blue-500 aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] md:col-start-3 overflow-hidden group relative hover:scale-95 transition-all duration-500">
-        <div class="w-full h-full bg-[url('/img/grid/10.jpg')] bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500"></div>
+      <div class="h-15 group card-grid md:col-start-3">
+        <div class="img-card-grid bg-[url('/img/grid/10.jpg')]"></div>
       </div>
     </div>
+  </section>
+
+  <hr>
+
+  <section>
+    <h1>Hello World!</h1>
   </section>
 
   <a href="#" class="w-12 h-12 bg-sky-300 rounded-full flex fixed bottom-5 right-5 cursor-pointer animate-bounce"><span class="text-2xl m-auto">🔝</span></a>
