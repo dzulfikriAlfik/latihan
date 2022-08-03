@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object</title>
+  </head>
+
+  <h1>Latihan OOP Javascript</h1>
+  <h1>Object</h1>
+  <h1>Buka console</h1>
+  <h1>
+    <a href="">Refresh</a>
+    <a href="../">Back</a>
+  </h1>
+
+  <body>
+    <script>
+      /** Tipe data object tanpa keyword class */
+      const dzulfikri = {
+        firstName: "Dzulfikri",
+        lastName: "Alkautsari",
+      };
+
+      /** Constructor function di javascript lama */
+      function Person(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sayHelo = function (name) {
+          console.info(`Hello ${name}, my name is ${this.firstName}`);
+        };
+      }
+
+      const alfik = new Person("Dzulfikri", "Alkautsari");
+
+      console.log("Object Person alfik", alfik);
+      alfik.sayHelo("Fikri");
+    </script>
+  </body>
+</html>

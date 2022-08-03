@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototype inheritance</title>
+  </head>
+
+  <h1>Latihan OOP Javascript</h1>
+  <h1>Prototype inheritance</h1>
+  <h1>Buka console</h1>
+  <h1>
+    <a href="">Refresh</a>
+    <a href="../">Back</a>
+  </h1>
+
+  <body>
+    <script>
+      function Employee(name) {
+        this.name = name;
+      }
+
+      function Manager(name) {
+        this.name = name;
+      }
+
+      // Manager.prototype = Employee.prototype; salah❌
+      Manager.prototype = Object.create(Employee.prototype);
+
+      Manager.prototype.sayHello = function (name) {
+        console.log(`Hello ${name}, my is name is Manager ${this.name}`);
+      };
+
+      Employee.prototype.sayHello = function (name) {
+        console.log(`Hello ${name}, my is name is Employee ${this.name}`);
+      };
+
+      const manager = new Manager("Alfik");
+      manager.sayHello("Joko");
+      console.log(manager);
+
+      const employee = new Employee("Dzulfikri");
+      employee.sayHello("Joko");
+      console.log(employee);
+    </script>
+  </body>
+</html>

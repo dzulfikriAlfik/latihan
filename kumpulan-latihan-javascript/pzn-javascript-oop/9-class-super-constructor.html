@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Super Constructor</title>
+  </head>
+
+  <h1>Latihan OOP Javascript</h1>
+  <h1>Class Super Constructor</h1>
+  <h1>Buka console</h1>
+  <h1>
+    <a href="">Refresh</a>
+    <a href="../">Back</a>
+  </h1>
+
+  <body>
+    <script>
+      class Employee {
+        constructor(firstName) {
+          this.firstName = firstName;
+        }
+
+        sayHello(name) {
+          console.log(`Hello ${name}, my name is Employee ${this.firstName}`);
+        }
+      }
+
+      class Manager extends Employee {
+        constructor(firstName, lastName) {
+          super(
+            firstName
+          ); /** kata kunci super ini mirip dengan __construct di php */
+          this.lastName = lastName;
+          this.fullName = `${this.firstName} ${this.lastName}`;
+        }
+
+        sayHello(name) {
+          console.log(`Hello ${name}, my name is Manager ${this.fullName}`);
+        }
+      }
+
+      const dzulfikri = new Manager("Dzulfikri", "Alkautsari");
+      dzulfikri.sayHello("Joko");
+      console.log(dzulfikri);
+
+      const budi = new Employee("Budi");
+      budi.sayHello("Joko");
+      console.log(budi);
+    </script>
+  </body>
+</html>

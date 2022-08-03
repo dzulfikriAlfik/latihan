@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Private Field</title>
+  </head>
+
+  <body>
+    <h1>Latihan OOP Javascript</h1>
+    <h1>Class Private Field</h1>
+    <h1>Buka console</h1>
+    <h1>
+      <a href="">Refresh</a>
+      <a href="../">Back</a>
+    </h1>
+
+    <script>
+      class Counter {
+        #counter = 0;
+
+        increment() {
+          this.#counter++;
+        }
+
+        decrement() {
+          this.#counter--;
+        }
+
+        get() {
+          return this.#counter;
+        }
+      }
+
+      const counter = new Counter();
+      counter.increment();
+      counter.increment();
+      counter.increment();
+      counter.increment();
+      console.log(counter.get());
+      console.log(counter);
+    </script>
+  </body>
+</html>

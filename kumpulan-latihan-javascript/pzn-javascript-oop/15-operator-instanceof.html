@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operator Instanceof</title>
+  </head>
+
+  <body>
+    <h1>Latihan OOP Javascript</h1>
+    <h1>Operator Instanceof</h1>
+    <h1>Buka console</h1>
+    <h1>
+      <a href="">Refresh</a>
+      <a href="../">Back</a>
+    </h1>
+
+    <script>
+      class Employee {}
+
+      class Manager extends Employee {}
+
+      const eko = new Employee();
+      const dzulfikri = new Manager();
+
+      console.log("eko instanceof Manager : ", eko instanceof Manager);
+      console.log("eko instanceof Employee : ", eko instanceof Employee);
+      console.log(
+        "dzulfikri instanceof Manager : ",
+        dzulfikri instanceof Manager,
+        " Because from class Manager"
+      );
+      console.log(
+        "dzulfikri instanceof Employee : ",
+        dzulfikri instanceof Employee,
+        " Because from class Manager which is extends to class Employee"
+      );
+    </script>
+  </body>
+</html>

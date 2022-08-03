@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error</title>
+  </head>
+
+  <body>
+    <h1>Latihan OOP Javascript</h1>
+    <h1>Error</h1>
+    <h1>Buka console</h1>
+    <h1>
+      <a href="">Refresh</a>
+      <a href="../">Back</a>
+    </h1>
+
+    <script>
+      class MathUtil {
+        static sum(...numbers) {
+          if (numbers.length === 0) {
+            throw new Error("Harap masukkan parameter");
+          }
+
+          let total = 0;
+          for (const number of numbers) {
+            total += number;
+          }
+          return total;
+        }
+      }
+
+      console.log("Error sum tidak memasukan params : ", MathUtil.sum());
+      console.log(
+        "Total sum 1 + 2 + 3 + 4 + 5 : ",
+        MathUtil.sum(1, 2, 3, 4, 5)
+      );
+    </script>
+  </body>
+</html>

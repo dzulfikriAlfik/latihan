@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Super Method</title>
+  </head>
+
+  <h1>Latihan OOP Javascript</h1>
+  <h1>Class Super Method</h1>
+  <h1>Buka console</h1>
+  <h1>
+    <a href="">Refresh</a>
+    <a href="../">Back</a>
+  </h1>
+
+  <body>
+    <script>
+      class Shape {
+        paint() {
+          console.log("Paint Shape");
+        }
+      }
+
+      class Circle extends Shape {
+        paint() {
+          super.paint();
+          console.log("Paint Circle");
+        }
+      }
+
+      const circle = new Circle();
+      circle.paint();
+    </script>
+  </body>
+</html>

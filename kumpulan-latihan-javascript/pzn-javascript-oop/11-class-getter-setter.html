@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Getter dan Setter</title>
+  </head>
+
+  <body>
+    <h1>Latihan OOP Javascript</h1>
+    <h1>Class Getter dan Setter</h1>
+    <h1>Buka console</h1>
+    <h1>
+      <a href="">Refresh</a>
+      <a href="../">Back</a>
+    </h1>
+
+    <script>
+      class Person {
+        constructor(firstName, lastName) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+        }
+
+        get fullName() {
+          return `${this.firstName} ${this.lastName}`;
+        }
+
+        set fullName(value) {
+          const result = value.split(" ");
+          this.firstName = result[0];
+          this.lastName = result[1];
+        }
+      }
+
+      const dzulfikri = new Person("Dzulfikri", "Alkautsari");
+      console.log(dzulfikri);
+
+      dzulfikri.fullName = "Budi Nugraha";
+      console.log(dzulfikri);
+    </script>
+  </body>
+</html>

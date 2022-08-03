@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Constructor Inheritance</title>
+  </head>
+
+  <h1>Latihan OOP Javascript</h1>
+  <h1>Constructor Inheritance</h1>
+  <h1>Buka console</h1>
+  <h1>
+    <a href="">Refresh</a>
+    <a href="../">Back</a>
+  </h1>
+
+  <body>
+    <script>
+      /** mengcopy properti dari suatu object ke object lain
+       * dengan keyword object.call()
+       */
+      function Employee(firstName) {
+        this.firstName = firstName;
+        this.sayHello = function (name) {
+          console.info(`Hello ${name}, my name is ${this.firstName}`);
+        };
+      }
+
+      function Manager(firstName, lastName) {
+        Employee.call(this, firstName);
+        this.lastName = lastName;
+      }
+
+      const dzulfikri = new Manager("Dzulfikri", "Alfik");
+      console.log(dzulfikri);
+    </script>
+  </body>
+</html>

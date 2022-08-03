@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Handling</title>
+  </head>
+
+  <body>
+    <h1>Latihan OOP Javascript</h1>
+    <h1>Error Handling</h1>
+    <h1>Buka console</h1>
+    <h1>
+      <a href="">Refresh</a>
+      <a href="../">Back</a>
+    </h1>
+
+    <script>
+      class MathUtil {
+        static sum(...numbers) {
+          if (numbers.length === 0) {
+            throw new Error("Harap masukkan setidaknya 1 parameter");
+          }
+
+          let total = 0;
+          for (const number of numbers) {
+            total += number;
+          }
+          return total;
+        }
+      }
+
+      try {
+        console.log(MathUtil.sum());
+        console.log(
+          "Kode program ini tidak akan tampil jika terjadi error, dan akan masuk ke block catch"
+        );
+      } catch (error) {
+        console.error(`Terjadi error : ${error.message}`);
+      } finally {
+        console.log("Kode program selesai");
+      }
+
+      console.log(
+        "Kode programm ini tetap dijalankan karena semua error sudah ditangani block catch"
+      );
+
+      class Counter {
+        #counter = 1;
+
+        next() {
+          try {
+            return this.#counter;
+          } finally {
+            this.#counter++;
+          }
+        }
+      }
+
+      const counter = new Counter();
+      console.log(counter.next());
+      console.log(counter.next());
+      console.log(counter.next());
+      console.log(counter.next());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototype</title>
+  </head>
+
+  <h1>Latihan OOP Javascript</h1>
+  <h1>Prototype</h1>
+  <h1>Buka console</h1>
+  <h1>
+    <a href="">Refresh</a>
+    <a href="../">Back</a>
+  </h1>
+
+  <body>
+    <script>
+      /** Constructor function di javascript lama */
+      function Person(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sayHelo = function (name) {
+          console.info(`Hello ${name}, my name is ${this.firstName}`);
+        };
+      }
+
+      /** Menambahkan property atau method kedalam constructor
+       *  dengan prototyping
+       *  Jika didapati ada property atau method di object instance
+       *  yang sama seperti prototypenya, maka yang akan terpanggil adalah
+       *  yang ada di object instance
+       */
+      Person.prototype.sayBye = function () {
+        console.log("Goodbye");
+      };
+      Person.prototype.run = function () {
+        console.log(`${this.firstName} is running`);
+      };
+
+      const person1 = new Person("Dzulfikri", "Alkautsari");
+      person1.sayBye = function () {
+        console.log("Selamat jalan");
+      };
+
+      console.log("Object Person person1", person1);
+      person1.sayBye();
+
+      const person2 = new Person("Fikri", "Alfik");
+
+      console.log("Object Person person2", person2);
+      person2.sayBye();
+      person2.run();
+    </script>
+  </body>
+</html>
