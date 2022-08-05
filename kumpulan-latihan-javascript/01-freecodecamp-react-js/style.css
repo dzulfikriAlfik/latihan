@@ -1,5 +1,23 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
+  margin: 10px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar > img {
+  width: 40px;
+}
+
+.nav-items {
+  display: flex;
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.nav-items > li {
+  margin-right: 30px;
 }
