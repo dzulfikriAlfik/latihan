@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800;900&display=swap");
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Inter;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #21222a;
+}
+
+.nav-left {
+  margin-left: 20px;
+  display: flex;
+}
+
+.nav-left > img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.nav-left > h3 {
+  color: #61dafb;
+}
+
+.nav-right {
+  color: #deebf8;
+  margin-right: 20px;
+}
+
+.App {
+  height: 100vh;
+  background-color: #282d35;
+  color: #fff;
+}
+
+main {
+  background-image: url("../images/react-icon-large.png");
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  /* background-position: right 75%; */
+}
+
+main > h1 {
+  margin-left: 20px;
+}
+
+main > ul > li {
+  /* list-style-type: none; */
+  padding-block: 10px;
+  margin-left: 20px;
+}
+
+main > ul > li::marker {
+  /* content: "\2022"; */
+  color: #61dafb;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  font-size: 1.5rem;
+}
