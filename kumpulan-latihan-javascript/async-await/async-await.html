@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <button id="button">click me</button>
+  <h1 id="root"></h1>
+
+  <script>
+    async function getUser(username) {
+      let response = await fetch(`https://api.github.com/users/${username}`);
+      let data = await response.json();
+      return data;
+    }
+
+    // const user = getUser('dzulfikriAlfik');
+    // user.then(data => console.log(data));
+
+    const button = document.getElementById("button");
+    const root = document.getElementById("root");
+
+    button.addEventListener("click", async () => {
+      const user = await getUser('dzulfikriAlfik');
+      root.innerHTML = user.bio;
+    });
+
+    // on ready function
+    (async () => {
+      const user = await getUser('dzulfikriAlfik');
+      console.log(user);
+    })();
+  </script>
+</body>
+
+</html>
