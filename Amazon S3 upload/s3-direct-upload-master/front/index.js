@@ -24,5 +24,6 @@ imageForm.addEventListener("submit", async (event) => {
   // post requst to my server to store any extra data
   const img = document.createElement("img");
   img.src = imageUrl;
+  img.style.width = "100vw";
   document.body.appendChild(img);
 });
