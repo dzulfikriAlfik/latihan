@@ -3,7 +3,7 @@ import { generateUploadURL } from "./s3.js";
 
 const app = express();
 
-app.use(express.static("front"));
+app.use(express.static("../front"));
 
 app.get("/s3Url", async (req, res) => {
   const url = await generateUploadURL();

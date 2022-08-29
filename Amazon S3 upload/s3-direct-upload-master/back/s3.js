@@ -6,8 +6,8 @@ const randomBytes = promisify(crypto.randomBytes);
 
 dotenv.config();
 
-const region = "ap-southeast-3";
-const bucketName = "dzulfikristorage";
+const region = "ap-southeast-1";
+const bucketName = "dzulfikrialfik-storage";
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
