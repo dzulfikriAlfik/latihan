@@ -1,3 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Encrypt decrypt string</title>
+</head>
+
+<body>
+   <h2>Encrypt Decrypt string</h2>
+   <form action="" method="post">
+      <label for="encrypt">Input string
+         <input type="text" id="encrypt" name="encrypt">
+      </label>
+      <br />
+      <br />
+      <label for="key">Input key
+         <input type="text" id="key" name="key">
+      </label>
+      <br />
+      <br />
+      <label for="type">Input type
+         <select name="type" id="type">
+            <option value="e">Encrypt</option>
+            <option value="d">Decrypt</option>
+         </select>
+      </label>
+      <br />
+      <br />
+      <button type="submit" name="submit">Kirim</button>
+   </form>
+</body>
+
+</html>
+
 <?php
 define('IV_KEY', "UHEFIU0989834R93HFBF8-982R29");
 
@@ -23,10 +60,20 @@ function encrypt_decrypt($action, $string, $key = "")
    return $output;
 }
 
-$user_id = "624c045485047";
-$user_point = "cHBIemZnd2dBcVZRZ1RXQVZPZ1Zpdz09";
-$user_saldo = "500000";
-$user_point_dec = encrypt_decrypt("e", $user_saldo, $user_id);
-echo "user_point_enc : $user_point_dec" . "<br>";
-$user_point_dec = encrypt_decrypt("d", $user_point, $user_id);
-echo "user_point_dec : $user_point_dec" . "<br>";
+if (isset($_POST["submit"])) {
+   $key    = $_POST["key"];
+   $string = $_POST["encrypt"];
+   $type   = $_POST["type"];
+
+   if ($type == "e") {
+      echo "String : $string <br/>";
+      echo "Key : $key <br/>";
+      echo "Encrypted : " . encrypt_decrypt("e", $string, $key) . "<br/>";
+   } else {
+      echo "String : $string <br/>";
+      echo "Key : $key <br/>";
+      echo "Decrypted : " . encrypt_decrypt("d", $string, $key) . "<br/>";
+   }
+}
+
+?>
