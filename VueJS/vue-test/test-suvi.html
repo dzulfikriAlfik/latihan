@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test api suvi</title>
+</head>
+
+<body>
+  <h2>Buka console</h2>
+
+  <script>
+    const token =
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLW1pdHJhLnN1dmkuY28uaWRcL2FwaVwvYXV0aFwvbWl0cmFcL2xvZ2luIiwiaWF0IjoxNjY1NzE3MDI4LCJleHAiOjE2NjU3MjA2MjgsIm5iZiI6MTY2NTcxNzAyOCwianRpIjoiRFRJSzZKWHlFbXVjbkNjVSIsInN1YiI6NjM0OCwicHJ2IjoiMjY0MTI1MzgyZGU2YzMzZTQ4ZTM4MmQ2YjFjYjViMWRhMTJjZjA0ZCJ9.e6bhRsspemI2uj51xkfdKrsfvPKazQRpCBzqJ9lHYBI';
+
+    const data = {
+      "qty_voucher": 1,
+      "mitra_id": 6348,
+      "denom_id": 99803821974224899,
+      "voucher_from": "2022-10-14 00:00:00",
+      "voucher_to": "2022-10-16 00:00:00"
+    };
+
+    (async () => {
+      const response = await fetch("https://api-mitra.suvi.co.id/api/vouchers/mitra", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+    })()
+  </script>
+</body>
+
+</html>
