@@ -1,0 +1,18 @@
+{
+  "cwd": "/opt/lampp/htdocs/latihan/JavaScript/Framework7",
+  "type": [
+    "web"
+  ],
+  "name": "first-app",
+  "framework": "core",
+  "template": "tabs",
+  "bundler": false,
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false
+}
