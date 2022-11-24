@@ -1,0 +1,210 @@
+<!-- W3hubs.com - Download Free Responsive Website Layout Templates designed on HTML5 CSS3,Bootstrap which are 100% Mobile friendly. w3Hubs all Layouts are responsive cross browser supported, best quality world class designs. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Business Card Using Bootstrap 4</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+  <style type="text/css">
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: 'Comfortaa', cursive;
+      background-color: #f1f2f6;
+    }
+
+    img {
+      width: 90%;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+    }
+
+    .card {
+      width: 50%;
+      background-color: #FF9507;
+      color: #fff;
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+        0 1px 18px 0 rgba(0, 0, 0, 0.12),
+        0 3px 5px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-body {
+      padding: 0px;
+      min-height: 0px;
+    }
+
+    .card-title,
+    p {
+      margin-bottom: 0px;
+      text-transform: uppercase;
+    }
+
+    .card-text {
+      font-size: 10px;
+      font-style: italic;
+      padding-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 20px;
+    }
+
+    li {
+      font-weight: 500;
+      padding-bottom: 5px;
+    }
+
+    li span {
+      font-weight: 300;
+      padding-left: 5px;
+    }
+
+    .bg-custom {
+      background-color: #FF5526;
+    }
+
+    .bg-custom p {
+      padding: 10px;
+      line-height: 1;
+    }
+
+    .col-4 {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+    }
+
+    .bg-effects {
+      background-color: #FF5526;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+      padding-left: 10px;
+      padding-top: 10px;
+    }
+
+    @media(max-width: 992px) {
+      .card {
+        width: 70%;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .card {
+        width: 70%;
+      }
+
+      .container {
+        max-width: 100%;
+      }
+
+      img {
+        display: flex;
+      }
+    }
+
+    @media(max-width: 615px) {
+      li {
+        font-size: 12px;
+      }
+
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body onload="autoClick()">
+  <div class="container mt-5">
+    <div class="card" id="root" style="width: 59%;">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-8">
+            <div class="bg-effects">
+              <h2 class="card-title">Dzulfikri</h2>
+              <p class="card-text">Backend Programmer</p>
+            </div>
+            <ul>
+              <li>
+                <div class="row">
+                  <div class="col-md-4">Fullname</div>
+                  <div class="col-md-7">: <b>Dzulfikri Alkautsari</b></div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-4">Professional</div>
+                  <div class="col-md-7">: <b>Programmer</b></div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-4">Country</div>
+                  <div class="col-md-7">: <b>Indonesia</b></div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-4">Phone</div>
+                  <div class="col-md-7">: <b>+6282121884879</b></div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-4">Email</div>
+                  <div class="col-md-7">: <b>dzulfikrialfik@gmail.com</b></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-4 pl-0 mt-3">
+            <img src="dzul.jpg" class="img-responsive img-thumbnail">
+          </div>
+        </div>
+      </div>
+      <div class="bg-custom">
+        <p>Visit Now :<span> schverse.id</span></p>
+      </div>
+    </div>
+  </div>
+  <br>
+  <center class="row d-flex">
+    <div class="col-sm-12">
+      <a href="#" id="download" class="btn btn-primary">Download</a>
+    </div>
+  </center>
+
+  <script type="text/javascript">
+    function autoClick() {
+      $("#download").click()
+    }
+
+    $(document).ready(function () {
+      const element = $("#root")
+
+      $("#download").on("click", function () {
+        html2canvas(element, {
+          useCORS: true,
+          onrendered: function (canvas) {
+            const imageData = canvas.toDataURL("image/jpg");
+            const newData = imageData.replace(/^data:image\/jpg/, "data:application/octet-stream")
+            $("#download").attr("download", "image.jpg").attr("href", newData)
+          }
+        });
+      })
+    })
+  </script>
+
+</body>
+
+</html>
