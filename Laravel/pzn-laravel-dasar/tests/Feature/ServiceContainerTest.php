@@ -7,87 +7,100 @@ use App\Data\Foo;
 use App\Data\Person;
 use App\Services\HelloService;
 use App\Services\HelloServiceIndonesia;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class ServiceContainerTest extends TestCase
 {
-  public function testDependency()
-  {
-    $foo1 = $this->app->make(Foo::class); // new Foo
-    $foo2 = $this->app->make(Foo::class); // new Foo
+    public function testDependency()
+    {
+        $foo1 = $this->app->make(Foo::class); // new Foo()
+        $foo2 = $this->app->make(Foo::class); // new Foo()
 
-    self::assertEquals($foo1->foo(), "Foo");
-    self::assertEquals($foo2->foo(), "Foo");
-    self::assertNotSame($foo1, $foo2);
-  }
+        self::assertEquals('Foo', $foo1->foo());
+        self::assertEquals('Foo', $foo2->foo());
+        self::assertNotSame($foo1, $foo2);
+    }
 
-  public function testBind()
-  {
-    $this->app->bind(Person::class, function ($app) {
-      return new Person("Dzulfikri", "Alkautsari");
-    });
+    public function testBind()
+    {
+        // $person = $this->app->make(Person::class); // new Person()
+        // self::assertNotNull($person);
 
-    $person1 = $this->app->make(Person::class); // closure() // new Person("Dzulfikri", "Alkautsari")
-    $person2 = $this->app->make(Person::class); // closure()
+        $this->app->bind(Person::class, function ($app){
+            return new Person("Eko", "Khannedy");
+        });
 
-    self::assertEquals($person1->firstName, "Dzulfikri");
-    self::assertEquals($person2->lastName, "Alkautsari");
-    self::assertNotSame($person1, $person2);
-  }
+        $person1 = $this->app->make(Person::class); // closure() // new Person("Eko", "Khannedy");
+        $person2 = $this->app->make(Person::class); // closure() // new Person("Eko", "Khannedy");
 
-  public function testSingleton()
-  {
-    $this->app->singleton(Person::class, function ($app) {
-      return new Person("Dzulfikri", "Alkautsari");
-    });
+        self::assertEquals('Eko', $person1->firstName);
+        self::assertEquals('Eko', $person2->firstName);
+        self::assertNotSame($person1, $person2);
+    }
 
-    $person1 = $this->app->make(Person::class); // closure() // new Person("Dzulfikri", "Alkautsari")
-    $person2 = $this->app->make(Person::class); // closure()
+    public function testSingleton()
+    {
+        $this->app->singleton(Person::class, function ($app){
+            return new Person("Eko", "Khannedy");
+        });
 
-    self::assertEquals($person1->firstName, "Dzulfikri");
-    self::assertEquals($person2->lastName, "Alkautsari");
-    self::assertSame($person1, $person2);
-  }
+        $person1 = $this->app->make(Person::class); // new Person("Eko", "Khannedy"); if not exists
+        $person2 = $this->app->make(Person::class); // return existing
+        $person3 = $this->app->make(Person::class); // return existing
+        $person4 = $this->app->make(Person::class); // return existing
 
-  public function testInstance()
-  {
-    $person = new Person("Dzulfikri", "Alkautsari");
-    $this->instance(Person::class, $person);
+        self::assertEquals('Eko', $person1->firstName);
+        self::assertEquals('Eko', $person2->firstName);
+        self::assertSame($person1, $person2);
+    }
 
-    $person1 = $this->app->make(Person::class);
-    $person2 = $this->app->make(Person::class);
+    public function testInstance()
+    {
+        $person = new Person("Eko", "Khannedy");
+        $this->app->instance(Person::class, $person);
 
-    self::assertEquals($person1->firstName, "Dzulfikri");
-    self::assertEquals($person2->lastName, "Alkautsari");
-    self::assertSame($person, $person1);
-    self::assertSame($person1, $person2);
-  }
+        $person1 = $this->app->make(Person::class); // $person
+        $person2 = $this->app->make(Person::class); // $person
+        $person3 = $this->app->make(Person::class); // $person
+        $person4 = $this->app->make(Person::class); // $person
 
-  public function testDependencyInjection()
-  {
-    $this->app->singleton(Foo::class, function ($app) {
-      return new Foo();
-    });
-    $this->app->singleton(Bar::class, function ($app) {
-      return new Bar($app->make(Foo::class));
-    });
+        self::assertEquals('Eko', $person1->firstName);
+        self::assertEquals('Eko', $person2->firstName);
+        self::assertSame($person1, $person2);
+    }
 
-    $foo = $this->app->make(Foo::class);
-    $bar1 = $this->app->make(Bar::class);
-    $bar2 = $this->app->make(Bar::class);
+    public function testDependencyInjection()
+    {
+        $this->app->singleton(Foo::class, function ($app){
+            return new Foo();
+        });
+        $this->app->singleton(Bar::class, function ($app){
+            $foo = $app->make(Foo::class);
+            return new Bar($foo);
+        });
 
-    self::assertSame($foo, $bar1->foo);
-    self::assertSame($bar1, $bar2);
-  }
+        $foo = $this->app->make(Foo::class);
+        $bar1 = $this->app->make(Bar::class);
+        $bar2 = $this->app->make(Bar::class);
 
-  public function testInterfaceToClass()
-  {
-    $this->app->singleton(HelloService::class, HelloServiceIndonesia::class);
+        self::assertSame($foo, $bar1->foo);
+        self::assertSame($bar1, $bar2);
+    }
 
-    $helloService = $this->app->make(HelloService::class);
+    public function testInterfaceToClass()
+    {
+        // $this->app->singleton(HelloService::class, HelloServiceIndonesia::class);
 
-    self::assertEquals("Hello Dzulfikri", $helloService->hello("Dzulfikri"));
-  }
+        $this->app->singleton(HelloService::class, function ($app){
+            return new HelloServiceIndonesia();
+        });
+
+        $helloService = $this->app->make(HelloService::class);
+
+        self::assertEquals('Halo Eko', $helloService->hello('Eko'));
+    }
+
+
 }
