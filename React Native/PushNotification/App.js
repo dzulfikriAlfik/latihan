@@ -2,53 +2,81 @@
 import messaging from '@react-native-firebase/messaging';
 import React, {useEffect} from 'react';
 import {
-  Alert,
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
-  Text,
-  useColorScheme,
+  StyleSheet,
   View,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {GetFCMToken} from './src/utils/pushNotifHelper';
+import notifee from '@notifee/react-native';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   useEffect(() => {
     console.log('fcmToken : ', GetFCMToken());
 
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+      const notification = remoteMessage.notification;
+      const title = notification.title;
+      const body = notification.body;
+
+      onDisplayNotification(title, body);
     });
 
     return unsubscribe;
   }, []);
 
+  async function onDisplayNotification(title, body) {
+    try {
+      // Create a channel (required for Android)
+      const channelId = await notifee.createChannel({
+        id: 'default',
+        name: 'Default Channel',
+      });
+      // Display a notification
+      await notifee.displayNotification({
+        title: title,
+        body: body,
+        android: {
+          channelId,
+          smallIcon: 'ic_launcher', // optional, defaults to 'ic_launcher'.
+          // pressAction is needed if you want the notification to open the app when pressed
+          pressAction: {
+            id: 'default',
+          },
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Text>Test kontolodon</Text>
+    <SafeAreaView style={{backgroundColor: Colors.lighter}}>
+      <StatusBar barStyle="light-content" backgroundColor={Colors.lighter} />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <View style={style.button}>
+          <Button
+            title="Display Notification"
+            onPress={() => onDisplayNotification()}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
+
+const style = StyleSheet.create({
+  button: {
+    flex: 1,
+    marginTop: '50%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default App;
