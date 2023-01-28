@@ -1,50 +1,59 @@
-import { createStore } from 'redux'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, configureStore } from '@reduxjs/toolkit'
 
-const defaultState = {
-  counter: 0,
+const initialCounterState = {
+  value: 0,
   showCounter: true,
 }
 
-createSlice({
+const counterSlice = createSlice({
   name: 'counter',
-  initialState: defaultState,
+  initialState: initialCounterState,
   reducers: {
-    increment(state) {
-      state.counter++
+    increment(state, action) {
+      state.value = state.value + action.payload
     },
-    decrement() {},
-    toggle() {},
+    decrement(state) {
+      state.value--
+    },
+    toggle(state) {
+      state.showCounter = !state.showCounter
+    },
+    reset(state) {
+      state.value = 0
+    },
   },
 })
 
-export const INCREMENT = 'increment'
-
-const counterReducer = (state = defaultState, action) => {
-  if (action.type === INCREMENT) {
-    return {
-      counter: state.counter + action.value,
-      showCounter: state.showCounter,
-    }
-  }
-
-  if (action.type === 'decrement') {
-    return {
-      counter: state.counter - 1,
-      showCounter: state.showCounter,
-    }
-  }
-
-  if (action.type === 'toggle') {
-    return {
-      showCounter: !state.showCounter,
-      counter: state.counter,
-    }
-  }
-
-  return state
+const initialAuthState = {
+  isAuthenticated: localStorage.getItem('isLoggedIn') === 'true' ? true : false,
 }
 
-const store = createStore(counterReducer)
+const authSlice = createSlice({
+  name: 'authentication',
+  initialState: initialAuthState,
+  reducers: {
+    login(state) {
+      localStorage.setItem('isLoggedIn', true)
+
+      state.isAuthenticated = true
+    },
+    logout(state) {
+      localStorage.setItem('isLoggedIn', false)
+      localStorage.removeItem('isLoggedIn')
+
+      state.isAuthenticated = false
+    },
+  },
+})
+
+const store = configureStore({
+  reducer: {
+    counter: counterSlice.reducer,
+    auth: authSlice.reducer,
+  },
+})
+
+export const counterActions = counterSlice.actions
+export const authActions = authSlice.actions
 
 export default store
