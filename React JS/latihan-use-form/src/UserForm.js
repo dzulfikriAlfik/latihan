@@ -1,6 +1,14 @@
-import { useState } from 'react'
-import validator from 'validator'
 import Select from 'react-select'
+import { useForm, useController } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { string, z } from 'zod'
+
+const schema = z.object({
+  name: string().min(1, { message: 'Name is required' }),
+  email: string().email(),
+  website: string().url().optional(),
+  country: string(),
+})
 
 const countryOptions = [
   { value: 'asgard', label: 'Asgard' },
@@ -9,103 +17,79 @@ const countryOptions = [
 ]
 
 export default function UserForm({ onSave, user = {} }) {
-  const [userData, setUserData] = useState(user)
-  const [errors, setErrors] = useState({})
+  const { register, control, handleSubmit, formState } = useForm({
+    defaultValues: user,
+    resolver: zodResolver(schema),
+  })
 
-  const { name, email, website, country } = userData
+  const { field } = useController({ name: 'country', control })
 
-  const validateData = () => {
-    let errors = {}
+  const { errors } = formState
 
-    if (!name) {
-      errors.name = 'Name is required'
-    }
+  // const validateData = () => {
+  //   let errors = {}
 
-    if (!validator.isEmail(email)) {
-      errors.email = 'A valid email is required'
-    }
+  //   if (!name) {
+  //     errors.name = 'Name is required'
+  //   }
 
-    if (!validator.isURL(website)) {
-      errors.website = 'A valid website is required'
-    }
+  //   if (!validator.isEmail(email)) {
+  //     errors.email = 'A valid email is required'
+  //   }
 
-    if (!country) {
-      errors.country = 'A country is required'
-    }
+  //   if (!validator.isURL(website)) {
+  //     errors.website = 'A valid website is required'
+  //   }
 
-    return errors
-  }
+  //   if (!country) {
+  //     errors.country = 'A country is required'
+  //   }
 
-  const handleChange = (event) => {
-    const { name, value } = event.target
-
-    delete errors[name]
-
-    setUserData((prevData) => ({ ...prevData, [name]: value }))
-  }
+  //   return errors
+  // }
 
   const handleSelectChange = (option) => {
-    setUserData((prevData) => ({ ...prevData, country: option }))
+    field.onChange(option.value)
   }
 
-  const handleSave = () => {
-    const errors = validateData()
-
-    if (Object.keys(errors).length) {
-      setErrors(errors)
-      return
-    }
-
-    setErrors({})
-    console.log('save User Data : ', userData)
-    onSave(userData)
+  const handleSave = (formValues) => {
+    onSave(formValues)
   }
 
   return (
-    <>
+    <form onSubmit={handleSubmit(handleSave)}>
       <div>
         <p>Name</p>
-        <input type='text' name='name' value={name} onChange={handleChange} />
-        <div style={{ color: 'red' }}>{errors.name}</div>
+        <input {...register('name')} />
+        <div style={{ color: 'red' }}>{errors.name?.message}</div>
       </div>
-      {/* Separator */}
       <hr />
-      {/* Separator */}
       <div>
         <p>Email</p>
-        <input type='text' name='email' value={email} onChange={handleChange} />
-        <div style={{ color: 'red' }}>{errors.email}</div>
+        <input {...register('email')} />
+        <div style={{ color: 'red' }}>{errors.email?.message}</div>
       </div>
-      {/* Separator */}
       <hr />
-      {/* Separator */}
       <div>
         <p>Website</p>
-        <input
-          type='text'
-          name='website'
-          value={website}
-          onChange={handleChange}
-        />
-        <div style={{ color: 'red' }}>{errors.website}</div>
+        <input {...register('website')} />
+        <div style={{ color: 'red' }}>{errors.website?.message}</div>
       </div>
-      {/* Separator */}
       <hr />
-      {/* Separator */}
       <div>
         <p>Country</p>
         <Select
-          value={countryOptions.find(({ value }) => value === country)}
+          {...register('country')}
+          value={countryOptions.find(({ value }) => value === field.value)}
           onChange={handleSelectChange}
           options={countryOptions}
         />
+        <div style={{ color: 'red' }}>{errors.country?.message}</div>
       </div>
-      {/* Separator */}
       <hr />
-      {/* Separator */}
       <div style={{ marginTop: '12px' }}>
-        <button onClick={handleSave}>Save</button>
+        <button type='submit'>Save</button>
       </div>
-    </>
+    </form>
   )
 }
