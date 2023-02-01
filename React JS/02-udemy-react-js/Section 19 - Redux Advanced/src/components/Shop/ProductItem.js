@@ -9,6 +9,8 @@ const ProductItem = (props) => {
   const dispatch = useDispatch()
 
   const addToCartHandler = () => {
+    // # Send Http request
+
     dispatch(cartActions.addItemToCart({ id, title, price }))
   }
 
