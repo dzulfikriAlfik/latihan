@@ -1,31 +1,28 @@
-import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { PRODUCTS } from '../data/products'
 
 export default function ProductDetailPage() {
+  const [product, setProduct] = useState(null)
   const params = useParams()
 
-  const validProducts = [
-    {
-      id: 'product-1',
-      name: 'Laptop',
-    },
-    {
-      id: 'product-2',
-      name: 'Mouse',
-    },
-  ]
+  useEffect(() => {
+    const product = PRODUCTS.find((product) => product.id === params.productId)
 
-  const isValidProductId = () => {
-    const isValid = validProducts.findIndex(
-      (product) => product.id === params.productId
-    )
+    product ? setProduct(product) : setProduct(null)
+  }, [])
 
-    console.log('isValid : ', isValid)
-  }
+  if (!product) return <p>Product is not valid</p>
 
   return (
     <>
       <h1>Product Detail</h1>
-      <p>{params.productId}</p>
+      <p>{product.name}</p>
+      <p>
+        <Link to='..' relative='path'>
+          Back
+        </Link>
+      </p>
     </>
   )
 }
