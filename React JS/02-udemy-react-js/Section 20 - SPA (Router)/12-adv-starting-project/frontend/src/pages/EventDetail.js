@@ -1,24 +1,25 @@
-import { useParams } from 'react-router-dom'
-import { DUMMY_EVENTS } from '../data/events'
+import { json, useRouteLoaderData } from 'react-router-dom'
+import EventItem from '../components/EventItem'
 
 export default function EventDetailPage() {
-  const params = useParams()
+  const data = useRouteLoaderData('event-detail')
 
-  const event = DUMMY_EVENTS.find((event) => event.id === params.eventId)
+  const event = data.event
 
-  if (!event) {
-    return (
-      <>
-        <h1>Event Not Found!</h1>
-      </>
+  return <EventItem event={event} />
+}
+
+export async function loader({ params }) {
+  const eventId = params.eventId
+
+  const response = await fetch(`http://localhost:8080/events/${eventId}`)
+
+  if (!response.ok) {
+    throw json(
+      { message: 'Coud not fetch for selected event!' },
+      { status: 500 }
     )
+  } else {
+    return response
   }
-
-  return (
-    <>
-      <h1>EventDetail Page</h1>
-      <p>Event ID : {event.id}</p>
-      <p>Event Title : {event.title}</p>
-    </>
-  )
 }
