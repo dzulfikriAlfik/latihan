@@ -1,0 +1,19 @@
+{
+  "name": "03-npm-modules",
+  "version": "1.0.0",
+  "description": "belajar node js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "watch": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dzulfikri",
+  "license": "ISC",
+  "dependencies": {
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
