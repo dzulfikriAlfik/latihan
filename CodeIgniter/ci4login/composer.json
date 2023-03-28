@@ -5,9 +5,16 @@
   "homepage": "https://codeigniter.com",
   "license": "MIT",
   "require": {
+<<<<<<< HEAD
     "php": ">=7.3",
     "codeigniter4/framework": "^4",
     "myth/auth": "^1.0"
+=======
+    "php": "^7.3 || ^8.0",
+    "codeigniter4/framework": "^4",
+    "myth/auth": "^1.0",
+    "kint-php/kint": "3.3"
+>>>>>>> fe7f6e5d01266e07f0027527c184036ce3dbe3e1
   },
   "require-dev": {
     "fakerphp/faker": "^1.9",
