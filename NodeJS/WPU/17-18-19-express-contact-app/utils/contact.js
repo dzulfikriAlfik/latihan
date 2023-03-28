@@ -17,66 +17,36 @@ const loadContacts = () => {
   return JSON.parse(fileBuffer)
 }
 
-const findContacts = (nama) => {
+const findContact = (nama) => {
   return loadContacts().find(
     (data) => data.nama.toLowerCase() === nama.toLowerCase()
   )
 }
 
-const showLists = () => {
-  const listsData = loadContacts()
-  const countData = listsData.length
-
-  if (countData === 0) {
-    return printError(`Kontak masih kosong`)
-  }
-
-  printSuccess(`Menampilkan ${countData} total kontak.`)
-
-  console.log('---------------------------')
-
-  for (i in listsData) {
-    console.log(
-      `${parseInt(i) + 1}. ${listsData[i].name} - ${listsData[i].phone}`
-    )
-  }
+// menuliskan / menimpa file contacts.json dengan data yang baru
+const saveContacts = (contacts) => {
+  fs.writeFileSync(dataPath, JSON.stringify(contacts))
 }
 
-const saveToContacts = (name, email, phone) => {
-  const constacts = loadContacts()
-  const isDuplicated = constacts.find((contact) => contact.name === name)
+// menambahkan data contact baru
+const addContact = ({ nama, email, nohp }) => {
+  const contacts = loadContacts()
+  const isDuplicated = contacts.find((contact) => contact.nama === nama)
 
-  if (isDuplicated) {
-    return printError(`Opps ${name} sudah ada di contact. Gunakan nama lain!`)
-  }
+  if (isDuplicated) return false
 
-  if (email) {
-    if (!validator.isEmail(email)) {
-      return printError(`Opps email tidak valid!`)
-    }
-  }
+  contacts.push({ nama, email, nohp })
 
-  if (!validator.isMobilePhone(phone, 'id-ID')) {
-    return printError(`Opps nomor hp tidak valid!`)
-  }
-
-  constacts.push({ name, email, phone })
-
-  fs.writeFile(dataPath, JSON.stringify(constacts), (err) => {
-    console.log(err)
-    return
-  })
-
-  return printSuccess(`Terimakasih ${name}, telah mengisi formulir kontak.`)
+  saveContacts(contacts)
 }
 
 const deleteContacts = (name) => {
-  const constacts = loadContacts()
-  const newContact = constacts.filter(
+  const contacts = loadContacts()
+  const newContact = contacts.filter(
     (contact) => contact.name.toLowerCase() !== name.toLowerCase()
   )
 
-  if (newContact.length === constacts.length)
+  if (newContact.length === contacts.length)
     return printError(`${name} tidak ditemukan`)
 
   fs.writeFile(dataPath, JSON.stringify(newContact), (err) => {
@@ -89,8 +59,7 @@ const deleteContacts = (name) => {
 
 module.exports = {
   loadContacts,
-  findContacts,
-  saveToContacts,
+  findContact,
+  addContact,
   deleteContacts,
-  showLists,
 }
