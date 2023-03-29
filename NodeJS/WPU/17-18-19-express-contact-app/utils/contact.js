@@ -17,10 +17,8 @@ const loadContacts = () => {
   return JSON.parse(fileBuffer)
 }
 
-const findContact = (nama) => {
-  return loadContacts().find(
-    (data) => data.nama.toLowerCase() === nama.toLowerCase()
-  )
+const findContact = (name) => {
+  return loadContacts().find((data) => data.name === name)
 }
 
 // menuliskan / menimpa file contacts.json dengan data yang baru
@@ -29,37 +27,38 @@ const saveContacts = (contacts) => {
 }
 
 // menambahkan data contact baru
-const addContact = ({ nama, email, nohp }) => {
+const addContact = (contact) => {
   const contacts = loadContacts()
-  const isDuplicated = contacts.find((contact) => contact.nama === nama)
 
-  if (isDuplicated) return false
-
-  contacts.push({ nama, email, nohp })
+  contacts.push(contact)
 
   saveContacts(contacts)
 }
 
-const deleteContacts = (name) => {
-  const contacts = loadContacts()
-  const newContact = contacts.filter(
-    (contact) => contact.name.toLowerCase() !== name.toLowerCase()
+const updateContact = (newContact) => {
+  const filteredContact = loadContacts().filter(
+    (oldContact) => oldContact.name !== newContact.oldName
   )
 
-  if (newContact.length === contacts.length)
-    return printError(`${name} tidak ditemukan`)
+  delete newContact.oldName // delete object key oldName
 
-  fs.writeFile(dataPath, JSON.stringify(newContact), (err) => {
-    console.log(err)
-    return
-  })
+  filteredContact.push(newContact)
 
-  return printSuccess(`${name} berhasil dihapus`)
+  saveContacts(filteredContact)
+}
+
+const deleteContact = (name) => {
+  const filteredContact = loadContacts().filter(
+    (contact) => contact.name !== name
+  )
+
+  saveContacts(filteredContact)
 }
 
 module.exports = {
   loadContacts,
   findContact,
   addContact,
-  deleteContacts,
+  updateContact,
+  deleteContact,
 }

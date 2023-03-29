@@ -5,7 +5,13 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
 
-const { loadContacts, findContact, addContact } = require('./utils/contact')
+const {
+  loadContacts,
+  findContact,
+  addContact,
+  updateContact,
+  deleteContact,
+} = require('./utils/contact')
 
 const app = express()
 const port = 3000
@@ -35,26 +41,26 @@ app.use(
 app.use(flash())
 
 app.get('/', (req, res) => {
-  const mahasiswa = [
+  const students = [
     {
-      nama: 'Dzulfikri Alkautsari',
+      name: 'Dzulfikri Alkautsari',
       email: 'alfik@gmail.com',
     },
     {
-      nama: 'Nirmala Sari',
+      name: 'Nirmala Sari',
       email: 'nirmala@gmail.com',
     },
     {
-      nama: 'Sunyoto hanyakunyuk',
+      name: 'Sunyoto hanyakunyuk',
       email: 'sunyoto@gmail.com',
     },
   ]
 
   res.render('index', {
     layout: 'layouts/template',
-    nama: 'Dzulfikri Alkautsari',
+    name: 'Dzulfikri Alkautsari',
     title: 'Index',
-    mahasiswa: mahasiswa,
+    students,
   })
 })
 
@@ -83,21 +89,40 @@ app.get('/contact/add', (req, res) => {
   })
 })
 
+app.get('/contact/edit/:name', (req, res) => {
+  const contact = findContact(req.params.name)
+
+  if (!contact) {
+    res.status(404)
+    res.render('404', {
+      layout: 'layouts/template',
+      title: '404',
+    })
+    return
+  }
+
+  res.render('contact-edit', {
+    layout: 'layouts/template',
+    title: 'Edit Contact',
+    contact,
+  })
+})
+
 // Proccess save new contact
 app.post(
   '/contact',
   [
-    body('nama').custom((value, { req }) => {
+    body('name').custom((value, { req }) => {
       if (findContact(value)) {
-        throw new Error('Nama sudah digunakan, silakan gunakan nama lain!')
+        throw new Error('Name is taken. Please use different name!')
       }
 
       return true
     }),
-    check('email', 'Email tidak valid').isEmail(),
+    check('email', 'Email is invalid').isEmail(),
     check(
-      'nohp',
-      'No. HP tidak sesuai format Indonesia (628*****) || (08*****))'
+      'phone',
+      'Mobile phone is not Indonesian formatted (628*****) || (08*****))'
     ).isMobilePhone('id-ID'),
   ],
   (req, res) => {
@@ -120,8 +145,68 @@ app.post(
   }
 )
 
-app.get('/contact/:nama', (req, res) => {
-  const contact = findContact(req.params.nama)
+// Proccess update contact
+app.post(
+  '/contact/update',
+  [
+    body('name').custom((value, { req }) => {
+      const contact = findContact(value)
+
+      if (contact && contact.name !== req.body.oldName) {
+        throw new Error('Name is taken. Please use different name!')
+      }
+
+      return true
+    }),
+    check('email', 'Email is invalid').isEmail(),
+    check(
+      'phone',
+      'Mobile phone is not Indonesian formatted (628*****) || (08*****))'
+    ).isMobilePhone('id-ID'),
+  ],
+  (req, res) => {
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+      res.render('contact-edit', {
+        layout: 'layouts/template',
+        title: 'Edit Contact',
+        errors: errors.array(),
+        contact: req.body,
+      })
+    } else {
+      updateContact(req.body)
+
+      // Kirimkan flash message
+      req.flash('msg', 'Contact updated successfully!')
+
+      res.redirect('/contact')
+    }
+  }
+)
+
+app.get('/contact/delete/:name', (req, res) => {
+  const contact = findContact(req.params.name)
+
+  if (!contact) {
+    res.status(404)
+    res.render('404', {
+      layout: 'layouts/template',
+      title: '404',
+    })
+    return
+  }
+
+  deleteContact(req.params.name)
+
+  // Kirimkan flash message
+  req.flash('msg', 'Contact deleted successfully!')
+
+  res.redirect('/contact')
+})
+
+app.get('/contact/:name', (req, res) => {
+  const contact = findContact(req.params.name)
 
   res.render('contact-detail', {
     layout: 'layouts/template',

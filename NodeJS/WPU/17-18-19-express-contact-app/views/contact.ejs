@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <h2>Daftar Kontak</h2>
+      <h2>Contacts List</h2>
 
       <a href="/contact/add" class="btn btn-primary btn-sm mb-2">Add Contact</a>
 
@@ -16,9 +16,9 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Nama</th>
-            <th scope="col">No. HP</th>
-            <th scope="col">Aksi</th>
+            <th scope="col">Name</th>
+            <th scope="col">Mobile Phone</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -35,10 +35,10 @@
           <% contacts.forEach((contact, index) => { %>
           <tr>
             <th scope="row"><%= index + 1 %></th>
-            <td><%= contact.nama %></td>
-            <td><%= contact.nohp %></td>
+            <td><%= contact.name %></td>
+            <td><%= contact.phone %></td>
             <td>
-              <a href="/contact/<%= contact.nama %>" class="btn btn-success badge rounded-pill">
+              <a href="/contact/<%= contact.name %>" class="btn btn-success badge rounded-pill">
                 <i class="bi bi-info-circle"></i>&nbsp; Detail
               </a>
             </td>
