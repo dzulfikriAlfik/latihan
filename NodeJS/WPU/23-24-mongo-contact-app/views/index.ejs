@@ -1,0 +1,15 @@
+<h1>Hello World</h1>
+<h2>Hallo <%= name %></h2>
+
+<h4>Students List</h4>
+
+<% if (students.length < 1) { %>
+<p>Students Data is Empty</p>
+<% } %>
+
+<% students.map(student => { %>
+<ul>
+  <li>Name : <%= student.name %></li>
+  <li>Email : <%= student.email %></li>
+</ul>
+<% }) %>
