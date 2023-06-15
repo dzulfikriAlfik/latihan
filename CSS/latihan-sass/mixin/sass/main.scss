@@ -1,54 +1,54 @@
 // simple mixin
 @mixin inline-list {
-   margin: 0;
-   padding: 0;
-   list-style: none;
-   li {
-      display: inline-block;
-   }
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: inline-block;
+  }
 }
 
 .header ul {
-   @include inline-list();
-   li {
-      background-color: black;
-      padding: .6em;
-      a {
-         color: white;
-      }
-   }
+  @include inline-list();
+  li {
+    background-color: black;
+    padding: 0.6em;
+    a {
+      color: white;
+    }
+  }
 }
 
 .footer ul {
-   @include inline-list();
-   li {
-      padding: .4em;
-      background-color: salmon;
-      a {
-         color: white;
-         text-decoration: none;
-      }
-   }
+  @include inline-list();
+  li {
+    padding: 0.4em;
+    background-color: salmon;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
 }
 
 // Arguments pada mixin
 @mixin flexbox($justify-content, $align-items, $direction: row) {
-   display: flex;
-   justify-content: $justify-content;
-   align-items: $align-items;
-   flex-direction: $direction
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
 }
 
 .container {
-   @include flexbox(center, center, row-reverse);
-   width: 600px;
-   height: 400px;
-   background-color: #eaeaea;
-   .box {
-      width: 60px;
-      height: 60px;
-      background-color: #badaba;
-      text-align: center;
-      line-height: 60px;
-   }
+  @include flexbox(center, center, row-reverse);
+  width: 600px;
+  height: 400px;
+  background-color: #eaeaea;
+  .box {
+    width: 60px;
+    height: 60px;
+    background-color: #badaba;
+    text-align: center;
+    line-height: 60px;
+  }
 }

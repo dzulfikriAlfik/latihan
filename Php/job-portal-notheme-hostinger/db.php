@@ -1,14 +1,14 @@
-<?php  
+<?php
 
 $servername = "localhost";
-$username = "u575330830_alfik";
-$password = "114306666Hafidz";
-$dbname = "u575330830_jp";
+$username = "root";
+$password = "";
+$dbname = "jobportal";
 
 // create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check Connection
-if($conn->connect_error) {
-	die("Connection Failed: ". $conn->connect_error);
+if ($conn->connect_error) {
+	die("Connection Failed: " . $conn->connect_error);
 }

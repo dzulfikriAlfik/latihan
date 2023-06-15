@@ -1,0 +1,51 @@
+body {
+  min-height: 1000px;
+}
+
+.square-profile {
+  width: 200px;
+  height: 200px;
+  border: 5px solid white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.circle-profile {
+  width: 80px;
+  height: 80px;
+  border: 5px solid white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
+.nav {
+  background-color: #555;
+  color: #ddd;
+}
+
+.right {
+  width: 0;
+  height: 0;
+  background-color: transparent;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1em;
+  border-left-color: black;
+}
+
+.socials {
+  font-size: 2em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.socials .youtube {
+  color: rgb(185, 6, 6);
+}
+.socials .twitter {
+  color: rgb(101, 166, 226);
+}
+.socials .facebook {
+  color: rgb(8, 23, 151);
+}
+.socials .instagram {
+  color: rgb(224, 54, 97);
+}/*# sourceMappingURL=main.css.map */
