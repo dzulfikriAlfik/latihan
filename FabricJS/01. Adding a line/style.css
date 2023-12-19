@@ -25,14 +25,14 @@
   color: white;
 }
 
-#adding-line-button {
+/* #adding-line-button {
   background-color: rgb(102, 18, 18);
 }
 
 #adding-line-button:hover {
   background-color: rgb(221, 31, 31);
   cursor: pointer;
-}
+} */
 
 #deactivate-adding-shape {
   background-color: rgb(18, 31, 102);
@@ -41,4 +41,44 @@
 #deactivate-adding-shape:hover {
   background-color: rgb(36, 64, 219);
   cursor: pointer;
+}
+
+#main-shapes-container {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  padding: 10px;
+  background-color: beige;
+}
+
+#secondary-shapes-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.shape-button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid red;
+  cursor: pointer;
+}
+
+.shape-button:hover {
+  background-color: rgb(148, 148, 148);
+}
+
+#adding-line-button {
+  content: url(images/line.png);
+}
+
+#adding-single-arrow-line-button {
+  content: url(images/single-arrow-line.png);
+}
+
+#adding-double-arrow-line-button {
+  content: url(images/double-arrow-line.png);
+}
+
+#adding-rectangle-button {
+  content: url(images/rectangle.png);
 }
