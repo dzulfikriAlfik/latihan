@@ -235,6 +235,8 @@ function updateNewLineCoordinates(o) {
 
   let obj = o.target
 
+  console.log({ obj })
+
   if (obj.id === 'added-line') {
     let centerX = obj.getCenterPoint().x
     let centerY = obj.getCenterPoint().y
@@ -259,50 +261,48 @@ function updateNewLineCoordinates(o) {
 function addingControlPoints(o) {
   let obj = o.target
 
-  if (!obj) {
-    return
-  } else {
-    if (obj.id === 'added-line') {
-      obj.set({
-        label: 'selected-line',
-      })
+  if (!obj) return
 
-      let pointer1 = new fabric.Circle({
-        id: 'pointer1',
-        radius: obj.strokeWidth * 3,
-        fill: 'blue',
-        opacity: 0.5,
-        top: newLineCoords.y1,
-        left: newLineCoords.x1,
-        originX: 'center',
-        originY: 'center',
-        hasBorders: false,
-        hasControls: false,
-      })
+  if (obj.id === 'added-line') {
+    obj.set({
+      label: 'selected-line',
+    })
 
-      let pointer2 = new fabric.Circle({
-        id: 'pointer2',
-        radius: obj.strokeWidth * 3,
-        fill: 'blue',
-        opacity: 0.5,
-        top: newLineCoords.y2,
-        left: newLineCoords.x2,
-        originX: 'center',
-        originY: 'center',
-        hasBorders: false,
-        hasControls: false,
-      })
+    let pointer1 = new fabric.Circle({
+      id: 'pointer1',
+      radius: obj.strokeWidth * 3,
+      fill: 'blue',
+      opacity: 0.5,
+      top: newLineCoords.y1,
+      left: newLineCoords.x1,
+      originX: 'center',
+      originY: 'center',
+      hasBorders: false,
+      hasControls: false,
+    })
 
-      canvas.add(pointer1, pointer2)
-      canvas.setActiveObject(pointer2)
-      canvas.requestRenderAll()
+    let pointer2 = new fabric.Circle({
+      id: 'pointer2',
+      radius: obj.strokeWidth * 3,
+      fill: 'blue',
+      opacity: 0.5,
+      top: newLineCoords.y2,
+      left: newLineCoords.x2,
+      originX: 'center',
+      originY: 'center',
+      hasBorders: false,
+      hasControls: false,
+    })
 
-      canvas.on({
-        'object:moving': endPointOfLineToFollowPointer,
-        'selection:cleared': removePointersOnSelectionCleared,
-        'selection:updated': removePointersOnSelectionUpdated,
-      })
-    }
+    canvas.add(pointer1, pointer2)
+    canvas.setActiveObject(pointer2)
+    canvas.requestRenderAll()
+
+    canvas.on({
+      'object:moving': endPointOfLineToFollowPointer,
+      'selection:cleared': removePointersOnSelectionCleared,
+      'selection:updated': removePointersOnSelectionUpdated,
+    })
   }
 }
 
