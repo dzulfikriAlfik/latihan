@@ -66,7 +66,22 @@ defineProps({
                     <div class="font-bold">{{ product.name }}</div>
                     <div class="">{{ (product.price / 100).toFixed(2) }} &euro;</div>
                   </div>
-                  <div class="flex gap-4">Edit / Delete Product Buttons: Coming Soon</div>
+                  <div class="flex gap-4">
+                    <Link
+                      :href="route('vendor.products.edit', product)"
+                      class="btn btn-secondary btn-sm"
+                    >
+                      Edit
+                    </Link>
+                    <Link
+                      :href="route('vendor.products.destroy', product)"
+                      class="btn btn-danger btn-sm"
+                      method="delete"
+                      as="button"
+                    >
+                      Delete
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

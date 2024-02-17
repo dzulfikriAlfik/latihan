@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Vendor\StoreProductRequest;
+use App\Http\Requests\Vendor\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
@@ -27,5 +28,29 @@ class ProductController extends Controller
 
     return to_route('vendor.menu')
       ->withStatus('Product created successfully.');
+  }
+
+  public function edit(Product $product)
+  {
+    return Inertia::render('Vendor/Products/Edit', [
+      'categories' => Category::get(['id', 'name']),
+      'product'    => $product,
+    ]);
+  }
+
+  public function update(UpdateProductRequest $request, Product $product)
+  {
+    $product->update($request->validated());
+
+    return to_route('vendor.menu')
+      ->withStatus('Product updated successfully.');
+  }
+
+  public function destroy(Product $product)
+  {
+    $product->delete();
+
+    return to_route('vendor.menu')
+      ->withStatus('Product deleted successfully.');
   }
 }
