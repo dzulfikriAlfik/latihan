@@ -8,32 +8,34 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PermissionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        $actions = [
-            'viewAny',
-            'view',
-            'create',
-            'update',
-            'delete',
-            'restore',
-            'forceDelete',
-        ];
+  /**
+   * Run the database seeds.
+   */
+  public function run(): void
+  {
+    $actions = [
+      'viewAny',
+      'view',
+      'create',
+      'update',
+      'delete',
+      'restore',
+      'forceDelete',
+    ];
 
-        $resources = [
-            'user',
-            'restaurant',
-        ];
+    $resources = [
+      'user',
+      'restaurant',
+      'category',
+      'product',
+    ];
 
-        collect($resources)
-            ->crossJoin($actions)
-            ->map(function ($set) {
-                return implode('.', $set);
-            })->each(function ($permission) {
-                Permission::create(['name' => $permission]);
-            });
-    }
+    collect($resources)
+      ->crossJoin($actions)
+      ->map(function ($set) {
+        return implode('.', $set);
+      })->each(function ($permission) {
+        Permission::create(['name' => $permission]);
+      });
+  }
 }
