@@ -74,11 +74,5 @@ class UserSeeder extends Seeder
     ]);
 
     $vendor->roles()->sync(Role::where('name', RoleName::CUSTOMER->value)->first());
-
-    $vendor->restaurant()->create([
-      'city_id' => City::where('name', 'Zenica')->value('id'),
-      'name'    => 'Restaurant Customer',
-      'address' => 'Address SJV14',
-    ]);
   }
 }

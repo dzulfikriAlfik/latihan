@@ -28,6 +28,7 @@ class PermissionSeeder extends Seeder
       'restaurant',
       'category',
       'product',
+      'order',
     ];
 
     collect($resources)
@@ -37,5 +38,7 @@ class PermissionSeeder extends Seeder
       })->each(function ($permission) {
         Permission::create(['name' => $permission]);
       });
+
+    Permission::create(['name' => 'cart.add']);
   }
 }
