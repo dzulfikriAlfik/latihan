@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://laraveldaily.com/lesson/livewire-quiz/admin-routes-test -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" id="mobile-simulator">
+        window.hasMobileFirstExtension = true;</script><meta http-equiv="origin-trial" content="Az520Inasey3TAyqLyojQa8MnmCALSEU29yQFW8dePZ7xQTvSt73pHazLFTK5f7SyLUJSo2uKLesEtEa9aUYcgMAAACPeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5jb206NDQzIiwiZmVhdHVyZSI6IkRpc2FibGVUaGlyZFBhcnR5U3RvcmFnZVBhcnRpdGlvbmluZyIsImV4cGlyeSI6MTcyNTQwNzk5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=">
+    
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:type" content="website">
+
+
+
+
+
+
+
+    <title>16 - Admin Routes Test | Laravel Daily</title>
+
+    <link rel="shortcut icon" type="image/png" href="https://laraveldaily.com/favicon.png">
+
+    <link href="./16 - Admin Routes Test _ Laravel Daily_files/css2" rel="stylesheet">
+
+    <link rel="preload" as="style" href="./16 - Admin Routes Test _ Laravel Daily_files/app.464a3c77.css"><link rel="modulepreload" href="./16 - Admin Routes Test _ Laravel Daily_files/app.c5e126dd.js.download"><link rel="stylesheet" href="./16 - Admin Routes Test _ Laravel Daily_files/app.464a3c77.css"><script type="text/javascript" async="" src="./16 - Admin Routes Test _ Laravel Daily_files/analytics.js.download"></script><script type="text/javascript" async="" src="./16 - Admin Routes Test _ Laravel Daily_files/js"></script><script async="" src="./16 - Admin Routes Test _ Laravel Daily_files/matomo.js.download"></script><script type="text/javascript" async="" src="./16 - Admin Routes Test _ Laravel Daily_files/recaptcha__en.js.download" crossorigin="anonymous" integrity="sha384-TFHQ2jjldnEXG6p4acHgAFLMc2UFrK8wxiDKLT6JmJU7fdX8X8zXqEhV8ZJ1n4iu"></script><script type="module" src="./16 - Admin Routes Test _ Laravel Daily_files/app.c5e126dd.js.download"></script>    <style>[wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {display:none;}[wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {animation-duration: 50000s;animation-name: livewireautofill;}@keyframes livewireautofill { from {} }</style>
+    <style>
+    :root {
+    --comments-spacing: 2.5rem;
+    --comments-avatar-size: 1.5rem;
+    --comments-avatar-margin: 0.35rem;
+    --comments-border-radius: 0.3rem;
+    --comments-z-modal: 2;
+
+    /* colors */
+    --comments-color-background: white;
+    --comments-color-background-nested: white;
+    --comments-color-background-paper: rgb(249, 250, 251);
+    --comments-color-background-info: rgb(237, 235, 252);
+
+    --comments-color-reaction: rgb(238, 239, 240);
+    --comments-color-reaction-hover: rgb(229, 231, 235);
+    --comments-color-reacted: rgba(67, 56, 202, 0.2);
+    --comments-color-reacted-hover: rgba(67, 56, 202, 0.35);
+
+    --comments-color-border: rgb(221, 221, 221);
+
+    --comments-color-text:rgb(17, 24, 39);
+    --comments-color-text-dimmed: rgb(156, 163, 175);
+    --comments-color-text-inverse: white;
+
+    --comments-color-accent: rgba(67, 56, 202);
+    --comments-color-accent-hover: rgba(67, 56, 202, 0.8);
+
+    --comments-color-danger: rgb(225, 29, 72);
+    --comments-color-danger-hover: rgb(225, 29, 72, 0.8);
+
+    --comments-color-success: rgb(10, 200, 134);
+    --comments-color-success-hover: rgb(10, 200, 134, 0.8);
+
+    --comments-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+@media (min-width: 768px) {
+    :root {
+        --comments-avatar-size: 2.5rem;
+        --comments-avatar-margin: 0.75rem;
+    }
+}
+
+.comments {
+    color: var(--comments-color-text);
+}
+
+.comments-avatar {
+    width: var(--comments-avatar-size);
+    height: var(--comments-avatar-size);
+    border-radius: var(--comments-avatar-size);
+    margin-right: var(--comments-avatar-margin);
+}
+
+/** Added to win agains Tailwind CDN specificity */
+.comments-button.comments-button {
+    border-radius: var(--comments-border-radius);
+    color: var(--comments-color-text-inverse);
+    background-color: var(--comments-color-accent);
+    padding: 0.25rem 0.75rem;
+    font-weight: 500;
+    line-height: 1.35;
+    transition: background 150ms;
+}
+
+.comments-button:hover {
+    background-color: var(--comments-color-accent-hover);
+}
+
+.comments-button.is-small {
+    padding: 0.15rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.comments-button.is-link {
+    background-color: transparent;
+    color: var(--comments-color-text-dimmed);
+    text-decoration: underline;
+}
+
+.comments-button.is-danger {
+    background-color: var(--comments-color-danger);
+}
+
+.comments-button.is-danger:hover {
+    background-color: var(--comments-color-danger-hover);
+}
+
+.comments-button.is-success {
+    background-color: var(--comments-color-success);
+}
+
+.comments-button.is-success:hover {
+    background-color: var(--comments-color-success-hover);
+}
+
+.comments-button svg {
+    stroke: var(--comments-color-text-inverse);
+}
+
+.comments-comment {
+    display: flex;
+}
+
+.comments-nested .comments-comment{
+    background-color: var(--comments-color-background-nested);
+    padding: 0;
+}
+
+.comments-comment-inner {
+    flex-grow: 1;
+}
+
+.comments-comment-header {
+    position: relative;
+    font-weight: 500;
+    color: var(--comments-color-text);
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .comments-comment-header {
+        display: flex;
+        align-items: baseline;
+    }
+}
+
+.comments-comment-header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    color: var(--comments-color-text-dimmed);
+    font-size: 0.8rem;
+}
+
+@media (min-width: 768px) {
+    .comments-comment-header-actions {
+        margin-left: 0.5rem;
+    }
+}
+
+.comments-comment-header-actions li {
+    display: flex;
+    position: relative;
+}
+
+.comments-comment-header-actions li:not(:last-child):after {
+    content: "•";
+    margin: 0 0.25rem;
+}
+
+.comments-comment-header-actions li > a:hover,
+.comments-comment-header-actions li > button:hover {
+    text-decoration: underline;
+}
+
+.comments-comment-header-copied {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    color: var(--comments-color-success);
+}
+
+.comments-error {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--comments-color-danger);
+}
+
+.comments-form {
+    display: flex;
+    position: relative;
+}
+
+.comments-form-inner {
+    flex-grow: 1;
+}
+
+.comments-form-inner button {
+    margin-top: 0.5rem;
+}
+
+.comments-form-editor-tip {
+    color: var(--comments-color-text-dimmed);
+    font-size: 0.8rem;
+    padding: 0.25rem 0;
+    text-align: right;
+}
+
+.comments-form-editor-tip a {
+    text-decoration: underline;
+}
+
+.comments-newest-first > .comments-form {
+    margin-bottom: var(--comments-spacing);
+}
+
+.comments-group {
+    position: relative;
+    padding-bottom: var(--comments-spacing);
+    margin-bottom: var(--comments-spacing);
+}
+
+.comments-group:target {
+    margin-top: calc(-1 * var(--comments-spacing));
+    margin-left: calc(-0.5 * var(--comments-spacing));
+    margin-right: calc(-0.5 * var(--comments-spacing));
+    padding-top: var(--comments-spacing);
+    padding-left: calc(0.5 * var(--comments-spacing));
+    padding-right: calc(0.5 * var(--comments-spacing));
+    animation: highlight 1.5s ease-in-out;
+    border: solid 1px var(--comments-color-accent);
+    border-radius: var(--comments-border-radius);
+}
+
+@keyframes highlight {
+    0% {
+        transform: scale(1);
+    }
+    5% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scaleX(1.015);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.comments-group:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 1px solid var(--comments-color-border);
+}
+
+.comments-group.comments-group-with-avatars:after {
+    /* Offset the border to stay lined up with the avatar */
+    left: calc(var(--comments-avatar-size) + var(--comments-avatar-margin));
+}
+
+.comments-group .comments-group {
+    padding-bottom: 0;
+    margin-top: calc(var(--comments-spacing) * 0.66);
+    margin-bottom: 0;
+}
+
+.comments-group .comments-group:after {
+    content: none;
+}
+
+.comments-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--comments-spacing);
+}
+
+.comments-header strong {
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.comments-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+    stroke: var(--comments-color-text);
+}
+
+.comments-approval {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background-color: var( --comments-color-background-info);
+    border-radius: var(--comments-border-radius);
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.comments-approval-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.comments-modal {
+    position: absolute;
+    z-index: var(--comments-z-modal);
+    color: var(--comments-color-text);
+    font-size: 1rem;
+    background-color: var( --comments-color-background);
+    box-shadow: var( --comments-shadow);
+    border-radius: var(--comments-border-radius);
+    top: 0;
+    right: 0;
+    padding: 1rem;
+}
+
+.comments-modal.is-left {
+    right: auto;
+    left: 0;
+}
+
+.comments-modal.is-bottom {
+    top: 100%;
+}
+
+.comments-modal.is-compact {
+    padding: 0.5rem;
+}
+
+.comments-modal-title {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.comments-modal-contents {
+    font-weight: normal;
+    line-height: 1.25;
+}
+
+.comments-modal-contents p {
+    margin-bottom: 0.5rem;
+    min-width: 8rem;
+}
+
+@media (min-width: 768px) {
+    .comments-modal-contents p {
+        min-width: 12rem;
+    }
+}
+
+.comments-modal-contents .comments-button {
+    float: right;
+}
+
+.comments-nested {
+    margin-top: calc(var(--comments-spacing) * 0.66);
+    padding-left: calc(var(--comments-avatar-size) + var(--comments-avatar-margin));
+}
+
+.comments-no-comment-yet {
+    text-align: center;
+    margin: 2rem 0 4rem 0;
+    color: var(--comments-color-text-dimmed);
+}
+
+.comments-placeholder,
+.comments-textarea {
+    border: 1px solid var(--comments-color-border);
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    height: var(--comments-avatar-size);
+}
+
+.comments-placeholder:focus {
+    outline: none;
+}
+
+.comments-reactions {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.comments-reaction {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    border-radius: var(--comments-border-radius);
+    cursor: pointer;
+    background-color: var(--comments-color-reaction);
+    padding: 0 0.5rem;
+    height: 1.5rem;
+    font-size: 0.8rem;
+    transition: background 150ms;
+}
+
+.comments-reaction:hover {
+    background-color: var(--comments-color-reaction-hover);
+}
+
+.comments-reaction.is-reacted {
+    border: 1px solid var(--comments-color-accent);
+    background-color: var(--comments-color-reacted);
+}
+
+.comments-reaction.is-reacted:hover {
+    background-color: var(--comments-color-reacted-hover);
+}
+
+.comments-reaction-picker {
+    position: relative;
+}
+
+/** Added to win agains Tailwind CDN specificity */
+.comments-reaction-picker-trigger.comments-reaction-picker-trigger {
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    padding: 0 0.5rem;
+    cursor: pointer;
+    border-radius: var(--comments-border-radius);
+    background-color: var(--comments-color-reaction);
+    transition: background 150ms;
+}
+
+.comments-reaction-picker-trigger:hover {
+    background-color: var(--comments-color-reaction-hover);
+}
+
+.comments-reaction-picker-reactions {
+    display: grid;
+    gap: 0.25rem;
+}
+
+@media (min-width: 480px) {
+    .comments-reaction-picker-reactions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .comments-reaction-picker-reactions {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.comments-reaction-picker-reaction {
+    height: 1.75rem;
+    padding: 0 0.25rem;
+    border-radius: var(--comments-border-radius);
+    cursor: pointer;
+    transition: background 150ms;
+}
+
+.comments-reaction-picker-reaction:hover {
+    background-color: var(--comments-color-reaction);
+}
+
+.comments-reaction-picker-reaction.is-reacted {
+    background-color: var(--comments-color-reacted);
+}
+
+.comments-reaction-picker-reaction.is-reacted:hover {
+    background-color: var(--comments-color-reacted-hover);
+}
+
+.comments-reply {
+    margin-top: calc(var(--comments-spacing) * 0.66);
+}
+
+.comments-subscription {
+    position: relative;
+    margin-left: auto;
+    font-size: 0.8rem;
+}
+
+.comments-subscription-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--comments-border-radius);
+    background-color: var(--comments-color-reaction);
+    font-weight: 600;
+    transition: background 150ms;
+}
+
+.comments-subscription-trigger:hover {
+    background-color: var(--comments-color-reaction-hover);
+}
+
+.comments-subscription-item {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    border-radius: var(--comments-border-radius);
+    transition: background 150ms;
+}
+
+.comments-subscription-item:hover {
+    background-color: var(--comments-color-reaction);
+}
+
+.comment-text {
+    max-width: calc(100% - var(--comments-avatar-size));
+}
+
+.comment-text > *,
+.comments-comment-inner {
+    max-width: 100%;
+}
+
+.comment-text code {
+    padding: 0.2rem 0.5rem;
+    background-color: var(--comments-color-background-paper);
+    border-radius: 0.3rem;
+}
+
+.comment-text .shiki {
+    font-size: 0.85rem;
+}
+
+.comment-text .shiki code {
+    padding: 0;
+    background-color: transparent;
+}
+
+.comment-text .shiki {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 0.2rem;
+    background-color: var(--comments-color-background-paper) !important;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.comment-text a {
+    color: var(--comments-color-accent);
+    text-decoration: underline;
+}
+
+.comment-text > *:not(:first-child),
+.comment-text blockquote > *:not(:first-child),
+.comment-text ul > *:not(:first-child):not(li),
+.comment-text ol > *:not(:first-child):not(li) {
+    margin-top: 0.5rem;
+}
+
+.comment-text h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.comment-text h2 {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.comment-text h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.comment-text h4 {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.comment-text h5 {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.comment-text h6 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.comment-text blockquote {
+    background-color: var(--comments-color-background-paper);
+    padding: 1rem;
+    border-left: solid 3px var(--comments-color-border);
+}
+
+.comment-text ul, .comment-text ol {
+    padding-left: 1rem;
+}
+
+.comment-text ul li {
+    list-style: circle;
+}
+
+.comment-text ol li {
+    list-style: decimal;
+}
+
+.comments-textarea {
+    min-height: 10rem;
+}
+
+
+/* EasyMDE buttons */
+.comments .CodeMirror {
+    border-color: var(--comments-color-border);
+}
+
+.comments .CodeMirror-scroll, .CodeMirror{
+    min-height: 10rem !important;
+}
+
+.comments .editor-toolbar {
+    border-color: var(--comments-color-border);
+    padding: 0.35rem;
+}
+
+.comments .editor-toolbar .separator {
+    border-left-color: var(--comments-color-border);
+}
+
+.comments .editor-toolbar button {
+    border: none;
+    transition: background 150ms;
+}
+.comments .editor-toolbar button:hover {
+    background-color: var(--comments-color-reaction);
+}
+
+.comments .editor-toolbar button.active {
+    background-color: var(--comments-color-reaction-hover);
+}
+
+</style>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="./16 - Admin Routes Test _ Laravel Daily_files/js(1)"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-64361490-1');
+    </script>
+    <script src="./16 - Admin Routes Test _ Laravel Daily_files/api.js.download"></script>
+    <!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.laraveldaily.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+        <script>
+        window.addEventListener('refresh-page', function (event) {
+            window.location.reload(false);
+        });
+    </script>
+<style type="text/css">#mc_embed_signup input.mce_inline_error { border-color:#6B0505; } #mc_embed_signup div.mce_inline_error { margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff; }</style><script src="./16 - Admin Routes Test _ Laravel Daily_files/easymde.min.js.download"></script><link type="text/css" rel="stylesheet" href="./16 - Admin Routes Test _ Laravel Daily_files/easymde.min.css"><link rel="stylesheet" href="./16 - Admin Routes Test _ Laravel Daily_files/font-awesome.min.css"></head>
+
+<body class="font-sans antialiased text-gray-800 flex flex-col min-h-screen" style="zoom: 1;">
+    
+    
+    
+    <header class="relative z-10 text-white" x-data="{ open: false }">
+    <div class="container relative z-10 max-w-screen-2xl">
+        <nav class="flex items-center justify-between h-20 gap-12">
+            <a href="https://laraveldaily.com/" class="inline-flex items-center gap-3 text-lg font-bold md:text-xl">
+                <div class="flex items-center justify-center w-8 h-8 rounded-lg shadow-lg border-y shadow-primary-700/20 bg-gradient-to-b from-primary-500 to-primary-600 border-t-primary-400 border-b-primary-700">
+                    <img class="w-4 h-4" src="./16 - Admin Routes Test _ Laravel Daily_files/mono.svg" alt="">
+                </div>
+
+                <span>Laravel Daily</span>
+            </a>
+
+            <ul class="items-center hidden gap-8 text-sm font-medium lg:flex">
+                <li>
+    <a class="transition relative h-20 inline-flex items-center text-gray-300 hover:text-white" href="https://laraveldaily.com/courses">Courses</a>
+</li>
+
+                <li>
+    <a class="transition relative h-20 inline-flex items-center text-gray-300 hover:text-white" href="https://laraveldaily.com/tag/premium-tutorials">Premium Tutorials</a>
+</li>
+
+                <li>
+    <a class="transition relative h-20 inline-flex items-center text-gray-300 hover:text-white" href="https://laraveldaily.com/tips">Quick Tips</a>
+</li>
+
+                <li>
+    <a class="transition relative h-20 inline-flex items-center text-gray-300 hover:text-white" href="https://laraveldaily.com/roadmap-learning-path">Learning Roadmap</a>
+</li>
+
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+    <div @click="open = ! open">
+        <button class="flex items-center text-gray-300 hover:text-white focus:text-white transition duration-150 ease-in-out">
+                            <div class="capitalize">Resources</div>
+
+                            <div class="ml-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+</svg>
+                            </div>
+                        </button>
+    </div>
+
+    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute z-50 mt-2 w-48 rounded-lg shadow-lg origin-top-left left-0" style="display: none;" @click="open = false">
+        <div class="rounded-md ring-1 ring-black ring-opacity-5 py-2 bg-gray-900">
+            <a href="https://laraveldaily.com/packages" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out">Packages</a>
+
+                        <a href="https://laraveldaily.com/code-examples/projects" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out">Projects</a>
+
+                        <a href="https://laraveldaily.com/code-examples" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out">Code examples</a>
+
+                        <a href="https://laraveldaily.com/jobs/offers" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out">Job offers</a>
+
+                        <a href="https://laraveldaily.com/premium-tools" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out">Premium tools</a>
+
+                        <a href="https://laraveldaily.com/people-to-follow" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out">People to Follow</a>
+
+                        <a href="https://laraveldaily.com/webinars" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out">Webinars</a>
+
+                        <a href="https://laraveldaily.com/project-ideas" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out">Project Ideas</a>
+
+                        <a href="https://laraveldaily.com/jobs/developer-profiles" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out">Developer profiles</a>
+        </div>
+    </div>
+</div>
+
+                <li>
+    <a class="transition relative h-20 inline-flex items-center text-gray-300 hover:text-white" href="https://us11.campaign-archive.com/home/?u=a459401212599a54203d036ee&amp;id=91c1337873" target="_blank">Newsletter</a>
+</li>
+
+                <li>
+    <a class="transition relative h-20 inline-flex items-center text-gray-300 hover:text-white" href="https://laraveldaily.com/pricing">Pricing</a>
+</li>
+
+                
+                <li role="divider" class="h-4 border-l border-gray-600"></li>
+
+                <li class="-mr-2">
+                    <button class="font-medium text-gray-400 button button--secondary" @click="$dispatch(&#39;toggle-spotlight&#39;)">
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+</svg>
+                        <span class="pr-3 font-bold">Search</span>
+                    </button>
+                </li>
+
+                
+                                    <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+    <div @click="open = ! open">
+        <button class="flex items-center text-gray-300 hover:text-white focus:text-white transition duration-150 ease-in-out">
+                                <div class="inline font-semibold truncate max-w-username overflow-hidden">Dzulfikri Alkautsari</div>
+
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </button>
+    </div>
+
+    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute z-50 mt-2 w-48 rounded-lg shadow-lg origin-top-right right-0" style="display: none;" @click="open = false">
+        <div class="rounded-md ring-1 ring-black ring-opacity-5 py-2 bg-gray-900">
+            <a href="https://laraveldaily.com/account/courses" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"></path>
+</svg>                                My courses</a>
+
+                            <a href="https://laraveldaily.com/account/comments" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"></path>
+</svg>                                My comments</a>
+
+                            <a href="https://laraveldaily.com/billing" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"></path>
+</svg>                                My membership</a>
+
+                            <a href="https://laraveldaily.com/account/overview" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434l.071-.286zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5zm0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78h4.723zM5.048 3.967c-.03.021-.058.043-.087.065l.087-.065zm-.431.355A4.984 4.984 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8 4.617 4.322zm.344 7.646.087.065-.087-.065z"></path>
+</svg>                                Account settings</a>
+
+                            <a href="https://discord.gg/6y44kcX8tX" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"></path>
+</svg>                                Discord</a>
+
+                            <form method="POST" action="https://laraveldaily.com/logout">
+                                <input type="hidden" name="_token" value="FJHRCo1Z7dKpLwfkrsbyGN5zOKmatHDdmEoFDvfF" autocomplete="off">
+                                <a href="https://laraveldaily.com/logout" onclick="event.preventDefault();this.closest(&#39;form&#39;).submit();" class="flex gap-3 items-center px-4 py-3 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"><svg class="w-4 h-4 text-primary-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"></path>
+  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"></path>
+</svg>                                    <span class="text-primary-400">Log out</span></a>
+                            </form>
+        </div>
+    </div>
+</div>
+                            </ul>
+
+            <button type="button" x-on:click="open = !open" class="flex items-center justify-center gap-3 p-2 pl-3 text-sm font-medium text-gray-200 bg-gray-700 rounded lg:hidden border-b-transparent border-y border-t-gray-600">
+                <span x-text="open ? &#39;Close&#39; : &#39;Menu&#39;">Menu</span>
+
+                <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+</svg>            </button>
+        </nav>
+    </div>
+
+    <nav class="navbar--mobile hidden" :class="open || &#39;hidden&#39;" x-transition.origin.top="">
+    <div class="border-t border-gray-700"></div>
+
+    <div class="container max-w-screen-2xl">
+                    <div class="px-3 pt-3">
+                <div class="text-gray-300">Welcome back,</div>
+                <div class="text-xl text-white font-bold heading-1 truncate">Dzulfikri Alkautsari</div>
+            </div>
+                <ul class="py-3 font-medium space-y-1">
+            <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/courses">Courses</a>
+</li>
+
+            <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/tips">Quick Tips</a>
+</li>
+
+            <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/tag/premium-tutorials">Premium Tutorials</a>
+</li>
+
+            <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/roadmap-learning-path">Learning Roadmap</a>
+</li>
+
+            <div x-data="{open: false}" class="bg-gray-700/50 rounded-xl">
+    <div @click="open = ! open" class="">
+        <div class="flex p-3 w-full items-center justify-between gap-3 text-gray-300 capitalize cursor-pointer hover:text-white hover:bg-gray-600 rounded-xl" :class="{ &#39;rounded-t-xl&#39;: open, &#39;rounded-xl&#39;: !open }">
+            Resources
+            <div>
+                <svg class="fill-current h-4 w-4" x-show="!open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+</svg>
+                <svg class="fill-current h-4 w-4 rotate-180" x-show="open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" style="display: none;">
+    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+</svg>
+            </div>
+        </div>
+    </div>
+
+    <div x-show="open" style="display: none;">
+        <a class="flex px-3 py-3 w-full items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-600 last:rounded-b-xl" href="https://laraveldaily.com/packages">
+    Packages
+</a>
+
+                    <a class="flex px-3 py-3 w-full items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-600 last:rounded-b-xl" href="https://laraveldaily.com/code-examples/projects">
+    Projects
+</a>
+
+                    <a class="flex px-3 py-3 w-full items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-600 last:rounded-b-xl" href="https://laraveldaily.com/code-examples">
+    Code examples
+</a>
+
+                    <a class="flex px-3 py-3 w-full items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-600 last:rounded-b-xl" href="https://laraveldaily.com/jobs/offers">
+    Job offers
+</a>
+
+                    <a class="flex px-3 py-3 w-full items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-600 last:rounded-b-xl" href="https://laraveldaily.com/premium-tools">
+    Premium tools
+</a>
+
+                    <a class="flex px-3 py-3 w-full items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-600 last:rounded-b-xl" href="https://laraveldaily.com/people-to-follow">
+    People to Follow
+</a>
+
+                    <a class="flex px-3 py-3 w-full items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-600 last:rounded-b-xl" href="https://laraveldaily.com/webinars">
+    Webinars
+</a>
+
+                    <a class="flex px-3 py-3 w-full items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-600 last:rounded-b-xl" href="https://laraveldaily.com/project-ideas">
+    Project Ideas
+</a>
+
+                    <a class="flex px-3 py-3 w-full items-center gap-3 text-gray-300 hover:text-white hover:bg-gray-600 last:rounded-b-xl" href="https://laraveldaily.com/jobs/developer-profiles">
+    Developer profiles
+</a>
+    </div>
+</div>
+
+            <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://us11.campaign-archive.com/home/?u=a459401212599a54203d036ee&amp;id=91c1337873" target="_blank">Newsletter</a>
+</li>
+
+            <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/pricing">Pricing</a>
+</li>
+
+            <div class="h-px my-2 bg-gradient-to-r from-gray-800 via-primary-400 to-gray-800"></div>
+
+            
+            
+            
+                            
+                <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/account/courses"><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"></path>
+</svg>                    My courses</a>
+</li>
+
+                <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/account/comments"><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"></path>
+</svg>                    My comments</a>
+</li>
+
+                <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/billing"><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"></path>
+</svg>                    My membership</a>
+</li>
+
+                <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/account/overview"><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434l.071-.286zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5zm0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78h4.723zM5.048 3.967c-.03.021-.058.043-.087.065l.087-.065zm-.431.355A4.984 4.984 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8 4.617 4.322zm.344 7.646.087.065-.087-.065z"></path>
+</svg>                    Account settings</a>
+</li>
+
+                <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://discord.gg/6y44kcX8tX"><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"></path>
+</svg>                    Discord</a>
+</li>
+
+                
+                <form method="POST" action="https://laraveldaily.com/logout">
+                    <input type="hidden" name="_token" value="FJHRCo1Z7dKpLwfkrsbyGN5zOKmatHDdmEoFDvfF" autocomplete="off">
+                    <li>
+    <a class="text-gray-300 flex p-3 w-full items-center gap-3 hover:text-white hover:bg-gray-700 rounded-xl" href="https://laraveldaily.com/logout" onclick="event.preventDefault();this.closest(&#39;form&#39;).submit();"><svg class="w-5 h-5 text-primary-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"></path>
+  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"></path>
+</svg>                        <span class="text-primary-400">Log out</span></a>
+</li>
+                </form>
+            
+            
+            <li>
+                <div class="my-3">
+                    <label class="sr-only">
+                        Search
+                    </label>
+
+                    <button type="button" @click="$dispatch(&#39;toggle-spotlight&#39;)" class="relative flex w-full text-left items-center">
+                        <div class="py-3 pl-4 pr-12 text-sm transition bg-gray-700 hover:bg-gray-600 border-0 border-t border-b rounded-lg text-gray-400 grow border-t-gray-600 border-b-transparent">Search for anything: performance, services...</div>
+
+                        <div class="absolute flex items-center justify-center w-8 h-8 text-white rounded-md shadow-lg right-2 shadow-primary-700/30 border-y border-t-primary-400 border-b-primary-800 bg-gradient-to-b from-primary-500 to-primary-600">
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+</svg>                        </div>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+</header>
+
+    <section class="relative py-16 -mt-20 overflow-hidden text-white bg-gray-800 grow">
+        
+        <div class="h-20"></div>
+
+        <div class="container relative max-w-screen-2xl">
+            <div class="flex flex-row gap-2 items-center">
+                <a href="https://laraveldaily.com/courses" class="inline-flex items-center gap-2 font-medium text-primary-400">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+</svg>
+                    <span>Courses</span>
+                </a>
+                <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+</svg>                <h2 class="inline-flex items-center font-medium text-base tracking-tight">Creating a Quiz System with Laravel 10 + Livewire 3: Step-by-Step</h2>
+            </div>
+
+            <div class="mt-4">
+                <h1 class="text-3xl font-bold tracking-tight">
+                    Admin Routes Test
+                </h1>
+            </div>
+
+            <nav class="flex flex-wrap items-center gap-4 mt-4">
+                <div class="flex items-center gap-2">
+                                                                        <a href="https://laraveldaily.com/lesson/livewire-quiz/show-test-results-admin" class="inline-flex items-center justify-center w-8 h-8 text-gray-300 bg-gray-700 rounded-lg border-y border-b-transparent border-t-gray-600">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+</svg>                            </a>
+                        
+                                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/questions-test" class="inline-flex items-center justify-center w-8 h-8 text-gray-300 bg-gray-700 rounded-lg border-y border-b-transparent border-t-gray-600">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+</svg>                            </a>
+                                            
+                                            <div wire:id="A3ppiU3OJdg5JQtS5RhC">
+    <button type="button" wire:click="toggleCompleted" wire:loading.attr="disabled" class="inline-flex items-center justify-center h-8 gap-2 px-2 text-sm font-medium text-gray-300 bg-gray-700 rounded-lg border-y border-b-transparent border-t-gray-600 disabled:opacity-75">
+                    <span>Completed</span>
+
+            <svg class="w-5 h-5 text-success-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+</svg>            </button>
+</div>
+
+<!-- Livewire Component wire-end:A3ppiU3OJdg5JQtS5RhC -->                                    </div>
+
+                <p class="flex items-center gap-2 text-gray-300">
+                    <span class="font-mono text-gray-400 tabular-nums">16/18</span>
+                </p>
+
+                            </nav>
+
+            <div class="grid gap-8 mt-4 grid-cols-1 md:grid-cols-3">
+                
+                <div class="md:col-span-2">
+                    
+                    
+                                            <article class="pt-8 mt-8 prose sm:prose-xl border-t border-gray-700 prose-invert max-w-none lesson--markdown"><p>In the next couple of lessons, we'll add automated tests to ensure that our app works as expected. This first test will be to check if only the admin user can access some parts of the application.</p>
+<p><img src="./16 - Admin Routes Test _ Laravel Daily_files/2023-04-06_21-20.png" alt="admin routes tests"></p>
+<p>To write tests, for the data we will use Factories.</p>
+<p>For this test, first, we will add a <a href="https://laravel.com/docs/eloquent-factories#factory-callbacks">factory callback</a> to the <code>UserFactory</code> called <code>admin</code>. This way when we will create a user which needs to be an admin we will be able to chain the <code>admin()</code> method to the factory call.</p>
+<p><strong>database/factories/UserFactory.php</strong>:</p>
+<div class="relative code-block-wrapper"><pre><code data-theme="olaolu-palenight" data-lang="php" class="torchlight" style="background-color: #292D3E; --theme-selection-background: #7580B850;" id="clipText-0"><!-- Syntax highlighted by torchlight.dev --><div class="line"><span style="color: #C792EA;">class</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB6B;">UserFactory</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">extends</span><span style="color: #BFC7D5;"> </span><span style="color: #A9C77D;">Factory</span></div><div class="line"><span style="color: #BFC7D5;">{</span></div><div class="line"><span style="color: #BFC7D5;">    </span><span style="color: #697098;">//</span><span style="color: #697098;"> ...</span></div><div class="line"><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">public</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">function</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">admin</span><span style="color: #D9F5DD;">()</span><span style="color: #89DDFF;">:</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">static</span></div><div class="line"><span style="color: #BFC7D5;">    {</span></div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #C792EA;">return</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">afterCreating</span><span style="color: #BFC7D5;">(</span><span style="color: #C792EA;">fn</span><span style="color: #BFC7D5;"> </span><span style="color: #D9F5DD;">(</span><span style="color: #FFCB8B;">User</span><span style="color: #BFC7D5;"> </span><span style="color: #BEC5D4;">$user</span><span style="color: #D9F5DD;">)</span><span style="color: #BFC7D5;"> =&gt; </span><span style="color: #BEC5D4;">$user</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">update</span><span style="color: #BFC7D5;">([</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">is_admin</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">true</span><span style="color: #BFC7D5;">]));</span></div><div class="line"><span style="color: #BFC7D5;">    }</span></div><div class="line"><span style="color: #BFC7D5;">}</span></div></code></pre><button id="clipButton-0" class="md:block hidden copyBtn" aria-label="Copy to Clipboard" title="Copy to Clipboard" data-clipboard-target="#clipText-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="fill-current text-white w-6 h-6"><path fill-rule="evenodd" d="M10.5 3A1.501 1.501 0 009 4.5h6A1.5 1.5 0 0013.5 3h-3zm-2.693.178A3 3 0 0110.5 1.5h3a3 3 0 012.694 1.678c.497.042.992.092 1.486.15 1.497.173 2.57 1.46 2.57 2.929V19.5a3 3 0 01-3 3H6.75a3 3 0 01-3-3V6.257c0-1.47 1.073-2.756 2.57-2.93.493-.057.989-.107 1.487-.15z" clip-rule="evenodd"></path></svg></button></div>
+<p>Now we can create a feature test.</p>
+<div class="relative code-block-wrapper"><pre><code data-theme="olaolu-palenight" data-lang="sh" class="torchlight" style="background-color: #292D3E; --theme-selection-background: #7580B850;" id="clipText-1"><!-- Syntax highlighted by torchlight.dev --><div class="line"><span style="color: #BFC7D5;">php </span><span style="color: #BFC7D5;">artisan</span><span style="color: #BFC7D5;"> </span><span style="color: #BFC7D5;">make:test</span><span style="color: #BFC7D5;"> </span><span style="color: #BFC7D5;">AdminRoutesTest</span></div></code></pre><button id="clipButton-1" class="md:block hidden copyBtn" aria-label="Copy to Clipboard" title="Copy to Clipboard" data-clipboard-target="#clipText-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="fill-current text-white w-6 h-6"><path fill-rule="evenodd" d="M10.5 3A1.501 1.501 0 009 4.5h6A1.5 1.5 0 0013.5 3h-3zm-2.693.178A3 3 0 0110.5 1.5h3a3 3 0 012.694 1.678c.497.042.992.092 1.486.15 1.497.173 2.57 1.46 2.57 2.929V19.5a3 3 0 01-3 3H6.75a3 3 0 01-3-3V6.257c0-1.47 1.073-2.756 2.57-2.93.493-.057.989-.107 1.487-.15z" clip-rule="evenodd"></path></svg></button></div>
+<p><strong>tests/Feature/AdminRoutesTest.php</strong>:</p>
+<div class="relative code-block-wrapper"><pre><code data-theme="olaolu-palenight" data-lang="php" class="torchlight" style="background-color: #292D3E; --theme-selection-background: #7580B850;" id="clipText-2"><!-- Syntax highlighted by torchlight.dev --><div class="line"><span style="color: #C792EA;">class</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB6B;">AdminRoutesTest</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">extends</span><span style="color: #BFC7D5;"> </span><span style="color: #A9C77D;">TestCase</span></div><div class="line"><span style="color: #BFC7D5;">{</span></div><div class="line"><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">use</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB8B;">RefreshDatabase</span><span style="color: #BFC7D5;">;</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">public</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">function</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">testAdminCanAndOthersCannotAccessQuestionsPage</span><span style="color: #D9F5DD;">()</span></div><div class="line"><span style="color: #BFC7D5;">    {</span></div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$admin</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB8B;">User</span><span style="color: #89DDFF;">::</span><span style="color: #82AAFF;">factory</span><span style="color: #BFC7D5;">()</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">admin</span><span style="color: #BFC7D5;">()</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">create</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">actingAs</span><span style="color: #BFC7D5;">(</span><span style="color: #BEC5D4;">$admin</span><span style="color: #BFC7D5;">)</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">get</span><span style="color: #BFC7D5;">(</span><span style="color: #82AAFF;">route</span><span style="color: #BFC7D5;">(</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">questions</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;">));</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">assertOk</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$user</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB8B;">User</span><span style="color: #89DDFF;">::</span><span style="color: #82AAFF;">factory</span><span style="color: #BFC7D5;">()</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">create</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">actingAs</span><span style="color: #BFC7D5;">(</span><span style="color: #BEC5D4;">$user</span><span style="color: #BFC7D5;">)</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">get</span><span style="color: #BFC7D5;">(</span><span style="color: #82AAFF;">route</span><span style="color: #BFC7D5;">(</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">questions</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;">));</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">assertForbidden</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">get</span><span style="color: #BFC7D5;">(</span><span style="color: #82AAFF;">route</span><span style="color: #BFC7D5;">(</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">questions</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;">));</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">assertForbidden</span><span style="color: #BFC7D5;">();</span></div><div class="line"><span style="color: #BFC7D5;">    }</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">public</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">function</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">testAdminCanAndOthersCannotAccessQuizzesPage</span><span style="color: #D9F5DD;">()</span></div><div class="line"><span style="color: #BFC7D5;">    {</span></div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$admin</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB8B;">User</span><span style="color: #89DDFF;">::</span><span style="color: #82AAFF;">factory</span><span style="color: #BFC7D5;">()</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">admin</span><span style="color: #BFC7D5;">()</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">create</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">actingAs</span><span style="color: #BFC7D5;">(</span><span style="color: #BEC5D4;">$admin</span><span style="color: #BFC7D5;">)</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">get</span><span style="color: #BFC7D5;">(</span><span style="color: #82AAFF;">route</span><span style="color: #BFC7D5;">(</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">quizzes</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;">));</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">assertOk</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$user</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB8B;">User</span><span style="color: #89DDFF;">::</span><span style="color: #82AAFF;">factory</span><span style="color: #BFC7D5;">()</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">create</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">actingAs</span><span style="color: #BFC7D5;">(</span><span style="color: #BEC5D4;">$user</span><span style="color: #BFC7D5;">)</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">get</span><span style="color: #BFC7D5;">(</span><span style="color: #82AAFF;">route</span><span style="color: #BFC7D5;">(</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">quizzes</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;">));</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">assertForbidden</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">get</span><span style="color: #BFC7D5;">(</span><span style="color: #82AAFF;">route</span><span style="color: #BFC7D5;">(</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">quizzes</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;">));</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">assertForbidden</span><span style="color: #BFC7D5;">();</span></div><div class="line"><span style="color: #BFC7D5;">    }</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">public</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">function</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">testAdminCanAndOthersCannotAccessTestsPage</span><span style="color: #D9F5DD;">()</span></div><div class="line"><span style="color: #BFC7D5;">    {</span></div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$admin</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB8B;">User</span><span style="color: #89DDFF;">::</span><span style="color: #82AAFF;">factory</span><span style="color: #BFC7D5;">()</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">admin</span><span style="color: #BFC7D5;">()</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">create</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">actingAs</span><span style="color: #BFC7D5;">(</span><span style="color: #BEC5D4;">$admin</span><span style="color: #BFC7D5;">)</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">get</span><span style="color: #BFC7D5;">(</span><span style="color: #82AAFF;">route</span><span style="color: #BFC7D5;">(</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">tests</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;">));</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">assertOk</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$user</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB8B;">User</span><span style="color: #89DDFF;">::</span><span style="color: #82AAFF;">factory</span><span style="color: #BFC7D5;">()</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">create</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">actingAs</span><span style="color: #BFC7D5;">(</span><span style="color: #BEC5D4;">$user</span><span style="color: #BFC7D5;">)</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">get</span><span style="color: #BFC7D5;">(</span><span style="color: #82AAFF;">route</span><span style="color: #BFC7D5;">(</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">tests</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;">));</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">assertForbidden</span><span style="color: #BFC7D5;">();</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;"> </span><span style="color: #FF5572;">$this</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">get</span><span style="color: #BFC7D5;">(</span><span style="color: #82AAFF;">route</span><span style="color: #BFC7D5;">(</span><span style="color: #D9F5DD;">'</span><span style="color: #C3E88D;">tests</span><span style="color: #D9F5DD;">'</span><span style="color: #BFC7D5;">));</span></div><div class="line">&nbsp;</div><div class="line"><span style="color: #BFC7D5;">        </span><span style="color: #BEC5D4;">$response</span><span style="color: #89DDFF;">-&gt;</span><span style="color: #82AAFF;">assertForbidden</span><span style="color: #BFC7D5;">();</span></div><div class="line"><span style="color: #BFC7D5;">    }</span></div><div class="line"><span style="color: #BFC7D5;">}</span></div></code></pre><button id="clipButton-2" class="md:block hidden copyBtn" aria-label="Copy to Clipboard" title="Copy to Clipboard" data-clipboard-target="#clipText-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="fill-current text-white w-6 h-6"><path fill-rule="evenodd" d="M10.5 3A1.501 1.501 0 009 4.5h6A1.5 1.5 0 0013.5 3h-3zm-2.693.178A3 3 0 0110.5 1.5h3a3 3 0 012.694 1.678c.497.042.992.092 1.486.15 1.497.173 2.57 1.46 2.57 2.929V19.5a3 3 0 01-3 3H6.75a3 3 0 01-3-3V6.257c0-1.47 1.073-2.756 2.57-2.93.493-.057.989-.107 1.487-.15z" clip-rule="evenodd"></path></svg></button></div>
+<blockquote>
+<p>Note: for every test that needs to query DB don't forget to add the <code>RefreshDatabase</code> trait.</p>
+</blockquote>
+<p>For every test method here we do three assertions:</p>
+<ul>
+<li>Check if the admin user can access the page.</li>
+<li>Check if the non-admin user cannot access the page.</li>
+<li>And check if the guest cannot access the page.</li>
+</ul>
+<p>Now we launch <code>php artisan test</code>:</p>
+<p><img src="./16 - Admin Routes Test _ Laravel Daily_files/2023-04-06_21-20.png" alt="admin routes tests"></p>
+<p>That's it. Like this quickly we have added some tests to our application.</p>
+</article>
+                    
+                                        <div class="flex gap-4 justify-between mt-8">
+                                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/show-test-results-admin" class="button--nav-lesson">
+                                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+</svg>                                <span>Previous: Show Test Results to Admin</span>
+                            </a>
+                        
+                                                                                    <button type="button" class="button--nav-lesson lesson--complete--next">
+                                    <span>Next Lesson: Questions Test</span>
+                                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+</svg>                                </button>
+                                                                        </div>
+                    
+                    <div class="py-8 comments--dark">
+                                                    <section wire:id="SFbDxoqTIUw07YAAfgRA" class="comments ">
+    <header class="comments-header">
+                                                        <div x-data="{ subscriptionsOpen: false}" class="comments-subscription">
+                        <button @click.prevent="subscriptionsOpen = true" class="comments-subscription-trigger">
+                            Get notified when participating
+                        </button>
+                        <div class="comments-modal is-compact is-bottom" bottom="bottom" compact="compact" x-show="subscriptionsOpen" @click.outside="subscriptionsOpen = false" style="display: none;">
+        <div class="comments-modal-contents">
+        <button class="comments-subscription-item" @click="subscriptionsOpen = false" wire:click="updateSelectedNotificationSubscriptionType(&#39;participating&#39;)">
+                                    When participating
+                                </button>
+                                                            <button class="comments-subscription-item" @click="subscriptionsOpen = false" wire:click="updateSelectedNotificationSubscriptionType(&#39;all&#39;)">
+                                    On all comments
+                                </button>
+                                                            <button class="comments-subscription-item" @click="subscriptionsOpen = false" wire:click="updateSelectedNotificationSubscriptionType(&#39;none&#39;)">
+                                    Never
+                                </button>
+    </div>
+</div>
+                    </div>
+                                        </header>
+
+    
+            <p class="comments-no-comment-yet">No comments yet…</p>
+    
+            <div class="comments-form">
+                            <img class="comments-avatar" src="./16 - Admin Routes Test _ Laravel Daily_files/d0c8c87b750898473bb25bfe1d4d4a9c.png" alt="avatar">
+                        <form class="comments-form-inner" wire:submit.prevent="comment">
+                <div x-data="compose({ text: window.Livewire.find(&#39;SFbDxoqTIUw07YAAfgRA&#39;).entangle(&#39;text&#39;), autofocus: false })" x-init="
+        $wire.on(&#39;comment&#39;, clear);
+            ">
+    <div wire:ignore="">
+        <textarea placeholder="Leave a comment" style="display: none;"></textarea><div class="EasyMDEContainer" role="application"><div class="editor-toolbar" role="toolbar"><button class="bold" type="button" title="Bold (Ctrl-B)" aria-label="Bold" tabindex="-1"><i class="fa fa-bold"></i></button><button class="italic" type="button" title="Italic (Ctrl-I)" aria-label="Italic" tabindex="-1"><i class="fa fa-italic"></i></button><i class="separator">|</i><button class="quote" type="button" title="Quote (Ctrl-&#39;)" aria-label="Quote" tabindex="-1"><i class="fa fa-quote-left"></i></button><button class="unordered-list" type="button" title="Generic List (Ctrl-L)" aria-label="Generic List" tabindex="-1"><i class="fa fa-list-ul"></i></button><button class="ordered-list" type="button" title="Numbered List (Ctrl-Alt-L)" aria-label="Numbered List" tabindex="-1"><i class="fa fa-list-ol"></i></button><i class="separator">|</i><button class="link" type="button" title="Create Link (Ctrl-K)" aria-label="Create Link" tabindex="-1"><i class="fa fa-link"></i></button></div><div class="CodeMirror cm-s-easymde CodeMirror-wrap CodeMirror-empty" translate="no" style="clip-path: inset(0px);"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14.7222px; left: 14.7222px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; min-height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" style="min-height: 300px;"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: -18px; border-right-width: 32px; min-height: 32px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><pre class="CodeMirror-placeholder CodeMirror-line-like" style="height: 0px; overflow: visible; direction: ltr;">Leave a comment</pre><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 3.99305px; top: 0px; height: 23.9931px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 32px; width: 1px; border-bottom: 0px solid transparent; top: 32px;"></div><div class="CodeMirror-gutters" style="display: none; height: 64px;"></div></div></div><div class="editor-preview-side editor-preview"></div></div>
+    </div>
+    
+    <div class="comments-form-editor-tip">
+        You can use <a href="https://spatie.be/markdown" target="_blank" rel="nofollow noopener noreferrer">Markdown</a>
+    </div>
+</div>
+
+                                <button type="submit" class="comments-button" submit="submit">
+    Comment
+</button>
+            </form>
+        </div>
+        </section>
+
+<!-- Livewire Component wire-end:SFbDxoqTIUw07YAAfgRA -->                                            </div>
+                </div>
+
+                <aside class="relative overflow-hidden">
+            <div class="">
+    <p class="flex items-center justify-between text-sm font-medium">
+        <span>Progress</span>
+
+                    <span class="text-gray-300">83%</span>
+            </p>
+
+    <div class="w-full mt-1 h-2.5 shadow-inner bg-gray-900 rounded-full relative">
+        <div class="absolute inset-y-0 left-0 w-1/3 rounded-full bg-primary-500" style="width: 83%"></div>
+
+        <span class="sr-only">83%</span>
+    </div>
+</div>
+            
+    <div class="mt-4 relative h-[50vh] md:h-full overflow-y-auto">
+        <div class="absolute inset-0">
+            <ol class="pb-32 space-y-2">
+                                    <li>
+                        <h3 class="sticky top-0 pb-2 text-sm font-medium text-gray-300 bg-gray-800">Installation and Auth Basics</h3>
+
+                        <ol class="space-y-0.5">
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/install-laravel-livewire" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">01</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Install Laravel and Livewire
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            246 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/login-with-facebook-google-github" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">02</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Login with Facebook/Google/Github
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            843 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/admin-user-middleware" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">03</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Admin User with Middleware
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            350 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                    </ol>
+                    </li>
+                                    <li>
+                        <h3 class="sticky top-0 pb-2 text-sm font-medium text-gray-300 bg-gray-800">Admin Panel: Manage Questions/Quizzes</h3>
+
+                        <ol class="space-y-0.5">
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/questions-crud" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">04</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Admin: Questions CRUD
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            1740 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/answer-options-questions" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">05</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Admin: Answer Options for Questions
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            782 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/admin-quizzes-crud" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">06</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Admin: Quizzes CRUD
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            1909 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/add-questions-select2" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">07</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Admin: Add Questions to Quiz with Select2
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            1391 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                    </ol>
+                    </li>
+                                    <li>
+                        <h3 class="sticky top-0 pb-2 text-sm font-medium text-gray-300 bg-gray-800">Viewing and Taking Quizzes</h3>
+
+                        <ol class="space-y-0.5">
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/app-layout-guests" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">08</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Modify App Layout To Accept Guests
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            868 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/show-quizzes-homepage" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">09</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Show Quizzes on the Homepage
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            530 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/taking-quiz" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">10</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Page for Taking a Quiz
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            1751 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/saving-quiz-test-results" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">11</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Saving Quiz/Test Results
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            781 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/showing-quiz-test-result" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">12</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Showing Quiz/Test Result
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            1296 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/my-results-page" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">13</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            "My Results" Page
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            656 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/leaderboard-page" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">14</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Leaderboard Page
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            2028 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/show-test-results-admin" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                    <svg class="w-5 h-5 text-success-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+</svg>                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">15</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Show Test Results to Admin
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            823 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                    </ol>
+                    </li>
+                                    <li>
+                        <h3 class="sticky top-0 pb-2 text-sm font-medium text-gray-300 bg-gray-800">Writing PHPUnit Tests</h3>
+
+                        <ol class="space-y-0.5">
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/admin-routes-test" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                                                                        <svg class="w-5 h-5 text-gray-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM7 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V9.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V9s1.54-1.274 1.639-1.208zM5 11h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"></path>
+</svg>                                                                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">16</span>
+
+                                        <h4 class="text-sm font-medium text-primary-400">
+                                            Admin Routes Test
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            392 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/questions-test" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                                                                        <svg class="w-5 h-5 text-gray-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM7 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V9.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V9s1.54-1.274 1.639-1.208zM5 11h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"></path>
+</svg>                                                                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">17</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Questions Test
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            389 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                            <li>
+                                    <a href="https://laraveldaily.com/lesson/livewire-quiz/quizzes-test" class="flex items-center gap-3 px-4 py-3 bg-gray-700 border-t border-gray-600 rounded-xl hover:text-primary-300 hover:bg-gray-700/80">
+                                                                                                                                                                                        <svg class="w-5 h-5 text-gray-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM7 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V9.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V9s1.54-1.274 1.639-1.208zM5 11h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"></path>
+</svg>                                                                                                                                    
+                                        <span class="font-mono text-sm text-gray-400 tabular-nums">18</span>
+
+                                        <h4 class="text-sm font-medium">
+                                            Quizzes Test
+                                        </h4>
+
+                                        <div class="flex shrink-0 ml-auto font-mono text-sm text-gray-400 tabular-nums">
+                                                                                            300 words
+                                                                                    </div>
+                                    </a>
+                                </li>
+                                                    </ol>
+                    </li>
+                            </ol>
+        </div>
+    </div>
+
+    <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-gray-800"></div>
+</aside>
+                            </div>
+        </div>
+    </section>
+
+    <div class="h-px bg-gradient-to-r from-gray-800 via-primary-400 to-gray-800"></div>
+
+    <footer class="relative py-16 overflow-hidden text-white bg-gradient-to-b from-gray-800 to-gray-900">
+    <div class="absolute inset-x-0 top-0 flex flex-col items-center">
+        <div class="w-1/2 h-2 rounded-b-full blur-xl bg-gradient-to-b from-primary-900 to-primary-700"></div>
+    </div>
+
+    <div class="container relative flex flex-col items-center max-w-xl">
+        <a href="https://laraveldaily.com/" class="inline-flex items-center gap-3 text-xl font-bold">
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg shadow-lg border-y shadow-primary-700/20 bg-gradient-to-b from-primary-500 to-primary-600 border-t-primary-400 border-b-primary-700">
+                <img class="w-4 h-4" src="./16 - Admin Routes Test _ Laravel Daily_files/mono.svg" alt="">
+            </div>
+
+            <span>Laravel Daily</span>
+        </a>
+
+        <form action="https://laraveldaily.us11.list-manage.com/subscribe/post?u=a459401212599a54203d036ee&amp;id=91c1337873" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="mt-16 space-y-2" novalidate="novalidate">
+    <label for="mce-EMAIL" class="inline-block text-sm font-medium text-gray-300">
+        Subscribe for 20+ new Laravel tutorials every week
+    </label>
+
+    <div class="relative flex items-center">
+        <input id="mce-EMAIL" name="EMAIL" type="email" value="" required="" placeholder="E-mail address" class="py-3 pl-4 pr-12 text-sm transition bg-gray-700 border-0 border-t border-b rounded-lg placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-primary-500 grow border-t-gray-600 border-b-transparent" aria-required="true">
+        <button class="absolute flex items-center justify-center w-8 h-8 text-white rounded-md shadow-lg right-2 shadow-primary-700/30 border-y border-t-primary-400 border-b-primary-800 bg-gradient-to-b from-primary-500 to-primary-600">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"></path>
+</svg>        </button>
+    </div>
+
+    <div id="mce-responses">
+        <div class="response" id="mce-error-response" style="display:none"></div>
+        <div class="response" id="mce-success-response" style="display:none"></div>
+    </div>
+
+    <p class="text-xs text-gray-400">
+        You can unsubscribe at any time. You'll also get -20% off my courses!
+    </p>
+
+    <div style="position: absolute; left: -5000px;">
+        <input tabindex="-1" name="b_a459401212599a54203d036ee_91c1337873" type="text" value="">
+    </div>
+</form>
+
+
+        <ul class="flex flex-wrap items-center justify-center gap-4 mt-16">
+            <li>
+                <a class="inline-flex items-center gap-2 px-4 py-2 font-medium transition rounded-xl hover:bg-gray-800" href="https://www.youtube.com/c/LaravelDaily">
+                    <svg class="w-5 h-5 text-[#FF0000]" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"></path>
+</svg>
+                    <span>YouTube</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="inline-flex items-center gap-2 px-4 py-2 font-medium transition rounded-xl hover:bg-gray-800" href="https://twitter.com/dailylaravel">
+                    <svg class="w-5 h-5 text-[#1DA1F2]" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+</svg>
+                    <span>Twitter</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="inline-flex items-center gap-2 px-4 py-2 font-medium transition rounded-xl hover:bg-gray-800" href="https://github.com/LaravelDaily">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+                    <span>GitHub</span>
+                </a>
+            </li>
+        </ul>
+
+        <p class="mt-16 text-sm text-gray-400">© 2024 Laravel Daily
+            <span class="px-2">·</span>
+            <a href="https://laraveldaily.com/about-project" class="underline">About LaravelDaily</a>
+            <span class="px-2">·</span>
+            <a href="mailto:info@laraveldaily.com" class="underline">info@laraveldaily.com</a></p>
+    </div>
+</footer>
+    <div x-data="{ top: true }" :class="{ &#39;hidden&#39;: top }" @scroll.window="top = (window.pageYOffset &lt; 200 ? true : false)" @click="window.scrollTo({ top: 0, behavior: &#39;smooth&#39; })" class="fixed hidden transition ease-linear bottom-10 w-16 h-16 bg-gray-700 border-t border-gray-600 rounded-r text-gray-400 shadow-sm hover:text-primary-300 hover:cursor-pointer hover:bg-gray-600 hover:border-gray-500">
+    <div class="flex items-center justify-center h-full">
+        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"></path>
+</svg>    </div>
+</div>
+
+    <script src="./16 - Admin Routes Test _ Laravel Daily_files/livewire.js.download" data-turbo-eval="false" data-turbolinks-eval="false"></script><script data-turbo-eval="false" data-turbolinks-eval="false">window.livewire = new Livewire();window.Livewire = window.livewire;window.livewire_app_url = '';window.livewire_token = 'FJHRCo1Z7dKpLwfkrsbyGN5zOKmatHDdmEoFDvfF';window.deferLoadingAlpine = function (callback) {window.addEventListener('livewire:load', function () {callback();});};let started = false;window.addEventListener('alpine:initializing', function () {if (! started) {window.livewire.start();started = true;}});document.addEventListener("DOMContentLoaded", function () {if (! started) {window.livewire.start();started = true;}});</script>
+    <div wire:id="l8hDUvZ7noEgcS9Pqarn">
+    <div x-data="Spotlight.config({ componentId: &#39;l8hDUvZ7noEgcS9Pqarn&#39;, placeholder: &#39;Search for anything: performance, services...&#39; })" x-show="isOpen" x-init="init()" class="fixed z-50 px-4 flex items-start justify-center inset-0 pt-36" @keydown.window.prevent.cmd.k="toggleOpen()" @keydown.window.prevent.ctrl.k="toggleOpen()" @keydown.window.prevent.cmd.slash="toggleOpen()" @keydown.window.prevent.ctrl.slash="toggleOpen()" @keydown.window.escape="isOpen = false" @toggle-spotlight.window="toggleOpen()" style="display: none;">
+        <div x-show="isOpen" @click="isOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity" style="display: none;">
+            
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        
+        <div x-show="isOpen" x-transition:enter="ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="relative bg-gray-700 rounded-lg overflow-hidden shadow-2xl transform transition-all max-w-2xl w-full border-0 shadow-red-800/10 border-y border-t-gray-600 border-b-transparent" style="display: none;">
+            
+            <div class="relative">
+                
+                <div class="absolute h-full right-5 flex items-center">
+                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" wire:loading.delay="">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
+
+                <input @keydown.tab.prevent="" @keydown.prevent.stop.enter="go()" @keydown.prevent.arrow-up="selectUp()" @keydown.prevent.arrow-down="selectDown()" x-ref="input" x-model="input" type="text" class="appearance-none w-full bg-transparent px-6 py-4 md:text-xl placeholder-gray-400 border-0 focus:border-0 focus:border-transparent focus:shadow-none outline-none text-white focus:outline-none focus:ring-primary-500 font-medium" x-bind:placeholder="inputPlaceholder" placeholder="Search for anything: performance, services...">
+            </div>
+
+            
+            <div class="border-t bg-gray-900 border-gray-800" x-show="filteredItems().length &gt; 0" style="display: none;">
+                <ul x-ref="results" class="overflow-y-auto max-h-72">
+                    <template x-for="(item, i) in filteredItems()" :key=""></template>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Livewire Component wire-end:l8hDUvZ7noEgcS9Pqarn -->    <script>
+    if (window.Alpine) {
+        console.warn(
+            'Laravel Comments scripts were loaded after Alpine. ' +
+            'Please ensure Alpine is loaded last so Laravel Comments can initialize first.'
+        );
+    }
+</script>
+    <script>
+        document.addEventListener("alpine:init", () => {
+            window.Alpine.data("compose", ({ text, autofocus = false } = {}) => {
+                // Store the editor as a non-reactive instance property
+                let editor;
+
+                return {
+                    text,
+
+                    init() {
+                        if (editor) {
+                            return;
+                        }
+
+                        const textarea = this.$el.querySelector("textarea");
+
+                        if (!textarea) {
+                            return;
+                        }
+
+                        this.loadEasyMDE().then(() => {
+                            editor = new window.EasyMDE({
+                                element: textarea,
+                                hideIcons: [
+                                    "heading",
+                                    "image",
+                                    "preview",
+                                    "side-by-side",
+                                    "fullscreen",
+                                    "guide",
+                                ],
+                                autoDownloadFontAwesome:  true ,
+                                spellChecker: false,
+                                status: false,
+                                insertTexts: {
+                                    link: ["[",  "](https://)"],
+                                },
+                            });
+
+                            editor.value(this.text);
+
+                            if (autofocus) {
+                                editor.codemirror.focus();
+                                editor.codemirror.setCursor(editor.codemirror.lineCount(), 0);
+                            }
+
+                            editor.codemirror.on("change", () => {
+                                this.text = editor.value();
+                            });
+                        });
+                    },
+
+                    clear() {
+                        editor.value("");
+                    },
+
+                    loadEasyMDE() {
+                        if (window.EasyMDE) {
+                            return Promise.resolve();
+                        }
+
+                        const loadScript = new Promise((resolve) => {
+                            const script = document.createElement("script");
+                            script.src = "https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js";
+                            script.addEventListener("load", resolve);
+                            document.getElementsByTagName("head")[0].appendChild(script);
+                        });
+
+                        const loadCss = new Promise((resolve) => {
+                            const link = document.createElement("link");
+                            link.type = "text/css";
+                            link.rel = "stylesheet";
+                            link.href = "https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css";
+                            link.addEventListener("load", resolve);
+                            document.getElementsByTagName("head")[0].appendChild(link);
+                        });
+
+                        return Promise.all([loadScript, loadCss]);
+                    },
+                };
+            });
+        });
+    </script>
+
+    <script>
+var next = document.querySelector('.lesson--complete--next')
+if (next) {
+    next.addEventListener('click', function () {
+        let complete = document.querySelector('.lesson--complete')
+
+        if (complete === null) {
+            location.href = 'https://laraveldaily.com/lesson/livewire-quiz/questions-test'
+
+            return
+        }
+
+        complete.click()
+
+        function sleep (time) {
+            return new Promise(resolve => setTimeout(resolve, time));
+        }
+
+        sleep(500).then(() => {
+            location.href = 'https://laraveldaily.com/lesson/livewire-quiz/questions-test'
+        })
+    })
+}
+</script>
+<script type="text/javascript" src="./16 - Admin Routes Test _ Laravel Daily_files/mc-validate.js.download"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+
+
+
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; position: fixed; visibility: hidden; display: block; transition: right 0.3s ease 0s; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-i8lk64jj7dc" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="./16 - Admin Routes Test _ Laravel Daily_files/anchor.html"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;" src="./16 - Admin Routes Test _ Laravel Daily_files/saved_resource(1).html"></iframe></div></body></html>
