@@ -12,6 +12,7 @@ use Service\TodolistServiceImpl;
 use View\TodolistView;
 
 echo "Aplikasi To Do List" . PHP_EOL;
+echo "Php Version: " . PHP_VERSION . PHP_EOL;
 
 $todolistRepository = new TodolistRepositoryImpl;
 $todolistService = new TodolistServiceImpl($todolistRepository);
