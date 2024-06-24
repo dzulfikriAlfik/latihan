@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TEST MQTT</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+	<h1>Open JavaScript Console</h1>
+	<label>Command</label>
+	<input type="text" id="command" value="" placeholder="Enter command">
+	<label>Data</label>
+	<input type="text" id="data" value="" placeholder="Enter data">
+    <button id="publishButton">Publish Message</button>
+
+	<script type="text/javascript">
+		
+        // Informasi koneksi
+        const brokerUrl = 'wss://6f18e3fde50142db821a1b660d11e3f5.s1.eu.hivemq.cloud:8884/mqtt';
+        const options = {
+            clientId: 'your_client_id', // Gantilah dengan ID klien yang unik
+            username: 'giraffestoragetest',
+            password: 'JINc9U%v55DBPI8B',
+            rejectUnauthorized: false
+        };
+
+        // Membuat koneksi ke broker
+        const client = mqtt.connect(brokerUrl, options);
+
+        client.on('connect', () => {
+            console.log('Terhubung ke broker MQTT');
+        });
+
+        client.on('error', (err) => {
+            console.error('Gagal terhubung ke broker MQTT:', err);
+        });
+
+        document.getElementById('publishButton').addEventListener('click', () => {
+            // Topik dan pesan yang akan dipublish
+            const topic = 'device/GS1_def001';
+            const command = document.getElementById("command").value;
+            const data = document.getElementById("data").value;
+
+            let message = {command};
+
+            if (data) {
+            	message.data = data;
+            }
+
+            // Publish pesan ke topik
+            client.publish(topic, JSON.stringify(message), (err) => {
+                if (!err) {
+                    console.log(`Pesan "${JSON.stringify(message)}" berhasil dipublish ke topik "${topic}"`);
+                } else {
+                    console.error('Gagal mempublish pesan:', err);
+                }
+            });
+        });
+	</script>
+</body>
+</html>

@@ -20,5 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('/message/created', function () {
-    MessageCreated::dispatch(User::find(1));
+    MessageCreated::dispatch(User::find(1), "Haloo");
 });

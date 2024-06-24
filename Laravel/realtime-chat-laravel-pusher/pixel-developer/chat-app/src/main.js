@@ -15,13 +15,13 @@ window.Pusher = require('pusher-js')
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'YOUR_PUSHER_KEY',
+    key: 'be68b2f3ed173360fc41',
     cluster: 'ap1',
     forceTLS: true,
 })
 
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://localhost:8000'
+axios.defaults.baseURL = 'http://127.0.0.1:8000'
 
 store.dispatch('auth/me').finally(() => {
     new Vue({

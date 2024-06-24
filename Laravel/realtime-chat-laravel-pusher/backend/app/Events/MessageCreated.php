@@ -20,9 +20,9 @@ class MessageCreated implements ShouldBroadcast
      * Create a new event instance.
      */
     public function __construct(
-        public User $user
+        public User $user,
+        public $message,
     ) {
-        //
     }
 
     /**
@@ -41,6 +41,9 @@ class MessageCreated implements ShouldBroadcast
 
     public function broadcastWith(): array
     {
-        return (new UserResource($this->user))->resolve();
+        $this->user->message = $this->message;
+        $userResource = new UserResource($this->user);
+
+        return $userResource->resolve();
     }
 }

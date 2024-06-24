@@ -70,6 +70,17 @@ export default function Home() {
         <div style={{ width: '100%' }}>
           <div className='row justify-content-center'>
             <div className='col-md-6'>
+              <div
+                className='alert alert-warning alert-dismissible fade show'
+                role='alert'>
+                <strong>Holy guacamole!</strong> You should check in on some of
+                those fields below.
+                <button
+                  type='button'
+                  className='btn-close'
+                  data-bs-dismiss='alert'
+                  aria-label='Close'></button>
+              </div>
               <div className='card'>
                 <div className='card-header'>Home</div>
                 <div className='card-body'>

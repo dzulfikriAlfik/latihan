@@ -37,19 +37,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
 
-    <script src="{{ asset('build/assets/app-3a1558bb.js') }}"></script>
+    <script src="{{ asset('build/assets/app-992b2eb6.js') }}"></script>
     <script>
         const channel = Echo.channel('App.Message.1');
 
-        channel.listen('MessageCreated', (event) => {
-            console.log(event)
+        channel.listen('MessageCreated', (data) => {
+            // console.log(data)
 
             document.getElementById('message').innerHTML = `
             <div class="col-md-4">
                 <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <strong>Ada Pesan Baru!</strong>
+                    <strong>Ada Pesan Baru dari ${data.name}!</strong>
                     <hr>
-                    <p>${event.message}</p>
+                    <p>${data.message}</p>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
