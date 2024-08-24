@@ -1,0 +1,93 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabric JS Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="fabric.min.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="600" style="border: 3px solid black;"></canvas>
+    <div id="toolbar"></div>
+    <script src="main.js"></script>
+    <script src="main2.js"></script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="fabric.min.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="600" style="border:1px solid #000"></canvas>
+    <script>
+        const canvas = new fabric.Canvas('canvas');
+
+        // Membuat object rectangle
+        var polygon = new fabric.Polygon(
+            [
+                { x: -20, y: -35 },
+                { x: 20, y: -35 },
+                { x: 40, y: 0 },
+                { x: 20, y: 35 },
+                { x: -20, y: 35 },
+                { x: -40, y: 0 },
+            ],
+            {
+                stroke: "red",
+                left: 100,
+                top: 10,
+                fill: "black",
+                strokeWidth: 2,
+                strokeLineJoin: "bevil",
+            }
+        );
+
+        // Initiate a rectangle object
+        var rectangleRed = new fabric.Rect({
+            width: 60,
+            height: 20,
+            top: 40,
+            left: 80,
+            fill: "red",
+            strokeWidth: 6,
+        });
+
+        // Initiate another rectangle object
+        var rectangleBlue = new fabric.Rect({
+            width: 20,
+            height: 40,
+            top: 70,
+            left: 200,
+            fill: "blue",
+        });
+
+        // Add them to the canvas
+        canvas.add(polygon);
+        canvas.add(rectangleRed);
+        canvas.add(rectangleBlue);
+
+        canvas.renderAll();
+
+        canvas.on('object:modified', function (e) {
+            // Using intersectsWithObject method
+            console.log(
+                "Does the polygon object intersect with rectangleRed?: ",
+                polygon.intersectsWithObject(rectangleRed)
+            );
+            console.log(
+                "Does the polygon object intersect with rectangleBlue?: ",
+                polygon.intersectsWithObject(rectangleBlue)
+            );
+        })
+    </script>
+</body>
+
+</html>

@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>TEST MQTT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TEST MQTT</title>
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 </head>
+
 <body>
-	<h1>Open JavaScript Console</h1>
-	<label>Command</label>
-	<input type="text" id="command" value="" placeholder="Enter command">
-	<label>Data</label>
-	<input type="text" id="data" value="" placeholder="Enter data">
+    <h1>Open JavaScript Console</h1>
+    <label>Command</label>
+    <input type="text" id="command" value="" placeholder="Enter command">
+    <label>Data</label>
+    <input type="text" id="data" value="" placeholder="Enter data">
+    <label>Account Type</label>
+    <select id="type">
+        <option value="stagging">Stagging</option>
+        <option value="dzul">Dzul</option>
+    </select>
     <button id="publishButton">Publish Message</button>
 
-	<script type="text/javascript">
-		
+    <script>
+        let staggingServer = true;
+        let clientId = "dzulfikriAlfik";
+
+        let clusterURL = "2187f32d90894b2d8b9278c5bcae1474.s1.eu.hivemq.cloud";
+        let username = "dzulfikri_alfik";
+        let password = "@Alfik_129_@#";
+
+        if (staggingServer) {
+            clusterURL = "6f18e3fde50142db821a1b660d11e3f5.s1.eu.hivemq.cloud"
+            username = "giraffestoragetest";
+            password = "JINc9U%v55DBPI8B";
+        }
+    </script>
+
+    <script type="text/javascript">
+        const topic = 'device/GS1_def001';
+
         // Informasi koneksi
-        const brokerUrl = 'wss://6f18e3fde50142db821a1b660d11e3f5.s1.eu.hivemq.cloud:8884/mqtt';
+        const brokerUrl = `wss://${clusterURL}:8884/mqtt`;
+
         const options = {
-            clientId: 'your_client_id', // Gantilah dengan ID klien yang unik
-            username: 'giraffestoragetest',
-            password: 'JINc9U%v55DBPI8B',
+            clientId,
+            username,
+            password,
             rejectUnauthorized: false
         };
 
@@ -29,23 +53,37 @@
         const client = mqtt.connect(brokerUrl, options);
 
         client.on('connect', () => {
-            console.log('Terhubung ke broker MQTT');
+            console.log("Terhubung ke broker MQTT:");
+            console.log("brokerUrl", brokerUrl);
+            console.log("type: ", staggingServer ? "stagging" : "dzul");
+
+            // Subscribe ke topik setelah terhubung
+            client.subscribe(topic, (err) => {
+                if (!err) {
+                    console.log(`Berhasil berlangganan ke topik ${topic}`);
+                } else {
+                    console.error('Gagal berlangganan ke topik:', err);
+                }
+            });
         });
 
         client.on('error', (err) => {
             console.error('Gagal terhubung ke broker MQTT:', err);
         });
 
+        client.on('message', (topic, message) => {
+            console.log('Message arrived: ', message.toString());
+        });
+
         document.getElementById('publishButton').addEventListener('click', () => {
-            // Topik dan pesan yang akan dipublish
-            const topic = 'device/GS1_def001';
             const command = document.getElementById("command").value;
             const data = document.getElementById("data").value;
+            const type = document.getElementById("type").value;
 
-            let message = {command};
+            let message = { command };
 
             if (data) {
-            	message.data = data;
+                message.data = data;
             }
 
             // Publish pesan ke topik
@@ -57,6 +95,7 @@
                 }
             });
         });
-	</script>
+    </script>
 </body>
+
 </html>
