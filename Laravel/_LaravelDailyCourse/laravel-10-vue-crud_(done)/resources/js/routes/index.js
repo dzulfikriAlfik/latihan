@@ -10,7 +10,9 @@ import Login from '@/components/Auth/Login.vue';
 
 function auth(to, from, next) {
     if (JSON.parse(localStorage.getItem('loggedIn'))) {
-        next()
+        next();
+
+        return;
     }
 
     next('/login')
@@ -21,6 +23,9 @@ const routes = [
         path: '/',
         redirect: { name: 'login' },
         component: GuestLayout,
+        meta: {
+            requiresAuth: false
+        },
         children: [
             {
                 path: '/login',
@@ -31,7 +36,10 @@ const routes = [
     },
     {
         component: AuthenticatedLayout,
-        beforeEnter: auth,
+        // beforeEnter: auth,
+        meta: {
+            requiresAuth: true
+        },
         children: [
             {
                 path: '/posts',
@@ -55,7 +63,26 @@ const routes = [
     }
 ]
 
-export default createRouter({
+const router = createRouter({
     history: createWebHistory(),
     routes
-})
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (JSON.parse(localStorage.getItem('loggedIn'))) {
+            next();
+        } else {
+            next({name: 'login'});
+        }
+    } else {
+        if (JSON.parse(localStorage.getItem('loggedIn'))) {
+            next({name: 'posts.index'});
+        } else {
+            next();
+        }
+    }
+});
+
+export default router;
+

@@ -61,7 +61,10 @@ export default function useAuth() {
         processing.value = true
 
         axios.post('/logout')
-            .then(response => router.push({ name: 'login' }))
+            .then(response => {
+                localStorage.setItem('loggedIn', JSON.stringify(false))
+                router.push({ name: 'login' });
+            })
             .catch(error => {
                 swal({
                     icon: 'error',
