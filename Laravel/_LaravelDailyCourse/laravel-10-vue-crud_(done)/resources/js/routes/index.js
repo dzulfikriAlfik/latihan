@@ -8,16 +8,6 @@ import PostsCreate from '@/components/Posts/Create.vue'
 import PostsEdit from '@/components/Posts/Edit.vue'
 import Login from '@/components/Auth/Login.vue';
 
-function auth(to, from, next) {
-    if (JSON.parse(localStorage.getItem('loggedIn'))) {
-        next();
-
-        return;
-    }
-
-    next('/login')
-}
-
 const routes = [
     {
         path: '/',
@@ -36,7 +26,6 @@ const routes = [
     },
     {
         component: AuthenticatedLayout,
-        // beforeEnter: auth,
         meta: {
             requiresAuth: true
         },
