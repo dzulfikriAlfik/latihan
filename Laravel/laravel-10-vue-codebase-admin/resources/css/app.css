@@ -1,0 +1,9 @@
+@import 'sweetalert2/dist/sweetalert2.min.css';
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+body {
+    font-family: 'Monrope', Arial, Helvetica, sans-serif;
+}
