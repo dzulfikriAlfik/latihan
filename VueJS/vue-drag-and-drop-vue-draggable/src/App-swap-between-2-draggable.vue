@@ -88,11 +88,6 @@ export default {
   },
   methods: {
     handleDragEndItem() {
-      console.log("handleDragEndItem", {
-        originalList: this.originalList,
-        futureList: this.futureList,
-      });
-
       if (this.originalList === this.futureList) {
         this.movingItem = this[this.futureList][this.originalIndex];
         this.futureItem = this[this.futureList][this.futureIndex];
@@ -119,29 +114,21 @@ export default {
       document
         .querySelectorAll(".list-group-item")
         .forEach((el) => (el.style.border = "none"));
+      this.$toast.show("dragEnd");
     },
     handleMoveItem(event) {
-      console.log("handleMoveItem", { event });
-
       document
         .querySelectorAll(".list-group-item")
         .forEach((el) => (el.style.border = "none"));
-
       const { index, futureIndex } = event.draggedContext;
-
       this.originalIndex = index;
       this.futureIndex = futureIndex;
       this.originalList = event.from.getAttribute("data-list");
       this.futureList = event.to.getAttribute("data-list");
-
       if (this[this.futureList][this.futureIndex]) {
         event.to.children[this.futureIndex].style.border = "2px solid orange";
       }
-
       return false; // disable sort
-    },
-    log(evt) {
-      console.log("Change event:", evt);
     },
   },
 };
